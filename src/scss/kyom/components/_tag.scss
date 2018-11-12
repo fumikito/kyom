@@ -1,0 +1,23 @@
+.tag-link{
+  @include kyom-transition( (color, border-color, background-color), .2s, $ease-in-out-sine );
+  border: 1px solid transparent;
+  display: inline-block;
+  padding: 0.125em 0.5em;
+  border-radius: 2px;
+  & + &{
+    margin-left: 0.5em;
+  }
+  &:link, &:visited{
+    color: $body-font-muted-color;
+    border-color: $global-muted-color;
+    background-color: #fff;
+    text-decoration: none;
+  }
+  &:hover, &:active{
+    text-decoration: none;
+    color: #fff;
+    border-color: $global-link-color;
+    background-color: $global-link-color;
+  }
+
+}

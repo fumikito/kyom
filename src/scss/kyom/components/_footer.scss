@@ -1,0 +1,57 @@
+.site-footer{
+
+  padding: 40px 0;
+  background-color: $off-white;
+  border-top: 1px solid $light-gray;
+
+  &-social{
+    margin-bottom: 40px;
+    .uk-iconnav{
+      justify-content: center;
+    }
+  }
+
+  &-widgets{
+    margin-bottom: 40px;
+  }
+
+  &-widget{
+    width: 25%;
+    box-sizing: border-box;
+    @include bp-max( $breakpoint-medium ){
+      width: 50%;
+    }
+    @include bp-max($breakpoint-small){
+      width: 100%;
+    }
+
+    font-size: 0.85rem;
+    &-title{
+      font-weight: bold;
+      color: $body-font-muted-color;
+      font-size: 1rem;
+    }
+
+  }
+
+  &-copy{
+    color: $global-muted-color;
+    text-align: center;
+    font-size: 12px;
+    margin: 20px 0 0;
+    a:link, a:visited{
+      text-decoration: underline;
+      color: $global-muted-color;
+    }
+    a:hover, a:active{
+      text-decoration: none;
+      color: $global-link-color;
+    }
+  }
+
+}
+
+.kyom-bottom-nav ul{
+  font-size: 0.85rem;
+  justify-content: center;
+}

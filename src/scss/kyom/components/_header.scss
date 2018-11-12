@@ -1,0 +1,106 @@
+.site-header{
+
+  position: relative;
+  overflow: hidden;
+  .uk-navbar-center{
+    min-height: 80px;
+  }
+
+  .uk-navbar > *{
+
+  }
+
+  .custom-logo{
+    max-width: 180px;
+    @include bp-max( $breakpoint-small ){
+      max-width: 120px;
+    }
+    width: auto;
+    height: auto;
+    &-link{
+      transition: opacity .2s $ease-in-out-sine;
+      &:hover{
+        opacity: .6;
+      }
+    }
+  }
+  box-shadow: 0 5px 5px rgba( 0, 0, 0, .05);
+
+}
+
+.kyom-off-canvas{
+
+  color: $light-gray;
+
+  form .uk-inline{
+    width: 100%;
+  }
+}
+
+.kyom-menu{
+  ul{
+    padding: 0;
+    margin: 0;
+    li{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  a{
+    display: block;
+    padding: 0.5em;
+  }
+  & > ul{
+    margin-bottom: 20px;
+    & > li{
+      border-bottom: 1px solid #444;
+      &:first-child{
+        border-top: 1px solid #444;
+      }
+      & > ul{
+        border-top: 1px solid #444;
+        padding: 10px 0 10px 20px;
+        font-size: .85em;
+      }
+      & > a{
+        @include kyom-transition((background-color, color));
+        &:link, &:visited{
+          color: #fff;
+          text-decoration: none;
+        }
+        &:hover, &:active{
+          background-color: #fff;
+          color: $body-font-emphasis-color;
+          text-decoration: none;
+        }
+      }
+      & > ul > li > a{
+        position: relative;
+        &:after{
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color: #fff;
+          transition: width .3s $ease-in-out-sine;
+        }
+        &:link, &:visited{
+          color: #fff;
+          text-decoration: none;
+        }
+        &:hover, &:active{
+          color: #fff;
+          text-decoration: none;
+          &:after{
+            width: 50%;
+          }
+        }
+      }
+    }
+  }
+
+}
+

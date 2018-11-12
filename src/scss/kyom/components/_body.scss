@@ -1,0 +1,36 @@
+body{
+  transition: background-color .3s linear;
+  background-color: #fff;
+  .under-the_moon{
+    background-color: #000;
+  }
+  &.daylight{
+  }
+}
+
+.kyom-die{
+
+  padding: $kyom-gap 0;
+  background-color: $light-gray;
+  &-inner{
+    padding: $kyom-gap;
+    background-color: #fff;
+    min-height: 80vh;
+  }
+  h1{
+    font-family: $font-mono;
+    font-size: 1.2rem;
+  }
+
+  & + .site-footer{
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &-body{
+    margin: $kyom-gap auto 0;
+    max-width: $breakpoint-small;
+  }
+}

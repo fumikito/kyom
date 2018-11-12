@@ -1,0 +1,68 @@
+.archive{
+
+  &-header{
+    margin-bottom: $kyom-gap * 1.5;
+
+    &-cover{
+      height: 60vh;
+      min-height: 300px;
+      background-size: cover;
+    }
+
+    &-title{
+      margin-top: $kyom-gap;
+      font-size: 2em;
+    }
+    &-desc{
+      color: $body-font-muted-color;
+      text-align: center;
+    }
+    &-search{
+      color: $global-muted-color;
+      text-align: center;
+      font-size: 0.85rem;
+      a:link, a:visited{
+        color: inherit;
+        text-decoration: underline;
+      }
+      a:hover, a:active{
+        color: $global-link-color;
+        text-decoration: none;
+      }
+      .uk-button{
+        vertical-align: text-bottom;
+      }
+    }
+    &-form{
+      margin-top: $kyom-gap / 2;
+    }
+
+  }
+
+  &-container{
+    padding-top: $kyom-gap;
+    padding-bottom: $kyom-gap;
+  }
+
+  &-thumbnail{
+    filter: none;
+    min-width: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  &-pager .pager-item-next{
+    text-align: right;
+  }
+
+}
+
+
+
+
+
+.wp-pagenavi{
+  margin-top: $kyom-gap;
+  margin-bottom: $kyom-gap;
+  text-align: center;
+}

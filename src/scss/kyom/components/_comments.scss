@@ -1,0 +1,115 @@
+.uk-comment-avatar{
+  filter: none;
+}
+
+.uk-comment-body{
+  font-size: 14px;
+}
+
+.uk-comment-list{
+  .children{
+    border-left: 5px solid $comment-primary-background;
+  }
+}
+
+.comments-title{
+  margin: $kyom-gap * 2 0 $kyom-gap / 2;
+}
+
+.comments-nav{
+
+  @extend .uk-clearfix;
+  margin: $kyom-gap 0;
+
+  &-right{
+    width: 50%;
+    float: right;
+    text-align: right;
+  }
+  &-left{
+    width: 50%;
+    float: left;
+  }
+  a{
+    border-radius: 3px;
+    font-size: 0.85rem;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border: 1px solid $global-link-color;
+    @include kyom-transition((color, background-color));
+    &:link, &:visited{
+      color: $global-link-color;
+      background-color: #fff;
+      text-decoration: none;
+    }
+    &:hover, &:active{
+      text-decoration: none;
+      color: #fff;
+      background-color: $global-link-color;
+    }
+  }
+}
+
+
+.pingback{
+  font-size: 0.85em;
+  &-label{
+    font-size: 0.9em;
+    padding: 5px 10px;
+    margin-right: 0.25em;
+    display: inline-block;
+    background-color: $light-gray;
+    color: $gray;
+    .uk-icon{
+      margin-right: 0.25em;
+    }
+  }
+  &-link{
+    &:link, &:visited{
+      color: $body-font-emphasis-color;
+      text-decoration: underline;
+    }
+    &:hover, &:active{
+      color: $gray;
+      text-decoration: none;
+    }
+
+  }
+  &-time{
+    margin-left: 1em;
+  }
+}
+.comment-respond{
+  li &{
+    margin-top: $kyom-gap;
+    border: 3px dashed $comment-primary-background;
+    padding: $kyom-gap / 2;
+  }
+  .comment-reply-title{
+    @extend .uk-heading-divider;
+    small{
+      font-size: 0.85rem;
+      margin-left: 0.25em;
+    }
+  }
+  .must-log-in{
+    @extend .uk-alert;
+    @extend .uk-alert-warning;
+    @extend .uk-alert-padding;
+  }
+}
+.comment-form{
+
+  @extend %uk-form;
+
+  .logged-in-as{
+    @extend .uk-alert;
+    @extend .uk-alert-padding;
+  }
+
+  .comment-notes{
+    font-size: 0.85em;
+    color: $gray;
+  }
+
+}

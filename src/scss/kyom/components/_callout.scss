@@ -1,0 +1,104 @@
+.uk-alert-padding{
+  margin: 2em 0;
+  font-size: 0.8em;
+  padding: 2em;
+}
+
+.kyom-callout{
+
+  &s{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+
+  // Fading
+  transition: opacity .5s $ease-in-out-sine;
+  &.fade{
+    opacity: 0;
+  }
+
+  &-text{
+    margin: 0 auto;
+    font-size: 0.85em;
+    padding: 1.5em 40px;
+    position: relative;
+    box-sizing: border-box;
+    max-width: $breakpoint-medium;
+  }
+
+  &-scroll{
+    overflow: hidden;
+    position: relative;
+    &-body{
+      white-space: nowrap;
+      transform: translateX(0);
+      animation: kyom-marquee 10s linear 0s infinite;
+    }
+  }
+
+  &[data-display='none']{
+    display: none;
+  }
+
+  &-button{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY( -50% );
+  }
+
+  a{
+    &:link, &:visited{
+      color: inherit;
+      text-decoration: underline;
+    }
+    &:hover, &:active{
+      color: inherit;
+      text-decoration: none;
+      opacity: .8;
+    }
+  }
+
+  &-icon{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -10px;
+    animation: kyom-pulse 5s linear 0s infinite;
+  }
+
+  &-button{
+    display: block;
+    background: transparent;
+    -webkit-appearance: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    transition: opacity .2s $ease-in-out-sine;
+    &:hover{
+      opacity: .6;
+    }
+  }
+
+  @each $vars in (
+                  info $alert-primary-color #fff,
+                  success $alert-success-color #fff,
+                  warning $alert-warning-color #fff,
+                  danger $alert-danger-color #fff,
+  ) {
+    $class-name: nth( $vars, 1 );
+    $bg-color: nth( $vars, 2 );
+    $text-color: nth( $vars, 3 );
+    &-#{$class-name}{
+      color: $text-color;
+      background-color: $bg-color;
+      .kyom-callout-button{
+        color: $text-color;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,124 @@
+$font-title: DNPShueiGoGinStd-L, sans-serif;
+$font-serif: DNPShueiMinPr6N-M, serif;
+$font-serif-bold: DNPShueiMinPr6N-B, serif;
+$font-serif-light: DNPShueiMinPr6N-L serif;
+$font-sans: DNPShueiGoGinStd-L, sans-serif;
+$font-sans-bold: DNPShueiGoGinStd-B, sans-serif;
+$font-mono: consolas, lucida, Osaka, monospace;
+$font-amp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
+
+
+// Colors
+$off-white: #fcfcfc;
+$gray: #888;
+$light-gray: #eee;
+$semi-light-grey: #cfcfcf;
+$slightly-gray: #fcfcfc;
+$wordpress-blue: #21759b;
+
+$global-visited-color: #747fff;
+
+$body-font-color: #333;
+$body-font-emphasis-color: #000;
+$body-font-muted-color: #666;
+$body-font-night-color: #ddd;
+$body-font-night-emphasis: #fff;
+$body-font-night-muted: #888;
+
+$breakpoint-smallphone: 400px;
+$breakpoint-ipad: 768px;
+$breakpoint-ipad-and-under: 769px;
+$grid-divider-border: $light-gray;
+
+$socials-colors: (
+        mail: $gray,
+        500px: #0099e5,
+        behance: #1769ff,
+        dribbble: #444444,
+        facebook: #3b5998,
+        flickr: #0063dc,
+        foursquare: #f94877,
+        github: #333,
+        gitter: #46bc99,
+        google: #dd4b39,
+        google-plus: #dd4b39,
+        instagram: #833ab4,
+        joomla: #f44321,
+        linkedin:#0077b5,
+        pagekit:#2D87DF,
+        pinterest: #bd081c,
+        reddit: #ff4500,
+        soundcloud:#ff8800,
+        tripadvisor:#00af87,
+        tumblr:#35465c,
+        twitter:#1da1f2,
+        uikit:#1F8EF1,
+        vimeo: #162221,
+        whatsapp:#075e54,
+        wordpress:#21759b,
+        xing:#026466,
+        yelp:#af0606,
+        youtube: #ff0000,
+);
+
+// Navbar
+$navbar-background: #fff;
+
+// Bread crumb
+$breadcrumb-item-font-size: 11px;
+
+// Sizing
+$kyom-gap: 40px;
+
+// Comments
+$comment-list-margin-top: 40px;
+$comment-list-padding-left-m: 40px;
+$comment-list-padding-left: 20px;
+
+//
+// Animations
+//
+// Custom easing functions.
+// http://easings.net/ja
+
+// sine
+$ease-in-sine:cubic-bezier(0.47, 0, 0.745, 0.715) !default;
+$ease-out-sine:cubic-bezier(0.39, 0.575, 0.565, 1) !default;
+$ease-in-out-sine:cubic-bezier(0.445, 0.05, 0.55, 0.95) !default;
+
+// quad
+$ease-in-quad:cubic-bezier(0.55, 0.085, 0.68, 0.53) !default;
+$ease-out-quad:cubic-bezier(0.25, 0.46, 0.45, 0.94) !default;
+$ease-in-out-quad:cubic-bezier(0.455, 0.03, 0.515, 0.955) !default;
+
+// cubic
+$ease-in-cubic:cubic-bezier(0.55, 0.055, 0.675, 0.19) !default;
+$ease-out-cubic:cubic-bezier(0.215, 0.61, 0.355, 1) !default;
+$ease-in-out-cubic:cubic-bezier(0.645, 0.045, 0.355, 1) !default;
+
+// quart
+$ease-in-quart:cubic-bezier(0.895, 0.03, 0.685, 0.22) !default;
+$ease-out-quart:cubic-bezier(0.165, 0.84, 0.44, 1) !default;
+$ease-in-out-quart:cubic-bezier(0.77, 0, 0.175, 1) !default;
+
+// quint
+$ease-in-quint:cubic-bezier(0.755, 0.05, 0.855, 0.06) !default;
+$ease-out-quint:cubic-bezier(0.23, 1, 0.32, 1) !default;
+$ease-in-out-quint:cubic-bezier(0.86, 0, 0.07, 1) !default;
+
+// expo
+$ease-in-expo:cubic-bezier(0.95, 0.05, 0.795, 0.035) !default;
+$ease-out-expo:cubic-bezier(0.19, 1, 0.22, 1) !default;
+$ease-in-out-expo:cubic-bezier(1, 0, 0, 1) !default;
+
+// circ
+$ease-in-circ:cubic-bezier(0.6, 0.04, 0.98, 0.335) !default;
+$ease-out-circ:cubic-bezier(0.075, 0.82, 0.165, 1) !default;
+$ease-in-out-circ:cubic-bezier(0.785, 0.135, 0.15, 0.86) !default;
+
+// back
+$ease-in-back:cubic-bezier(0.6, -0.28, 0.735, 0.045) !default;
+$ease-out-back:cubic-bezier(0.175, 0.885, 0.32, 1.275) !default;
+$ease-in-out-back:cubic-bezier(0.68, -0.55, 0.265, 1.55) !default;
+
+

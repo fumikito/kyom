@@ -1,0 +1,14 @@
+
+// Break point less than.
+@mixin bp-max( $point ) {
+  @media only screen and ( max-width: $point - 1 ){
+    @content;
+  }
+}
+
+// Break point more than.
+@mixin bp-min( $point ) {
+  @media only screen and ( min-width: $point ){
+    @content;
+  }
+}

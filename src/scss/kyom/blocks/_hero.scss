@@ -1,0 +1,37 @@
+.kyom-hero{
+  position: relative;
+  transition: height .3s $ease-in-out-sine;
+  height: 90vh;
+  @include bp-max( $breakpoint-small ){
+    height: 30vh;
+  }
+  min-height: 400px;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  &-box{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50%;
+    @include bp-max( $breakpoint-small ) {
+      width: 100%;
+    }
+  }
+  &-container{
+    max-width: $breakpoint-xlarge;
+    padding: $kyom-gap;
+  }
+  &-title{
+    color: #fff;
+    font-family: $font-sans;
+    font-weight: normal;
+  }
+
+  &-lead{
+    font-family: $font-sans;
+    color: $light-gray;
+  }
+}

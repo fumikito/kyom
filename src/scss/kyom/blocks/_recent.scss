@@ -1,0 +1,119 @@
+.recent-wide{
+  padding: $kyom-gap 0 $kyom-gap 33%;
+  position: relative;
+  &-title{
+    position: absolute;
+    right: 66%;
+    top: 50%;
+    transform: translateY( -50% );
+    padding: $kyom-gap;
+    font-family: $font-serif;
+    font-size: 2rem;
+  }
+  @include bp-max( $breakpoint-ipad-and-under ){
+    padding-left: 0;
+    &-title{
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      text-align: center;
+    }
+  }
+
+  &-list{
+    height: 300px;
+    display: flex;
+    &-column{
+      height: 100%;
+      width: 50%;
+    }
+    @include bp-max( $breakpoint-small ){
+      display: block;
+      height: auto;
+      &-column{
+        width: 100%;
+        height: 300px;
+      }
+    }
+  }
+
+  &-grid{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    @include bp-max( $breakpoint-small){
+      height: 300px;
+    }
+  }
+
+
+
+  &-item{
+
+    &-large{
+      width: 100%;
+      height: 100%;
+      font-size: 0.9rem;
+    }
+    font-size: 0.75rem;
+    width: 50%;
+    height: 50%;
+  }
+
+  &-card{
+    display: block;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    @include kyom-transition( (background-color) );
+    &:link, &:visited{
+      text-decoration: none;
+      color: #fff;
+      background-color: $global-secondary-background;
+    }
+    &:hover, &:active{
+      text-decoration: none;
+      color: #fff;
+      background-color: $global-link-color;
+    }
+    &-title{
+      position: absolute;
+      color: #fff;
+      margin: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      font-size: 1.2em;
+      background-color: rgba( 0, 0, 0, .7 );
+    }
+    &-label{
+      position: absolute;;
+      top: 0;
+      right: 0;
+      padding: 5px;
+      font-size: 0.75rem;
+      color: #fff;
+      background-color: $global-secondary-background;
+    }
+  }
+
+  &-cover{
+    $diff: -8px;
+    position: absolute;
+    @include kyom-transition( (left, top, bottom, right) );
+    left: $diff;
+    right: $diff;
+    top: $diff;
+    bottom: $diff;
+    background-size: cover;
+    background-position: center;
+    a:hover &, a:active &{
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}

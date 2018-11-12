@@ -1,0 +1,77 @@
+img{
+  filter: grayscale(100%);
+  .jp-carousel &,
+  .uk-lightbox-items &{
+    filter: none;
+  }
+}
+
+%uk-form{
+
+  p label{
+    display: block;
+    color: $gray;
+    font-size: 0.85em;
+    margin-bottom: 0.25em;
+  }
+
+  .required{
+    color: $global-danger-background;
+  }
+
+  textarea{
+    @extend .uk-textarea;
+  }
+
+  select{
+    @extend .uk-select;
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=url],
+  input[type=tel]
+  {
+    @extend .uk-input;
+  }
+
+  input[type=submit]{
+    @extend .uk-button;
+    @extend .uk-button-primary;
+  }
+
+}
+
+%black-link{
+  transition: color .2s $ease-in-out-sine;
+  &:link, &:visited{
+    color: $body-font-emphasis-color;
+    text-decoration: underline;
+  }
+  &:hover, &:active{
+    color: $gray;
+    text-decoration: none;
+  }
+}
+
+%block-link{
+  display: block;
+  padding: 1em;
+  line-height: 1.1;
+  @include kyom-transition((color, background-color));
+  &:before{
+    content: "›";
+    margin-right: 0.25em;
+  }
+  &:link, &:visited{
+    text-decoration: none;
+    color: $gray;
+    background-color: transparent;
+  }
+  &:hover, &:active{
+    text-decoration: none;
+    color: $body-font-emphasis-color;
+    background-color: $light-gray;
+  }
+}

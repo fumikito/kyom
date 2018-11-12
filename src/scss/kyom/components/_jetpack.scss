@@ -1,0 +1,25 @@
+//
+// Sharedaddy
+//
+.sd{
+
+  &-block{
+    margin-top: $kyom-gap;
+  }
+
+  &-title{
+    font-size: 1.5rem !important;
+  }
+
+  &-content{
+
+  }
+
+  &-button{
+    border-radius: 0 !important;
+    span{
+      font-family: $font-mono !important;
+      font-size: 14px !important;
+    }
+  }
+}

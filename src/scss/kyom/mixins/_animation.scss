@@ -1,0 +1,35 @@
+// Mixin files.
+
+@mixin kyom-transition( $props, $duration: .2s, $animation: linear ){
+  $value: ();
+  @each $prop in $props {
+    $value: append( $value, $prop $duration $animation, comma );
+  }
+  &{
+    transition: $value;
+  }
+}
+
+@keyframes kyom-pulse {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.05); }
+  30% { transform: scale(1); }
+  40% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  60% { transform: scale(1); }
+  70% { transform: scale(1.1); }
+  80% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes kyom-marquee {
+  0%{
+    transform: translateX(0);
+  }
+  30%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX( -100% );
+  }
+}

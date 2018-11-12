@@ -1,0 +1,128 @@
+.entry-container{
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.entry{
+
+  &-breadcrumb{
+    padding-top: 10px;
+    max-width: 100%;
+    .uk-breadcrumb{
+      overflow: scroll;
+      flex-wrap: nowrap;
+
+    }
+
+  }
+
+  &-header{
+    position: relative;
+    &.no-thumbnail{
+      height: 80vh;
+      min-height: 300px;
+      .entry-header-box{
+        z-index: 3;
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        padding-top: 0;
+      }
+    }
+    &-box{
+      padding-top: 40px;
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 100%;
+    }
+    &-cover{
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+      height: 60vh;
+      min-height: 300px;
+    }
+    &-excerpt{
+      font-size: 0.9rem;
+    }
+  }
+  &-title{
+    font-family: $font-title;
+    font-weight: normal;
+    font-size: 60px;
+    @include bp-max( $breakpoint-small ) {
+      font-size: 36px;
+    }
+    @include bp-max( $breakpoint-smallphone) {
+      font-size: 28px;
+    }
+    line-height: 1.2;
+    color: $body-font-color;
+    @include night-shift((
+      color: $body-font-night-emphasis,
+    ));
+  }
+
+  &-meta{
+    margin-top: 1em;
+    &-list{
+      padding: 0;
+    }
+    &-item{
+      font-size: 12px;
+      list-style: none;
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+      margin-bottom: 0.5em;
+      .uk-icon{
+        color: $global-muted-color;
+      }
+      & + &{
+        margin-left: 1em;
+      }
+    }
+    &-link{
+
+    }
+  }
+}
+
+.entry-content{
+  @include post-style();
+
+  .uk-text-center p{
+    text-align: center !important;
+  }
+
+  .tiled-gallery{
+    .gallery-row{
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+}
+
+
+.entry-footer{
+  padding-top: $kyom-gap;
+  padding-bottom: $kyom-gap;
+  &-divider{
+    text-align: center;
+    .uk-icon{
+      color: $light-gray;
+    }
+  }
+  .pager{
+    margin-top: $kyom-gap;
+  }
+}
+
+.kyom-archive-back{
+  padding: $kyom-gap 0;
+}

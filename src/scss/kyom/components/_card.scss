@@ -1,0 +1,57 @@
+.uk-slider {
+  img {
+    filter: none;
+  }
+}
+
+.uk-card-primary,
+.uk-card-secondary {
+  .uk-card-body {
+    border-top: 1px solid transparentize(#fff, .4);
+    border-bottom: 1px solid #fff;
+  }
+}
+
+.uk-card-hover {
+  .uk-card-body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.uk-card-title {
+  margin-top: 10px;
+  @include bp-max( $breakpoint-small ) {
+    font-size: 1.2rem;
+  }
+  a {
+    transition: opacity .3s $ease-in-out-sine;
+    &:link, &:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+    &:hover, &:active {
+      opacity: .8;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
+
+.uk-card-header {
+  position: relative;
+  .primary-term-link {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    padding: 2px 5px;
+    background-color: $global-secondary-background;
+    color: #fff;
+  }
+}
+
+.uk-card-body {
+  font-size: 0.85rem;
+}

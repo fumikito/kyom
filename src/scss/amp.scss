@@ -1,0 +1,178 @@
+@import "kyom/variables";
+@import "variables-theme.scss";
+@import "mixins-theme.scss";
+@import "kyom/mixins/*";
+
+body {
+
+}
+
+.amp-wp-article-content{
+
+  pre{
+    padding: 1em;
+    background-color: $light-gray;
+  }
+
+}
+
+.kyom-amp-return{
+  text-align: center;
+  margin: 1em 0;
+  a{
+    font-family: $font-amp-sans;
+    display: inline-block;
+    padding: 0.75em 1em;
+    border: 2px solid transparent;
+    background-color: #fff;
+    border-radius: 3px;
+    @include kyom-transition((color, background-color));
+    &:link, &:visited{
+      text-decoration: none;
+    }
+    &:hover, &:active{
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}
+
+
+.amp-read-more-link{
+  display: block;
+  padding: 1em;
+  font-size: 1.4em;
+  .fa {
+    margin-right: 0.25em;
+  }
+  background-color: transparent;
+  color: #fff;
+  transition: opacity .3s $ease-in-out-sine;
+  @each $key, $value in $socials-colors {
+    &-#{$key}{
+      background-color: $value;
+    }
+  }
+  &:link, &:visited{
+    text-decoration: none;
+    color: #fff;
+  }
+  &:hover, &:active{
+    text-decoration: none;
+    opacity: .7;
+    color: #fff;
+  }
+}
+
+
+.tmkm-amazon {
+
+  &-view {
+    font-family: $font-amp-sans;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: $slightly-gray;
+    border-top: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+
+    p{
+       margin: 0.5em 0;
+    }
+
+    amp-img,
+    img {
+      max-width: 200px;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: 10px auto;
+    }
+
+    .vendor{
+      font-size: 0.85em;
+      text-align: center;
+    }
+  }
+
+  &-title{
+    font-size: 1.2em;
+    font-weight: bold;
+    a:link, a:visited{
+      color: $body-font-emphasis-color;
+      text-decoration: none;
+    }
+    a:hover, a:active{
+      color: $global-link-color;
+      text-decoration: none;
+    }
+    small{
+      margin-left: 0.25em;
+      padding: 0.25em;
+      background-color: $body-font-color;
+      color: #fff;
+    }
+
+    & ~ p {
+      font-size: 0.85em;
+      .label{
+        color: $gray;
+        margin-right: 0.5em;
+        display: inline-block;
+        width: 6em;
+      }
+      em{
+        font-size: $body-font-emphasis-color;
+        font-weight: bold;
+        font-style: normal;
+      }
+    }
+  }
+}
+
+.kyom-amp-container{
+  padding: 20px;
+}
+
+.amp-related-item{
+
+  a{
+    border-bottom: 1px solid $light-gray;
+    &:first-child{
+      border-top: 1px solid $light-gray;
+    }
+    display: flex;
+    @include kyom-transition((color, background-color));
+    padding: 10px;
+    &:link, &:visited{
+      text-decoration: none;
+      color: #000;
+      background-color: #fff;
+    }
+    &:hover, &:active{
+      text-decoration: none;
+      color: $global-link-color;
+      background: $slightly-gray;
+    }
+  }
+
+  &-title{
+    display: block;
+    font-size: 16px;
+    flex:1;
+    amp-img + &{
+      padding-left: 10px;
+    }
+    small{
+      display: block;
+      text-align: right;
+      color: $gray;
+    }
+  }
+}
+
+.amp-footer-content{
+
+  padding: 20px;
+  text-align: center;
+  font-family: $font-amp-sans;
+}

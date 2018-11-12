@@ -1,0 +1,9 @@
+@mixin night-shift($style){
+
+  .under-the-moon &{
+    @each $key, $value in $style{
+      #{$key}: $value;
+    }
+  }
+
+}

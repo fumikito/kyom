@@ -1,0 +1,18 @@
+// 1. Your custom variables and variable overwrites.
+@import "kyom/variables";
+@import "kyom/mixins/*";
+
+// 2. Import default variables and available mixins.
+@import "variables-theme.scss";
+@import "mixins-theme.scss";
+
+// 3. Your custom mixin overwrites.
+//@mixin hook-card() { color: #000; }
+
+// 4. Import UIkit.
+@import "uikit-theme.scss";
+
+// 5. Import all local components.
+@import "kyom/global";
+@import "kyom/components/*";
+@import "kyom/blocks/*";

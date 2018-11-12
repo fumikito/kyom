@@ -1,0 +1,82 @@
+.wporg{
+  padding: $kyom-gap 0;
+
+  &-title{
+    font-size: 2rem;
+    font-family: $font-sans;
+    color: $wordpress-blue;
+  }
+
+  &-profile{
+    text-align: center;
+    a{
+      @extend %black-link;
+    }
+    img{
+      width: 40px;
+      height: 40px;
+      margin-right: 0.25em;
+    }
+  }
+
+  &-badges{
+    font-size: 0.85rem;
+    text-align: center;
+    margin: $kyom-gap auto;
+    max-width: $breakpoint-small-max;
+  }
+
+  &-role{
+    display: inline-block;
+    margin: 0 0 20px 20px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1rem;
+    .dashicons{
+      color: $global-muted-color;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      font-size: 28px;
+      border: 3px double $global-muted-background;
+      border-radius: 50%;
+      text-align: center;
+      vertical-align: middle;
+      &[class*="contributor"]{
+        color: $global-primary-background;
+        border-color: $global-primary-background;
+      }
+      &[class*="editor"],
+      &[class*="speaker"]{
+        color: $global-warning-background;
+        border-color: $global-warning-background;
+      }
+      &[class*="organizer"],
+      &[class*="commiter"]{
+        color: $global-danger-background;
+        border-color: $global-danger-background;
+      }
+      &[class*="plugins"],
+      &[class*="themes"]{
+        color: $global-visited-color;
+        border-color: $global-visited-color;
+      }
+    }
+  }
+
+  &-downloads{
+    text-align: center;
+    small{
+      font-size: 1rem;
+    }
+    strong{
+      font-size: 2.5em;
+      font-family: $font-mono;
+      color: $wordpress-blue;
+    }
+    &-items{
+      display: block;
+      font-size: 0.85rem;
+    }
+  }
+}

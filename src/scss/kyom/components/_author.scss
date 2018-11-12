@@ -1,0 +1,72 @@
+.author-block{
+  margin: $kyom-gap 0;
+
+  box-sizing: border-box;
+  padding: 2em;
+  border: 1px solid $light-gray;
+  background-color: $off-white;
+
+
+  &-title{
+    font-size: 1.2em;
+    font-family: $font-sans-bold;
+    font-weight: normal;
+    small{
+      color: $global-muted-color;
+    }
+  }
+
+  &-body{
+    display: flex;
+  }
+
+  &-image{
+    img{
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      border-radius: 50%;
+      filter: none;
+    }
+  }
+
+  &-content{
+    padding-left: 2em;
+  }
+
+  &-description{
+    p{
+      font-size: 0.85em;
+    }
+    margin-bottom: 2em;
+  }
+
+  &-contact{
+    &-title{
+      font-size: 1em;
+      font-family: $font-sans;
+      margin-bottom: 1em;
+    }
+    &-links{
+      a{
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+        background: #fff;
+      }
+    }
+    &-link{
+
+      &-method{
+        @include bp-max($breakpoint-small-max){
+          display: none;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+}

@@ -1,0 +1,294 @@
+%widget-list {
+  padding: 0;
+  li {
+    list-style: none;
+    border-bottom: 1px solid $light-gray;
+    &:first-child {
+      border-top: 1px solid $light-gray;
+    }
+  }
+
+}
+
+//
+// Widget common setting.
+//
+.widget {
+  &_meta {
+    ul {
+      @extend %widget-list;
+      a {
+        @extend %block-link;
+      }
+    }
+  }
+  img {
+    filter: none;
+  }
+}
+
+.normal-widget {
+  &-inner{
+    padding: 0 10px;
+    margin: 0 auto;
+  }
+  &-title{
+    font-size: 0.8em;
+    text-align: center;
+    margin: 0 auto $kyom-gap;
+  }
+  &-wrapper {
+    margin-top: $kyom-gap;
+    margin-bottom: $kyom-gap;
+    padding: $kyom-gap 0;
+    background-color: $slightly-gray;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  width: 25%;
+  margin-bottom: $kyom-gap / 2;
+  @include bp-max( $breakpoint-medium ) {
+    width: 50%;
+  }
+  @include bp-max( $breakpoint-small ){
+    width: 100%;
+  }
+}
+
+//
+// Calendar Widget
+//
+.calendar_wrap {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    caption {
+      margin-bottom: 0.5em;
+      color: $global-muted-color;
+    }
+    td, th {
+      height: 2em;
+      width: 2em;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    th {
+      border-bottom: 3px double $light-gray;
+    }
+    tbody {
+      a {
+        display: block;
+        height: 2.5em;
+        line-height: 2.5em;
+        @include kyom-transition((color, background-color));
+        &:link, &:visited {
+          color: #fff;
+          background-color: $global-link-color;
+          text-decoration: none;
+        }
+        &:hover, &:active {
+          text-decoration: none;
+          color: $global-link-color;
+          background-color: #fff;
+        }
+      }
+      td {
+        border: 1px solid $light-gray;
+      }
+    }
+    #today {
+      background-color: $gray;
+      color: $off-white;
+    }
+  }
+}
+
+//
+// Brand widget
+//
+.kyom-brand {
+  img#{&}-icon {
+    width: 120px;
+  }
+  img {
+    width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+  }
+  &-tag-line {
+
+  }
+  &-long-desc {
+    color: $body-font-emphasis-color;
+  }
+  &-address {
+    color: $gray;
+  }
+  &-contact {
+    .uk-icon {
+      color: $gray;
+    }
+    a {
+      @extend %black-link;
+    }
+  }
+}
+
+//
+// Widget Jetpack
+//
+.widget .jetpack-display-remote-posts {
+  h4 {
+    font-size: 0.9rem;
+    margin: 20px 0 10px;
+    padding-top: 20px;
+    border-top: 1px solid $light-gray;
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    a {
+      @extend %black-link;
+    }
+  }
+  & > a {
+    display: block;
+    transition: opacity .2s $ease-in-out-sine;
+    margin-bottom: 10px;
+    &:hover, &:active {
+      opacity: .8;
+    }
+  }
+}
+
+.widget_nav_menu {
+  .menu {
+    padding: 0;
+    margin: 0;
+    & > li {
+      border-bottom: 1px solid $light-gray;
+    }
+  }
+  li {
+    list-style: none;
+    margin: 0;
+  }
+  a {
+    position: relative;
+    z-index: 2;
+    display: block;
+    padding: 0.5em 0.5em 0.5em 1.5em;
+    @include kyom-transition((color, background-color));
+    &:after {
+      content: "›";
+      z-index: 2;
+      color: $gray;
+      position: absolute;
+      left: 0.5em;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &:link, &:visited {
+      color: $gray;
+      text-decoration: none;
+      background-color: transparent;
+    }
+    &:hover, &:active {
+      color: $body-font-emphasis-color;
+      text-decoration: none;
+      background-color: $light-gray;
+    }
+  }
+  .sub-menu {
+    margin: 0 0 0 1em;
+    padding: 0;
+    border-top: 1px solid $light-gray;
+    .sub-menu .sub-menu {
+      margin-left: 0;
+    }
+  }
+}
+
+//
+// RSS widget
+//
+.widget_rss {
+  h2 {
+    a:first-child {
+      display: none;
+    }
+    a:last-child {
+      &:link, &:visited {
+        color: inherit;
+        text-decoration: none;
+      }
+      &:hover, &:active {
+        color: $global-link-color;
+        text-decoration: none;
+      }
+    }
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      border-bottom: 1px solid $light-gray;
+      padding: 20px 0;
+      .rsswidget {
+        font-size: 1rem;
+        display: block;
+        margin-bottom: 5px;
+        @extend %black-link;
+      }
+      .rss-date {
+        margin-bottom: 5px;
+        display: block;
+        text-align: right;
+        color: $gray;
+        font-size: 0.85em;
+      }
+      .rssSummary {
+        color: $body-font-emphasis-color;
+        margin-bottom: 5px;
+      }
+      cite {
+        display: block;
+        color: $gray;
+      }
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.widget_categories ul,
+.widget .xoxo {
+  @extend %widget-list;
+  a {
+    @extend %block-link;
+  }
+}
+
+.widget_sp_image {
+  img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+  &-image-link {
+    display: block;
+  }
+  &-description {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: $global-muted-color;
+  }
+}

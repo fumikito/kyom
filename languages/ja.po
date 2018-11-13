@@ -1,0 +1,805 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Kyom\n"
+"POT-Creation-Date: 2018-11-13 00:12+0900\n"
+"PO-Revision-Date: 2018-11-13 13:29+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: amp/kyom-after-content.php:9
+msgid "Read Original Version"
+msgstr "オリジナル版を読む"
+
+#: amp/kyom-related-posts.php:6
+msgid "Related Posts"
+msgstr "関連する投稿"
+
+#: amp/kyom-related-posts.php:26
+msgid "Follow Us"
+msgstr "フォローしてください"
+
+#: amp/kyom-related-posts.php:29
+msgid "Follow US and Get in Touch"
+msgstr "フォローして最新情報を取得しましょう"
+
+#: app/Fumikito/Kyom/Blocks/Activities.php:22
+msgid "Recent Projects"
+msgstr "最近のプロジェクト"
+
+#: app/Fumikito/Kyom/Blocks/Activities.php:32
+msgid "Number to display"
+msgstr "表示する数"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:19
+msgid "Hero Unit"
+msgstr "ヒーローユニット"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:29 app/Fumikito/Kyom/Blocks/Recent.php:27
+#: app/Fumikito/Kyom/Pattern/WidgetBase.php:50
+msgid "Title"
+msgstr "タイトル"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:32
+msgid "Background Image"
+msgstr "背景画像"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:36
+msgid "Text Color"
+msgstr "テキスト色"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:41
+msgid "Text Background Color"
+msgstr "テキスト背景色"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:46
+msgid "Text Align"
+msgstr "テキスト位置"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:51
+msgid "Center"
+msgstr "中央"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:55
+msgid "Left"
+msgstr "左"
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:59
+msgid "Right"
+msgstr "右"
+
+#: app/Fumikito/Kyom/Blocks/Recent.php:17
+#: app/Fumikito/Kyom/Blocks/Recent.php:28
+msgid "Recent Posts"
+msgstr "最近の投稿"
+
+#: app/Fumikito/Kyom/Blocks/Recent.php:31
+msgid "Category"
+msgstr "カテゴリー"
+
+#: app/Fumikito/Kyom/Blocks/Recent.php:48
+msgid "No post found."
+msgstr "投稿が見つかりませんでした。"
+
+#: app/Fumikito/Kyom/Blocks/RssSlider.php:13
+msgid "RSS Sliders"
+msgstr "RSSスライダー"
+
+#: app/Fumikito/Kyom/Blocks/RssSlider.php:23
+msgid "Feed URL"
+msgstr "フィールURL"
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:30
+msgid "Testimonials"
+msgstr "推薦文"
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:36
+msgid "Number of Display"
+msgstr "表示数"
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:41
+#: template-parts/archive-header.php:85
+msgid "Order"
+msgstr "順番"
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:46
+msgid "Random"
+msgstr "ランダム"
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:50
+msgid "From Newest"
+msgstr "新着順"
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:54
+msgid "Post Order"
+msgstr "ページ順序"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:22
+msgid "WordPress Activities"
+msgstr "WordPressの活動"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:32
+msgid "WordPress User Name"
+msgstr "WordPressユーザー名"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:35
+msgid "WordPress User Email"
+msgstr "WordPressメール"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:39
+msgid "Background Color"
+msgstr "背景色"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:61
+msgid "WordPress Activity"
+msgstr "WordPressの活動"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:82
+msgid "Total"
+msgstr "合計"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:84
+msgid "Download"
+msgid_plural "Downloads"
+msgstr[0] "ダウンロード"
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:93
+#, php-format
+msgid "Member Since %s"
+msgstr "%sに登録"
+
+#: app/Fumikito/Kyom/Pattern/BlockBase.php:108 hooks/settings.php:41
+msgid "Content"
+msgstr "コンテンツ"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:147
+#, php-format
+msgid "%s theme"
+msgid_plural "%s themes"
+msgstr[0] "%s テーマ"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:150
+#, php-format
+msgid "%s plugin"
+msgid_plural "%s plugins"
+msgstr[0] "%s プラグイン"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:155
+msgctxt "csv-glue"
+msgid ", "
+msgstr "、"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:178
+msgctxt "wordpress"
+msgid "Developer"
+msgstr "開発者"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:179
+msgctxt "wordpress"
+msgid "Speaker"
+msgstr "登壇者"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:180
+msgctxt "wordpress"
+msgid "Plugin"
+msgstr "プラグイン"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:181
+msgctxt "wordpress"
+msgid "Theme"
+msgstr "テーマ"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:182
+msgctxt "wordpress"
+msgid "Organizer"
+msgstr "オーガナイザー"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:183
+msgctxt "wordpress"
+msgid "Editor"
+msgstr "編集者"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:184
+msgctxt "wordpress"
+msgid "Contributor"
+msgstr "貢献者"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:185
+msgctxt "wordpress"
+msgid "Core"
+msgstr "コア"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:186
+msgctxt "wordpress"
+msgid "Meta"
+msgstr "メタ"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:187
+msgctxt "wordpress"
+msgid "Support"
+msgstr "サポート"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:188
+msgctxt "wordpress"
+msgid "Translation"
+msgstr "翻訳"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:189
+msgctxt "wordpress"
+msgid "Team"
+msgstr "チーム"
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:190
+msgctxt "wordpress"
+msgid "Commiter"
+msgstr "コミッター"
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:11 hooks/ads.php:17
+msgid "Advertisement"
+msgstr "広告"
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:15
+msgid ""
+"Insert advertisement scripts like Google Adsense. Any javascripts are "
+"allowed."
+msgstr ""
+"Google Adsenseのような広告スクリプトを入力してください。Javascriptは許可され"
+"ています。"
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:22
+msgid "Ad Script"
+msgstr "広告スクリプト"
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:27
+msgid "Max Width"
+msgstr "最大幅"
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:13
+msgid "Brand"
+msgstr "ブランド"
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:17
+msgid "Displays your brand with custom icon, custom logo and description."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:118
+msgid "Display site icon"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:122
+msgid "Display custom logo"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:126
+msgid "Display tag line"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:130
+msgid "Display long description"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:134
+msgid "Display address"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:138
+msgid "Display tel"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:142
+msgid "Display mail"
+msgstr ""
+
+#: comments.php:15
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+"この投稿はパスワード保護されています。コメントを見るにはパスワードを入力して"
+"ください。"
+
+#: comments.php:28
+#, php-format
+msgid "One response to %s"
+msgstr "%sへの1件のコメント"
+
+#: comments.php:31
+#, php-format
+msgid "%1$s response to %2$s"
+msgid_plural "%1$s responses to %2$s"
+msgstr[0] "%2$s への%1$s件の投稿"
+
+#: comments.php:52
+msgid "Ping Back"
+msgstr "ピンバック"
+
+#: comments.php:94
+msgid "Your comment is awaiting moderation."
+msgstr "コメントは承認待ちです。"
+
+#: comments.php:132
+msgid "This post has no comment yet. Please share your thoughts."
+msgstr "この投稿にはコメントがありません。あなたの考えをシェアしてください。"
+
+#: comments.php:138
+msgid "Comments are closed."
+msgstr "コメントは閉じられています。"
+
+#: functions/content.php:78
+#, php-format
+msgid "%s letter"
+msgid_plural "%s letters"
+msgstr[0] "%s文字"
+
+#: functions/content.php:80
+#, php-format
+msgid "%s word"
+msgid_plural "%s words"
+msgstr[0] "%s単語"
+
+#: functions/content.php:123
+#, php-format
+msgid "%s minute to read"
+msgid_plural "%s minutes to read"
+msgstr[0] "読了%s分"
+
+#: functions/date.php:73
+#, php-format
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] "%s年"
+
+#: functions/date.php:75
+msgctxt "date"
+msgid " and half"
+msgstr "半"
+
+#: functions/date.php:105
+#, php-format
+msgid "%s year ago"
+msgid_plural "%s years ago"
+msgstr[0] "%s年前"
+
+#: functions/date.php:107
+#, php-format
+msgid "%s month ago"
+msgid_plural "%s months ago"
+msgstr[0] "%sヵ月前"
+
+#: functions/date.php:109
+msgid "Yesterday"
+msgstr "昨日"
+
+#: functions/date.php:109
+#, php-format
+msgid "%s days ago"
+msgstr "%s日前"
+
+#: functions/date.php:111
+#, php-format
+msgid "%s hour ago"
+msgid_plural "%s hours ago"
+msgstr[0] "%s時間前"
+
+#: functions/date.php:113
+#, php-format
+msgid "%d minutes ago"
+msgstr "%d分前"
+
+#: functions/date.php:115
+msgid "Just Now"
+msgstr "たったいま"
+
+#: functions/display.php:17
+#, php-format
+msgctxt "parenthesis"
+msgid "(%s)"
+msgstr "（%s）"
+
+#: functions/display.php:93
+msgid "Search Results"
+msgstr "検索結果"
+
+#: functions/display.php:95
+msgid "Quotes Collection"
+msgstr "名言集"
+
+#: functions/display.php:120
+#, php-format
+msgid "Search results of \"%s\"."
+msgstr "「%s」の検索結果です。"
+
+#: functions/navigations.php:85
+msgid ""
+"If you are from an external site, URL might be wrong. Please check it is "
+"correct."
+msgstr ""
+"外部サイトから来た場合、URLが間違っているかもしれません。URLが正しいかどう"
+"か、確認してください。"
+
+#: functions/navigations.php:86
+msgid "Content on this URL might be deleted in some reason."
+msgstr "このURLはなんらかの理由により削除されたのかもしれません。"
+
+#: functions/navigations.php:87
+msgid "Please try search form below to find what you are looking for."
+msgstr "以下の検索フォームでお探しのものが見つかるかお試しください。"
+
+#: functions/navigations.php:88
+msgid ""
+"Are you lost yourself? Simply back to former page by clicking browser's back "
+"button."
+msgstr ""
+"間違えたこのページに来てしまいましたか？　その場合はブラウザの戻るボタンで元"
+"いたページにお戻りください。"
+
+#: functions/users.php:53 hooks/members.php:46
+msgid "Newsletter"
+msgstr "ニュースレター"
+
+#: header.php:10 header.php:55
+msgid "Menu"
+msgstr "メニュー"
+
+#: header.php:28
+msgid "Sign Up"
+msgstr "登録"
+
+#: header.php:33
+msgid "Sign In"
+msgstr "ログイン"
+
+#: header.php:38
+msgid "Log in"
+msgstr "ログイン"
+
+#: header.php:71
+msgid "Input keywords..."
+msgstr "キーワードを入力……"
+
+#: hooks/ads.php:23
+msgid "Ad after title"
+msgstr ""
+
+#: hooks/ads.php:24
+msgid ""
+"If set, advertisement will be displayed just after single post page title."
+msgstr ""
+
+#: hooks/ads.php:28
+msgid "Related Ad"
+msgstr "関連広告"
+
+#: hooks/ads.php:29
+msgid "If you have related ad of Google Adsense, paste code here."
+msgstr ""
+
+#: hooks/ads.php:34
+msgid "Automatic Ad"
+msgstr "自動広告"
+
+#: hooks/ads.php:35
+msgid "Enter client ID to enable automatic ad on single page."
+msgstr ""
+
+#: hooks/ads.php:55
+msgid "Ad after Title on AMP"
+msgstr "AMPでのタイトル下広告"
+
+#: hooks/ads.php:56 hooks/ads.php:64 hooks/ads.php:72
+msgid "Enter AMP ad tag."
+msgstr ""
+
+#: hooks/ads.php:63
+msgid "Ad after Content on AMP"
+msgstr "AMPでの記事直後の高校"
+
+#: hooks/ads.php:71
+msgid "Ad after related posts on AMP"
+msgstr "AMPでの関連記事の直下の広告"
+
+#: hooks/analytics.php:16
+msgid "Analytics"
+msgstr "解析"
+
+#: hooks/analytics.php:22
+msgid "Tracking ID"
+msgstr "トラッキングID"
+
+#: hooks/assets.php:36
+msgid "Click to open spoiler"
+msgstr "ネタバレを表示する"
+
+#: hooks/members.php:52
+msgid "Mailchimp Pop Up Script"
+msgstr ""
+
+#: hooks/members.php:54
+msgid "Pasete pop up script of mail chimp here."
+msgstr ""
+
+#: hooks/members.php:78
+msgid "News Letter"
+msgstr ""
+
+#: hooks/members.php:80
+msgid "Newsletter Page"
+msgstr ""
+
+#: hooks/members.php:88
+msgid "No newsletter page"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:10
+msgid "After Article"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:12
+msgid "Displayed just after main content. 4 widges are best looking."
+msgstr ""
+
+#: hooks/menu-and-widgets.php:19
+msgid "Footer Sidebar"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:21
+msgid "Displayed in footer. Settling 4 widgets is recommended."
+msgstr ""
+
+#: hooks/menu-and-widgets.php:35
+msgid "Global Menu"
+msgstr "グローバツルメニュー"
+
+#: hooks/menu-and-widgets.php:36
+msgid "Footer Menu"
+msgstr "フッターメニュー"
+
+#: hooks/settings.php:12
+msgid "Site Brand"
+msgstr "サイトブランド"
+
+#: hooks/settings.php:13
+msgid "Brand setting for widgets and others."
+msgstr "ウジェットその他のためのブランディング設定"
+
+#: hooks/settings.php:17
+msgid "Site long description"
+msgstr "サイトの長い説明"
+
+#: hooks/settings.php:18
+msgid ""
+"Litlle bit long description to describe your brand. Longer than tag line and "
+"less than 140 characters."
+msgstr ""
+"あなたのブランドを説明するための少し長めのテキスト。タグラインより長く、140文"
+"字以内であることが望ましい。"
+
+#: hooks/settings.php:22
+msgid "Addresss"
+msgstr "住所"
+
+#: hooks/settings.php:26
+msgid "Tel"
+msgstr "電話"
+
+#: hooks/settings.php:30
+msgid "Email"
+msgstr "メール"
+
+#: hooks/settings.php:36
+msgid "Notification"
+msgstr "通知"
+
+#: hooks/settings.php:37
+msgid "Notification displayed sitewide"
+msgstr "サイト全体に表示される通知"
+
+#: hooks/settings.php:42
+msgid "Text link and strong tags are allowed."
+msgstr "テキストリンクと強調タグが許可されています。"
+
+#: hooks/settings.php:47
+msgid "Style"
+msgstr "スタイル"
+
+#: hooks/settings.php:49
+msgid "Blue(blue)"
+msgstr "青（青）"
+
+#: hooks/settings.php:50
+msgid "Success(green)"
+msgstr "成功（緑）"
+
+#: hooks/settings.php:51
+msgid "Warning(orange)"
+msgstr "警告（オレンジ）"
+
+#: hooks/settings.php:52
+msgid "Danger(Red)"
+msgstr "危険（赤）"
+
+#: hooks/testimonial.php:47
+msgid "Testimonial Source"
+msgstr "推薦文の出典"
+
+#: hooks/testimonial.php:52
+msgid "Position"
+msgstr "肩書き"
+
+#: hooks/testimonial.php:55
+msgid "e.g. Critic"
+msgstr "例・批評家"
+
+#: hooks/testimonial.php:59
+msgid "Source"
+msgstr "出典"
+
+#: hooks/testimonial.php:62
+msgid "e.g. twitter"
+msgstr "例・twitter"
+
+#: hooks/testimonial.php:66
+msgid "URL"
+msgstr "URL"
+
+#: hooks/testimonial.php:69
+msgid "e.g. https://example.com"
+msgstr "例・https://example.com"
+
+#: hooks/wp_die.php:40
+msgid "Back to Previous Page"
+msgstr "前のページに戻る"
+
+#: page.php:45
+msgid "Related Pages"
+msgstr "関連ページ"
+
+#: page.php:69 template-parts/content-back-top.php:4
+msgid "See All Posts"
+msgstr "すべての投稿を見る"
+
+#: searchform.php:4
+msgid "Input keywords and enter to search."
+msgstr "キーワードを入力して検索。"
+
+#: single-jetpack-testimonial.php:18
+msgid "Testimonial By"
+msgstr "推薦文"
+
+#: singular.php:37
+#, php-format
+msgid ""
+"This post is published %s ago. Please consider the content may contain "
+"invalid information."
+msgstr ""
+"この投稿は %s 前に公開されました。いまではもう無効になった内容を含んでいるか"
+"もしれないことをご了承ください。"
+
+#: template-parts/archive-header.php:22
+#, php-format
+msgid "%1$s found and now %2$d page of %3$s. Try detailed search."
+msgstr ""
+"%1$s の投稿が見つかりました（%2$d / %3$s ページ）詳細検索もお試しください。"
+
+#: template-parts/archive-header.php:23
+#, php-format
+msgid "1 post"
+msgid_plural "%s posts"
+msgstr[0] "%s件"
+
+#: template-parts/archive-header.php:25
+#, php-format
+msgid "1 page"
+msgid_plural "%s pages"
+msgstr[0] "%sページ"
+
+#: template-parts/archive-header.php:40
+msgid "Detailed Search"
+msgstr "詳細検索"
+
+#: template-parts/archive-header.php:43
+msgid "Keywords"
+msgstr "キーワード"
+
+#: template-parts/archive-header.php:89
+msgid "Newest to oldest"
+msgstr "新着順"
+
+#: template-parts/archive-header.php:90
+msgid "Oldest to newest"
+msgstr "古い順"
+
+#: template-parts/archive-header.php:98
+msgid "Reset"
+msgstr "リセット"
+
+#: template-parts/archive-header.php:99
+msgid "Search"
+msgstr "検索"
+
+#: template-parts/archive-no.php:11
+msgid "Sorry, but nothing found for your criteria."
+msgstr "申し訳ございません、お探しのものは見つかりませんでした。"
+
+#: template-parts/archive-no.php:13
+msgid "Please try <a href=\"#no-content\">search</a> or other options."
+msgstr ""
+"<a href=\"#no-content\">検索フォーム</a>またはその他の方法をお試しください。"
+
+#: template-parts/archive-no.php:33
+msgid "Search Form"
+msgstr "検索フォーム"
+
+#: template-parts/block-author.php:27
+msgid "Article Written By:"
+msgstr "文責・"
+
+#: template-parts/block-author.php:37
+msgid "Follow Me Via:"
+msgstr "フォローしてください"
+
+#: template-parts/block-author.php:53
+msgid "See all posts"
+msgstr "すべての投稿を見る"
+
+#: template-parts/loop-jetpack-testimonial.php:19
+#, php-format
+msgctxt "quotes"
+msgid "Via %s"
+msgstr "%s より"
+
+#: template-parts/loop-jetpack-testimonial.php:31
+msgid "See Full Quote"
+msgstr "すべての引用文を見る"
+
+#: template-parts/loop.php:37
+msgid "Continue Reading"
+msgstr "続きを読む"
+
+#: template-parts/pager.php:11
+msgid "Previous Post"
+msgstr "次の投稿"
+
+#: template-parts/pager.php:17
+msgid "Next Post"
+msgstr "前の投稿"
+
+#: template-parts/pagination.php:8
+msgid "Previous Posts"
+msgstr "以前の投稿"
+
+#: template-parts/pagination.php:14
+msgid "Next Posts"
+msgstr "次の投稿"
+
+#. Theme Name of the plugin/theme
+msgid "Kyom"
+msgstr "虚無"
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/fumikito/kyom"
+msgstr "https://github.com/fumikito/kyom"
+
+#. Description of the plugin/theme
+msgid "A theme for Takahashi Fumiki"
+msgstr "高橋文樹専用テーマ"
+
+#. Author of the plugin/theme
+msgid "Takahashi_Fumiki"
+msgstr "高橋文樹"
+
+#. Author URI of the plugin/theme
+msgid "https://takahashifumiki.com"
+msgstr "https://takahashifumiki.com"

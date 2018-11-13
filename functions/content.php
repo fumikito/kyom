@@ -120,7 +120,7 @@ function kyom_reading_minutes( $post = null ) {
  */
 function kyom_reading_time( $post = null ) {
 	$minutes = kyom_reading_minutes( $post );
-	return sprintf( _n(  '% minute to read', '%s minutes to read', $minutes, 'kyom' ), number_format( $minutes ) );
+	return sprintf( _n(  '%s minute to read', '%s minutes to read', $minutes, 'kyom' ), number_format( $minutes ) );
 }
 
 /**

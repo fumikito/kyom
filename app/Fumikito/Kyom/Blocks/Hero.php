@@ -37,6 +37,11 @@ class Hero extends BlockBase {
 				'type'    => 'color',
 				'default' => '#ffffff'
 			],
+			'text_background' => [
+				'label'   => __( 'Text Background Color', 'kyom' ),
+				'type'    => 'color',
+				'default' => ''
+			],
 			'align' => [
 				'label'   => __( 'Text Align', 'kyom' ),
 				'type'    => 'select',
@@ -66,13 +71,18 @@ class Hero extends BlockBase {
 		} else {
 			$style = '';
 		}
+		$background = $atts['text_background'] ? kyom_hex2rgba( $atts['text_background'], .6 ) : 'transparent';
+		$text_style = sprintf( 'color: %s; background-color: %s', esc_attr( $atts['text_color'] ), esc_attr( kyom_hex2rgba( $atts['text_background'], 0.6 ) ) );
 		?>
 		<section class="kyom-hero" style="<?= $style ?>" uk-parallax="bgy:-300">
 			<div class="kyom-hero-box">
 				<div class="kyom-hero-container uk-text-<?= esc_attr( $atts[ 'align' ] ) ?>">
-					<h1 class="kyom-hero-title" style="color: <?= esc_attr( $atts['text_color'] ) ?>"><?= esc_html( $atts[ 'title' ] ) ?></h1>
+					<h1 class="kyom-hero-title" style="<?= $text_style ?>">
+						<?= esc_html( $atts[ 'title' ] ) ?>
+					</h1>
 					<?php if ( $content ) : ?>
-						<div class="kyom-hero-lead" style="color: <?= esc_attr( $atts['text_color'] ) ?>">
+						<br />
+						<div class="kyom-hero-lead" style="<?= $text_style ?>">
 							<?= wp_kses_post( wpautop( $content ) ) ?>
 						</div>
 					<?php endif; ?>

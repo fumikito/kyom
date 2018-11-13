@@ -82,8 +82,8 @@ function kyom_archive_top( $post = null ) {
  */
 function kyom_todo_when_404() {
 	$todo = [
-		'wrong_link'      => __( 'If you are from an external site, URL might be wrong. Please check it is correct.' ),
-		'deleted_content' => __( 'Content on this URL might be deleted in some reason.' ),
+		'wrong_link'      => __( 'If you are from an external site, URL might be wrong. Please check it is correct.', 'kyom' ),
+		'deleted_content' => __( 'Content on this URL might be deleted in some reason.', 'kyom' ),
 		'try_search'      => __( 'Please try search form below to find what you are looking for.', 'kyom' ),
 		'simply_back'     => __( 'Are you lost yourself? Simply back to former page by clicking browser\'s back button.', 'kyom' ),
 	];

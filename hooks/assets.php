@@ -14,13 +14,14 @@ add_action( 'init', function() {
 	wp_register_style( 'uikit', get_template_directory_uri(). '/assets/css/style.css', [ 'dashicons' ], kyom_version() );
 	
 	// Font Plus
-	$font_plus_url = add_filter( 'kyom_font_plus_url', add_query_arg( [
-			'box'     => 'dUifAUmQNKg%3D',
-			'delay'   => 1,
-			'timeout' => 3,
-			'aa'      => 1,
-			'ab'      => 2,
-		], '//webfont.fontplus.jp/accessor/script/fontplus.js?xnZANi~MEp8%3D' ) );
+	$font_plus_url = add_query_arg( [
+		'box'     => 'dUifAUmQNKg%3D',
+		'delay'   => 1,
+		'timeout' => 3,
+		'aa'      => 1,
+		'ab'      => 2,
+	], '//webfont.fontplus.jp/accessor/script/fontplus.js?xnZANi~MEp8%3D' );
+	$font_plus_url = apply_filters( 'kyom_font_plus_url', $font_plus_url );
 	wp_register_script( 'font-plus', $font_plus_url, null, null, true );
 	
 	// icons

@@ -95,7 +95,7 @@
 				<?php do_action( 'kyom_after_search_form' ); ?>
 				
 				<p class="uk-margin uk-text-center">
-					<button class="uk-button uk-button-default uk-button-large" type="reset"><?php esc_html_e( 'Reset' ) ?></button>
+					<button class="uk-button uk-button-default uk-button-large" type="reset"><?php esc_html_e( 'Reset', 'kyom' ) ?></button>
 					<button class="uk-button uk-button-primary uk-button-large" type="submit"><?php esc_html_e( 'Search' ) ?></button>
 				</p>
 				

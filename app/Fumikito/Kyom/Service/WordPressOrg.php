@@ -175,18 +175,18 @@ class WordPressOrg {
 	 * @see $this->translate_role
 	 */
 	private function translate_role_segment() {
-		__( 'Developer', 'wordpress', 'kyom' );
-		__( 'Speaker', 'wordpress', 'kyom' );
-		__( 'Plugin', 'wordpress', 'kyom' );
-		__( 'Theme', 'wordpress', 'kyom' );
-		__( 'Organizer', 'wordpress', 'kyom' );
-		__( 'Editor', 'wordpress', 'kyom' );
-		__( 'Contributor', 'wordpress', 'kyom' );
-		__( 'Core', 'wordpress', 'kyom' );
-		__( 'Meta', 'wordpress', 'kyom' );
-		__( 'Support', 'wordpress', 'kyom' );
-		__( 'Translation', 'wordpress', 'kyom' );
-		__( 'Team', 'wordpress', 'kyom' );
-		__( 'Commiter', 'wordpress', 'kyom' );
+		_x( 'Developer', 'wordpress', 'kyom' );
+		_x( 'Speaker', 'wordpress', 'kyom' );
+		_x( 'Plugin', 'wordpress', 'kyom' );
+		_x( 'Theme', 'wordpress', 'kyom' );
+		_x( 'Organizer', 'wordpress', 'kyom' );
+		_x( 'Editor', 'wordpress', 'kyom' );
+		_x( 'Contributor', 'wordpress', 'kyom' );
+		_x( 'Core', 'wordpress', 'kyom' );
+		_x( 'Meta', 'wordpress', 'kyom' );
+		_x( 'Support', 'wordpress', 'kyom' );
+		_x( 'Translation', 'wordpress', 'kyom' );
+		_x( 'Team', 'wordpress', 'kyom' );
+		_x( 'Commiter', 'wordpress', 'kyom' );
 	}
 }

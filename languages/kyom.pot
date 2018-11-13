@@ -1,0 +1,804 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Kyom\n"
+"POT-Creation-Date: 2018-11-13 00:12+0900\n"
+"PO-Revision-Date: 2018-11-12 23:59+0900\n"
+"Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: amp/kyom-after-content.php:9
+msgid "Read Original Version"
+msgstr ""
+
+#: amp/kyom-related-posts.php:6
+msgid "Related Posts"
+msgstr ""
+
+#: amp/kyom-related-posts.php:26
+msgid "Follow Us"
+msgstr ""
+
+#: amp/kyom-related-posts.php:29
+msgid "Follow US and Get in Touch"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Activities.php:22
+msgid "Recent Projects"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Activities.php:32
+msgid "Number to display"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:19
+msgid "Hero Unit"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:29 app/Fumikito/Kyom/Blocks/Recent.php:27
+#: app/Fumikito/Kyom/Pattern/WidgetBase.php:50
+msgid "Title"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:32
+msgid "Background Image"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:36
+msgid "Text Color"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:41
+msgid "Text Background Color"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:46
+msgid "Text Align"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:51
+msgid "Center"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:55
+msgid "Left"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Hero.php:59
+msgid "Right"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Recent.php:17
+#: app/Fumikito/Kyom/Blocks/Recent.php:28
+msgid "Recent Posts"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Recent.php:31
+msgid "Category"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Recent.php:48
+msgid "No post found."
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/RssSlider.php:13
+msgid "RSS Sliders"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/RssSlider.php:23
+msgid "Feed URL"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:30
+msgid "Testimonials"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:36
+msgid "Number of Display"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:41
+#: template-parts/archive-header.php:85
+msgid "Order"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:46
+msgid "Random"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:50
+msgid "From Newest"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/Testimonials.php:54
+msgid "Post Order"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:22
+msgid "WordPress Activities"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:32
+msgid "WordPress User Name"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:35
+msgid "WordPress User Email"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:39
+msgid "Background Color"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:61
+msgid "WordPress Activity"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:82
+msgid "Total"
+msgstr ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:84
+msgid "Download"
+msgid_plural "Downloads"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Fumikito/Kyom/Blocks/WordPress.php:93
+#, php-format
+msgid "Member Since %s"
+msgstr ""
+
+#: app/Fumikito/Kyom/Pattern/BlockBase.php:108 hooks/settings.php:41
+msgid "Content"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:147
+#, php-format
+msgid "%s theme"
+msgid_plural "%s themes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:150
+#, php-format
+msgid "%s plugin"
+msgid_plural "%s plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:155
+msgctxt "csv-glue"
+msgid ", "
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:178
+msgctxt "wordpress"
+msgid "Developer"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:179
+msgctxt "wordpress"
+msgid "Speaker"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:180
+msgctxt "wordpress"
+msgid "Plugin"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:181
+msgctxt "wordpress"
+msgid "Theme"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:182
+msgctxt "wordpress"
+msgid "Organizer"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:183
+msgctxt "wordpress"
+msgid "Editor"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:184
+msgctxt "wordpress"
+msgid "Contributor"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:185
+msgctxt "wordpress"
+msgid "Core"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:186
+msgctxt "wordpress"
+msgid "Meta"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:187
+msgctxt "wordpress"
+msgid "Support"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:188
+msgctxt "wordpress"
+msgid "Translation"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:189
+msgctxt "wordpress"
+msgid "Team"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/WordPressOrg.php:190
+msgctxt "wordpress"
+msgid "Commiter"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:11 hooks/ads.php:17
+msgid "Advertisement"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:15
+msgid ""
+"Insert advertisement scripts like Google Adsense. Any javascripts are "
+"allowed."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:22
+msgid "Ad Script"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Ad.php:27
+msgid "Max Width"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:13
+msgid "Brand"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:17
+msgid "Displays your brand with custom icon, custom logo and description."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:118
+msgid "Display site icon"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:122
+msgid "Display custom logo"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:126
+msgid "Display tag line"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:130
+msgid "Display long description"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:134
+msgid "Display address"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:138
+msgid "Display tel"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Brand.php:142
+msgid "Display mail"
+msgstr ""
+
+#: comments.php:15
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:28
+#, php-format
+msgid "One response to %s"
+msgstr ""
+
+#: comments.php:31
+#, php-format
+msgid "%1$s response to %2$s"
+msgid_plural "%1$s responses to %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:52
+msgid "Ping Back"
+msgstr ""
+
+#: comments.php:94
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: comments.php:132
+msgid "This post has no comment yet. Please share your thoughts."
+msgstr ""
+
+#: comments.php:138
+msgid "Comments are closed."
+msgstr ""
+
+#: functions/content.php:78
+#, php-format
+msgid "%s letter"
+msgid_plural "%s letters"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/content.php:80
+#, php-format
+msgid "%s word"
+msgid_plural "%s words"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/content.php:123
+#, php-format
+msgid "%s minute to read"
+msgid_plural "%s minutes to read"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/date.php:73
+#, php-format
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/date.php:75
+msgctxt "date"
+msgid " and half"
+msgstr ""
+
+#: functions/date.php:105
+#, php-format
+msgid "%s year ago"
+msgid_plural "%s years ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/date.php:107
+#, php-format
+msgid "%s month ago"
+msgid_plural "%s months ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/date.php:109
+msgid "Yesterday"
+msgstr ""
+
+#: functions/date.php:109
+#, php-format
+msgid "%s days ago"
+msgstr ""
+
+#: functions/date.php:111
+#, php-format
+msgid "%s hour ago"
+msgid_plural "%s hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions/date.php:113
+#, php-format
+msgid "%d minutes ago"
+msgstr ""
+
+#: functions/date.php:115
+msgid "Just Now"
+msgstr ""
+
+#: functions/display.php:17
+#, php-format
+msgctxt "parenthesis"
+msgid "(%s)"
+msgstr ""
+
+#: functions/display.php:93
+msgid "Search Results"
+msgstr ""
+
+#: functions/display.php:95
+msgid "Quotes Collection"
+msgstr ""
+
+#: functions/display.php:120
+#, php-format
+msgid "Search results of \"%s\"."
+msgstr ""
+
+#: functions/navigations.php:85
+msgid ""
+"If you are from an external site, URL might be wrong. Please check it is "
+"correct."
+msgstr ""
+
+#: functions/navigations.php:86
+msgid "Content on this URL might be deleted in some reason."
+msgstr ""
+
+#: functions/navigations.php:87
+msgid "Please try search form below to find what you are looking for."
+msgstr ""
+
+#: functions/navigations.php:88
+msgid ""
+"Are you lost yourself? Simply back to former page by clicking browser's back "
+"button."
+msgstr ""
+
+#: functions/users.php:53 hooks/members.php:46
+msgid "Newsletter"
+msgstr ""
+
+#: header.php:10 header.php:55
+msgid "Menu"
+msgstr ""
+
+#: header.php:28
+msgid "Sign Up"
+msgstr ""
+
+#: header.php:33
+msgid "Sign In"
+msgstr ""
+
+#: header.php:38
+msgid "Log in"
+msgstr ""
+
+#: header.php:71
+msgid "Input keywords..."
+msgstr ""
+
+#: hooks/ads.php:23
+msgid "Ad after title"
+msgstr ""
+
+#: hooks/ads.php:24
+msgid ""
+"If set, advertisement will be displayed just after single post page title."
+msgstr ""
+
+#: hooks/ads.php:28
+msgid "Related Ad"
+msgstr ""
+
+#: hooks/ads.php:29
+msgid "If you have related ad of Google Adsense, paste code here."
+msgstr ""
+
+#: hooks/ads.php:34
+msgid "Automatic Ad"
+msgstr ""
+
+#: hooks/ads.php:35
+msgid "Enter client ID to enable automatic ad on single page."
+msgstr ""
+
+#: hooks/ads.php:55
+msgid "Ad after Title on AMP"
+msgstr ""
+
+#: hooks/ads.php:56 hooks/ads.php:64 hooks/ads.php:72
+msgid "Enter AMP ad tag."
+msgstr ""
+
+#: hooks/ads.php:63
+msgid "Ad after Content on AMP"
+msgstr ""
+
+#: hooks/ads.php:71
+msgid "Ad after related posts on AMP"
+msgstr ""
+
+#: hooks/analytics.php:16
+msgid "Analytics"
+msgstr ""
+
+#: hooks/analytics.php:22
+msgid "Tracking ID"
+msgstr ""
+
+#: hooks/assets.php:36
+msgid "Click to open spoiler"
+msgstr ""
+
+#: hooks/members.php:52
+msgid "Mailchimp Pop Up Script"
+msgstr ""
+
+#: hooks/members.php:54
+msgid "Pasete pop up script of mail chimp here."
+msgstr ""
+
+#: hooks/members.php:78
+msgid "News Letter"
+msgstr ""
+
+#: hooks/members.php:80
+msgid "Newsletter Page"
+msgstr ""
+
+#: hooks/members.php:88
+msgid "No newsletter page"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:10
+msgid "After Article"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:12
+msgid "Displayed just after main content. 4 widges are best looking."
+msgstr ""
+
+#: hooks/menu-and-widgets.php:19
+msgid "Footer Sidebar"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:21
+msgid "Displayed in footer. Settling 4 widgets is recommended."
+msgstr ""
+
+#: hooks/menu-and-widgets.php:35
+msgid "Global Menu"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:36
+msgid "Footer Menu"
+msgstr ""
+
+#: hooks/settings.php:12
+msgid "Site Brand"
+msgstr ""
+
+#: hooks/settings.php:13
+msgid "Brand setting for widgets and others."
+msgstr ""
+
+#: hooks/settings.php:17
+msgid "Site long description"
+msgstr ""
+
+#: hooks/settings.php:18
+msgid ""
+"Litlle bit long description to describe your brand. Longer than tag line and "
+"less than 140 characters."
+msgstr ""
+
+#: hooks/settings.php:22
+msgid "Addresss"
+msgstr ""
+
+#: hooks/settings.php:26
+msgid "Tel"
+msgstr ""
+
+#: hooks/settings.php:30
+msgid "Email"
+msgstr ""
+
+#: hooks/settings.php:36
+msgid "Notification"
+msgstr ""
+
+#: hooks/settings.php:37
+msgid "Notification displayed sitewide"
+msgstr ""
+
+#: hooks/settings.php:42
+msgid "Text link and strong tags are allowed."
+msgstr ""
+
+#: hooks/settings.php:47
+msgid "Style"
+msgstr ""
+
+#: hooks/settings.php:49
+msgid "Blue(blue)"
+msgstr ""
+
+#: hooks/settings.php:50
+msgid "Success(green)"
+msgstr ""
+
+#: hooks/settings.php:51
+msgid "Warning(orange)"
+msgstr ""
+
+#: hooks/settings.php:52
+msgid "Danger(Red)"
+msgstr ""
+
+#: hooks/testimonial.php:47
+msgid "Testimonial Source"
+msgstr ""
+
+#: hooks/testimonial.php:52
+msgid "Position"
+msgstr ""
+
+#: hooks/testimonial.php:55
+msgid "e.g. Critic"
+msgstr ""
+
+#: hooks/testimonial.php:59
+msgid "Source"
+msgstr ""
+
+#: hooks/testimonial.php:62
+msgid "e.g. twitter"
+msgstr ""
+
+#: hooks/testimonial.php:66
+msgid "URL"
+msgstr ""
+
+#: hooks/testimonial.php:69
+msgid "e.g. https://example.com"
+msgstr ""
+
+#: hooks/wp_die.php:40
+msgid "Back to Previous Page"
+msgstr ""
+
+#: page.php:45
+msgid "Related Pages"
+msgstr ""
+
+#: page.php:69 template-parts/content-back-top.php:4
+msgid "See All Posts"
+msgstr ""
+
+#: searchform.php:4
+msgid "Input keywords and enter to search."
+msgstr ""
+
+#: single-jetpack-testimonial.php:18
+msgid "Testimonial By"
+msgstr ""
+
+#: singular.php:37
+#, php-format
+msgid ""
+"This post is published %s ago. Please consider the content may contain "
+"invalid information."
+msgstr ""
+
+#: template-parts/archive-header.php:22
+#, php-format
+msgid "%1$s found and now %2$d page of %3$s. Try detailed search."
+msgstr ""
+
+#: template-parts/archive-header.php:23
+#, php-format
+msgid "1 post"
+msgid_plural "%s posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: template-parts/archive-header.php:25
+#, php-format
+msgid "1 page"
+msgid_plural "%s pages"
+msgstr[0] ""
+msgstr[1] ""
+
+#: template-parts/archive-header.php:40
+msgid "Detailed Search"
+msgstr ""
+
+#: template-parts/archive-header.php:43
+msgid "Keywords"
+msgstr ""
+
+#: template-parts/archive-header.php:89
+msgid "Newest to oldest"
+msgstr ""
+
+#: template-parts/archive-header.php:90
+msgid "Oldest to newest"
+msgstr ""
+
+#: template-parts/archive-header.php:98
+msgid "Reset"
+msgstr ""
+
+#: template-parts/archive-header.php:99
+msgid "Search"
+msgstr ""
+
+#: template-parts/archive-no.php:11
+msgid "Sorry, but nothing found for your criteria."
+msgstr ""
+
+#: template-parts/archive-no.php:13
+msgid "Please try <a href=\"#no-content\">search</a> or other options."
+msgstr ""
+
+#: template-parts/archive-no.php:33
+msgid "Search Form"
+msgstr ""
+
+#: template-parts/block-author.php:27
+msgid "Article Written By:"
+msgstr ""
+
+#: template-parts/block-author.php:37
+msgid "Follow Me Via:"
+msgstr ""
+
+#: template-parts/block-author.php:53
+msgid "See all posts"
+msgstr ""
+
+#: template-parts/loop-jetpack-testimonial.php:19
+#, php-format
+msgctxt "quotes"
+msgid "Via %s"
+msgstr ""
+
+#: template-parts/loop-jetpack-testimonial.php:31
+msgid "See Full Quote"
+msgstr ""
+
+#: template-parts/loop.php:37
+msgid "Continue Reading"
+msgstr ""
+
+#: template-parts/pager.php:11
+msgid "Previous Post"
+msgstr ""
+
+#: template-parts/pager.php:17
+msgid "Next Post"
+msgstr ""
+
+#: template-parts/pagination.php:8
+msgid "Previous Posts"
+msgstr ""
+
+#: template-parts/pagination.php:14
+msgid "Next Posts"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Kyom"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/fumikito/kyom"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A theme for Takahashi Fumiki"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Takahashi_Fumiki"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://takahashifumiki.com"
+msgstr ""

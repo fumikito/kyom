@@ -28,10 +28,18 @@
     color: #fff;
     font-family: $font-sans;
     font-weight: normal;
+    display: inline-block;
+    padding:5px;
+    margin-bottom: 5px;
   }
 
   &-lead{
     font-family: $font-sans;
     color: $light-gray;
+    padding: 5px;
+    display: inline-block;
+    p{
+      margin: 0;
+    }
   }
 }

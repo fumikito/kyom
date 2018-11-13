@@ -72,7 +72,7 @@ class WordPress extends BlockBase {
 							?>
 						<span class="wporg-role">
 							<span class="<?= esc_attr( implode( ' ', $badge['class'] ) ) ?>" title="<?= esc_attr( $label ) ?>"></span>
-							<span class="wporg-role-text uk-visible@s" hidden aria-hidden="true"><?= esc_html( $label ) ?></span>
+							<span class="wporg-role-text uk-visible@s" aria-hidden="true"><?= esc_html( $label ) ?></span>
 						</span>
 						
 						<?php endforeach; ?>
@@ -90,7 +90,7 @@ class WordPress extends BlockBase {
 						<?= esc_html( $atts['user_name'] ) ?>
 					</a>
 					<small>
-						<?php printf( esc_html__( 'Member Since %s' ), date_i18n( get_option( 'date_format' ), $data['member_since'] ) ) ?>
+						<?php printf( esc_html__( 'Member Since %s', 'kyom' ), date_i18n( get_option( 'date_format' ), $data['member_since'] ) ) ?>
 					</small>
 				</p>
 			</div>

@@ -46,8 +46,11 @@ class Access extends WidgetBase {
 			$cache_days = 'all' === $date ? 30 : $date / 6;
 			$cache_minutes = $cache_days * 24 * 60 * 60;
 			$cache_key  = 'kyom_ranking_cache_' . $cache_days;
-			$result = kyom_get_ranking( $date, $count, $instance['filters'] );
-			
+			$result = get_transient( $cache_key );
+			if ( false === $result ) {
+				$result = kyom_get_ranking( $date, $count, $instance['filters'] );
+				set_transient( $cache_key, $result, $cache_minutes );
+			}
 			if ( $result ) {
 				$ranking[] = [
 					'days'  => $date,

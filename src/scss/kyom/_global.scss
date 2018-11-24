@@ -75,3 +75,7 @@ img{
     background-color: $light-gray;
   }
 }
+
+sup, sub, small{
+  font-size-adjust: none;
+}

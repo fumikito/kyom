@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-11-24 13:20+0900\n"
-"PO-Revision-Date: 2018-11-24 17:00+0900\n"
+"POT-Creation-Date: 2018-11-25 01:22+0900\n"
+"PO-Revision-Date: 2018-11-25 01:25+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -248,6 +248,43 @@ msgctxt "wordpress"
 msgid "Commiter"
 msgstr "コミッター"
 
+#: app/Fumikito/Kyom/Widgets/Access.php:15
+msgid "Access Ranking"
+msgstr "アクセスランキング"
+
+#: app/Fumikito/Kyom/Widgets/Access.php:19
+msgid "Display Access ranking by Google Analytics. Requires Gianism."
+msgstr ""
+"Google Analyticsよりアクセスランキングを表示します。Gianismが必要です。"
+
+#: app/Fumikito/Kyom/Widgets/Access.php:26
+msgid "Number to display."
+msgstr "表示する数"
+
+#: app/Fumikito/Kyom/Widgets/Access.php:29
+msgid "Filters Expression"
+msgstr "フィルター表記"
+
+#: app/Fumikito/Kyom/Widgets/Access.php:30
+msgid ""
+"Google Analytics Core Reporting API filter. Requires programing knowledge."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Access.php:42
+msgctxt "ranking"
+msgid "3 days"
+msgstr "3日間"
+
+#: app/Fumikito/Kyom/Widgets/Access.php:43
+msgctxt "ranking"
+msgid "30 days"
+msgstr "30日間"
+
+#: app/Fumikito/Kyom/Widgets/Access.php:44
+msgctxt "ranking"
+msgid "Total"
+msgstr "総合"
+
 #: app/Fumikito/Kyom/Widgets/Ad.php:11 hooks/ads.php:17
 msgid "Advertisement"
 msgstr "広告"
@@ -264,7 +301,7 @@ msgstr ""
 msgid "Ad Script"
 msgstr "広告スクリプト"
 
-#: app/Fumikito/Kyom/Widgets/Ad.php:27
+#: app/Fumikito/Kyom/Widgets/Ad.php:27 app/Fumikito/Kyom/Widgets/Hatebu.php:26
 msgid "Max Width"
 msgstr "最大幅"
 
@@ -303,6 +340,33 @@ msgstr ""
 #: app/Fumikito/Kyom/Widgets/Brand.php:142
 msgid "Display mail"
 msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:11
+msgid "Hatena Bookmark"
+msgstr "はてなブックマーク"
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:15
+msgid "Display entries in Hatenna Bookmark."
+msgstr "はてなブックマークのエントリーを表示します。"
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:21 hooks/testimonial.php:66
+msgid "URL"
+msgstr "URL"
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:43
+msgctxt "hatebu"
+msgid "Hot"
+msgstr "注目"
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:44
+msgctxt "hatebu"
+msgid "Popular"
+msgstr "人気"
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:45
+msgctxt "hatebu"
+msgid "New"
+msgstr "新着"
 
 #: comments.php:15
 msgid "This post is password protected. Enter the password to view comments."
@@ -445,6 +509,14 @@ msgstr ""
 "間違えたこのページに来てしまいましたか？　その場合はブラウザの戻るボタンで元"
 "いたページにお戻りください。"
 
+#: functions/socials.php:151
+msgid "Gianism is not installed."
+msgstr ""
+
+#: functions/socials.php:155
+msgid "Google Analytics is not connected."
+msgstr ""
+
 #: functions/users.php:53 hooks/members.php:46
 msgid "Newsletter"
 msgstr "ニュースレター"
@@ -494,19 +566,27 @@ msgstr "自動広告"
 msgid "Enter client ID to enable automatic ad on single page."
 msgstr ""
 
-#: hooks/ads.php:55
+#: hooks/ads.php:41
+msgid "In Article Ad"
+msgstr "記事内広告"
+
+#: hooks/ads.php:42
+msgid "Insert code for in article ads."
+msgstr ""
+
+#: hooks/ads.php:60
 msgid "Ad after Title on AMP"
 msgstr "AMPでのタイトル下広告"
 
-#: hooks/ads.php:56 hooks/ads.php:64 hooks/ads.php:72
+#: hooks/ads.php:61 hooks/ads.php:69 hooks/ads.php:77
 msgid "Enter AMP ad tag."
 msgstr ""
 
-#: hooks/ads.php:63
+#: hooks/ads.php:68
 msgid "Ad after Content on AMP"
 msgstr "AMPでの記事直後の広告"
 
-#: hooks/ads.php:71
+#: hooks/ads.php:76
 msgid "Ad after related posts on AMP"
 msgstr "AMPでの関連記事の直下の広告"
 
@@ -547,7 +627,7 @@ msgid "After Article"
 msgstr ""
 
 #: hooks/menu-and-widgets.php:12
-msgid "Displayed just after main content. 4 widges are best looking."
+msgid "Displayed just after main content. 4 widgets are the best looking."
 msgstr ""
 
 #: hooks/menu-and-widgets.php:19
@@ -649,10 +729,6 @@ msgstr "出典"
 #: hooks/testimonial.php:62
 msgid "e.g. twitter"
 msgstr "例・twitter"
-
-#: hooks/testimonial.php:66
-msgid "URL"
-msgstr "URL"
 
 #: hooks/testimonial.php:69
 msgid "e.g. https://example.com"

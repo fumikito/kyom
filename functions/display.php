@@ -152,7 +152,7 @@ function kyom_short_digits( $number ) {
 		$divider = pow( 1000, $index + 1 );
 		if ( 1 <= $number / $divider ) {
 			$hit    = $divider;
-			$suffix = $letter;
+			$suffix = '<small>' . $letter . '</small>';
 		}
 	}
 	return floor( $number / $hit ) . $suffix;

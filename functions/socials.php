@@ -34,8 +34,6 @@ function kyom_hatena_total_bookmark_count() {
  * @return SimplePie_Item[]
  */
 function kyom_get_hatena_rss( $fqdn, $sort = 'count', $limit = 5 ) {
-	$hatena_transient_name = 'hatena_hotentry_' . $sort;
-	
 	$endpoint = sprintf( 'http://b.hatena.ne.jp/entrylist?mode=rss&url=%s&sort=%s', $fqdn, $sort );
 	$feed = fetch_feed( $endpoint );
 	if ( is_wp_error( $feed ) ) {
@@ -179,6 +177,7 @@ function kyom_get_ga_result( $start_date, $end_date, $metrics, $params = [] ) {
  * @return array
  */
 function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:pagePath' ) {
+	// Use cache.
 	if ( ! $filters ) {
 		$structure = untrailingslashit( get_option( 'permalink_structure' ) );
 		foreach ( [

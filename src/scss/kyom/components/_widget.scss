@@ -31,6 +31,12 @@ ins.adsbygoogle{
   }
 }
 
+.sidebar{
+  &-container{
+    padding: $kyom-gap 0;
+    background-color: $slightly-gray;
+  }
+}
 .normal-widget {
   &-inner{
     padding: 0 10px;
@@ -42,15 +48,13 @@ ins.adsbygoogle{
     margin: 0 auto $kyom-gap;
   }
   &-wrapper {
-    margin-top: $kyom-gap;
-    margin-bottom: $kyom-gap;
-    padding: $kyom-gap 0;
-    background-color: $slightly-gray;
+    margin: $kyom-gap auto;
+    max-width: $breakpoint-large;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  width: 25%;
+  width: 33%;
   margin-bottom: $kyom-gap / 2;
   @include bp-max( $breakpoint-medium ) {
     width: 50%;

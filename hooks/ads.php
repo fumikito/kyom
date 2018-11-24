@@ -148,20 +148,31 @@ add_action( 'wp_head', function() {
 function kyom_in_article_ads( $content ) {
 	$code = get_option( 'kyom_ad_content' );
 	$should_display_ad = apply_filters( 'kyom_should_display_in_article_ad', $code && ( 'post' === get_post_type() ), get_post() );
-	if ( $should_display_ad ) {
-		$lines      = explode( "\n", $content );
-		$ad_starts = ceil( count( $lines ) / 3 );
-		$new_line   = [];
-		$done       = false;
-		foreach ( $lines as $index => $line ) {
-			if ( $index > $ad_starts && ! $done && preg_match( '/^<(p|blockquote|div|ul|ol|h\d)/u', $line  ) ) {
-				$new_line[]  = $code;
-				$done        = true;
-			}
-			$new_line[] = $line;
-		}
-		$content = implode( "\n", $new_line );
+	if ( ! $should_display_ad ) {
+		return $content;
 	}
+	$lines     = explode( "\n", $content );
+	$ad_starts = ceil( count( $lines ) / 3 );
+	/**
+	 * kyom_minimum_line_count_for_in_article_ad
+	 *
+	 * @param int     $minium Default 10
+	 * @param WP_Post $post
+	 */
+	$minimum_ad_line = apply_filters( 'kyom_minimum_line_count_for_in_article_ad', 10, get_post() );
+	if ( $ad_starts < 10 ) {
+		return $content;
+	}
+	$new_line  = [];
+	$done      = false;
+	foreach ( $lines as $index => $line ) {
+		if ( $index > $ad_starts && ! $done && preg_match( '/^<(p|blockquote|div|ul|ol|h\d)/u', $line ) ) {
+			$new_line[] = $code;
+			$done       = true;
+		}
+		$new_line[] = $line;
+	}
+	$content = implode( "\n", $new_line );
 	return $content;
 }
 

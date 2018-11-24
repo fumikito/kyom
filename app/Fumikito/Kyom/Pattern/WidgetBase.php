@@ -61,11 +61,12 @@ abstract class WidgetBase extends \WP_Widget {
 		$formatted = [];
 		foreach ( $this->get_params() as $key => $setting ) {
 			$setting = wp_parse_args( $setting, [
-				'default' => '',
-				'type'    => 'text',
-				'label'   => '',
-				'options' => [],
-				'rows'    => 2,
+				'default'     => '',
+				'type'        => 'text',
+				'label'       => '',
+				'options'     => [],
+				'rows'        => 2,
+				'placeholder' => '',
 			] );
 			$formatted[ $key ] = $setting;
 		}
@@ -109,22 +110,24 @@ abstract class WidgetBase extends \WP_Widget {
 					case 'password':
 					case 'email':
 						printf(
-							'<label for="%1$s">%3$s</label><input type="%4$s" id="%1$s" name="%2$s" value="%5$s"',
+							'<label for="%1$s">%3$s</label><input type="%4$s" id="%1$s" name="%2$s" value="%5$s" placeholder="%6$s" />',
 							$this->get_field_id( $key ),
 							$this->get_field_name( $key ),
 							esc_html( $setting['label'] ),
 							esc_attr( $setting['type'] ),
-							esc_attr( $instance[ $key ] )
+							esc_attr( $instance[ $key ] ),
+							esc_attr( $setting[ 'placeholder' ] )
 						);
 						break;
 					case 'textarea':
 						printf(
-							'<label for="%1$s">%3$s</label><textarea id="%1$s" name="%2$s" rows="%5$d">%4$s</textarea>',
+							'<label for="%1$s">%3$s</label><textarea id="%1$s" name="%2$s" rows="%5$d" placeholder="%6%s">%4$s</textarea>',
 							$this->get_field_id( $key ),
 							$this->get_field_name( $key ),
 							esc_html( $setting['label'] ),
 							esc_textarea( $instance[ $key ] ),
-							$setting['rows']
+							$setting['rows'],
+							esc_attr( $setting[ 'placeholder' ] )
 						);
 						break;
 					case 'bool':

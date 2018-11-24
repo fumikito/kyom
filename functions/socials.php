@@ -28,17 +28,15 @@ function kyom_hatena_total_bookmark_count() {
 /**
  * Get hatena bookmark data via XML RPC
  *
- * @param string $sort 'count' 'eid', または 'hot'のいずれか
- * @return array
+ * @param string $fqdn  Domain like 'exmaple.com'.
+ * @param string $sort  'count', 'eid', pr 'hot'
+ * @param int    $limit Default 5.
+ * @return SimplePie_Item[]
  */
-function kyom_get_hatena_rss( $sort = 'count' ) {
+function kyom_get_hatena_rss( $fqdn, $sort = 'count', $limit = 5 ) {
 	$hatena_transient_name = 'hatena_hotentry_' . $sort;
 	
-	$endpoint = sprintf(
-		'http://b.hatena.ne.jp/entrylist?mode=rss&url=%s&sort=%s',
-		preg_replace( '#^https?://#u', '', home_url() ),
-		$sort
-	);
+	$endpoint = sprintf( 'http://b.hatena.ne.jp/entrylist?mode=rss&url=%s&sort=%s', $fqdn, $sort );
 	$feed = fetch_feed( $endpoint );
 	if ( is_wp_error( $feed ) ) {
 		return [];
@@ -46,20 +44,20 @@ function kyom_get_hatena_rss( $sort = 'count' ) {
 		if ( 'count' === $sort ) {
 			$rank = [];
 			for ( $i = 0, $l = $feed->get_item_quantity(); $i < $l; $i++ ) {
-				$item = $feed->get_item($i);
+				$item = $feed->get_item( $i );
 				$rank[$i] = $item->get_item_tags( 'http://www.hatena.ne.jp/info/xmlns#', 'bookmarkcount' )[0]['data'];
 			}
 			arsort($rank);
 			$items = [];
 			foreach ( $rank as $index => $value ) {
 				$items[] = $feed->get_item($index);
-				if ( 5 <= count($items) ) {
+				if ( $limit <= count($items) ) {
 					break;
 				}
 			}
 			return $items;
 		} else {
-			return $feed->get_items( 0, 5 );
+			return $feed->get_items( 0, $limit );
 		}
 	}
 }

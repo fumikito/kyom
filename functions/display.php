@@ -135,3 +135,25 @@ function kyom_searchable_taxonomies() {
 	
 	return apply_filters( 'kyom_searchable_taxonomies', $default );
 }
+
+/**
+ * Shorten number.
+ *
+ * @param int $number
+ *
+ * @return string
+ */
+function kyom_short_digits( $number ) {
+	$number = (int) $number;
+	$base = [ 'K', 'M', 'B' ];
+	$hit  = 1;
+	$suffix = '';
+	foreach ( $base as $index => $letter ) {
+		$divider = pow( 1000, $index + 1 );
+		if ( 1 <= $number / $divider ) {
+			$hit    = $divider;
+			$suffix = $letter;
+		}
+	}
+	return floor( $number / $hit ) . $suffix;
+}

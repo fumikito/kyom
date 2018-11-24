@@ -1,0 +1,49 @@
+.kyom-simple-list{
+
+  &-wrapper{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  margin: 0;
+  padding: 0;
+
+  &-item{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid $light-gray;
+  }
+
+  &-link{
+    position: relative;
+    @extend %block-link;
+    padding-right: 40px;
+    &:before{
+      content: none;
+    }
+  }
+  &-title{
+    font-size: 14px;
+    margin: 0 0 5px;
+  }
+  &-meta{
+    font-size: 12px;
+  }
+  &-count{
+    position: absolute;
+    $size: 30px;
+    font-size: 11px;
+    width: $size;
+    height: $size;
+    font-family: $font-mono;
+    text-align: center;
+    line-height: $size;
+    background-color: $global-primary-background;
+    color: #fff;
+    top: 1em;
+    right: 5px;
+    border-radius: 50%;
+  }
+}

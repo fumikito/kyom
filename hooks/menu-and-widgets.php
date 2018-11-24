@@ -9,7 +9,7 @@
 register_sidebar( [
 	'name'          => __( 'After Article', 'kyom' ),
 	'id'            => 'normal-sidebar',
-	'description'   => __( 'Displayed just after main content. 4 widges are best looking.', 'kyom' ),
+	'description'   => __( 'Displayed just after main content. 4 widgets are the best looking.', 'kyom' ),
 	'before_widget' => '<div id="%1$s" class="widget normal-widget"><div class="normal-widget-inner %2$s">',
 	'after_widget'  => '</div></div>',
 	'before_title'  => '<h2  class="uk-heading-line uk-text-center normal-widget-title"><span>',

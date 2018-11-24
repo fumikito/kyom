@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-11-13 00:12+0900\n"
-"PO-Revision-Date: 2018-11-13 13:29+0900\n"
+"POT-Creation-Date: 2018-11-24 13:20+0900\n"
+"PO-Revision-Date: 2018-11-24 17:00+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -471,7 +471,7 @@ msgstr "キーワードを入力……"
 
 #: hooks/ads.php:23
 msgid "Ad after title"
-msgstr ""
+msgstr "タイトル直下の広告"
 
 #: hooks/ads.php:24
 msgid ""
@@ -504,7 +504,7 @@ msgstr ""
 
 #: hooks/ads.php:63
 msgid "Ad after Content on AMP"
-msgstr "AMPでの記事直後の高校"
+msgstr "AMPでの記事直後の広告"
 
 #: hooks/ads.php:71
 msgid "Ad after related posts on AMP"
@@ -518,7 +518,7 @@ msgstr "解析"
 msgid "Tracking ID"
 msgstr "トラッキングID"
 
-#: hooks/assets.php:36
+#: hooks/assets.php:37
 msgid "Click to open spoiler"
 msgstr "ネタバレを表示する"
 
@@ -690,8 +690,7 @@ msgstr ""
 #: template-parts/archive-header.php:22
 #, php-format
 msgid "%1$s found and now %2$d page of %3$s. Try detailed search."
-msgstr ""
-"%1$s の投稿が見つかりました（%2$d / %3$s ページ）詳細検索もお試しください。"
+msgstr "%1$s の投稿が見つかりました（%2$d / %3$s）詳細検索もお試しください。"
 
 #: template-parts/archive-header.php:23
 #, php-format

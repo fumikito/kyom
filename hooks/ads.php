@@ -37,6 +37,11 @@ add_action( 'customize_register', function( WP_Customize_Manager $wp_customize )
 				'placeholder' => 'e.g. ca-pub-0000000000000000',
 			],
 		],
+		'kyom_ad_content' => [
+			'label'       => __( 'In Article Ad', 'kyom' ),
+			'description' => __( 'Insert code for in article ads.', 'kyom' ),
+			'type'        => 'textarea',
+		],
 	];
 	if ( defined( 'AMP__VERSION' ) ) {
 		$amp_ad = <<<HTML
@@ -131,4 +136,41 @@ add_action( 'wp_head', function() {
       });
 	</script>
 	<?php
+} );
+
+/**
+ * Display automatic ad.
+ *
+ * @internal
+ * @param string $content
+ * @return string
+ */
+function kyom_in_article_ads( $content ) {
+	$code = get_option( 'kyom_ad_content' );
+	$should_display_ad = apply_filters( 'kyom_should_display_in_article_ad', $code && ( 'post' === get_post_type() ), get_post() );
+	if ( $should_display_ad ) {
+		$lines      = explode( "\n", $content );
+		$ad_starts = ceil( count( $lines ) / 3 );
+		$new_line   = [];
+		$done       = false;
+		foreach ( $lines as $index => $line ) {
+			if ( $index > $ad_starts && ! $done && preg_match( '/^<(p|blockquote|div|ul|ol|h\d)/u', $line  ) ) {
+				$new_line[]  = $code;
+				$done        = true;
+			}
+			$new_line[] = $line;
+		}
+		$content = implode( "\n", $new_line );
+	}
+	return $content;
+}
+
+/**
+ * Register in article ad filter.
+ */
+add_action( 'kyom_before_content', function() {
+	add_filter( 'the_content', 'kyom_in_article_ads', 99999 );
+} );
+add_action( 'kyom_after_content', function() {
+	remove_filter( 'the_content', 'kyom_in_article_ads', 99999 );
 } );

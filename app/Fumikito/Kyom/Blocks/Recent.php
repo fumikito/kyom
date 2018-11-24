@@ -68,7 +68,7 @@ class Recent extends BlockBase {
 							<?php get_template_part( 'template-parts/loop', 'recent-card' ) ?>
 						</div>
 						<?php
-							if ( 5 === $counter ) {
+							if ( 4 === $counter ) {
 								break;
 							}
 							endwhile;

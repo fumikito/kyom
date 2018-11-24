@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-11-13 00:12+0900\n"
+"POT-Creation-Date: 2018-11-24 13:20+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
@@ -521,7 +521,7 @@ msgstr ""
 msgid "Tracking ID"
 msgstr ""
 
-#: hooks/assets.php:36
+#: hooks/assets.php:37
 msgid "Click to open spoiler"
 msgstr ""
 

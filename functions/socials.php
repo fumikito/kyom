@@ -133,3 +133,111 @@ function kyom_fetch_feed_items( $url ) {
 	
 	return $posts;
 }
+
+
+/**
+ * Get Google Analytics result.
+ *
+ * @param string $start_date
+ * @param string $end_date
+ * @param string $metrics
+ * @param array $params
+ *
+ * @return array
+ */
+function kyom_get_ga_result( $start_date, $end_date, $metrics, $params = [] ) {
+	try{
+		if ( ! class_exists( 'Gianism\\Plugins\\Analytics' ) ) {
+			throw new \Exception( __( 'Gianism is not installed.', 'kyom' ), 500 );
+		}
+		$google = Gianism\Plugins\Analytics::get_instance();
+		if( ! $google || ! $google->ga_profile['view'] ) {
+			throw new \Exception( __( 'Google Analytics is not connected.', 'kyom' ), 500 );
+		}
+		$result = $google->ga->data_ga->get('ga:'.$google->ga_profile['view'], $start_date, $end_date, $metrics, $params);
+		if ( $result && ( 0 < count($result->rows) ) ) {
+			return $result->rows;
+		} else {
+			return [];
+		}
+	}  catch ( \Exception $e ) {
+		if ( WP_DEBUG ) {
+			trigger_error( sprintf( '[GA Error:%s] %s', $e->getCode(), $e->getMessage() ) );
+		}
+		return [];
+	}
+}
+
+/**
+ * Get ranking.
+ *
+ * @param string|int $from
+ * @param int        $count
+ * @param string     $filters
+ * @param string     $dimensions
+ *
+ * @return array
+ */
+function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:pagePath' ) {
+	if ( ! $filters ) {
+		$structure = untrailingslashit( get_option( 'permalink_structure' ) );
+		foreach ( [
+			'/%category%/',
+			'%post_id%',
+			'%year%',
+			'%monthnum%',
+			'%day%',
+			'%hour%',
+			'%minutes%',
+			'%second%',
+			'%postname%',
+			'%author%',
+			'%minutes%',
+		] as $regexp ) {
+			switch ( $regexp ) {
+				case '/%category%/':
+					$replaced = '/.+/';
+					break;
+				case '%postname%':
+				case '%author%':
+					$replaced = '[^/]+';
+					break;
+				default:
+					$replaced = '\\d+';
+					break;
+			}
+			$structure = str_replace( $regexp, $replaced, $structure );
+		}
+		$filters = sprintf( 'ga:pagePath=~^%s;ga:pagePath!~/amp/?$', $structure );
+	}
+	if ( preg_match( '/\d+/u', $from ) ) {
+		$from = get_date_from_gmt( date_i18n( 'Y-m-d H:i:s', strtotime( sprintf( '%d days ago', $from ) ) ), 'Y-m-d' );
+	} else {
+		$from = kyom_oldest_date( 'Y-m-d' );
+	}
+	$result = kyom_get_ga_result( $from, date_i18n( 'Y-m-d' ), 'ga:pageviews', [
+		'max-results' => $count,
+		'dimensions'  => $dimensions,
+		'filters'     => $filters,
+		'sort'        => '-ga:pageviews',
+	] );
+	$ranking = [];
+	foreach ( $result as list( $page_path, $pv ) ) {
+		$permalink = home_url( $page_path );
+		if ( ! ( $post_id = url_to_postid( $permalink ) ) ) {
+			continue;
+		}
+		$more = 0;
+		foreach ( $ranking as $rank ) {
+			if ( $pv < $ranking['pv'] ) {
+				$more++;
+			}
+		}
+		$ranking[] = [
+			'rank' => $more + 1,
+			'pv'   => $pv,
+			'post' => $post_id,
+		];
+	}
+	return $ranking;
+}

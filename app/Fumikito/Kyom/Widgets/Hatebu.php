@@ -80,13 +80,13 @@ class Hatebu extends WidgetBase {
 									<?php $tag = $item->get_item_tags( 'http://www.hatena.ne.jp/info/xmlns#', 'bookmarkcount' ); ?>
 									<?= kyom_short_digits( $tag[0]['data'] ) ?>
 								</div>
-									<h3 class="kyom-simple-list-title">
-										<?= esc_html( current( array_map( 'trim', explode( '|', $item->get_title() ) ) ) ) ?>
-									</h3>
-									<div class="kyom-simple-list-meta">
-										<span uk-icon="calendar"></span>
-										<?= $item->get_date( get_option( 'date_format' ) ) ?>
-									</div>
+								<h3 class="kyom-simple-list-title">
+									<?= esc_html( current( array_map( 'trim', explode( '|', $item->get_title() ) ) ) ) ?>
+								</h3>
+								<div class="kyom-simple-list-meta">
+									<span uk-icon="calendar"></span>
+									<?= $item->get_date( get_option( 'date_format' ) ) ?>
+								</div>
 							</a>
 						</li>
 					<?php endforeach; ?>

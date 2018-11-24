@@ -56,7 +56,7 @@ ins.adsbygoogle{
   }
   width: 33%;
   margin-bottom: $kyom-gap / 2;
-  @include bp-max( $breakpoint-medium ) {
+  @include bp-max( $breakpoint-large) {
     width: 50%;
   }
   @include bp-max( $breakpoint-small ){

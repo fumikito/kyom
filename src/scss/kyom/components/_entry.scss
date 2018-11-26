@@ -93,10 +93,14 @@
 }
 
 .entry-content{
+
   @include post-style();
 
   .adsbygoogle{
     margin: 1em 0;
+    iframe{
+      margin: 0;
+    }
   }
 
   .uk-text-center p{

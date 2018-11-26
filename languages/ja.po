@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-11-25 01:22+0900\n"
-"PO-Revision-Date: 2018-11-25 01:25+0900\n"
+"POT-Creation-Date: 2018-11-26 19:20+0900\n"
+"PO-Revision-Date: 2018-11-26 19:22+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -101,7 +101,7 @@ msgstr "RSSスライダー"
 
 #: app/Fumikito/Kyom/Blocks/RssSlider.php:23
 msgid "Feed URL"
-msgstr "フィールURL"
+msgstr "フィードURL"
 
 #: app/Fumikito/Kyom/Blocks/Testimonials.php:30
 msgid "Testimonials"
@@ -353,17 +353,17 @@ msgstr "はてなブックマークのエントリーを表示します。"
 msgid "URL"
 msgstr "URL"
 
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:43
-msgctxt "hatebu"
-msgid "Hot"
-msgstr "注目"
-
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:44
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:51
 msgctxt "hatebu"
 msgid "Popular"
 msgstr "人気"
 
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:45
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:52
+msgctxt "hatebu"
+msgid "Hot"
+msgstr "注目"
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:53
 msgctxt "hatebu"
 msgid "New"
 msgstr "新着"
@@ -509,11 +509,11 @@ msgstr ""
 "間違えたこのページに来てしまいましたか？　その場合はブラウザの戻るボタンで元"
 "いたページにお戻りください。"
 
-#: functions/socials.php:151
+#: functions/socials.php:149
 msgid "Gianism is not installed."
 msgstr ""
 
-#: functions/socials.php:155
+#: functions/socials.php:153
 msgid "Google Analytics is not connected."
 msgstr ""
 
@@ -640,7 +640,7 @@ msgstr ""
 
 #: hooks/menu-and-widgets.php:35
 msgid "Global Menu"
-msgstr "グローバツルメニュー"
+msgstr "グローバルメニュー"
 
 #: hooks/menu-and-widgets.php:36
 msgid "Footer Menu"
@@ -818,6 +818,7 @@ msgid "Search Form"
 msgstr "検索フォーム"
 
 #: template-parts/block-author.php:27
+msgctxt "author-box"
 msgid "Article Written By:"
 msgstr "文責・"
 

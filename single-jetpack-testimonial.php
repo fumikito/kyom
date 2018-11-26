@@ -29,7 +29,7 @@ the_post();
 					<span class="pull-quote-icon-left" uk-icon="icon: quote-right; ratio: 3"></span>
 					<span class="pull-quote-icon-right" uk-icon="icon: quote-right; ratio: 3"></span>
 					
-					<?php the_content(); ?>
+					<?= wp_kses_post( wpautop( $post->post_content ) ); ?>
 					<?php if ( $source = kyom_testimonial_source() ) : ?>
 						<cite class="pull-quote-source">
 						<?= $source ?>

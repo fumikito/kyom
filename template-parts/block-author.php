@@ -24,7 +24,7 @@ if ( ! $author || ! $author->description ) {
 		<div class="author-block-content">
 
 			<h2 class="author-block-title">
-				<small><?= esc_html( __( 'Article Written By:', 'author-box', 'kyom' ) ) ?></small>
+				<small><?= esc_html( _x( 'Article Written By:', 'author-box', 'kyom' ) ) ?></small>
 				<?= esc_html( $author->display_name ) ?>
 			</h2>
 			

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-11-25 01:22+0900\n"
+"POT-Creation-Date: 2018-11-26 19:20+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
@@ -353,17 +353,17 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:43
-msgctxt "hatebu"
-msgid "Hot"
-msgstr ""
-
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:44
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:51
 msgctxt "hatebu"
 msgid "Popular"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:45
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:52
+msgctxt "hatebu"
+msgid "Hot"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:53
 msgctxt "hatebu"
 msgid "New"
 msgstr ""
@@ -511,11 +511,11 @@ msgid ""
 "button."
 msgstr ""
 
-#: functions/socials.php:151
+#: functions/socials.php:149
 msgid "Gianism is not installed."
 msgstr ""
 
-#: functions/socials.php:155
+#: functions/socials.php:153
 msgid "Google Analytics is not connected."
 msgstr ""
 
@@ -817,6 +817,7 @@ msgid "Search Form"
 msgstr ""
 
 #: template-parts/block-author.php:27
+msgctxt "author-box"
 msgid "Article Written By:"
 msgstr ""
 

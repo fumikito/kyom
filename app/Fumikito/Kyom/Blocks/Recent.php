@@ -62,8 +62,8 @@ class Recent extends BlockBase {
 				</div>
 				<div class="recent-wide-list-column">
 					<div class="recent-wide-grid">
-					<?php $counter = 0; if ( $query->have_posts() ) : $counter++; ?>
-						<?php while ( $query->have_posts() ): $query->the_post(); ?>
+					<?php $counter = 0; if ( $query->have_posts() ) : ?>
+						<?php while ( $query->have_posts() ): $query->the_post(); $counter++; ?>
 						<div class="recent-wide-item">
 							<?php get_template_part( 'template-parts/loop', 'recent-card' ) ?>
 						</div>

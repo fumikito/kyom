@@ -1,3 +1,4 @@
+<?php do_action( 'kyom_before_site_footer' ); ?>
 <footer class="site-footer">
 	
 	<div class="uk-container">

@@ -1,0 +1,81 @@
+.section-newsletter{
+  position: relative;
+  padding: $kyom-gap;
+  background: url( "../img/newsletter-sample.jpeg") center center no-repeat;
+  background-size: cover;
+
+  &-title{
+    text-align: center;
+    color: #fff;
+    font-family: $font-sans;
+  }
+
+  &-cover{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparentize( $global-secondary-background, .6 );
+    .toggle{
+
+    }
+  }
+
+  .uk-container{
+    position: relative;
+    z-index: 2;
+  }
+
+  &-lead{
+    position: relative;
+    &:before{
+      position: absolute;
+      content: "";
+      top: $kyom-gap / 2;
+      background-color: #fff;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 1px;
+      width: 200px;
+    }
+    margin: 0 auto;
+    font-family: $font-sans;
+    padding-top: $kyom-gap * 1.5;
+    max-width: $breakpoint-small;
+    color: #fff;
+  }
+
+  &-extra{
+    box-sizing: border-box;
+    background: rgba( 255, 255, 255, .2 );
+    transition: max-height .3s $ease-in-out-sine;
+    max-height: 0;
+    max-width: $breakpoint-small;
+    margin: $kyom-gap  auto 0;
+    overflow: hidden;
+    label{
+      color: #fff;
+    }
+    & > div{
+      padding: $kyom-gap;
+    }
+
+    .toggle &{
+      max-height: 600px;
+    }
+    .uk-grid{
+      margin-bottom: $kyom-gap / 2;
+    }
+    .inline-label{
+      display: inline-block;
+      margin-right: 1em;
+    }
+  }
+
+  &-mail-input{
+    max-width: $breakpoint-small;
+    margin: $kyom-gap / 2 auto;
+  }
+}

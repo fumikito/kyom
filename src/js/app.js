@@ -96,4 +96,10 @@
     }
   });
 
+  // Open mail form.
+  $( document ).ready( () => {
+    $( '.section-newsletter #mce-EMAIL' ).focus( function() {
+      $( '.section-newsletter' ).addClass( 'toggle' );
+    });
+  });
 }( jQuery ) );

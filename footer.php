@@ -39,7 +39,7 @@
 
 		<p class="site-footer-copy">
 			&copy; <?= kyom_oldest_date() ?> <a href="<?= home_url() ?>" rel="home"><?php bloginfo( 'name' ) ?></a>
-			| Powered by <a href="https://wordpress.org">WordPress</a> and <a href="https://github.com/fumikito/kyom">Kyom</a>.
+			| Powered by <a href="https://wordpress.org">WordPress <?= esc_html( $GLOBALS['wp_version'] ) ?></a> and <a href="https://github.com/fumikito/kyom">Kyom v<?= kyom_version() ?></a>.
 		</p>
 	</div>
 </footer>

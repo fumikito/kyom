@@ -151,8 +151,14 @@ function kyom_in_article_ads( $content ) {
 	if ( ! $should_display_ad ) {
 		return $content;
 	}
-	$lines     = explode( "\n", $content );
-	$ad_starts = ceil( count( $lines ) / 3 );
+	
+	$html   = sprintf( '<!DOCTYPE html><html><body>%s</body></html>', $content );
+	$parser = new \Masterminds\HTML5();
+	$dom    = $parser->loadHTML( $html );
+	/** @var DOMElement $body */
+	$body   = $dom->getElementsByTagName( 'body' )[0];
+	$length = $body->childNodes->length;
+	$ad_starts = ceil( $length / 3 );
 	/**
 	 * kyom_minimum_line_count_for_in_article_ad
 	 *
@@ -163,17 +169,15 @@ function kyom_in_article_ads( $content ) {
 	if ( $ad_starts < 10 ) {
 		return $content;
 	}
-	$new_line  = [];
-	$done      = false;
-	foreach ( $lines as $index => $line ) {
-		if ( $index > $ad_starts && ! $done && preg_match( '/^<(p|blockquote|div|ul|ol|h\d)/u', $line ) ) {
-			$new_line[] = $code;
-			$done       = true;
-		}
-		$new_line[] = $line;
-	}
-	$content = implode( "\n", $new_line );
-	return $content;
+	// Add replacer.
+	$elem  = $dom->createElement( 'kyomAd' );
+	/** @var DOMElement $target */
+	$target = $body->childNodes[ $ad_starts - 1 ];
+	$body->insertBefore( $elem, $target );
+	$html = $parser->saveHTML( $body );
+	$html = preg_replace( '#</?body>#u', '', $html );
+	$html = str_replace( '<kyomAd></kyomAd>', "\n" . trim ( $code ) . "\n", $html );
+	return $html;
 }
 
 /**

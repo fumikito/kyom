@@ -93,7 +93,6 @@ add_action( 'template_redirect', function(){
  */
 function kyom_title_separator( $title ) {
 	$cache = wp_cache_get( $title, 'kyom_title' );
-	var_dump( $cache );
 	if ( false === $cache ) {
 		$response = kyom_parse_string( $title );
 		if ( is_wp_error( $response ) ) {

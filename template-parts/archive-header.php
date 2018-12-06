@@ -6,7 +6,7 @@
 	<?php endif; ?>
 
 	<div class="uk-container">
-		<h1 class="uk-heading-line uk-text-center archive-header-title"><span><?= esc_html( kyom_archive_title() ) ?></span></h1>
+		<h1 class="uk-heading-line uk-text-center archive-header-title"><span><?= wp_kses_post( kyom_archive_title() ) ?></span></h1>
 
 		<?php if ( $description = category_description() ) : ?>
 		<div class="archive-header-desc">

@@ -86,7 +86,7 @@ function kyom_archive_slug() {
 /**
  * Display archive title.
  *
- *
+ * @return string
  */
 function kyom_archive_title() {
 	if ( is_search() ) {

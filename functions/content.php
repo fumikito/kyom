@@ -138,3 +138,19 @@ function kyom_is_parent( $post = null ) {
 	}
 	return $global->post_parent === $post->ID;
 }
+
+/**
+ * Parse String via API
+ *
+ * @param string $string
+ *
+ * @return array|WP_Error
+ */
+function kyom_parse_string( $string ) {
+	$endpoint = 'https://punctuate.space/json?q='.rawurlencode( $string );
+	$response = wp_remote_get( $endpoint );
+	if ( is_wp_error( $response ) ) {
+		return $response;
+	}
+	return json_decode( $response['body'], true );
+}

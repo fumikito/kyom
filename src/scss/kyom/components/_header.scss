@@ -104,3 +104,12 @@
 
 }
 
+.budou{
+  display: inline-block;
+  &.ascii{
+    margin-right: 0.15em;
+  }
+  &.jp + &.ascii{
+    margin-left: 0.15em;
+  }
+}

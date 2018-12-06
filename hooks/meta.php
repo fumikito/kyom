@@ -84,3 +84,35 @@ add_action( 'template_redirect', function(){
 		exit;
 	}
 } );
+
+/**
+ * Separate title
+ *
+ * @param string $title
+ * @return string
+ */
+function kyom_title_separator( $title ) {
+	$cache = wp_cache_get( $title, 'kyom_title' );
+	var_dump( $cache );
+	if ( false === $cache ) {
+		$response = kyom_parse_string( $title );
+		if ( is_wp_error( $response ) ) {
+			return $title;
+		}
+		$parsed = implode( '', array_map( function( $token ) {
+			$classes = preg_match( '#[ぁ-んァ-ヶー一-龠]#u', $token ) ? 'jp' : 'ascii';
+			return sprintf( '<span class="budou %s">%s</span>', $classes, esc_html( $token ) );
+		}, $response ) );
+		if ( empty( $parsed ) ) {
+			return $title;
+		} else {
+			wp_cache_set( $title, $parsed, 'kyom_title', 60 * 30 );
+			$cache = $parsed;
+		}
+	}
+	return $cache;
+}
+add_action( 'wp_head', function(){
+	add_filter( 'single_post_title', 'kyom_title_separator' );
+	add_filter( 'kyom_archive_title', 'kyom_title_separator' );
+}, 9999 );

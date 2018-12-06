@@ -126,6 +126,10 @@ $img-margin: 1.5em;
     font-size: 2em;
   }
 
+  strong{
+    font-family: $font-serif-bold;
+  }
+
   em{
     font-style: italic;
     color: $body-font-emphasis-color;

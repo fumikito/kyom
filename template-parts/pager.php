@@ -7,14 +7,15 @@
 
 $pagers = [];
 $only_right = false;
+$label = get_post_type_object( get_post_type() )->labels->singular_name;
 if ( $prev_post = get_previous_post() ) {
-	$pagers[] = [ $prev_post, 'chevron-left', 'previous', __( 'Previous Post', 'kyom' ) ];
+	$pagers[] = [ $prev_post, 'chevron-left', 'previous', sprintf( _x( 'Previous %s', 'pager', 'kyom' ), $label ) ];
 }
 if ( $next_post = get_next_post() ) {
 	if ( ! $prev_post ) {
 		$only_right = true;
 	}
-	$pagers[] = [ $next_post, 'chevron-right', 'next', __( 'Next Post', 'kyom' ) ];
+	$pagers[] = [ $next_post, 'chevron-right', 'next', sprintf( _x( 'Next %s', 'pager', 'kyom' ), $label ) ];
 }
 // If no post, do nothing.
 if ( ! $pagers ) {

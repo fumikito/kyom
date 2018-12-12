@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-11-26 19:20+0900\n"
-"PO-Revision-Date: 2018-11-26 19:22+0900\n"
+"POT-Creation-Date: 2018-12-12 19:44+0900\n"
+"PO-Revision-Date: 2018-12-12 19:50+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -269,6 +269,8 @@ msgstr "フィルター表記"
 msgid ""
 "Google Analytics Core Reporting API filter. Requires programing knowledge."
 msgstr ""
+"Google Analytics Core Reporting APIのフィルターです。プログラミングの知識が必"
+"要です。"
 
 #: app/Fumikito/Kyom/Widgets/Access.php:42
 msgctxt "ranking"
@@ -311,35 +313,35 @@ msgstr "ブランド"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:17
 msgid "Displays your brand with custom icon, custom logo and description."
-msgstr ""
+msgstr "カスタムアイコン、カスタムロゴ、説明文でブランドを表示します。"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:118
 msgid "Display site icon"
-msgstr ""
+msgstr "サイトアイコンを表示する"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:122
 msgid "Display custom logo"
-msgstr ""
+msgstr "カスタムロゴを表示する"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:126
 msgid "Display tag line"
-msgstr ""
+msgstr "タグラインを表示する"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:130
 msgid "Display long description"
-msgstr ""
+msgstr "長めの説明文を表示する"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:134
 msgid "Display address"
-msgstr ""
+msgstr "住所を表示する"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:138
 msgid "Display tel"
-msgstr ""
+msgstr "電話番号を表示する"
 
 #: app/Fumikito/Kyom/Widgets/Brand.php:142
 msgid "Display mail"
-msgstr ""
+msgstr "メールを表示する"
 
 #: app/Fumikito/Kyom/Widgets/Hatebu.php:11
 msgid "Hatena Bookmark"
@@ -511,11 +513,11 @@ msgstr ""
 
 #: functions/socials.php:149
 msgid "Gianism is not installed."
-msgstr ""
+msgstr "Gianism がインストールされていません。"
 
 #: functions/socials.php:153
 msgid "Google Analytics is not connected."
-msgstr ""
+msgstr "Google Analyticsが接続されていません。"
 
 #: functions/users.php:53 hooks/members.php:46
 msgid "Newsletter"
@@ -548,7 +550,7 @@ msgstr "タイトル直下の広告"
 #: hooks/ads.php:24
 msgid ""
 "If set, advertisement will be displayed just after single post page title."
-msgstr ""
+msgstr "設定した場合、シングル投稿ページのタイトル直下に広告が表示されます。"
 
 #: hooks/ads.php:28
 msgid "Related Ad"
@@ -556,7 +558,7 @@ msgstr "関連広告"
 
 #: hooks/ads.php:29
 msgid "If you have related ad of Google Adsense, paste code here."
-msgstr ""
+msgstr "Google Adsenseの関連記事広告がある場合は貼り付けてください。"
 
 #: hooks/ads.php:34
 msgid "Automatic Ad"
@@ -565,6 +567,7 @@ msgstr "自動広告"
 #: hooks/ads.php:35
 msgid "Enter client ID to enable automatic ad on single page."
 msgstr ""
+"シングルページに自動広告を利用する場合はクライアントIDを貼り付けてください。"
 
 #: hooks/ads.php:41
 msgid "In Article Ad"
@@ -572,7 +575,7 @@ msgstr "記事内広告"
 
 #: hooks/ads.php:42
 msgid "Insert code for in article ads."
-msgstr ""
+msgstr "記事内広告のコードを貼り付けてください。"
 
 #: hooks/ads.php:60
 msgid "Ad after Title on AMP"
@@ -580,7 +583,7 @@ msgstr "AMPでのタイトル下広告"
 
 #: hooks/ads.php:61 hooks/ads.php:69 hooks/ads.php:77
 msgid "Enter AMP ad tag."
-msgstr ""
+msgstr "AMP広告タグを入力してください。"
 
 #: hooks/ads.php:68
 msgid "Ad after Content on AMP"
@@ -604,39 +607,40 @@ msgstr "ネタバレを表示する"
 
 #: hooks/members.php:52
 msgid "Mailchimp Pop Up Script"
-msgstr ""
+msgstr "Mailchimpポップアップスクリプト"
 
 #: hooks/members.php:54
 msgid "Pasete pop up script of mail chimp here."
-msgstr ""
+msgstr "mailchimpのポップアップスクリプトをここに貼ってください。"
 
 #: hooks/members.php:78
 msgid "News Letter"
-msgstr ""
+msgstr "ニュースレター"
 
 #: hooks/members.php:80
 msgid "Newsletter Page"
-msgstr ""
+msgstr "ニュースレターページ"
 
 #: hooks/members.php:88
 msgid "No newsletter page"
-msgstr ""
+msgstr "ニュースレターページがありません。"
 
 #: hooks/menu-and-widgets.php:10
 msgid "After Article"
-msgstr ""
+msgstr "記事本文直後"
 
 #: hooks/menu-and-widgets.php:12
 msgid "Displayed just after main content. 4 widgets are the best looking."
 msgstr ""
+"メインコンテンツのすぐあとに表示されます。ウィジェット6つがオススメです。"
 
 #: hooks/menu-and-widgets.php:19
 msgid "Footer Sidebar"
-msgstr ""
+msgstr "フッターサイドバー"
 
 #: hooks/menu-and-widgets.php:21
 msgid "Displayed in footer. Settling 4 widgets is recommended."
-msgstr ""
+msgstr "フッターに設定されます。ウィジェット4つがおすすめです。"
 
 #: hooks/menu-and-widgets.php:35
 msgid "Global Menu"
@@ -645,6 +649,18 @@ msgstr "グローバルメニュー"
 #: hooks/menu-and-widgets.php:36
 msgid "Footer Menu"
 msgstr "フッターメニュー"
+
+#: hooks/portfolio.php:30
+msgid "Portfolio"
+msgstr "ポートフォリオ"
+
+#: hooks/portfolio.php:37
+msgid "Contact URL"
+msgstr "お問い合わせURL"
+
+#: hooks/portfolio.php:38
+msgid "If set, contact button will be displayed."
+msgstr "設定した場合、お問い合わせボタンが表示されます。"
 
 #: hooks/settings.php:12
 msgid "Site Brand"
@@ -742,7 +758,7 @@ msgstr "前のページに戻る"
 msgid "Related Pages"
 msgstr "関連ページ"
 
-#: page.php:69 template-parts/content-back-top.php:4
+#: page.php:69
 msgid "See All Posts"
 msgstr "すべての投稿を見る"
 
@@ -830,6 +846,21 @@ msgstr "フォローしてください"
 msgid "See all posts"
 msgstr "すべての投稿を見る"
 
+#: template-parts/content-back-top.php:6
+#: template-parts/content-footer-jetpack-portfolio.php:9
+#, php-format
+msgid "See All %s"
+msgstr "すべての%sを見る"
+
+#: template-parts/content-footer-jetpack-portfolio.php:11
+msgctxt "button-divider"
+msgid "OR"
+msgstr "または"
+
+#: template-parts/content-footer-jetpack-portfolio.php:13
+msgid "Contact"
+msgstr "お問い合わせ"
+
 #: template-parts/loop-jetpack-testimonial.php:19
 #, php-format
 msgctxt "quotes"
@@ -844,13 +875,17 @@ msgstr "すべての引用文を見る"
 msgid "Continue Reading"
 msgstr "続きを読む"
 
-#: template-parts/pager.php:11
-msgid "Previous Post"
-msgstr "次の投稿"
+#: template-parts/pager.php:12
+#, php-format
+msgctxt "pager"
+msgid "Previous %s"
+msgstr "次の%s"
 
-#: template-parts/pager.php:17
-msgid "Next Post"
-msgstr "前の投稿"
+#: template-parts/pager.php:18
+#, php-format
+msgctxt "pager"
+msgid "Next %s"
+msgstr "前の%s"
 
 #: template-parts/pagination.php:8
 msgid "Previous Posts"
@@ -879,3 +914,7 @@ msgstr "高橋文樹"
 #. Author URI of the plugin/theme
 msgid "https://takahashifumiki.com"
 msgstr "https://takahashifumiki.com"
+
+#. Template Name of the plugin/theme
+msgid "Full Width"
+msgstr "最大幅最大幅"

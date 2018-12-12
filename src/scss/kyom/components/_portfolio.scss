@@ -1,0 +1,22 @@
+.kyom-portfolio{
+  &-contact{
+    position: relative;
+    margin-top: $kyom-gap;
+    padding-top: $kyom-gap;
+    padding-bottom: $kyom-gap * 2;
+    .uk-button{
+      min-width: 16em;
+    }
+    &-divider{
+      padding: 0 1em;
+      @include bp-max( $breakpoint-xsmall-max ){
+        display: block;
+        padding: 0.25em 0;
+      }
+    }
+  }
+}
+
+.type-jetpack-portfolio .entry-content{
+  padding-top: $kyom-gap;
+}

@@ -91,7 +91,8 @@ HTML;
  */
 add_action( 'kyom_before_content', function () {
 	$ad = get_option( 'kyom_ad_after_title' );
-	if ( ! $ad ) {
+	$should_show = apply_filters( 'kyom_should_display_before_content_ad', (bool) $ad );
+	if ( ! $ad || ! $should_show ) {
 		return;
 	}
 	echo <<<HTML
@@ -107,7 +108,8 @@ HTML;
  */
 add_action( 'kyom_content_footer', function () {
 	$ad = get_option( 'kyom_ad_related' );
-	if ( ! $ad ) {
+	$should_show = apply_filters( 'kyom_should_display_footer_ad', (bool) $ad );
+	if ( ! $ad || ! $should_show ) {
 		return;
 	}
 	echo <<<HTML
@@ -148,10 +150,9 @@ add_action( 'wp_head', function() {
 function kyom_in_article_ads( $content ) {
 	$code = get_option( 'kyom_ad_content' );
 	$should_display_ad = apply_filters( 'kyom_should_display_in_article_ad', $code && ( 'post' === get_post_type() ), get_post() );
-	if ( ! $should_display_ad ) {
+	if ( ! $code || ! $should_display_ad ) {
 		return $content;
 	}
-	
 	$html   = sprintf( '<!DOCTYPE html><html><body>%s</body></html>', $content );
 	$parser = new \Masterminds\HTML5();
 	$dom    = $parser->loadHTML( $html );

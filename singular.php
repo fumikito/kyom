@@ -52,6 +52,8 @@ the_post();
 				
 			</div>
 			
+			<?php get_template_part( 'template-parts/content-footer', get_post_type() ) ?>
+			
 			<?php get_sidebar() ?>
 			
 			<footer class="entry-footer entry-container uk-container">

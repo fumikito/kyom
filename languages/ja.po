@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-12-12 19:44+0900\n"
-"PO-Revision-Date: 2018-12-12 19:50+0900\n"
+"POT-Creation-Date: 2018-12-18 02:44+0900\n"
+"PO-Revision-Date: 2018-12-18 02:44+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -523,23 +523,27 @@ msgstr "Google Analyticsが接続されていません。"
 msgid "Newsletter"
 msgstr "ニュースレター"
 
-#: header.php:10 header.php:55
+#: header.php:10 header.php:65
 msgid "Menu"
 msgstr "メニュー"
 
-#: header.php:28
+#: header.php:29
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: header.php:36
 msgid "Sign Up"
 msgstr "登録"
 
-#: header.php:33
+#: header.php:42
 msgid "Sign In"
 msgstr "ログイン"
 
-#: header.php:38
+#: header.php:47
 msgid "Log in"
 msgstr "ログイン"
 
-#: header.php:71
+#: header.php:81
 msgid "Input keywords..."
 msgstr "キーワードを入力……"
 

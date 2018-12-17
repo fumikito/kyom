@@ -23,21 +23,31 @@
 		
 		<div class="uk-navbar-right">
 			<ul class="uk-navbar-nav">
+				<?php if ( is_user_logged_in() ) : ?>
+					<li class="uk-visible@s logged-in">
+						<a href="<?= admin_url() ?>" rel="nofollow">
+							<?php esc_html_e( 'Dashboard', 'kyom' ) ?>
+						</a>
+					</li>
+				<?php else : ?>
+				<?php if ( get_option( 'users_can_register' ) ) : ?>
 				<li class="uk-visible@s not-logged-in">
-					<a href="<?= wp_registration_url() ?>">
+					<a href="<?= wp_registration_url() ?>" rel="nofollow">
 						<?php esc_html_e( 'Sign Up', 'kyom' ) ?>
 					</a>
 				</li>
+				<?php endif; ?>
 				<li class="uk-visible@s not-logged-in">
-					<a href="<?= wp_login_url( $_SERVER['REQUEST_URI'] ) ?>">
+					<a href="<?= wp_login_url( $_SERVER['REQUEST_URI'] ) ?>" rel="nofollow">
 						<?php esc_html_e( 'Sign In', 'kyom' ) ?>
 					</a>
 				</li>
 				<li class="uk-hidden@s not-logged-in">
-					<a href="<?= wp_login_url( $_SERVER['REQUEST_URI'] ) ?>">
+					<a href="<?= wp_login_url( $_SERVER['REQUEST_URI'] ) ?>" rel="nofollow">
 						<?php esc_html_e( 'Log in', 'kyom' ) ?>
 					</a>
 				</li>
+				<?php endif; ?>
 			</ul>
 		</div>
 	</nav>

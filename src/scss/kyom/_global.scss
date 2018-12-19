@@ -76,6 +76,27 @@ img{
   }
 }
 
+%post-link-button{
+  border: 2px solid transparent;
+  font-family: $font-sans;
+  @include kyom-transition((color, background-color));
+
+  &:link, &:visited {
+    color: #fff;
+    background-color: $body-font-emphasis-color;
+    border-color: $body-font-emphasis-color;
+    text-decoration: none;
+  }
+
+  &:hover, &:active {
+    color: $body-font-emphasis-color;
+    background-color: transparent;
+    border-color: $body-font-emphasis-color;
+  }
+}
+
 sup, sub, small{
   font-size-adjust: none;
 }
+
+

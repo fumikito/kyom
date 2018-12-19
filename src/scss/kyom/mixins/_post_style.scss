@@ -342,21 +342,40 @@ $img-margin: 1.5em;
     font-size: 1.2em;
   }
 
-  // Button
-  .wp-block-button__link{
-    border: 2px solid transparent;
-    font-family: $font-sans;
-    @include kyom-transition( ( color, background-color ) );
-    &:link, &:visited{
-      color: #fff;
-      background-color: $body-font-emphasis-color;
-      border-color: $body-font-emphasis-color;
-      text-decoration: none;
+  // File
+  .wp-block-file{
+    text-align: center;
+    padding: 1.5em;
+    background-color: $slightly-gray;
+    margin: 1.5em 0;
+    position: relative;
+    a:first-child{
+      margin-right: 0.25em;
     }
-    &:hover, &:active{
-      color: $body-font-emphasis-color;
-      background-color: transparent;
-      border-color: $body-font-emphasis-color;
+    a.wp-block-file__button:last-child{
+      @extend %post-link-button;
+    }
+  }
+
+  // Button
+  .wp-block-button{
+    &__link{
+      @extend %post-link-button;
+    }
+    &.is-style-outline{
+      .wp-block-button__link{
+        &:link, &:visited {
+          color: $body-font-emphasis-color;
+          background-color: transparent;
+          border-color: $body-font-emphasis-color;
+          text-decoration: none;
+        }
+        &:hover, &:active {
+          color: #fff;
+          background-color: $body-font-emphasis-color;
+          border-color: $body-font-emphasis-color;
+        }
+      }
     }
   }
 

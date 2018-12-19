@@ -43,6 +43,7 @@ add_action( 'after_setup_theme', function() {
 	if ( apply_filters( 'kyom_automatic_feed_links', true ) ) {
 		add_theme_support( 'automatic-feed-links' );
 	}
+	
 } );
 
 /**

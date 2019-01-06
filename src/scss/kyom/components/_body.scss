@@ -8,6 +8,10 @@ body{
   }
 }
 
+.sans{
+  font-family: $base-body-font-family !important;
+}
+
 .kyom-die{
 
   padding: $kyom-gap 0;

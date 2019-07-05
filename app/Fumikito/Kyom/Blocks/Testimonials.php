@@ -77,6 +77,7 @@ class Testimonials extends BlockBase {
 				break;
 		}
 		$posts = get_posts( $args );
+		global $post;
 		ob_start();
 		?>
 		<section class="testimonial-slider">

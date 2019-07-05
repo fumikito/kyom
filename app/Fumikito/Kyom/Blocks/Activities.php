@@ -36,7 +36,15 @@ class Activities extends BlockBase {
 		];
 	}
 	
-	protected function render( $atts = [], $content = '' ) {
+	/**
+	 * Render activities.
+	 *
+	 * @param array $atts
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	protected function render( $atts = [], $content = '' ):string {
 		$posts = get_posts( [
 			'post_type'      => 'jetpack-portfolio',
 			'posts_per_page' => $atts[ 'number' ],
@@ -50,7 +58,7 @@ class Activities extends BlockBase {
 			],
 		] );
 		if ( ! $posts ) {
-			return;
+			return '';
 		}
 		ob_start();
 		?>

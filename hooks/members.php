@@ -37,29 +37,6 @@ add_action('wp_logout', function(){
 
 
 /**
- * Add mail chimp section.
- */
-add_action( 'customize_register', function( WP_Customize_Manager $wp_customize ) {
-	
-	// Add news letter section.
-	$wp_customize->add_section( 'kyom_newsletter_section', [
-		'title'    => __( 'Newsletter', 'kyom' ),
-		'priority' => 10001,
-	] );
-	
-	kyom_register_customizer( $wp_customize, 'kyom_newsletter_section', [
-		'kyom_mailchimp_popup' => [
-			'label'       => __( 'Mailchimp Pop Up Script', 'kyom' ),
-			'section'     => 'kyom_newsletter_section',
-			'description' => __( 'Pasete pop up script of mail chimp here.', 'kyom' ),
-			'type'        => 'textarea'
-		]
-	] );
-} );
-
-
-
-/**
  * Emebed popup
  */
 add_action( 'wp_footer', function() {

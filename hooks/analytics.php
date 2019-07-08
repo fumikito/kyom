@@ -5,27 +5,6 @@
  * @package kyom
  */
 
-/**
- * Register ad section
- *
- */
-add_action( 'customize_register', function( WP_Customize_Manager $wp_customize ) {
-	
-	// Add ad section.
-	$wp_customize->add_section( 'kyom_analytics_section', [
-		'title'    => __( 'Analytics', 'kyom' ),
-		'priority' => 10000,
-	] );
-	
-	kyom_register_customizer( $wp_customize, 'kyom_analytics_section', [
-		'kyom_tracking_id' => [
-			'label' => __( 'Tracking ID', 'kyom' ),
-			'input_attr' => [
-				'placeholder' => 'UA-5329295-4'
-			],
-		],
-	] );
-} );
 
 /**
  * Register analytics tag.

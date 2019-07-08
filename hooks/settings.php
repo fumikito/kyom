@@ -1,11 +1,30 @@
 <?php
-/**
+/*
  * Brand related functions.
  *
  * @package kyom
  */
 
+// Register customizer.
+add_action( 'after_setup_theme', function() {
+	$dir = dirname( __DIR__ ) . '/app/Fumikito/Kyom/Customizer';
+	if ( ! is_dir( $dir ) ) {
+		return;
+	}
+	foreach ( scandir( $dir ) as $file ) {
+		if ( ! preg_match( '#^(.*)\.php$#u', $file, $matches ) ) {
+			continue;
+		}
+		$class_name = "Fumikito\\Kyom\\Customizer\\{$matches[1]}";
+		if ( ! class_exists( $class_name ) || ! method_exists( $class_name, 'register' ) ) {
+			trigger_error( 'Customizer class not found: ' . $class_name );
+			continue;
+		}
+		call_user_func( "{$class_name}::register" );
+	}
+} );
 
+// Register settings.
 add_action( 'admin_init', function () {
 	$settings = [
 		'kyom_brand' => [
@@ -15,11 +34,11 @@ add_action( 'admin_init', function () {
 			'options'     => [
 				'long_desc' => [
 					'label'       => __( 'Site long description', 'kyom' ),
-					'description' => __( 'Litlle bit long description to describe your brand. Longer than tag line and less than 140 characters.', 'kyom' ),
+					'description' => __( 'A little bit long description to describe your brand. Longer than tag line and less than 140 characters.', 'kyom' ),
 					'type'        => 'textarea',
 				],
 				'address' => [
-					'label' => __( 'Addresss', 'kyom' ),
+					'label' => __( 'Address', 'kyom' ),
 					'type'  => 'textarea',
 				],
 				'tel' => [

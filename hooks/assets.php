@@ -101,4 +101,27 @@ add_action( 'wp_footer', function () {
 	wp_dequeue_style( 'yarppRelatedCss' );
 }, 1 );
 
-
+/**
+ * Replace img tag with attributes.
+ */
+add_action( 'wp_head', function() {
+	ob_start();
+}, 9999 );
+add_action( 'wp_footer', function() {
+	$body     = ob_get_contents();
+	$replaced = preg_replace_callback( '#<img([^>]+)>#u', function( $matches ) {
+		list( $match, $attr ) = $matches;
+		foreach ( [
+			'loading'  => 'lazy',
+			'decoding' => 'async',
+		] as $key => $val ) {
+			if ( false !== strpos( $attr, $key . '=' ) ) {
+				continue;
+			}
+			$attr = sprintf( ' %s="%s"%s', $key, $val, $attr );
+		}
+		return sprintf( '<img%s>', $attr );
+	}, $body );
+	ob_end_clean();
+	echo $replaced;
+}, 9999 );

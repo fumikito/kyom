@@ -18,7 +18,6 @@ if ( ! $author || ! $author->description ) {
 	<div class="author-block-body">
 		<div class="author-block-image">
 			<?= get_avatar( $author->ID, 300, '', '', [ 'class' => 'author-block-avatar' ] ) ?>
-			
 		</div>
 
 		<div class="author-block-content">
@@ -27,11 +26,11 @@ if ( ! $author || ! $author->description ) {
 				<small><?= esc_html( _x( 'Article Written By:', 'author-box', 'kyom' ) ) ?></small>
 				<?= esc_html( $author->display_name ) ?>
 			</h2>
-			
+
 			<div class="author-block-description">
 				<?= wp_kses_post( wpautop( $author->description ) ) ?>
 			</div>
-			
+
 			<?php if ( $contacts = kyom_get_social_links( $author, true ) ) : ?>
 				<div class="author-block-contact">
 					<h3 class="author-block-contact-title"><?php esc_html_e( 'Follow Me Via:', 'kyom' ) ?></h3>
@@ -46,8 +45,8 @@ if ( ! $author || ! $author->description ) {
 					</p>
 				</div>
 			<?php endif; ?>
-			
-			<p class="uk-text-left">
+
+			<p>
 				<a class="uk-button uk-button-secondary uk-button-small"
 				   href="<?= get_author_posts_url( $author->ID ) ?>">
 					<?php esc_html_e( 'See all posts', 'kyom' ) ?>

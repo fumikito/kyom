@@ -3,12 +3,9 @@ $img-margin: 1.5em;
 
 @mixin post-style(){
 
-  font-size: 18px;
+  font-size: $kyom-font-size;
   @include bp-max($breakpoint-small){
-    font-size: 16px;
-  }
-  @include bp-max(321px){
-    font-size: 14px;
+    font-size: $kyom-font-size-sm;
   }
   line-height: 2.2;
   font-family: $font-serif;
@@ -16,26 +13,30 @@ $img-margin: 1.5em;
   @include night-shift((
     color: $body-font-night-color
   ));
-  
+
   // link
-  a:link{
-    color: $body-font-emphasis-color;
-    text-decoration: underline;
-  }
-  a:visited{
-    color: $body-font-muted-color;
-    text-decoration: underline;
-  }
-  a:hover, a:active{
-    color: $global-link-color;
-    text-decoration: none;
+  a:not([class]){
+    &:link {
+      color: $body-font-emphasis-color;
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: $body-font-muted-color;
+      text-decoration: underline;
+    }
+
+    &:hover,
+    &:active {
+      color: $global-link-color;
+      text-decoration: none;
+    }
   }
 
   // Sans-serif
   .uk-alert-warning,
   aside,
-  .tmkm-amazon-view
-  {
+  .tmkm-amazon-view {
     font-family: $font-sans;
   }
 
@@ -70,8 +71,12 @@ $img-margin: 1.5em;
   }
 
   ul,ol{
-    margin: 2em 0;
+    margin: 3em 0;
     padding: 0 0 0 3em;
+
+    @include bp-max( $breakpoint-smallphone ) {
+      padding-left: 2em;
+    }
   }
 
   dl{
@@ -91,7 +96,7 @@ $img-margin: 1.5em;
   // Quotes
   blockquote{
     font-style: normal;
-    margin: 2em 0;
+    margin: 3em 0;
     padding-left: 1.75em;
     border-left: 0.25em solid #eee;
     font-size: 1em;
@@ -144,7 +149,7 @@ $img-margin: 1.5em;
 
   aside{
     font-size: 0.75em;
-    margin: 1em 0;
+    margin: 1.5em 0;
     padding: 1em;
     border: 1px dashed #eee;
     color: $body-font-muted-color;
@@ -157,7 +162,7 @@ $img-margin: 1.5em;
   address{
     background-color: $light-gray;
     padding: 1em;
-    margin: 1em 0;
+    margin: 3em 0;
     font-family: $font-sans;
     font-size: 0.85em;
     p{
@@ -196,36 +201,63 @@ $img-margin: 1.5em;
     margin: 2.5em 0 1em;
     clear: both;
     font-family: $font-title;
-    font-weight: normal;
+    font-weight: $base-strong-font-weight;
     color: $body-font-emphasis-color;
     @include night-shift((
       color: $body-font-night-emphasis,
     ));
   }
 
-  h2{
-    font-size: 2em;
-    position: relative;
-    padding-bottom: 15px;
-    &:after{
-      content: "";
-      display: block;
-      position: absolute;
-      height: 5px;
-      width: 200px;
-      max-width: 100%;
-      bottom: 0;
-      left: 0;
-      background-color: #eee;
-      @include night-shift((
-        background-color: #444,
-      ));
-    }
+  h1 {
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    border: 1px solid $body-font-emphasis-color;
+    @include night-shift((
+       border-color: $body-font-night-emphasis,
+    ));
   }
 
-  h4{
-    color: #777;
-    font-family: $font-sans-bold;
+  h2 {
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid $body-font-emphasis-color;
+    @include night-shift((
+            border-bottom-color: $body-font-night-emphasis,
+    ));
+  }
+
+  h3 {
+    position: relative;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 120px;
+      background-color: $body-font-emphasis-color;
+      bottom: 0;
+      left: 0;
+      @include night-shift((
+          background-color: $body-font-night-emphasis,
+      ));
+    }
+    &.has-align-center,
+    &.has-text-align-center,
+    &[style*="center"]{
+      &:after {
+        left: 50%;
+        margin-left: -60px;
+      }
+    }
+    &.has-align-right,
+    &.has-text-align-right,
+    &[style*="right"]{
+      &:after {
+        left: auto;
+        right: 0;
+      }
+    }
   }
 
   // Table
@@ -285,16 +317,13 @@ $img-margin: 1.5em;
     max-height: 90vh;
     width: auto;
     height: auto;
-    transition: filter .5s $ease-in-out-sine;
-    &:hover{
-      filter: none;
-    }
   }
   .wp-caption{
     max-width: 100%;
     &-text{
       @extend .uk-text-muted;
-      font-size: 0.75em;
+      font-size: $kyom-font-size-sm;
+      font-family: $font-sans;
       margin: 0.5em 0 0;
     }
   }
@@ -304,16 +333,29 @@ $img-margin: 1.5em;
   }
 
   .wp-block-media-text{
-    margin: 2em 0;
+    margin: 3em 0;
     .wp-block-media-text__content{
       padding: 0 1em;
+    }
+  }
+
+  .wp-block-cover {
+    margin-top: 3em;
+    margin-bottom: 3em;
+  }
+
+  .wp-block-group{
+    margin-top: 3em;
+    margin-bottom: 3em;
+    &.has-background {
+      padding: 3em;
     }
   }
 
   // embeds
   iframe{
     display: block;
-    margin: 1em auto;
+    margin: 3em auto;
     max-width: 100%;
   }
   audio{
@@ -328,8 +370,8 @@ $img-margin: 1.5em;
   }
 
   .syntaxhighlighter, pre{
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 3em;
+    margin-bottom: 3em;
     border: none;
     background-color: $light-gray;
   }
@@ -337,7 +379,7 @@ $img-margin: 1.5em;
     background-color: transparent;
     font-family: $font-serif;
     padding: 1em;
-    margin: 1em 0;
+    margin: 3em 0;
     color: $body-font-emphasis-color;
     font-size: 1.2em;
   }
@@ -347,7 +389,7 @@ $img-margin: 1.5em;
     text-align: center;
     padding: 1.5em;
     background-color: $slightly-gray;
-    margin: 1.5em 0;
+    margin: 3em 0;
     position: relative;
     a:first-child{
       margin-right: 0.25em;
@@ -383,8 +425,7 @@ $img-margin: 1.5em;
   hr{
     border-color: $light-gray;
     width: 50%;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 3em auto;
     &.is-style-wide{
       width: auto;
       margin-left: -1 * $container-padding-horizontal;
@@ -402,43 +443,6 @@ $img-margin: 1.5em;
     &-is-style-dots:before{
       color: $light-gray;
     }
-  }
-
-  .tmkm-amazon-view{
-    p{
-      text-indent: 0;
-    }
-    small{
-      margin-left: 0.25em;
-      background: $body-font-emphasis-color;
-      padding: 0.25em;
-      color: #fff;
-    }
-    em{
-      font-weight: bold;
-      font-family: $font-sans-bold;
-      color: $body-font-emphasis-color;
-      font-style: normal;
-      text-emphasis: none;
-    }
-
-    .tmkm-amazon-img{
-      img{
-        @include bp-max($breakpoint-small) {
-          display: block;
-          margin-right: auto;
-          margin-left: auto;
-          float: none;
-        }
-      }
-    }
-  }
-  .hamazon-message{
-    @extend .uk-alert-danger;
-    font-size: 0.85em;
-    font-family: $font-sans;
-    padding: 1em;
-    margin: 1em 0;
   }
 
 }

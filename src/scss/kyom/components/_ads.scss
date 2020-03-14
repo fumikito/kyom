@@ -1,0 +1,13 @@
+.adsbygoogle{
+	background-color: $section-muted-background;
+	clear: both;
+
+	.entry-content & {
+		margin: 3em 0;
+	}
+
+	iframe{
+		margin: 0;
+		max-width: 100%;
+	}
+}

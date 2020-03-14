@@ -12,7 +12,10 @@
 add_action( 'after_setup_theme', function() {
 	// Title tag.
 	add_theme_support( 'title-tag' );
-	
+
+	// Align wide.
+	add_theme_support( 'align-wide' );
+
 	// Logo setting.
 	$defaults = apply_filters( 'kyom_logo_setting', [
 		'height'      => 60,
@@ -21,14 +24,14 @@ add_action( 'after_setup_theme', function() {
 		'flex-width'  => false,
 	] );
 	add_theme_support( 'custom-logo', $defaults );
-	
+
 	// Thumbnail.
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 1200, 600, true );
-	
+
 	// Comic.
 	// add_theme_support( 'jetpack-comic' );
-	
+
 	// html5
 	add_theme_support( 'html5', [
 		'comment-list',
@@ -37,13 +40,13 @@ add_action( 'after_setup_theme', function() {
 		'gallery',
 		'caption',
 	] );
-	
-	
+
+
 	// Feed links.
 	if ( apply_filters( 'kyom_automatic_feed_links', true ) ) {
 		add_theme_support( 'automatic-feed-links' );
 	}
-	
+
 } );
 
 /**

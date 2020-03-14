@@ -42,7 +42,6 @@ function kyom_archive_top( $post = null ) {
 	} else {
 		switch ( $post->post_type ) {
 			case 'page':
-				$link = home_url();
 				break;
 			case 'post':
 				if ( $front_id = get_option( 'page_for_posts' ) ) {
@@ -63,7 +62,7 @@ function kyom_archive_top( $post = null ) {
 				break;
 		}
 	}
-	
+
 	/**
 	 * kyom_archive_top
 	 *
@@ -87,7 +86,7 @@ function kyom_todo_when_404() {
 		'try_search'      => __( 'Please try search form below to find what you are looking for.', 'kyom' ),
 		'simply_back'     => __( 'Are you lost yourself? Simply back to former page by clicking browser\'s back button.', 'kyom' ),
 	];
-	
+
 	/**
 	 * kyom_todo_when_404
 	 *
@@ -127,7 +126,7 @@ function kyom_get_primary_term( $post = null ) {
 			$primary_taxonomy = '';
 			break;
 	}
-	
+
 	/**
 	 * kyom_primary_taxonomy
 	 *

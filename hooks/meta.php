@@ -16,7 +16,7 @@ add_filter( 'document_title_parts', function( $title ) {
 		$title['category'] = implode( ', ', array_map( function( $cat ) {
 			return $cat->name;
 		}, get_the_category( get_queried_object_id() ) ) );
-		
+
 	}
 	return $title;
 } );
@@ -64,7 +64,7 @@ add_filter( 'user_contactmethods', function( $methods ) {
 		'dribbble'   => '',
 		'behance'   => '',
 		'google'    => '',
-		
+
 	] as $key => $label ) {
 		if ( ! $label ) {
 			$label = ucfirst( $key );
@@ -113,5 +113,4 @@ function kyom_title_separator( $title ) {
 }
 add_action( 'wp_head', function(){
 	add_filter( 'single_post_title', 'kyom_title_separator' );
-	add_filter( 'kyom_archive_title', 'kyom_title_separator' );
 }, 9999 );

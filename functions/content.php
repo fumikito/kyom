@@ -16,7 +16,7 @@ function kyom_get_content_locale( $post = null ) {
 	if ( ! $locale ) {
 		$locale = get_locale();
 	}
-	
+
 	/**
 	 * kyom_locale
 	 *
@@ -26,6 +26,43 @@ function kyom_get_content_locale( $post = null ) {
 	 * @param WP_Post $post
 	 */
 	return apply_filters( 'kyom_locale', $locale, $post );
+}
+
+/**
+ * Get top level category
+ *
+ * @param null|int|WP_Post $post
+ *
+ * @return mixed|WP_Term|null
+ */
+function kyom_get_top_category( $post = null ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return null;
+	}
+	switch ( $post->post_type ) {
+		case 'post':
+			$taxonomy = 'category';
+			break;
+		case 'product':
+			$taxonomy = 'product_cat';
+			break;
+		default:
+			$taxonomy = '';
+			foreach ( get_post_taxonomies( $post ) as $post_tax ) {
+				$taxonomy = $post_tax;
+				break;
+			}
+			break;
+	}
+	$taxonomy = apply_filters( 'kyom_top_category_taxonomy', $taxonomy, $post );
+	if ( $taxonomy ) {
+		$terms = get_the_terms( $post, $taxonomy );
+		if ( $terms && ! is_wp_error( $terms ) ) {
+			return $terms[0];
+		}
+	}
+	return null;
 }
 
 /**
@@ -98,7 +135,7 @@ function kyom_reading_minutes( $post = null ) {
 		// http://www.readingsoft.com/
 		$minutes = ceil( $length / 200 );
 	}
-	
+
 	/**
 	 * kyom_reading_time
 	 *

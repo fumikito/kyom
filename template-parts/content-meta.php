@@ -14,13 +14,15 @@
 		<?php endif; ?>
 		<?php
 		$taxonomy_to_display = apply_filters( 'kyom_taxonomy_to_display', [
-			'category'                => 'folder',
 			'post_tag'                => 'tag',
 			'jetpack-portfolio-type' => 'hashtag',
 			'jetpack-portfolio-tag'  => 'tag',
 		] );
 		foreach ( $taxonomy_to_display as $taxonomy => $icon ) {
 			$terms = get_the_terms( get_post(), $taxonomy );
+			if ( ! $icon ) {
+				$icon = 'tag';
+			}
 			if ( ! $terms || is_wp_error( $terms ) ) {
 				continue;
 			}
@@ -28,7 +30,7 @@
 				'<li class="entry-meta-item"><span uk-icon="%s"></span> %s</li>',
 				esc_attr( $icon ),
 				implode( '', array_map( function ( $term ) {
-					return sprintf( '<a class="entry-meta-link tag-link" href="%s">%s</a>', esc_url( get_term_link( $term ) ), esc_html( $term->name ) );
+					return sprintf( '<a class="entry-meta-link" href="%s">%s</a>', esc_url( get_term_link( $term ) ), esc_html( $term->name ) );
 				}, $terms ) )
 			);
 		} ?>

@@ -1,0 +1,53 @@
+.tmkm-amazon {
+
+	&-view {
+		margin-top: 3em !important;
+		margin-bottom: 3em !important;
+		padding: 2em !important;
+		border: 1px solid $global-border !important;
+
+		p {
+			text-indent: 0;
+		}
+
+		small {
+			display: inline-block;
+			margin-left: 0.5em;
+			background: $body-font-emphasis-color;
+			padding: 0.25em;
+			color: #fff;
+		}
+
+		em {
+			font-weight: bold;
+			font-family: $font-sans-bold;
+			color: $body-font-emphasis-color;
+			font-style: normal;
+			text-emphasis: none !important;
+		}
+
+		.tmkm-amazon-img {
+			a img {
+				padding: 0 !important;
+				border: none !important;
+
+				@include bp-max($breakpoint-small) {
+					display: block;
+					margin-right: auto;
+					margin-left: auto;
+					float: none;
+				}
+			}
+		}
+	}
+
+}
+
+.hamazon-message{
+	@extend .uk-alert-danger;
+	font-size: 0.85em;
+	font-family: $font-sans;
+	padding: 1em;
+	margin: 1em 0;
+}
+

@@ -1,11 +1,3 @@
-img{
-  filter: grayscale(100%);
-  .jp-carousel &,
-  .uk-lightbox-items &{
-    filter: none;
-  }
-}
-
 %uk-form{
 
   p label{

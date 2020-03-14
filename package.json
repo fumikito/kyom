@@ -1,17 +1,17 @@
 {
-  "name": "name",
+  "name": "@hametuha/kyom",
   "version": "1.0.0",
-  "homepage": "https://github.comr/repo/name",
+  "homepage": "https://github.comr/fumikito/kyom",
   "description": "WordPress theme",
   "main": "gulpfile.js",
   "author": "your name.",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/repo/name.git"
+    "url": "git+https://github.com/fumikito/kyom.git"
   },
   "bugs": {
-    "url": "https://github.com/repo/name/issues"
+    "url": "https://github.com/fumikito/kyom/issues"
   },
   "scripts": {
     "start": "gulp build",

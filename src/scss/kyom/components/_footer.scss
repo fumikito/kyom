@@ -25,11 +25,11 @@
       width: 100%;
     }
 
-    font-size: 0.85rem;
+    font-size: $kyom-font-size-sm;
     &-title{
-      font-weight: bold;
+      font-weight: $base-strong-font-weight;
       color: $body-font-muted-color;
-      font-size: 1rem;
+      font-size: $kyom-font-size;
     }
 
   }

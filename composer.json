@@ -19,7 +19,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "php": ">=7.0",
+    "php": "^5.6|^7.0",
     "masterminds/html5": "^2.3"
   },
   "require-dev": {

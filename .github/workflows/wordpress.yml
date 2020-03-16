@@ -80,7 +80,7 @@ jobs:
           options: ''
           ssh_options: ''
           src: './'
-          dest: 'ec2-user@ssh.takahashifumiki.com:/var/www/vhosts/takahashifumiki.com/wp-content/themes/kyom/'
+          dest: 'ec2-user@direct.takahashifumiki.com:/var/www/vhosts/takahashifumiki.com/wp-content/themes/kyom/'
 
       - name: Display Deploy Status
         run: echo "${{ steps.deploymaster.outputs.status }}"

@@ -71,7 +71,7 @@ jobs:
         run: bash bin/build.sh
 
       - name: Deploy to Server
-          id: deploy
+          id: deploymaster
           uses: Pendect/action-rsyncer@v1.1.0
           env:
             DEPLOY_KEY: ${{secrets.HAMETUHA_GITHUB_ACTIONS_KEY}}
@@ -83,7 +83,7 @@ jobs:
             dest: 'ec2-user@ssh.takahashifumiki.com:/var/www/vhosts/takahashifumiki.com/wp-content/themes/kyom/'
 
       - name: Display Deploy Status
-        run: echo "${{ steps.deploy.outputs.status }}"
+        run: echo "${{ steps.deploymaster.outputs.status }}"
 
   release:
     name: Build Theme

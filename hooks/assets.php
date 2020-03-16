@@ -66,6 +66,8 @@ add_action( 'admin_enqueue_scripts', function() {
 
 /**
  * Remove unwanted assets
+ *
+ * @todo This should be done by plugin.
  */
 add_action( 'wp_enqueue_scripts', function () {
 	if ( ! ( is_singular() && has_shortcode( get_queried_object()->post_content, 'contact-form-7' ) ) ) {
@@ -83,8 +85,8 @@ add_action( 'wp_enqueue_scripts', function () {
  * Move jQuery to footer
  */
 add_action( 'init', function() {
-	// Avoid admin screen.
-	if ( is_admin() ) {
+	// Avoid admin and login screen.
+	if ( is_admin() || ( isset( $_SERVER['SCRIPT_FILENAME'] ) && 'wp-login.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) ) {
 		return;
 	}
 	// Store current version and url.
@@ -101,6 +103,54 @@ add_action( 'init', function() {
 }, 1 );
 
 /**
+ * Detect if style is "critical"
+ *
+ * @see https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+ * @param string $handle
+ * @return bool
+ */
+function kyom_is_critical_css( $handle ) {
+	return apply_filters( 'kyom_is_critical_css', in_array( $handle, [ 'uikit' ] ), $handle );
+}
+
+/**
+ * Check if preloader exits.
+ */
+function kyom_preloader_exists() {
+	return file_exists( get_template_directory() . '/assets/js/cssrelpreload.min.js' );
+}
+
+/**
+ * Rewrite style tags for preload.
+ */
+add_filter( 'style_loader_tag', function( $tag, $handle, $href, $media ) {
+	if ( kyom_is_critical_css( $handle ) || ! kyom_preloader_exists() ) {
+		return $tag;
+	}
+	$html = <<<'HTML'
+<link rel="preload" href="%1$s" as="style" onload="this.onload=null;this.rel='stylesheet'" data-handle="%3$s" />
+<noscript>
+	%2$s
+</noscript>
+HTML;
+	return sprintf( $html, $href, $tag, $handle );
+}, 10, 4 );
+
+/**
+ * Add preloader helper.
+ */
+add_action( 'wp_head', function() {
+	if ( ! kyom_preloader_exists() ) {
+		return;
+	}
+	$preloader = file_get_contents( get_template_directory() . '/assets/js/cssrelpreload.min.js' );
+	?>
+	<!-- CSS Preloader Polyfill -->
+	<script><?php echo $preloader ?></script>
+	<?php
+}, 11 );
+
+/**
  * Add post class.
  */
 add_filter( 'post_class', function( $classes, $additional_class, $post_id ) {
@@ -109,7 +159,7 @@ add_filter( 'post_class', function( $classes, $additional_class, $post_id ) {
 }, 10, 3 );
 
 /**
- * Remove not serif jp
+ * Remove not serif jp to be loaded.
  */
 add_filter( 'gettext_with_context', function( $translation, $text, $context, $domain ) {
 	switch ( $context ) {
@@ -122,12 +172,6 @@ add_filter( 'gettext_with_context', function( $translation, $text, $context, $do
 	}
 	return $translation;
 }, 10, 4 );
-
-/**
- * Remove Yarpp CSS
- */
-add_action( 'wp_footer', function () {
-}, 1 );
 
 /**
  * Start buffer for replacing img tag.

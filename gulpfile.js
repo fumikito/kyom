@@ -79,7 +79,8 @@ gulp.task( 'copylib', function() {
     return eventStream.merge(
       gulp.src([
         'node_modules/uikit/dist/js/uikit.min.js',
-        'node_modules/uikit/dist/js/uikit-icons.min.js'
+        'node_modules/uikit/dist/js/uikit-icons.min.js',
+        'node_modules/fg-loadcss/dist/cssrelpreload.min.js',
       ])
         .pipe( gulp.dest( './assets/js' ) )
     );

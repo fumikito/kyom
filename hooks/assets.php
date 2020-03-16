@@ -93,6 +93,15 @@ add_filter( 'post_class', function( $classes, $additional_class, $post_id ) {
 	return $classes;
 }, 10, 3 );
 
+/**
+ * Remove not serif jp
+ */
+add_filter( 'gettext_with_context', function( $translation, $text, $context, $domain ) {
+	if ( 'Google Font Name and Variants' === $context ) {
+		$translation = 'off';
+	}
+	return $translation;
+}, 10, 4 );
 
 /**
  * Remove Yarpp CSS
@@ -102,18 +111,22 @@ add_action( 'wp_footer', function () {
 }, 1 );
 
 /**
- * Replace img tag with attributes.
+ * Start buffer for replacing img tag.
  */
 add_action( 'wp_head', function() {
 	ob_start();
 }, 9999 );
+
+/**
+ * Replace img tag.
+ */
 add_action( 'wp_footer', function() {
 	$body     = ob_get_contents();
 	$replaced = preg_replace_callback( '#<img([^>]+)>#u', function( $matches ) {
 		list( $match, $attr ) = $matches;
 		foreach ( [
 			'loading'  => 'lazy',
-			'decoding' => 'async',
+			// 'decoding' => 'async', // Meaningless?
 		] as $key => $val ) {
 			if ( false !== strpos( $attr, $key . '=' ) ) {
 				continue;

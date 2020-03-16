@@ -7,8 +7,6 @@ const gulp        = require( 'gulp' ),
     named         = require( 'vinyl-named' ),
     browserSync   = require('browser-sync').create();
 
-"use strict";
-
 // Sass
 gulp.task( 'sass', function() {
     return gulp.src([

@@ -22,7 +22,7 @@ function kyom_get_owner() {
 	} else {
 		$user = null;
 	}
-	
+
 	/**
 	 * kyom_admin_user
 	 *
@@ -62,7 +62,7 @@ function kyom_get_social_links( $user = null, $with_label = false ) {
 			] : $meta;
 		}
 	}
-	
+
 	return $methods;
 }
 
@@ -81,7 +81,7 @@ function kyom_is_primary_comment( $comment ) {
 	} elseif ( ( $user_id = email_exists( $comment->comment_author_email ) ) && $user_id == $post->post_author ) {
 		$primary = true;
 	}
-	
+
 	/**
 	 * kyom_is_primary_comment
 	 *
@@ -93,7 +93,6 @@ function kyom_is_primary_comment( $comment ) {
 	 */
 	return apply_filters( 'kyom_is_primary_comment', $primary, $comment, $post );
 }
-
 
 /**
  * Get last logged in time.

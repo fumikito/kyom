@@ -13,7 +13,6 @@ npm start
 rm -rf .git
 rm -rf .github
 rm -rf .gitignore
-rm -rf .babelrc
 rm -rf .browserslistrc
 rm -rf .eslintrc
 rm -rf bin

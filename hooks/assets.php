@@ -65,6 +65,21 @@ add_action( 'admin_enqueue_scripts', function() {
 } );
 
 /**
+ * Remove unwanted assets
+ */
+add_action( 'wp_enqueue_scripts', function () {
+	if ( ! ( is_singular() && has_shortcode( get_queried_object()->post_content, 'contact-form-7' ) ) ) {
+		wp_deregister_script( 'google-recaptcha' );
+		wp_dequeue_style( 'contact-form-7' );
+		wp_dequeue_script( 'contact-form-7' );
+	}
+	// Yarpp
+	wp_dequeue_style( 'yarppRelatedCss' );
+	wp_dequeue_style( 'yarppWidgetCss' );
+}, 11 );
+
+
+/**
  * Move jQuery to footer
  */
 add_action( 'init', function() {
@@ -97,8 +112,13 @@ add_filter( 'post_class', function( $classes, $additional_class, $post_id ) {
  * Remove not serif jp
  */
 add_filter( 'gettext_with_context', function( $translation, $text, $context, $domain ) {
-	if ( 'Google Font Name and Variants' === $context ) {
-		$translation = 'off';
+	switch ( $context ) {
+		case 'Google Font Name and Variants':
+			$translation = 'off';
+			break;
+		case 'CSS Font Family for Editor Font':
+			$translation = 'YuMincho';
+			break;
 	}
 	return $translation;
 }, 10, 4 );
@@ -107,7 +127,6 @@ add_filter( 'gettext_with_context', function( $translation, $text, $context, $do
  * Remove Yarpp CSS
  */
 add_action( 'wp_footer', function () {
-	wp_dequeue_style( 'yarppRelatedCss' );
 }, 1 );
 
 /**

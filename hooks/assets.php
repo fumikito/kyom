@@ -14,7 +14,7 @@ add_action( 'init', function() {
 	wp_register_style( 'uikit', get_template_directory_uri(). '/assets/css/style.css', [ 'dashicons' ], kyom_version() );
 
 	// icons
-	$uikit_version = '3.0.22';
+	$uikit_version = '3.3.6';
 	wp_register_script( 'uikit', get_template_directory_uri() . '/assets/js/uikit.min.js', [], $uikit_version, true );
 	wp_register_script( 'uikit-icon', get_template_directory_uri() . '/assets/js/uikit-icons.min.js', [ 'uikit' ], $uikit_version, true );
 
@@ -47,8 +47,6 @@ add_action( 'init', function() {
 	}
 } );
 
-
-
 /**
  * Enqueue scripts
  */
@@ -80,6 +78,13 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_dequeue_style( 'yarppWidgetCss' );
 }, 11 );
 
+add_filter( 'script_loader_tag', function( $tag, $handle ) {
+	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare' ];
+	if ( in_array( $handle, $deferrable ) ) {
+		$tag = str_replace( '<script', '<script defer', $tag );
+	}
+	return $tag;
+}, 10, 2 );
 
 /**
  * Move jQuery to footer

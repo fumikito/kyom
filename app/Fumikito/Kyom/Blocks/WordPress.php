@@ -8,24 +8,24 @@ use Fumikito\Kyom\Service\WordPressOrg;
 
 
 class WordPress extends BlockBase {
-	
+
 	protected $icon = 'dashicons-wordpress';
-	
+
 	protected $allow_content = true;
-	
+
 	protected function init() {
 		parent::init();
 	}
-	
-	
+
+
 	protected function get_label(): string {
 		return __( 'WordPress Activities', 'kyom' );
 	}
-	
+
 	protected function get_name(): string {
 		return 'wordpress-activities';
 	}
-	
+
 	protected function get_params(): array {
 		return [
 			'user_name' => [
@@ -42,15 +42,18 @@ class WordPress extends BlockBase {
 			],
 		];
 	}
-	
+
 	protected function render( $atts = [], $content = '' ) {
 		if ( ! $atts['user_name'] ) {
 			return '';
 		}
-		
+
 		$data  = WordPressOrg::get_profile( $atts['user_name'] );
 		if ( ! $data ) {
 			return '';
+		}
+		if ( did_action( 'template_redirect' ) ) {
+			wp_enqueue_style( 'dashicons' );
 		}
 		ob_start();
 		?>
@@ -74,7 +77,7 @@ class WordPress extends BlockBase {
 							<span class="<?= esc_attr( implode( ' ', $badge['class'] ) ) ?>" title="<?= esc_attr( $label ) ?>"></span>
 							<span class="wporg-role-text uk-visible@s" aria-hidden="true"><?= esc_html( $label ) ?></span>
 						</span>
-						
+
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>

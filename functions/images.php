@@ -9,6 +9,7 @@
 /**
  * Get post thumbnail
  *
+ *
  * @param null|int|WP_Post $post
  * @param string           $size
  *
@@ -35,7 +36,7 @@ function kyom_not_found_image() {
 		'version' => filemtime( get_template_directory() . '/assets/img/not-found.jpg' ),
 		'credit'  => '(C) Marcelo Jaboo https://www.pexels.com/photo/brown-wooden-armchair-on-brown-wooden-floor-696407/',
 	];
-	
+
 	/**
 	 * kyom_not_found_image
 	 *
@@ -57,7 +58,7 @@ function kyom_term_image( $term, $size = 'post-thumbnail' ) {
 	if ( $image_id ) {
 		$url = wp_get_attachment_image_url( $image_id, $size );
 	}
-	
+
 	/**
 	 * kyom_term_image_url
 	 *

@@ -29,6 +29,15 @@ add_action( 'after_setup_theme', function() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 1200, 600, true );
 
+	// Add image size.
+	$sizes = [
+		'big-block'      => [ 2048, 2048, true ],
+		'face-rectangle' => [ 360, 360, true ],
+	];
+	foreach ( $sizes as $key => list( $width, $height, $crop ) ) {
+		add_image_size( $key, $width, $height, $crop );
+	}
+
 	// Comic.
 	// add_theme_support( 'jetpack-comic' );
 
@@ -60,4 +69,17 @@ add_action( 'wp_enqueue_scripts', function() {
 		return;
 	}
 	wp_enqueue_script( 'comment-reply' );
+} );
+
+/**
+ * Add image sizes.
+ *
+ * @param array $sizes
+ *
+ * @return array
+ */
+add_filter( 'image_size_names_choose', function( $sizes ) {
+	return array_merge( $sizes, [
+		'big-block' => _x( 'Big Rectangle', 'image-sizes', 'kyom' ),
+	] );
 } );

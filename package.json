@@ -32,6 +32,7 @@
     "eslint-config-wordpress": "^2.0.0",
     "event-stream": "^4.0.1",
     "fg-loadcss": "^2.1.0",
+    "fitie": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-concat": "^2.6.0",

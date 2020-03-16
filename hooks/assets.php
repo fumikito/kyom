@@ -11,7 +11,7 @@
 add_action( 'init', function() {
 
 	// Main style.
-	wp_register_style( 'uikit', get_template_directory_uri(). '/assets/css/style.css', [ 'dashicons' ], kyom_version() );
+	wp_register_style( 'uikit', get_template_directory_uri(). '/assets/css/style.css', [  ], kyom_version() );
 
 	// icons
 	$uikit_version = '3.3.6';
@@ -20,6 +20,9 @@ add_action( 'init', function() {
 
 	// Fit height
 	wp_register_script( 'kyom-fit-height', get_template_directory_uri() . '/assets/js/fit-height.js', [ 'jquery' ], kyom_version(), true );
+
+	// Fitie
+	wp_register_script( 'fitie', get_template_directory_uri() . '/assets/js/fitie.js', [], '1.0.0', true );
 
 	// Netabare
 	wp_register_script( 'kyom-netabare', get_template_directory_uri() . '/assets/js/netabare.js', [ 'jquery' ], kyom_version(), true );
@@ -38,13 +41,6 @@ add_action( 'init', function() {
 	list( $url, $version ) = kyom_asset_url_and_version( 'css/kyom-admin.css' );
 	wp_register_style( 'kyom-admin', $url, [], $version );
 
-	// Add image size.
-	$sizes = [
-		'face-rectangle' => [ 360, 360, true ],
-	];
-	foreach ( $sizes as $key => list( $width, $height, $crop ) ) {
-		add_image_size( $key, $width, $height, $crop );
-	}
 } );
 
 /**
@@ -53,6 +49,7 @@ add_action( 'init', function() {
 add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'uikit' );
 	wp_enqueue_script( 'kyom' );
+	wp_enqueue_script( 'fitie' );
 } );
 
 /**
@@ -79,7 +76,7 @@ add_action( 'wp_enqueue_scripts', function () {
 }, 11 );
 
 add_filter( 'script_loader_tag', function( $tag, $handle ) {
-	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare' ];
+	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare', 'fitie' ];
 	if ( in_array( $handle, $deferrable ) ) {
 		$tag = str_replace( '<script', '<script defer', $tag );
 	}

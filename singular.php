@@ -12,8 +12,9 @@ the_post();
 
 				<div class="entry-header-box uk-container">
 					<?php if ( has_post_thumbnail() ) : ?>
-						<div class="entry-header-thumbnail" style="<?php echo kyom_thumbnail_bg() ?>">
-						</div>
+					<div class="entry-header-thumbnail">
+						<?php the_post_thumbnail( 'big-block' ); ?>
+					</div>
 					<?php endif; ?>
 					<?php if ( $term = kyom_get_top_category() ) : ?>
 						<a class="entry-top-term" href="<?php echo get_term_link( $term ) ?>" rel="tag">

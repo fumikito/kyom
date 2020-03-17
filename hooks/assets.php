@@ -23,6 +23,7 @@ add_action( 'init', function() {
 
 	// Fitie
 	wp_register_script( 'fitie', get_template_directory_uri() . '/assets/js/fitie.js', [], '1.0.0', true );
+	wp_add_inline_script( 'fitie', 'window.fitie = {};', 'before' );
 
 	// Netabare
 	wp_register_script( 'kyom-netabare', get_template_directory_uri() . '/assets/js/netabare.js', [ 'jquery' ], kyom_version(), true );

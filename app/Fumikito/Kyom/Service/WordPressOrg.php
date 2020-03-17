@@ -11,12 +11,12 @@ use Masterminds\HTML5;
  * @package kyom
  */
 class WordPressOrg {
-	
+
 	/**
 	 * WordPressOrg constructor.
 	 */
 	private function __construct() {}
-	
+
 	/**
 	 * Get profile page URL.
 	 *
@@ -26,7 +26,7 @@ class WordPressOrg {
 	public static function get_profile_url( $user_name ) {
 		return sprintf( 'https://profiles.wordpress.org/%s', strtolower( rawurlencode( $user_name ) ) );
 	}
-	
+
 	/**
 	 * Get WordPress.org profile.
 	 *
@@ -128,7 +128,7 @@ class WordPressOrg {
 		}
 		return $data;
 	}
-	
+
 	/**
 	 * Get item
 	 *
@@ -154,7 +154,7 @@ class WordPressOrg {
 		}
 		return $label ? $before . implode( _x( ', ', 'csv-glue', 'kyom' ), $label ) . $after : '';
 	}
-	
+
 	/**
 	 * Translate role.
 	 *
@@ -162,12 +162,12 @@ class WordPressOrg {
 	 *
 	 * @return string
 	 */
-	public function translate_role( $role ) {
+	public static function translate_role( $role ) {
 		return implode( ' ', array_map( function( $string ) {
 			return _x( $string, 'wordpress', 'kyom' );
 		}, explode( ' ', $role ) ) );
 	}
-	
+
 	/**
 	 * For get text scraping.
 	 *

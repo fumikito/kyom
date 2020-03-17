@@ -20,7 +20,7 @@ function kyom_hatena_total_bookmark_count() {
 		$cache = $client->getResponse();
 		set_transient( 'hatena_bookmark_total_count', $cache, 60 * 60 * 24 );
 	}
-	
+
 	return (int) $cache;
 }
 
@@ -78,7 +78,7 @@ function kyom_grab_feed_image( $item ) {
 			(string) $data['height'],
 		];
 	}
-	
+
 	return $images;
 }
 
@@ -108,7 +108,7 @@ function kyom_fetch_feed_items( $url ) {
 			if ( false !== $xml ) {
 				foreach ( $xml->channel->item as $item ) {
 					$thumbnials = $item->children( 'media', true )->thumbnail->attributes();
-					
+
 					$p = array(
 						'title'     => (string) $item->title,
 						'excerpt'   => (string) $item->description,
@@ -117,7 +117,7 @@ function kyom_fetch_feed_items( $url ) {
 						'category'  => (string) $item->category,
 						'image'     => str_replace( 'http://', 'https://', (string) $thumbnials['url'] ),
 					);
-					
+
 					$p['images'] = kyom_grab_feed_image( $item );
 					$posts[]     = $p;
 				}
@@ -128,7 +128,7 @@ function kyom_fetch_feed_items( $url ) {
 			return [];
 		}
 	}
-	
+
 	return $posts;
 }
 
@@ -207,7 +207,7 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:p
 			}
 			$structure = str_replace( $regexp, $replaced, $structure );
 		}
-		$filters = sprintf( 'ga:pagePath=~^%s;ga:pagePath!~/amp/?$', $structure );
+		$filters = sprintf( 'ga:pagePath=~^%s', $structure );
 	}
 	if ( preg_match( '/\d+/u', $from ) ) {
 		$from = get_date_from_gmt( date_i18n( 'Y-m-d H:i:s', strtotime( sprintf( '%d days ago', $from ) ) ), 'Y-m-d' );
@@ -215,28 +215,50 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:p
 		$from = kyom_oldest_date( 'Y-m-d' );
 	}
 	$result = kyom_get_ga_result( $from, date_i18n( 'Y-m-d' ), 'ga:pageviews', [
-		'max-results' => $count,
+		'max-results' => $count * 3,
 		'dimensions'  => $dimensions,
 		'filters'     => $filters,
 		'sort'        => '-ga:pageviews',
 	] );
-	$ranking = [];
+	$path_and_pvs = [];
+	// Arrange ranking with page path and pvs.
 	foreach ( $result as list( $page_path, $pv ) ) {
+		// Remove amp trailing
+		$page_path = preg_replace( '#amp/$#u', '', $page_path );
+		if ( isset( $path_and_pvs[ $page_path ] ) ) {
+			$path_and_pvs[ $page_path ] += $pv;
+		} else {
+			$path_and_pvs[ $page_path ] = (int) $pv;
+		}
+	}
+	arsort( $path_and_pvs );
+	// Arrange pvs.
+	$ranking = [];
+	foreach ( $path_and_pvs as $page_path => $pv ) {
 		$permalink = home_url( $page_path );
 		if ( ! ( $post_id = url_to_postid( $permalink ) ) ) {
 			continue;
 		}
-		$more = 0;
-		foreach ( $ranking as $rank ) {
-			if ( $pv < $ranking['pv'] ) {
-				$more++;
-			}
-		}
 		$ranking[] = [
-			'rank' => $more + 1,
 			'pv'   => $pv,
 			'post' => $post_id,
 		];
 	}
-	return $ranking;
+	// Fix ranking.
+	foreach ( $ranking as $index => $rank ) {
+		$more = 0;
+		foreach ( $ranking as $r ) {
+			if ( $rank['pv'] < $r['pv'] ) {
+				$more++;
+			}
+		}
+		$ranking[ $index ]['rank'] = $more + 1;
+	}
+	$filtered = [];
+	foreach ( $ranking as $index => $rank ) {
+		if ( $index < $count ) {
+			$filtered[] = $rank;
+		}
+	}
+	return $filtered;
 }

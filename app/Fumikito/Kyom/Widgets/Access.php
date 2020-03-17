@@ -10,15 +10,15 @@ use Fumikito\Kyom\Pattern\WidgetBase;
  * @package kyom
  */
 class Access extends WidgetBase {
-	
+
 	protected function name(): string {
 		return __( 'Access Ranking', 'kyom' );
 	}
-	
+
 	protected function description() {
 		return __( 'Display Access ranking by Google Analytics. Requires Gianism.', 'kyom' );
 	}
-	
+
 	protected function get_params() {
 		return array_merge( parent::get_params(), [
 			'count' => [
@@ -32,7 +32,7 @@ class Access extends WidgetBase {
 			],
 		] );
 	}
-	
+
 	public function widget( $args, $instance ) {
 		$instance = $this->get_filled_instance( $instance );
 		$count = max( 5, $instance['count'] );
@@ -101,6 +101,4 @@ class Access extends WidgetBase {
 		<?php
 		echo $args['after_widget'];
 	}
-	
-	
 }

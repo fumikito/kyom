@@ -94,13 +94,36 @@
       padding-top: 1em;
     }
 
-    &-thumbnail {
+    &-eyecatch {
       position: absolute;
       top: 0;
       bottom: 0;
       right: 0;
       left: 40%;
       z-index: 1;
+    }
+
+    &-gooey {
+      overflow: hidden;
+      background-clip: border-box;
+      padding: 75px;
+      .gooey {
+        &-wrapper {
+          background-color: $global-inverse-color;
+          filter: blur(10px) contrast(20);
+          position: relative;
+          height: 100%;
+        }
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: $kyom-header-title-color;
+        transition: left 5s ease-in-out, top 5s ease-in-out;
+      }
+    }
+
+    &-thumbnail {
       background-color: $global-muted-background;
 
       img {
@@ -191,7 +214,7 @@
       color: var( --header-title-color );
       border-width: 1px;
       border-style: solid;
-      background-color: transparent;
+      background-color: $global-inverse-color;
 
       &:hover,
       &:active {

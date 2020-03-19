@@ -15,11 +15,6 @@ the_post();
 						<div class="entry-header-eyecatch entry-header-thumbnail">
 							<?php the_post_thumbnail( 'big-block' ); ?>
 						</div>
-					<?php else : ?>
-						<div class="entry-header-eyecatch entry-header-gooey" id="header-gooey">
-							<div class="gooey-wrapper">
-							</div>
-						</div>
 					<?php endif; ?>
 					<?php if ( $term = kyom_get_top_category() ) : ?>
 						<a class="entry-top-term" href="<?php echo get_term_link( $term ) ?>" rel="tag">

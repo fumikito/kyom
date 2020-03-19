@@ -91,6 +91,7 @@
     }
     &-author {
       position: relative;
+      z-index: 2;
       padding-top: 1em;
     }
 
@@ -101,26 +102,6 @@
       right: 0;
       left: 40%;
       z-index: 1;
-    }
-
-    &-gooey {
-      overflow: hidden;
-      background-clip: border-box;
-      padding: 75px;
-      .gooey {
-        &-wrapper {
-          background-color: $global-inverse-color;
-          filter: blur(10px) contrast(20);
-          position: relative;
-          height: 100%;
-        }
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background-color: $kyom-header-title-color;
-        transition: left 5s ease-in-out, top 5s ease-in-out;
-      }
     }
 
     &-thumbnail {

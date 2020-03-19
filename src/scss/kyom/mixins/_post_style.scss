@@ -325,6 +325,14 @@ $img-margin: 1.5em;
       font-size: $kyom-font-size-sm;
       font-family: $font-sans;
       margin: 0.5em 0 0;
+      text-align: center;
+    }
+  }
+  .alignfull,
+  .alignwide {
+    .wp-caption-text {
+      margin-right: 15px;
+      margin-left: 15px;
     }
   }
   .wp-block-image{

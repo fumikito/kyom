@@ -92,33 +92,3 @@ if ( lightBoxItems.length ) {
 $( '.section-newsletter #mce-EMAIL' ).focus( function () {
     $( '.section-newsletter' ).addClass( 'toggle' );
 } );
-
-// Add gooey.
-const $gooey = $( '#header-gooey' );
-if ( $gooey.length ) {
-
-	const getStyle = function() {
-		return {
-			left: ( 25 + Math.random() * 50 ) + '%',
-			top : ( 25 + Math.random() * 50 ) + '%'
-		};
-	};
-
-	const setPosition = function() {
-		$gooey.find( '.gooey' ).each( function( index, dot ) {
-			$( dot ).css( getStyle() );
-		} );
-	};
-
-	for ( let i = 0; i < 10; i++ ) {
-		const $dot = $( '<div class="gooey"></div>' );
-		$dot.css( getStyle() );
-		$gooey.find( '.gooey-wrapper' ).append( $dot );
-	}
-	setTimeout( function() {
-		setPosition();
-	}, 1 );
-	setInterval( function() {
-		setPosition();
-	}, 5000 );
-}

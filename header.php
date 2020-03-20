@@ -16,7 +16,7 @@
 					<span class="site-header-form-icon" uk-icon="icon: search"></span>
 				</label>
 				<input id="site-header-search" class="site-header-form-search" name="s" type="search" value="<?php the_search_query(); ?>"
-					   placeholder="<?php esc_attr_e( 'Search...', 'kyom' ) ?>" />
+					   placeholder="<?php echo esc_attr( _x( 'Search...', 'Header Search Form', 'kyom' ) ) ?>" />
 			</form>
 
 		</div>

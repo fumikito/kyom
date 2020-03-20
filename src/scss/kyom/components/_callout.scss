@@ -1,3 +1,7 @@
+.has-callouts {
+  margin-bottom: 50px;
+}
+
 .uk-alert-padding{
   margin: 2em 0;
   font-size: 0.8em;
@@ -23,7 +27,7 @@
   &-text{
     margin: 0 auto;
     font-size: 0.85em;
-    padding: 1.5em 40px;
+    padding: 15px 40px;
     position: relative;
     box-sizing: border-box;
     max-width: $breakpoint-medium;
@@ -84,7 +88,7 @@
   }
 
   @each $vars in (
-                  info $alert-primary-color #fff,
+                  primary $alert-primary-color #fff,
                   success $alert-success-color #fff,
                   warning $alert-warning-color #fff,
                   danger $alert-danger-color #fff,

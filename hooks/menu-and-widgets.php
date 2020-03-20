@@ -5,6 +5,8 @@
  * @package kyom
  */
 
+Kunoichi\SetMenu::enable();
+
 // Register sidebar
 register_sidebar( [
 	'name'          => __( 'After Article', 'kyom' ),
@@ -32,7 +34,8 @@ register_sidebar( [
  */
 add_action( 'init', function () {
 	register_nav_menus( [
-		'top-pages'   => __( 'Global Menu', 'kyom' ),
+		'top-pages'    => __( 'Mobile Menu', 'kyom' ),
+		'top-pages-pc' => __( 'Desktop Menu', 'kyom' ),
 		'bottom-pages' => __( 'Footer Menu', 'kyom' ),
 	] );
 } );

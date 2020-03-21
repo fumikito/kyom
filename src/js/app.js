@@ -23,9 +23,15 @@ $( '.entry-content p:not([class])' ).each( function ( i, p ) {
 } );
 
 // Call out.
-$( '.kyom-callout-button' ).click( function () {
+const $callouts = $( '.kyom-callout-button' );
+let callOutLengths = $callouts.length;
+$callouts.click( function () {
 	const $callout = $( this ).parents( '.kyom-callout' );
 	$callout.addClass( 'fade' );
+	callOutLengths--;
+	if ( 1 > callOutLengths ) {
+		$( 'body' ).removeClass( 'has-callouts' );
+	}
 	setTimeout( () => {
 		$( document ).trigger( 'callout-closed', [ $callout.attr( 'data-slug' ) ] );
 		$callout.remove();
@@ -87,6 +93,12 @@ if ( lightBoxItems.length ) {
 		items: lightBoxItems
 	} );
 }
+
+// Dropdown
+$( '.kyom-navigations-list > li.menu-item-has-children > a ' ).click( function( e ) {
+	e.preventDefault();
+	$( this ).parent( 'li' ).toggleClass( 'active-menu' );
+} );
 
 // Open mail form.
 $( '.section-newsletter #mce-EMAIL' ).focus( function () {

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Get site wide callout.
  *
@@ -7,9 +6,11 @@
  */
 
 /**
- * Add call outs.
+ * Get callouts.
+ *
+ * @return array[]
  */
-add_action( 'wp_footer', function( ) {
+function kyom_get_callouts() {
 	$call_outs = apply_filters( 'kyom_callouts', [] );
 	$call_outs = array_filter( array_map( function( $call_out ) {
 		$call_out = wp_parse_args( $call_out, [
@@ -23,6 +24,24 @@ add_action( 'wp_footer', function( ) {
 	}, $call_outs ), function( $call_out ) {
 		return isset( $call_out['text'] ) && $call_out['text'] ;
 	} );
+	return $call_outs;
+}
+
+/**
+ * Add body class if callouts exist.
+ */
+add_filter( 'body_class', function( $classes = [] ) {
+	if ( kyom_get_callouts() ) {
+		$classes[] = 'has-callouts';
+	}
+	return $classes;
+} );
+
+/**
+ * Add call outs.
+ */
+add_action( 'wp_footer', function( ) {
+	$call_outs = kyom_get_callouts();
 	if ( ! $call_outs ) {
 		return;
 	}
@@ -47,7 +66,9 @@ add_action( 'wp_footer', function( ) {
 	<?php
 }, 1000 );
 
-
+/**
+ * If option is set, render callouts.
+ */
 add_filter( 'kyom_callouts', function( $call_outs ) {
 	$call_out = get_option( 'kyom_callout_text', '' );
 	if ( ! $call_out ) {

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-12-18 02:44+0900\n"
-"PO-Revision-Date: 2018-12-18 02:44+0900\n"
+"POT-Creation-Date: 2020-03-21 13:47+0900\n"
+"PO-Revision-Date: 2020-03-21 13:48+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -144,25 +144,115 @@ msgstr "WordPressメール"
 msgid "Background Color"
 msgstr "背景色"
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:61
+#: app/Fumikito/Kyom/Blocks/WordPress.php:64
 msgid "WordPress Activity"
 msgstr "WordPressの活動"
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:82
+#: app/Fumikito/Kyom/Blocks/WordPress.php:85
 msgid "Total"
 msgstr "合計"
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:84
+#: app/Fumikito/Kyom/Blocks/WordPress.php:87
 msgid "Download"
 msgid_plural "Downloads"
 msgstr[0] "ダウンロード"
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:93
+#: app/Fumikito/Kyom/Blocks/WordPress.php:96
 #, php-format
 msgid "Member Since %s"
 msgstr "%sに登録"
 
-#: app/Fumikito/Kyom/Pattern/BlockBase.php:108 hooks/settings.php:41
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:19
+#: app/Fumikito/Kyom/Widgets/Ad.php:11
+msgid "Advertisement"
+msgstr "広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:27
+msgid "Ad after title"
+msgstr "タイトル直下の広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:28
+msgid ""
+"If set, advertisement will be displayed just after single post page title."
+msgstr "設定した場合、シングル投稿ページのタイトル直下に広告が表示されます。"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:33
+msgid "Related Ad"
+msgstr "関連広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:34
+msgid "If you have related ad of Google Adsense, paste code here."
+msgstr "Google Adsenseの関連記事広告がある場合は貼り付けてください。"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:40
+msgid "Automatic Ad"
+msgstr "自動広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:41
+msgid "Enter client ID to enable automatic ad on single page."
+msgstr ""
+"シングルページに自動広告を利用する場合はクライアントIDを貼り付けてください。"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:48
+msgid "In Article Ad"
+msgstr "記事内広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:49
+msgid "Insert code for in article ads."
+msgstr "記事内広告のコードを貼り付けてください。"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:68
+msgid "Ad after Title on AMP"
+msgstr "AMPでのタイトル下広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:69
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:78
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:87
+msgid "Enter AMP ad tag."
+msgstr "AMP広告タグを入力してください。"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:77
+msgid "Ad after Content on AMP"
+msgstr "AMPでの記事直後の広告"
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:86
+msgid "Ad after related posts on AMP"
+msgstr "AMPでの関連記事の直下の広告"
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:14
+msgid "Analytics"
+msgstr "解析"
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:22
+msgid "Tracking ID"
+msgstr "トラッキングID"
+
+#: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:14
+#: functions/users.php:53
+msgid "Newsletter"
+msgstr "ニュースレター"
+
+#: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:22
+msgid "Mailchimp Pop Up Script"
+msgstr "Mailchimpポップアップスクリプト"
+
+#: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:24
+msgid "Pasete pop up script of mail chimp here."
+msgstr "mailchimpのポップアップスクリプトをここに貼ってください。"
+
+#: app/Fumikito/Kyom/Customizer/PortfolioCustomizer.php:17
+msgid "Portfolio"
+msgstr "ポートフォリオ"
+
+#: app/Fumikito/Kyom/Customizer/PortfolioCustomizer.php:25
+msgid "Contact URL"
+msgstr "お問い合わせURL"
+
+#: app/Fumikito/Kyom/Customizer/PortfolioCustomizer.php:26
+msgid "If set, contact button will be displayed."
+msgstr "設定した場合、お問い合わせボタンが表示されます。"
+
+#: app/Fumikito/Kyom/Pattern/BlockBase.php:108 hooks/settings.php:60
 msgid "Content"
 msgstr "コンテンツ"
 
@@ -287,10 +377,6 @@ msgctxt "ranking"
 msgid "Total"
 msgstr "総合"
 
-#: app/Fumikito/Kyom/Widgets/Ad.php:11 hooks/ads.php:17
-msgid "Advertisement"
-msgstr "広告"
-
 #: app/Fumikito/Kyom/Widgets/Ad.php:15
 msgid ""
 "Insert advertisement scripts like Google Adsense. Any javascripts are "
@@ -403,19 +489,19 @@ msgstr "この投稿にはコメントがありません。あなたの考えを
 msgid "Comments are closed."
 msgstr "コメントは閉じられています。"
 
-#: functions/content.php:78
+#: functions/content.php:115
 #, php-format
 msgid "%s letter"
 msgid_plural "%s letters"
 msgstr[0] "%s文字"
 
-#: functions/content.php:80
+#: functions/content.php:117
 #, php-format
 msgid "%s word"
 msgid_plural "%s words"
 msgstr[0] "%s単語"
 
-#: functions/content.php:123
+#: functions/content.php:160
 #, php-format
 msgid "%s minute to read"
 msgid_plural "%s minutes to read"
@@ -487,7 +573,7 @@ msgstr "名言集"
 msgid "Search results of \"%s\"."
 msgstr "「%s」の検索結果です。"
 
-#: functions/navigations.php:85
+#: functions/navigations.php:84
 msgid ""
 "If you are from an external site, URL might be wrong. Please check it is "
 "correct."
@@ -495,15 +581,15 @@ msgstr ""
 "外部サイトから来た場合、URLが間違っているかもしれません。URLが正しいかどう"
 "か、確認してください。"
 
-#: functions/navigations.php:86
+#: functions/navigations.php:85
 msgid "Content on this URL might be deleted in some reason."
 msgstr "このURLはなんらかの理由により削除されたのかもしれません。"
 
-#: functions/navigations.php:87
+#: functions/navigations.php:86
 msgid "Please try search form below to find what you are looking for."
 msgstr "以下の検索フォームでお探しのものが見つかるかお試しください。"
 
-#: functions/navigations.php:88
+#: functions/navigations.php:87
 msgid ""
 "Are you lost yourself? Simply back to former page by clicking browser's back "
 "button."
@@ -519,216 +605,148 @@ msgstr "Gianism がインストールされていません。"
 msgid "Google Analytics is not connected."
 msgstr "Google Analyticsが接続されていません。"
 
-#: functions/users.php:53 hooks/members.php:46
-msgid "Newsletter"
-msgstr "ニュースレター"
-
-#: header.php:10 header.php:65
+#: header.php:11 header.php:87
 msgid "Menu"
 msgstr "メニュー"
 
-#: header.php:29
+#: header.php:19
+msgctxt "Header Search Form"
+msgid "Search..."
+msgstr "サイト内検索"
+
+#: header.php:40
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: header.php:36
+#: header.php:47
 msgid "Sign Up"
 msgstr "登録"
 
-#: header.php:42
+#: header.php:53
 msgid "Sign In"
 msgstr "ログイン"
 
-#: header.php:47
+#: header.php:58
 msgid "Log in"
 msgstr "ログイン"
 
-#: header.php:81
+#: header.php:103
 msgid "Input keywords..."
 msgstr "キーワードを入力……"
 
-#: hooks/ads.php:23
-msgid "Ad after title"
-msgstr "タイトル直下の広告"
-
-#: hooks/ads.php:24
-msgid ""
-"If set, advertisement will be displayed just after single post page title."
-msgstr "設定した場合、シングル投稿ページのタイトル直下に広告が表示されます。"
-
-#: hooks/ads.php:28
-msgid "Related Ad"
-msgstr "関連広告"
-
-#: hooks/ads.php:29
-msgid "If you have related ad of Google Adsense, paste code here."
-msgstr "Google Adsenseの関連記事広告がある場合は貼り付けてください。"
-
-#: hooks/ads.php:34
-msgid "Automatic Ad"
-msgstr "自動広告"
-
-#: hooks/ads.php:35
-msgid "Enter client ID to enable automatic ad on single page."
-msgstr ""
-"シングルページに自動広告を利用する場合はクライアントIDを貼り付けてください。"
-
-#: hooks/ads.php:41
-msgid "In Article Ad"
-msgstr "記事内広告"
-
-#: hooks/ads.php:42
-msgid "Insert code for in article ads."
-msgstr "記事内広告のコードを貼り付けてください。"
-
-#: hooks/ads.php:60
-msgid "Ad after Title on AMP"
-msgstr "AMPでのタイトル下広告"
-
-#: hooks/ads.php:61 hooks/ads.php:69 hooks/ads.php:77
-msgid "Enter AMP ad tag."
-msgstr "AMP広告タグを入力してください。"
-
-#: hooks/ads.php:68
-msgid "Ad after Content on AMP"
-msgstr "AMPでの記事直後の広告"
-
-#: hooks/ads.php:76
-msgid "Ad after related posts on AMP"
-msgstr "AMPでの関連記事の直下の広告"
-
-#: hooks/analytics.php:16
-msgid "Analytics"
-msgstr "解析"
-
-#: hooks/analytics.php:22
-msgid "Tracking ID"
-msgstr "トラッキングID"
-
-#: hooks/assets.php:37
+#: hooks/assets.php:31
 msgid "Click to open spoiler"
 msgstr "ネタバレを表示する"
 
-#: hooks/members.php:52
-msgid "Mailchimp Pop Up Script"
-msgstr "Mailchimpポップアップスクリプト"
-
-#: hooks/members.php:54
-msgid "Pasete pop up script of mail chimp here."
-msgstr "mailchimpのポップアップスクリプトをここに貼ってください。"
-
-#: hooks/members.php:78
+#: hooks/members.php:55
 msgid "News Letter"
 msgstr "ニュースレター"
 
-#: hooks/members.php:80
+#: hooks/members.php:57
 msgid "Newsletter Page"
 msgstr "ニュースレターページ"
 
-#: hooks/members.php:88
+#: hooks/members.php:65
 msgid "No newsletter page"
 msgstr "ニュースレターページがありません。"
 
-#: hooks/menu-and-widgets.php:10
+#: hooks/menu-and-widgets.php:12
 msgid "After Article"
 msgstr "記事本文直後"
 
-#: hooks/menu-and-widgets.php:12
+#: hooks/menu-and-widgets.php:14
 msgid "Displayed just after main content. 4 widgets are the best looking."
 msgstr ""
 "メインコンテンツのすぐあとに表示されます。ウィジェット6つがオススメです。"
 
-#: hooks/menu-and-widgets.php:19
+#: hooks/menu-and-widgets.php:21
 msgid "Footer Sidebar"
 msgstr "フッターサイドバー"
 
-#: hooks/menu-and-widgets.php:21
+#: hooks/menu-and-widgets.php:23
 msgid "Displayed in footer. Settling 4 widgets is recommended."
 msgstr "フッターに設定されます。ウィジェット4つがおすすめです。"
 
-#: hooks/menu-and-widgets.php:35
-msgid "Global Menu"
-msgstr "グローバルメニュー"
+#: hooks/menu-and-widgets.php:37
+msgid "Mobile Menu"
+msgstr "モバイルメニュー"
 
-#: hooks/menu-and-widgets.php:36
+#: hooks/menu-and-widgets.php:38
+msgid "Desktop Menu"
+msgstr "デスクトップメニュー"
+
+#: hooks/menu-and-widgets.php:39
 msgid "Footer Menu"
 msgstr "フッターメニュー"
 
-#: hooks/portfolio.php:30
-msgid "Portfolio"
-msgstr "ポートフォリオ"
-
-#: hooks/portfolio.php:37
-msgid "Contact URL"
-msgstr "お問い合わせURL"
-
-#: hooks/portfolio.php:38
-msgid "If set, contact button will be displayed."
-msgstr "設定した場合、お問い合わせボタンが表示されます。"
-
-#: hooks/settings.php:12
+#: hooks/settings.php:31
 msgid "Site Brand"
 msgstr "サイトブランド"
 
-#: hooks/settings.php:13
+#: hooks/settings.php:32
 msgid "Brand setting for widgets and others."
 msgstr "ウジェットその他のためのブランディング設定"
 
-#: hooks/settings.php:17
+#: hooks/settings.php:36
 msgid "Site long description"
 msgstr "サイトの長い説明"
 
-#: hooks/settings.php:18
+#: hooks/settings.php:37
 msgid ""
-"Litlle bit long description to describe your brand. Longer than tag line and "
-"less than 140 characters."
+"A little bit long description to describe your brand. Longer than tag line "
+"and less than 140 characters."
 msgstr ""
 "あなたのブランドを説明するための少し長めのテキスト。タグラインより長く、140文"
 "字以内であることが望ましい。"
 
-#: hooks/settings.php:22
-msgid "Addresss"
+#: hooks/settings.php:41
+msgid "Address"
 msgstr "住所"
 
-#: hooks/settings.php:26
+#: hooks/settings.php:45
 msgid "Tel"
 msgstr "電話"
 
-#: hooks/settings.php:30
+#: hooks/settings.php:49
 msgid "Email"
 msgstr "メール"
 
-#: hooks/settings.php:36
+#: hooks/settings.php:55
 msgid "Notification"
 msgstr "通知"
 
-#: hooks/settings.php:37
+#: hooks/settings.php:56
 msgid "Notification displayed sitewide"
 msgstr "サイト全体に表示される通知"
 
-#: hooks/settings.php:42
+#: hooks/settings.php:61
 msgid "Text link and strong tags are allowed."
 msgstr "テキストリンクと強調タグが許可されています。"
 
-#: hooks/settings.php:47
+#: hooks/settings.php:66
 msgid "Style"
 msgstr "スタイル"
 
-#: hooks/settings.php:49
+#: hooks/settings.php:68
 msgid "Blue(blue)"
 msgstr "青（青）"
 
-#: hooks/settings.php:50
+#: hooks/settings.php:69
 msgid "Success(green)"
 msgstr "成功（緑）"
 
-#: hooks/settings.php:51
+#: hooks/settings.php:70
 msgid "Warning(orange)"
 msgstr "警告（オレンジ）"
 
-#: hooks/settings.php:52
+#: hooks/settings.php:71
 msgid "Danger(Red)"
 msgstr "危険（赤）"
+
+#: hooks/supports.php:83
+msgctxt "image-sizes"
+msgid "Big Rectangle"
+msgstr "大きい正方形"
 
 #: hooks/testimonial.php:47
 msgid "Testimonial Source"
@@ -758,14 +776,6 @@ msgstr "例・https://example.com"
 msgid "Back to Previous Page"
 msgstr "前のページに戻る"
 
-#: page.php:45
-msgid "Related Pages"
-msgstr "関連ページ"
-
-#: page.php:69
-msgid "See All Posts"
-msgstr "すべての投稿を見る"
-
 #: searchform.php:4
 msgid "Input keywords and enter to search."
 msgstr "キーワードを入力して検索。"
@@ -774,7 +784,7 @@ msgstr "キーワードを入力して検索。"
 msgid "Testimonial By"
 msgstr "推薦文"
 
-#: singular.php:37
+#: singular.php:58
 #, php-format
 msgid ""
 "This post is published %s ago. Please consider the content may contain "
@@ -837,24 +847,15 @@ msgstr ""
 msgid "Search Form"
 msgstr "検索フォーム"
 
-#: template-parts/block-author.php:27
-msgctxt "author-box"
-msgid "Article Written By:"
-msgstr "文責・"
-
-#: template-parts/block-author.php:37
-msgid "Follow Me Via:"
-msgstr "フォローしてください"
-
-#: template-parts/block-author.php:53
-msgid "See all posts"
-msgstr "すべての投稿を見る"
-
-#: template-parts/content-back-top.php:6
+#: template-parts/content-back-top.php:4
 #: template-parts/content-footer-jetpack-portfolio.php:9
 #, php-format
 msgid "See All %s"
 msgstr "すべての%sを見る"
+
+#: template-parts/content-back-top.php:6
+msgid "See All"
+msgstr "すべて見る"
 
 #: template-parts/content-footer-jetpack-portfolio.php:11
 msgctxt "button-divider"
@@ -864,6 +865,23 @@ msgstr "または"
 #: template-parts/content-footer-jetpack-portfolio.php:13
 msgid "Contact"
 msgstr "お問い合わせ"
+
+#: template-parts/footer-page.php:3
+msgid "Related Pages"
+msgstr "関連ページ"
+
+#: template-parts/footer-post.php:26
+msgctxt "author-box"
+msgid "Article Written By:"
+msgstr "文責・"
+
+#: template-parts/footer-post.php:36
+msgid "Follow Me Via:"
+msgstr "フォローしてください"
+
+#: template-parts/footer-post.php:52
+msgid "See all posts"
+msgstr "すべての投稿を見る"
 
 #: template-parts/loop-jetpack-testimonial.php:19
 #, php-format
@@ -922,3 +940,78 @@ msgstr "https://takahashifumiki.com"
 #. Template Name of the plugin/theme
 msgid "Full Width"
 msgstr "最大幅最大幅"
+
+#~ msgid "Navigation Menu Caching"
+#~ msgstr "ナビゲーションメニューキャッシュ"
+
+#, fuzzy
+#~ msgid "Menu cache will be purged when you update navigation menus."
+#~ msgstr "メニューのキャッシュはメニュー更新時に削除されます。"
+
+#, fuzzy
+#~ msgid "Dynamic Locations"
+#~ msgstr "キャッシュしない場所"
+
+#, fuzzy
+#~ msgid "This theme has no specified navigation menu."
+#~ msgstr "このテーマにはナビゲーションメニューが登録されていません。"
+
+#, fuzzy
+#~ msgid ""
+#~ "If checked, navigation menus in that location never be not cached and "
+#~ "always display dynamic contents."
+#~ msgstr ""
+#~ "チェックすると、その場所に表示されるメニューはキャッシュされず、常に動的に"
+#~ "表示されます。"
+
+#, fuzzy
+#~ msgid ""
+#~ "If you have dynamic elements like EC cart or login status in your "
+#~ "navigation menu, check it."
+#~ msgstr ""
+#~ "ECサイトのカートやログインステータスを表示するような動的な要素が含まれる場"
+#~ "合はチェックしてください。"
+
+#, fuzzy
+#~ msgid "Cache Lifetime"
+#~ msgstr "キャッシュ継続時間"
+
+#, fuzzy
+#~ msgid "Cache life time in minutes."
+#~ msgstr "キャッシュの継続する時間（分）"
+
+#, fuzzy
+#~ msgid "Widgets Caching"
+#~ msgstr "ウィジェットキャッシュ"
+
+#, fuzzy
+#~ msgid "You can explicitly cache widgets in sidebars"
+#~ msgstr "サイドバーのウィジェットすべてをキャッシュするよう指定できます。"
+
+#, fuzzy
+#~| msgid "Footer Sidebar"
+#~ msgid "Cached Sidebars"
+#~ msgstr "キャッシュするサイドバー"
+
+#, fuzzy
+#~ msgid "This theme has no sidebars"
+#~ msgstr "このテーマにはサイドバーがありません。"
+
+#, fuzzy
+#~ msgid ""
+#~ "If whole sidebar will be cached. Do not check if one contains dynamic "
+#~ "widget(e.g. Cart, login profile)"
+#~ msgstr ""
+#~ "サイドバー全体がキャッシュされます。動的なウィジェットがある場合はチェック"
+#~ "しないでください（例・カート、ログインプロフィール）"
+
+#, fuzzy
+#~ msgid "Theme Cache Setting"
+#~ msgstr "テーマキャッシュ設定"
+
+#, fuzzy
+#~ msgid "Cache Setting"
+#~ msgstr "キャッシュ設定"
+
+#~ msgid "See All Posts"
+#~ msgstr "すべての投稿を見る"

@@ -1,6 +1,6 @@
 <?php do_action( 'kyom_before_site_footer' ); ?>
 <footer class="site-footer">
-	
+
 	<div class="uk-container">
 		<?php if ( $methods = kyom_get_social_links() ) : ?>
 		<div class="site-footer-social">
@@ -15,7 +15,7 @@
 				<li><a href="<?= esc_urL( $url['url'] ); ?>" uk-icon="<?= esc_attr( $key ) ?>"></a></li>
 				<?php endforeach; ?>
 			</ul>
-			
+
 		</div>
 		<?php endif; ?>
 
@@ -24,10 +24,10 @@
 			<?php dynamic_sidebar( 'footer-sidebar' ) ?>
 		</div>
 		<?php endif ?>
-		
+
 		<?php
 		if ( has_nav_menu( 'bottom-pages' ) ) {
-			wp_nav_menu( [
+			Kunoichi\SetMenu::nav_menu( [
 				'theme_location'  => 'bottom-pages',
 				'depth'           => 1,
 				'menu_class'      => 'uk-subnav uk-subnav-divider',

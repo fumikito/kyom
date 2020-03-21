@@ -53,7 +53,7 @@ add_action( 'admin_init', function () {
 		],
 		'kyom_notification' => [
 			'label' => __( 'Notification', 'kyom' ),
-			'description' => __( 'Notification displayed sitewide' ),
+			'description' => __( 'Notification displayed sitewide', 'kyom' ),
 			'page' => 'reading',
 			'options' => [
 				'callout_text' => [
@@ -132,6 +132,6 @@ add_action( 'admin_init', function () {
 			register_setting( $setting['page'], 'kyom_' . $key );
 		}
 	}
-	
-	
+
+
 } );

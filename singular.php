@@ -15,6 +15,11 @@ the_post();
 						<div class="entry-header-eyecatch entry-header-thumbnail">
 							<?php the_post_thumbnail( 'big-block' ); ?>
 						</div>
+					<?php else :
+						wp_enqueue_script( 'kyom-particle' );
+						?>
+						<div id="particles-js" class="entry-header-particles entry-header-eyecatch">
+						</div>
 					<?php endif; ?>
 					<?php if ( $term = kyom_get_top_category() ) : ?>
 						<a class="entry-top-term" href="<?php echo get_term_link( $term ) ?>" rel="tag">
@@ -29,7 +34,7 @@ the_post();
 					<?php if ( 'post' === get_post_type() ) : ?>
 					<p class="entry-header-author">
 						<?php echo get_avatar( get_the_author_meta( 'ID' ), 36, '', get_the_author(), [ 'class' => 'entry-header-avatar', ] ) ?>
-						<span class="entry-header-author-name"><?php the_author() ?></span>
+						<span class="entry-header-author-name stroke"><?php the_author() ?></span>
 					</p>
 					<?php endif; ?>
 					<?php get_template_part( 'template-parts/content', 'meta' ) ?>

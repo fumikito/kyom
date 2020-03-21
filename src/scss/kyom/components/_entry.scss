@@ -87,6 +87,10 @@
 			}
 		}
 
+		.shadow {
+
+		}
+
 		&-box {
 			margin-right: auto;
 			margin-left: auto;
@@ -123,6 +127,10 @@
 				object-fit: cover;
 			}
 		}
+
+		&-particles {
+			left: 0 !important;
+		}
 	}
 
 	&-excerpt {
@@ -142,6 +150,8 @@
 		border-color: var(--header-title-color);
 		color: $kyom-header-title-color;
 		color: var(--header-title-color);
+		background-color: $kyom-header-title-inverse;
+		background-color: var(--header-title-inverse);
 		padding: 5px 10px;
 		min-width: 80px;
 		text-align: center;

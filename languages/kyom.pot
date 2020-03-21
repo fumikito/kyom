@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2018-12-18 02:44+0900\n"
+"POT-Creation-Date: 2020-03-21 13:47+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -20,6 +20,10 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: assets\n"
+"X-Poedit-SearchPathExcluded-3: vendor\n"
+"X-Poedit-SearchPathExcluded-4: tests\n"
 
 #: amp/kyom-after-content.php:9
 msgid "Read Original Version"
@@ -144,26 +148,115 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:61
+#: app/Fumikito/Kyom/Blocks/WordPress.php:64
 msgid "WordPress Activity"
 msgstr ""
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:82
+#: app/Fumikito/Kyom/Blocks/WordPress.php:85
 msgid "Total"
 msgstr ""
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:84
+#: app/Fumikito/Kyom/Blocks/WordPress.php:87
 msgid "Download"
 msgid_plural "Downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: app/Fumikito/Kyom/Blocks/WordPress.php:93
+#: app/Fumikito/Kyom/Blocks/WordPress.php:96
 #, php-format
 msgid "Member Since %s"
 msgstr ""
 
-#: app/Fumikito/Kyom/Pattern/BlockBase.php:108 hooks/settings.php:41
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:19
+#: app/Fumikito/Kyom/Widgets/Ad.php:11
+msgid "Advertisement"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:27
+msgid "Ad after title"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:28
+msgid ""
+"If set, advertisement will be displayed just after single post page title."
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:33
+msgid "Related Ad"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:34
+msgid "If you have related ad of Google Adsense, paste code here."
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:40
+msgid "Automatic Ad"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:41
+msgid "Enter client ID to enable automatic ad on single page."
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:48
+msgid "In Article Ad"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:49
+msgid "Insert code for in article ads."
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:68
+msgid "Ad after Title on AMP"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:69
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:78
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:87
+msgid "Enter AMP ad tag."
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:77
+msgid "Ad after Content on AMP"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AdCustomizer.php:86
+msgid "Ad after related posts on AMP"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:14
+msgid "Analytics"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:22
+msgid "Tracking ID"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:14
+#: functions/users.php:53
+msgid "Newsletter"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:22
+msgid "Mailchimp Pop Up Script"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:24
+msgid "Pasete pop up script of mail chimp here."
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/PortfolioCustomizer.php:17
+msgid "Portfolio"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/PortfolioCustomizer.php:25
+msgid "Contact URL"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/PortfolioCustomizer.php:26
+msgid "If set, contact button will be displayed."
+msgstr ""
+
+#: app/Fumikito/Kyom/Pattern/BlockBase.php:108 hooks/settings.php:60
 msgid "Content"
 msgstr ""
 
@@ -287,10 +380,6 @@ msgctxt "ranking"
 msgid "Total"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/Ad.php:11 hooks/ads.php:17
-msgid "Advertisement"
-msgstr ""
-
 #: app/Fumikito/Kyom/Widgets/Ad.php:15
 msgid ""
 "Insert advertisement scripts like Google Adsense. Any javascripts are "
@@ -400,21 +489,21 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: functions/content.php:78
+#: functions/content.php:115
 #, php-format
 msgid "%s letter"
 msgid_plural "%s letters"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/content.php:80
+#: functions/content.php:117
 #, php-format
 msgid "%s word"
 msgid_plural "%s words"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/content.php:123
+#: functions/content.php:160
 #, php-format
 msgid "%s minute to read"
 msgid_plural "%s minutes to read"
@@ -491,21 +580,21 @@ msgstr ""
 msgid "Search results of \"%s\"."
 msgstr ""
 
-#: functions/navigations.php:85
+#: functions/navigations.php:84
 msgid ""
 "If you are from an external site, URL might be wrong. Please check it is "
 "correct."
 msgstr ""
 
-#: functions/navigations.php:86
+#: functions/navigations.php:85
 msgid "Content on this URL might be deleted in some reason."
 msgstr ""
 
-#: functions/navigations.php:87
+#: functions/navigations.php:86
 msgid "Please try search form below to find what you are looking for."
 msgstr ""
 
-#: functions/navigations.php:88
+#: functions/navigations.php:87
 msgid ""
 "Are you lost yourself? Simply back to former page by clicking browser's back "
 "button."
@@ -519,211 +608,144 @@ msgstr ""
 msgid "Google Analytics is not connected."
 msgstr ""
 
-#: functions/users.php:53 hooks/members.php:46
-msgid "Newsletter"
-msgstr ""
-
-#: header.php:10 header.php:65
+#: header.php:11 header.php:87
 msgid "Menu"
 msgstr ""
 
-#: header.php:29
+#: header.php:19
+msgctxt "Header Search Form"
+msgid "Search..."
+msgstr ""
+
+#: header.php:40
 msgid "Dashboard"
 msgstr ""
 
-#: header.php:36
+#: header.php:47
 msgid "Sign Up"
 msgstr ""
 
-#: header.php:42
+#: header.php:53
 msgid "Sign In"
 msgstr ""
 
-#: header.php:47
+#: header.php:58
 msgid "Log in"
 msgstr ""
 
-#: header.php:81
+#: header.php:103
 msgid "Input keywords..."
 msgstr ""
 
-#: hooks/ads.php:23
-msgid "Ad after title"
-msgstr ""
-
-#: hooks/ads.php:24
-msgid ""
-"If set, advertisement will be displayed just after single post page title."
-msgstr ""
-
-#: hooks/ads.php:28
-msgid "Related Ad"
-msgstr ""
-
-#: hooks/ads.php:29
-msgid "If you have related ad of Google Adsense, paste code here."
-msgstr ""
-
-#: hooks/ads.php:34
-msgid "Automatic Ad"
-msgstr ""
-
-#: hooks/ads.php:35
-msgid "Enter client ID to enable automatic ad on single page."
-msgstr ""
-
-#: hooks/ads.php:41
-msgid "In Article Ad"
-msgstr ""
-
-#: hooks/ads.php:42
-msgid "Insert code for in article ads."
-msgstr ""
-
-#: hooks/ads.php:60
-msgid "Ad after Title on AMP"
-msgstr ""
-
-#: hooks/ads.php:61 hooks/ads.php:69 hooks/ads.php:77
-msgid "Enter AMP ad tag."
-msgstr ""
-
-#: hooks/ads.php:68
-msgid "Ad after Content on AMP"
-msgstr ""
-
-#: hooks/ads.php:76
-msgid "Ad after related posts on AMP"
-msgstr ""
-
-#: hooks/analytics.php:16
-msgid "Analytics"
-msgstr ""
-
-#: hooks/analytics.php:22
-msgid "Tracking ID"
-msgstr ""
-
-#: hooks/assets.php:37
+#: hooks/assets.php:31
 msgid "Click to open spoiler"
 msgstr ""
 
-#: hooks/members.php:52
-msgid "Mailchimp Pop Up Script"
-msgstr ""
-
-#: hooks/members.php:54
-msgid "Pasete pop up script of mail chimp here."
-msgstr ""
-
-#: hooks/members.php:78
+#: hooks/members.php:55
 msgid "News Letter"
 msgstr ""
 
-#: hooks/members.php:80
+#: hooks/members.php:57
 msgid "Newsletter Page"
 msgstr ""
 
-#: hooks/members.php:88
+#: hooks/members.php:65
 msgid "No newsletter page"
 msgstr ""
 
-#: hooks/menu-and-widgets.php:10
+#: hooks/menu-and-widgets.php:12
 msgid "After Article"
 msgstr ""
 
-#: hooks/menu-and-widgets.php:12
+#: hooks/menu-and-widgets.php:14
 msgid "Displayed just after main content. 4 widgets are the best looking."
 msgstr ""
 
-#: hooks/menu-and-widgets.php:19
+#: hooks/menu-and-widgets.php:21
 msgid "Footer Sidebar"
 msgstr ""
 
-#: hooks/menu-and-widgets.php:21
+#: hooks/menu-and-widgets.php:23
 msgid "Displayed in footer. Settling 4 widgets is recommended."
 msgstr ""
 
-#: hooks/menu-and-widgets.php:35
-msgid "Global Menu"
+#: hooks/menu-and-widgets.php:37
+msgid "Mobile Menu"
 msgstr ""
 
-#: hooks/menu-and-widgets.php:36
+#: hooks/menu-and-widgets.php:38
+msgid "Desktop Menu"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:39
 msgid "Footer Menu"
 msgstr ""
 
-#: hooks/portfolio.php:30
-msgid "Portfolio"
-msgstr ""
-
-#: hooks/portfolio.php:37
-msgid "Contact URL"
-msgstr ""
-
-#: hooks/portfolio.php:38
-msgid "If set, contact button will be displayed."
-msgstr ""
-
-#: hooks/settings.php:12
+#: hooks/settings.php:31
 msgid "Site Brand"
 msgstr ""
 
-#: hooks/settings.php:13
+#: hooks/settings.php:32
 msgid "Brand setting for widgets and others."
 msgstr ""
 
-#: hooks/settings.php:17
+#: hooks/settings.php:36
 msgid "Site long description"
 msgstr ""
 
-#: hooks/settings.php:18
+#: hooks/settings.php:37
 msgid ""
-"Litlle bit long description to describe your brand. Longer than tag line and "
-"less than 140 characters."
+"A little bit long description to describe your brand. Longer than tag line "
+"and less than 140 characters."
 msgstr ""
 
-#: hooks/settings.php:22
-msgid "Addresss"
+#: hooks/settings.php:41
+msgid "Address"
 msgstr ""
 
-#: hooks/settings.php:26
+#: hooks/settings.php:45
 msgid "Tel"
 msgstr ""
 
-#: hooks/settings.php:30
+#: hooks/settings.php:49
 msgid "Email"
 msgstr ""
 
-#: hooks/settings.php:36
+#: hooks/settings.php:55
 msgid "Notification"
 msgstr ""
 
-#: hooks/settings.php:37
+#: hooks/settings.php:56
 msgid "Notification displayed sitewide"
 msgstr ""
 
-#: hooks/settings.php:42
+#: hooks/settings.php:61
 msgid "Text link and strong tags are allowed."
 msgstr ""
 
-#: hooks/settings.php:47
+#: hooks/settings.php:66
 msgid "Style"
 msgstr ""
 
-#: hooks/settings.php:49
+#: hooks/settings.php:68
 msgid "Blue(blue)"
 msgstr ""
 
-#: hooks/settings.php:50
+#: hooks/settings.php:69
 msgid "Success(green)"
 msgstr ""
 
-#: hooks/settings.php:51
+#: hooks/settings.php:70
 msgid "Warning(orange)"
 msgstr ""
 
-#: hooks/settings.php:52
+#: hooks/settings.php:71
 msgid "Danger(Red)"
+msgstr ""
+
+#: hooks/supports.php:83
+msgctxt "image-sizes"
+msgid "Big Rectangle"
 msgstr ""
 
 #: hooks/testimonial.php:47
@@ -754,14 +776,6 @@ msgstr ""
 msgid "Back to Previous Page"
 msgstr ""
 
-#: page.php:45
-msgid "Related Pages"
-msgstr ""
-
-#: page.php:69
-msgid "See All Posts"
-msgstr ""
-
 #: searchform.php:4
 msgid "Input keywords and enter to search."
 msgstr ""
@@ -770,7 +784,7 @@ msgstr ""
 msgid "Testimonial By"
 msgstr ""
 
-#: singular.php:37
+#: singular.php:58
 #, php-format
 msgid ""
 "This post is published %s ago. Please consider the content may contain "
@@ -832,23 +846,14 @@ msgstr ""
 msgid "Search Form"
 msgstr ""
 
-#: template-parts/block-author.php:27
-msgctxt "author-box"
-msgid "Article Written By:"
-msgstr ""
-
-#: template-parts/block-author.php:37
-msgid "Follow Me Via:"
-msgstr ""
-
-#: template-parts/block-author.php:53
-msgid "See all posts"
-msgstr ""
-
-#: template-parts/content-back-top.php:6
+#: template-parts/content-back-top.php:4
 #: template-parts/content-footer-jetpack-portfolio.php:9
 #, php-format
 msgid "See All %s"
+msgstr ""
+
+#: template-parts/content-back-top.php:6
+msgid "See All"
 msgstr ""
 
 #: template-parts/content-footer-jetpack-portfolio.php:11
@@ -858,6 +863,23 @@ msgstr ""
 
 #: template-parts/content-footer-jetpack-portfolio.php:13
 msgid "Contact"
+msgstr ""
+
+#: template-parts/footer-page.php:3
+msgid "Related Pages"
+msgstr ""
+
+#: template-parts/footer-post.php:26
+msgctxt "author-box"
+msgid "Article Written By:"
+msgstr ""
+
+#: template-parts/footer-post.php:36
+msgid "Follow Me Via:"
+msgstr ""
+
+#: template-parts/footer-post.php:52
+msgid "See all posts"
 msgstr ""
 
 #: template-parts/loop-jetpack-testimonial.php:19

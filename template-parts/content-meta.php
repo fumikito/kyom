@@ -2,13 +2,16 @@
 	<ul class="entry-meta-list">
 		<?php if ( ! is_page() ) : ?>
 			<li class="entry-meta-item">
-				<span uk-icon="calendar"></span> <?php the_date() ?>
+				<span uk-icon="calendar"></span>
+				<span class="stroke"><?php the_date() ?></span>
 			</li>
 			<?php if ( 'post' === get_post_type() ) : ?>
 			<li class="entry-meta-item">
 				<span uk-icon="clock"></span>
-				<?php echo esc_html( kyom_reading_time() ) ?>
-				<?php echo esc_html( kyom_paren( kyom_content_length_formatted() ) ) ?>
+				<span class="stroke">
+					<?php echo esc_html( kyom_reading_time() ) ?>
+					<?php echo esc_html( kyom_paren( kyom_content_length_formatted() ) ) ?>
+				</span>
 			</li>
 			<?php endif; ?>
 		<?php endif; ?>

@@ -25,6 +25,10 @@ add_action( 'init', function() {
 	wp_register_script( 'fitie', get_template_directory_uri() . '/assets/js/fitie.js', [], '1.0.0', true );
 	wp_add_inline_script( 'fitie', 'window.fitie = {};', 'before' );
 
+	// Particle.js
+	wp_register_script( 'particle-js', 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js', [], '2.0.0', true );
+	wp_register_script( 'kyom-particle', get_template_directory_uri() . '/assets/js/particle.js', ['particle-js'], kyom_version(), true );
+
 	// Netabare
 	wp_register_script( 'kyom-netabare', get_template_directory_uri() . '/assets/js/netabare.js', [ 'jquery' ], kyom_version(), true );
 	wp_localize_script( 'kyom-netabare', 'Netabare', [
@@ -77,7 +81,7 @@ add_action( 'wp_enqueue_scripts', function () {
 }, 11 );
 
 add_filter( 'script_loader_tag', function( $tag, $handle ) {
-	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare', 'fitie' ];
+	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare', 'fitie', 'particle-js', 'kyom-particle' ];
 	if ( in_array( $handle, $deferrable ) ) {
 		$tag = str_replace( '<script', '<script defer', $tag );
 	}

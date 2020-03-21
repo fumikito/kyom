@@ -101,3 +101,13 @@ sup, sub, small{
   clip: rect(0,0,0,0);
   border: 0;
 }
+
+.stroke {
+  text-shadow: 0 0 2px $global-inverse-color;
+}
+
+.stroke-white {
+}
+
+.stroke-black {
+}

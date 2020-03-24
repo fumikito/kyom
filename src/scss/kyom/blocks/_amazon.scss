@@ -5,6 +5,7 @@
 		margin-bottom: 3em !important;
 		padding: 2em !important;
 		border: 1px solid $global-border !important;
+		font-size: $global-small-font-size !important;
 
 		p {
 			text-indent: 0;
@@ -16,14 +17,6 @@
 			background: $body-font-emphasis-color;
 			padding: 0.25em;
 			color: #fff;
-		}
-
-		em {
-			font-weight: bold;
-			font-family: $font-sans-bold;
-			color: $body-font-emphasis-color;
-			font-style: normal;
-			text-emphasis: none !important;
 		}
 
 		.tmkm-amazon-img {
@@ -39,6 +32,49 @@
 				}
 			}
 		}
+	}
+
+	&-title {
+		margin-bottom: 1em !important;
+		a {
+			text-decoration: none !important;
+		}
+	}
+
+	&-price-number {
+		color: $alert-danger-color !important;
+		font-weight: $base-strong-font-weight	;
+	}
+
+	&-label {
+		color: $global-muted-color;
+	}
+
+	&-row {
+	}
+
+	&-value {
+		font-weight: $base-body-font-weight !important;
+		color: $body-font-emphasis-color;
+		text-emphasis: none !important;
+	}
+
+	&-actions {
+		margin-top: 2em !important;
+		margin-bottom: 1em !important;
+	}
+
+	&-btn {
+		font-size: $kyom-font-size-xs !important;
+	}
+
+	&-image {
+		max-height: 250px !important;
+		max-width: 200px !important;
+	}
+
+	&-vendor {
+		text-align: center !important;
 	}
 
 }

@@ -212,6 +212,15 @@ $img-margin: 1.5em;
     padding: 0.5em;
     margin-bottom: 0.5em;
     border: 1px solid $body-font-emphasis-color;
+    display: table;
+    &.has-text-align-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &.has-text-align-right {
+      margin-left: auto;
+      margin-right: 0;
+    }
     @include night-shift((
        border-color: $body-font-night-emphasis,
     ));

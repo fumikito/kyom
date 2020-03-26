@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2020-03-21 13:47+0900\n"
-"PO-Revision-Date: 2020-03-21 13:48+0900\n"
+"POT-Creation-Date: 2020-03-26 12:32+0900\n"
+"PO-Revision-Date: 2020-03-26 12:33+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -489,6 +489,10 @@ msgstr "この投稿にはコメントがありません。あなたの考えを
 msgid "Comments are closed."
 msgstr "コメントは閉じられています。"
 
+#: embed-content.php:33
+msgid "See Also"
+msgstr "あわせて読みたい"
+
 #: functions/content.php:115
 #, php-format
 msgid "%s letter"
@@ -634,7 +638,7 @@ msgstr "ログイン"
 msgid "Input keywords..."
 msgstr "キーワードを入力……"
 
-#: hooks/assets.php:31
+#: hooks/assets.php:35
 msgid "Click to open spoiler"
 msgstr "ネタバレを表示する"
 
@@ -784,7 +788,7 @@ msgstr "キーワードを入力して検索。"
 msgid "Testimonial By"
 msgstr "推薦文"
 
-#: singular.php:58
+#: singular.php:63
 #, php-format
 msgid ""
 "This post is published %s ago. Please consider the content may contain "
@@ -926,8 +930,8 @@ msgid "https://github.com/fumikito/kyom"
 msgstr "https://github.com/fumikito/kyom"
 
 #. Description of the plugin/theme
-msgid "A theme for Takahashi Fumiki"
-msgstr "高橋文樹専用テーマ"
+msgid "A WordPress theme for fiction writers."
+msgstr "作家のためのWordPressテーマ。"
 
 #. Author of the plugin/theme
 msgid "Takahashi_Fumiki"
@@ -940,6 +944,9 @@ msgstr "https://takahashifumiki.com"
 #. Template Name of the plugin/theme
 msgid "Full Width"
 msgstr "最大幅最大幅"
+
+#~ msgid "A theme for Takahashi Fumiki"
+#~ msgstr "高橋文樹専用テーマ"
 
 #~ msgid "Navigation Menu Caching"
 #~ msgstr "ナビゲーションメニューキャッシュ"

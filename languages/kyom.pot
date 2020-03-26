@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2020-03-21 13:47+0900\n"
+"POT-Creation-Date: 2020-03-26 12:32+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
@@ -489,6 +489,10 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
+#: embed-content.php:33
+msgid "See Also"
+msgstr ""
+
 #: functions/content.php:115
 #, php-format
 msgid "%s letter"
@@ -637,7 +641,7 @@ msgstr ""
 msgid "Input keywords..."
 msgstr ""
 
-#: hooks/assets.php:31
+#: hooks/assets.php:35
 msgid "Click to open spoiler"
 msgstr ""
 
@@ -784,7 +788,7 @@ msgstr ""
 msgid "Testimonial By"
 msgstr ""
 
-#: singular.php:58
+#: singular.php:63
 #, php-format
 msgid ""
 "This post is published %s ago. Please consider the content may contain "
@@ -925,7 +929,7 @@ msgid "https://github.com/fumikito/kyom"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "A theme for Takahashi Fumiki"
+msgid "A WordPress theme for fiction writers."
 msgstr ""
 
 #. Author of the plugin/theme

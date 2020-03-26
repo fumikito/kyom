@@ -14,7 +14,7 @@ if ( has_post_thumbnail() ) {
 }
 $thumbnail_id = apply_filters( 'embed_thumbnail_id', $thumbnail_id );
 $image_size   = apply_filters( 'embed_thumbnail_image_size', 'full', $thumbnail_id );
-$is_own       = false !== strpos( home_url(), get_permalink() );
+$is_own       = false !== strpos( get_permalink(), home_url() );
 $rel          = $is_own ? 'target="_top"' : 'target="_blank" rel="noopener noreferrer"';
 ?>
 <div <?php post_class( [ 'wp-embed', ( $is_own ? 'wp-embed-own' : 'wp-embed-external' ) ] ); ?>>

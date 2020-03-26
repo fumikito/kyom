@@ -45,7 +45,9 @@ add_action( 'init', function() {
 	// Admin theme.
 	list( $url, $version ) = kyom_asset_url_and_version( 'css/kyom-admin.css' );
 	wp_register_style( 'kyom-admin', $url, [], $version );
-
+	
+	list( $url, $version ) = kyom_asset_url_and_version( 'css/kyom-oembed.css' );
+	wp_register_style( 'kyom-oembed', $url, [], $version );
 } );
 
 /**

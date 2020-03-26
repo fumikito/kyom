@@ -1,11 +1,18 @@
 .tmkm-amazon {
 
 	&-view {
+
 		margin-top: 3em !important;
 		margin-bottom: 3em !important;
 		padding: 2em !important;
 		border: 1px solid $global-border !important;
 		font-size: $global-small-font-size !important;
+
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 630px;
+
+
 
 		p {
 			text-indent: 0;

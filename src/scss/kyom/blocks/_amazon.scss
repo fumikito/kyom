@@ -27,15 +27,23 @@
 		}
 
 		.tmkm-amazon-img {
+
 			a img {
 				padding: 0 !important;
 				border: none !important;
 
-				@include bp-max($breakpoint-small) {
+			}
+
+			@include bp-max($breakpoint-small) {
+				padding-top: 0;
+
+				a img {
+					margin-top: 0;
 					display: block;
 					margin-right: auto;
 					margin-left: auto;
 					float: none;
+					max-width: 160px;
 				}
 			}
 		}

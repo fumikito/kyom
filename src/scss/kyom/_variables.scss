@@ -43,6 +43,9 @@ $breakpoint-ipad: 768px;
 $breakpoint-ipad-and-under: 769px;
 $grid-divider-border: $light-gray;
 
+// Block size
+$oembed-max-width: 630px;
+
 $socials-colors: (
         mail: $gray,
         500px: #0099e5,

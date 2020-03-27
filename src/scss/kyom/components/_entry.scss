@@ -291,6 +291,12 @@
 			margin-left: auto !important;
 			margin-right: auto !important;
 		}
+
+		&-wordpress {
+			iframe {
+				width: $oembed-max-width;
+			}
+		}
 	}
 }
 

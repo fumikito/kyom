@@ -235,9 +235,40 @@ td {
 	}
 }
 
-.amp-footer-content {
+.sd-title {
+	text-align: center;
+	font-family: $font-sans;
+	position: relative;
+	margin-top: 30px;
+	padding-top: 30px;
+	font-size: 18px;
+	font-weight: bold;
 
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 50%;
+		height: 1px;
+		width: 80px;
+		margin-left: -40px;
+		background-color: #000;
+	}
+}
+
+.sd-content,
+.amp-ad-container {
+	text-align: center;
+}
+
+.amp-footer-content {
 	padding: 20px;
 	text-align: center;
 	font-family: $font-amp-sans;
+}
+
+.amp-ad-container {
+	iframe {
+		background-color: $slightly-gray;
+	}
 }

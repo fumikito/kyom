@@ -161,7 +161,7 @@ add_action( 'save_post', function ( $post_id, $post ) {
 		// If this is public post type, save.
 		kyom_save_title_data( $post );
 	}
-} );
+}, 10, 2 );
 
 /**
  * Filter single post title in single page.

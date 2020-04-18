@@ -1,0 +1,18 @@
+.kyom-rss-slider {
+
+	&-item {
+
+	}
+
+	&-link {
+		display: block;
+		height: 100%;
+	}
+
+	&-image {
+		width: auto;
+		min-height: 100%;
+		object-fit: cover;
+	}
+
+}

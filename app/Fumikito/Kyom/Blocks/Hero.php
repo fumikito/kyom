@@ -76,7 +76,7 @@ class Hero extends BlockBase {
 		?>
 		<section class="kyom-hero" style="<?= $style ?>" uk-parallax="bgy:-300">
 			<div class="kyom-hero-box">
-				<div class="kyom-hero-container uk-text-<?= esc_attr( $atts[ 'align' ] ) ?>">
+				<div class="kyom-hero-container uk-text-center">
 					<h1 class="kyom-hero-title" style="<?= $text_style ?>">
 						<?= esc_html( $atts[ 'title' ] ) ?>
 					</h1>

@@ -50,10 +50,10 @@ class Recent extends BlockBase {
 		ob_start();
 		?>
 		<div class="recent-wide">
-			<h2 class="recent-wide-title">
+			<h2 class="recent-wide-title uk-text-center">
 				<?= esc_html( $atts['title'] ) ?>
 			</h2>
-			<div class="recent-wide-list">
+			<div class="recent-wide-list uk-container">
 				<div class="recent-wide-list-column">
 					<?php $query->the_post(); ?>
 					<div class="recent-wide-item-large">

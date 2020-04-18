@@ -39,10 +39,14 @@ class RssSlider extends BlockBase {
 		<div uk-slider class="kyom-rss-slider">
 			<div class="uk-position-relative uk-visible-toggle uk-light">
 				<ul class="uk-slider-items uk-child-width-1-3 uk-child-width-1-4@s uk-child-width-1-6@m">
-					<?php foreach ( $items as $index => $item ) : ?>
-						<li>
-							<a href="<?= esc_url( $item[ 'url' ] ) ?>">
-								<img src="<?= esc_url( $item[ 'image' ] ) ?>" alt="<?= esc_attr( $item[ 'title' ] ) ?>">
+					<?php foreach ( $items as $index => $item ) :
+						if ( ! $item['image'] ) {
+							continue;
+						}
+						?>
+						<li class="kyom-rss-slider-item">
+							<a class="kyom-rss-slider-link" href="<?= esc_url( $item[ 'url' ] ) ?>">
+								<img class="kyom-rss-slider-image" src="<?= esc_url( $item[ 'image' ] ) ?>" alt="<?= esc_attr( $item[ 'title' ] ) ?>">
 							</a>
 						</li>
 					<?php endforeach; ?>

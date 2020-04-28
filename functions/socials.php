@@ -153,7 +153,7 @@ function kyom_get_ga_result( $start_date, $end_date, $metrics, $params = [] ) {
 			throw new \Exception( __( 'Google Analytics is not connected.', 'kyom' ), 500 );
 		}
 		$result = $google->ga->data_ga->get('ga:'.$google->ga_profile['view'], $start_date, $end_date, $metrics, $params);
-		if ( $result && ( 0 < count($result->rows) ) ) {
+		if ( $result && $result->rows && ( 0 < count($result->rows) ) ) {
 			return $result->rows;
 		} else {
 			return [];

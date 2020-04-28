@@ -13,14 +13,53 @@ add_action( 'wp_head', function () {
 	if ( ! ( $tracking_id = get_option( 'kyom_tracking_id' ) ) ) {
 		return;
 	}
+	// Define page type.
+	if ( is_front_page() ) {
+		$page_type = 'front';
+	} else if ( is_home() ) {
+		$page_type = 'home';
+	} else if ( is_post_type_archive() ) {
+		$page_type = get_post_type() . '-archive';
+	} else if ( is_singular() ) {
+		$page_type = get_queried_object()->post_type;
+	} else if ( is_category() ) {
+		$page_type = 'category';
+	} else if ( is_tag() ) {
+		$page_type = 'tag';
+	} else if ( is_tax() ) {
+		$taxonomies = get_taxonomies();
+		$page_type  = 'taxonomy';
+		foreach ( $taxonomies as $tax ) {
+			if ( is_tax( $tax ) ) {
+				$page_type = $tax;
+				break;
+			}
+		}
+	} else if ( is_search() ) {
+		$page_type = 'search';
+	} else {
+		$page_type = 'undefined';
+	}
 	?>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<?= esc_attr( $tracking_id ) ?>"></script>
 	<script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<?= esc_attr( $tracking_id ) ?>');
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', '<?= esc_attr( $tracking_id ) ?>', {
+			'custom_map': {
+				'dimension1': 'role',
+				'dimension2': 'web_font',
+				'dimension3': 'post_type',
+		  }
+	  } );
+      <?php if ( is_singular() ) : ?>
+	  gtag('event', 'custom_dimension', {
+	  	  'role': document.cookie.match( /ctwp_uuid/ ) ? 'subscriber' : 'anonymous',
+		  'post_type': '<?php echo esc_js( $page_type ) ?>',
+	  } );
+	  <?php endif; ?>
 	</script>
 	<?php
 }, 9999 );

@@ -1,7 +1,7 @@
 const gulp = require( 'gulp' );
 const fs = require( 'fs' );
 const $ = require( 'gulp-load-plugins' )();
-const eventStream = require( 'event-stream' );
+const mergeStream = require( 'merge-stream' );
 const webpack = require( 'webpack-stream' );
 const webpackBundle = require( 'webpack' );
 const named = require( 'vinyl-named' );
@@ -76,7 +76,7 @@ gulp.task( 'eslint', function () {
 
 // Copy library files.
 gulp.task( 'copylib', function () {
-	return eventStream.merge(
+	return mergeStream(
 		gulp.src( [
 			'node_modules/uikit/dist/js/uikit.min.js',
 			'node_modules/uikit/dist/js/uikit-icons.min.js',
@@ -155,7 +155,7 @@ gulp.task( 'watch', function () {
 } );
 
 // Build
-gulp.task( 'build', gulp.parallel( 'copylib', 'eslint', 'js', 'sass', 'imagemin' ) );
+gulp.task( 'build', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) );
 
 // HTML task
 gulp.task( 'html', gulp.series( 'build', gulp.parallel( 'watch', 'server', 'reload' ) ) );

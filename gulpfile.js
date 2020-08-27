@@ -1,11 +1,13 @@
-const gulp = require( 'gulp' ),
-	fs = require( 'fs' ),
-	$ = require( 'gulp-load-plugins' )(),
-	eventStream = require( 'event-stream' ),
-	webpack = require( 'webpack-stream' ),
-	webpackBundle = require( 'webpack' ),
-	named = require( 'vinyl-named' ),
-	browserSync = require( 'browser-sync' ).create();
+const gulp = require( 'gulp' );
+const fs = require( 'fs' );
+const $ = require( 'gulp-load-plugins' )();
+const eventStream = require( 'event-stream' );
+const webpack = require( 'webpack-stream' );
+const webpackBundle = require( 'webpack' );
+const named = require( 'vinyl-named' );
+const browserSync = require( 'browser-sync' ).create();
+const pngquant = require( 'imagemin-pngquant' );
+const mozjpeg = require( 'imagemin-mozjpeg' );
 
 // Sass
 gulp.task( 'sass', function () {
@@ -90,15 +92,18 @@ gulp.task( 'copylib', function () {
 gulp.task( 'imagemin', function () {
 	return gulp.src( './src/img/**/*' )
 		.pipe( $.imagemin( [
-			$.imagemin.gifsicle( { interlaced: true } ),
-			$.imagemin.jpegtran( { progressive: true } ),
-			$.imagemin.optipng( { optimizationLevel: 5 } ),
-			$.imagemin.svgo( {
-				plugins: [
-					{ removeViewBox: true },
-					{ cleanupIDs: false }
-				]
-			} )
+			pngquant( {
+				quality: '65-80',
+				speed: 1,
+				floyd: 0
+			} ),
+			mozjpeg( {
+				quality: 85,
+				progressive: true
+			} ),
+			$.imagemin.svgo(),
+			$.imagemin.optipng(),
+			$.imagemin.gifsicle()
 		], { verbose: true } ) )
 		.pipe( gulp.dest( './assets/img' ) );
 } );

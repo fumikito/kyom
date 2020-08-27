@@ -58,5 +58,9 @@
   },
   "jest": {
     "browser": true
+  },
+  "dependencies": {
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.0"
   }
 }

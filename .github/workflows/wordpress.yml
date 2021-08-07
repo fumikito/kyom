@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-16.04 ]  # OS. ubuntu-18.04 is also available.
+        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
         php: [ '7.0', '7.3' ] # PHP versions to check.
         wp: [ 'latest', '5.0' ]      # WordPress version to check.
     services:
@@ -53,7 +53,7 @@ jobs:
   deploy:
     needs: test
     if: contains(github.ref, 'master') && github.event_name == 'push'
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@master
 
@@ -65,10 +65,10 @@ jobs:
       - name: Install NPM
         uses: actions/setup-node@v1
         with:
-          node-version: '10'
+          node-version: '12'
 
       - name: Build Package
-        run: bash bin/build.sh
+        run: bash bin/build.sh ${{ github.ref }}
 
       - name: Deploy to Server
         id: deploymaster
@@ -89,7 +89,7 @@ jobs:
     name: Build Theme
     needs: test
     if: contains(github.ref, 'tags/')
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         zip: [ 'kyom' ] # Zip name.
@@ -104,10 +104,10 @@ jobs:
       - name: Install NPM
         uses: actions/setup-node@v1
         with:
-          node-version: '10'
+          node-version: '12'
 
       - name: Build package.
-        run: bash bin/build.sh
+        run: bash bin/build.sh ${{ github.ref }}
 
       - name: Deploy Release
         id: create_release

@@ -17,6 +17,7 @@
     "start": "gulp build",
     "watch": "gulp watch",
     "gulp": "gulp",
+    "package": "gulp build",
     "fix": "eslint --fix src/js",
     "html": "gulp html",
     "test": "jest"

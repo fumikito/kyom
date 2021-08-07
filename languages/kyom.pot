@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2020-03-26 12:32+0900\n"
+"POT-Creation-Date: 2021-08-08 01:05+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -457,6 +457,48 @@ msgctxt "hatebu"
 msgid "New"
 msgstr ""
 
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:16
+msgid "YouTube Channel"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:20
+msgid "Display YouTube channel widget. Needs API Key and Channel ID."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:26
+msgid "Subscribe Button"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:29
+msgid "Default"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:30
+msgid "Wide"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:16
+msgid "YouTube Video List"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:20
+msgid "Display YouTube video list from your channel."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:30
+msgid "Play List"
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:33
+msgid ""
+"If no playlist displayed, you need set YouTube channel ID on Setting > "
+"General."
+msgstr ""
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:36
+msgid "Display Subscription Button"
+msgstr ""
+
 #: comments.php:15
 msgid "This post is password protected. Enter the password to view comments."
 msgstr ""
@@ -612,6 +654,22 @@ msgstr ""
 msgid "Google Analytics is not connected."
 msgstr ""
 
+#: functions/socials.php:315
+msgid "API Key for YouTube Data API is not set."
+msgstr ""
+
+#: functions/socials.php:319
+msgid "YouTube Channel ID is not set."
+msgstr ""
+
+#: functions/socials.php:332
+msgid "Failed to get valid API response."
+msgstr ""
+
+#: functions/socials.php:381
+msgid "Failed to get valid response."
+msgstr ""
+
 #: header.php:11 header.php:87
 msgid "Menu"
 msgstr ""
@@ -645,6 +703,11 @@ msgstr ""
 msgid "Click to open spoiler"
 msgstr ""
 
+#: hooks/callout.php:105
+#, php-format
+msgid "YouTube Live: <a href=\"%s\">%s</a> %s"
+msgstr ""
+
 #: hooks/members.php:55
 msgid "News Letter"
 msgstr ""
@@ -673,16 +736,20 @@ msgstr ""
 msgid "Displayed in footer. Settling 4 widgets is recommended."
 msgstr ""
 
-#: hooks/menu-and-widgets.php:37
+#: hooks/menu-and-widgets.php:35
 msgid "Mobile Menu"
 msgstr ""
 
-#: hooks/menu-and-widgets.php:38
+#: hooks/menu-and-widgets.php:36
 msgid "Desktop Menu"
 msgstr ""
 
-#: hooks/menu-and-widgets.php:39
+#: hooks/menu-and-widgets.php:37
 msgid "Footer Menu"
+msgstr ""
+
+#: hooks/menu-and-widgets.php:38
+msgid "Social Links"
 msgstr ""
 
 #: hooks/settings.php:31
@@ -745,6 +812,44 @@ msgstr ""
 
 #: hooks/settings.php:71
 msgid "Danger(Red)"
+msgstr ""
+
+#: hooks/settings.php:76
+msgid "Display YouTube Live"
+msgstr ""
+
+#: hooks/settings.php:77
+msgid ""
+"If set, scheduled live stream within this preiod(in days) will be called out "
+"at footer."
+msgstr ""
+
+#: hooks/settings.php:83
+msgid "YouTube channel related to your site."
+msgstr ""
+
+#: hooks/settings.php:87
+msgid "API Key"
+msgstr ""
+
+#: hooks/settings.php:88
+msgid ""
+"API Key of Google Cloud Platform. YouTube data API v3 is required to be "
+"included in libraries."
+msgstr ""
+
+#: hooks/settings.php:92
+msgid "Channel ID"
+msgstr ""
+
+#: hooks/settings.php:93
+msgid ""
+"Your YouTube channel ID. You can get it from URL of YouTube studio. If both "
+"values are valid, you can get Channel Detail below."
+msgstr ""
+
+#: hooks/settings.php:156
+msgid "Channel Information"
 msgstr ""
 
 #: hooks/supports.php:83

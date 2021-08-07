@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2020-03-26 12:32+0900\n"
-"PO-Revision-Date: 2020-03-26 12:33+0900\n"
+"POT-Creation-Date: 2021-08-08 01:05+0900\n"
+"PO-Revision-Date: 2021-08-08 01:10+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -456,6 +456,51 @@ msgctxt "hatebu"
 msgid "New"
 msgstr "新着"
 
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:16
+msgid "YouTube Channel"
+msgstr "YouTube チャンネル"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:20
+msgid "Display YouTube channel widget. Needs API Key and Channel ID."
+msgstr ""
+"YouTubeチャンネルウィジェットを表示します。APIキーとチャンネルIDが必要です。"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:26
+msgid "Subscribe Button"
+msgstr "チャンネル登録ボタン"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:29
+msgid "Default"
+msgstr "デフォルトデフォルト"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:30
+msgid "Wide"
+msgstr "ワイド"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:16
+msgid "YouTube Video List"
+msgstr "YouTube動画リスト"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:20
+msgid "Display YouTube video list from your channel."
+msgstr "YouTubeチャンネルの動画リストを表示します。"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:30
+msgid "Play List"
+msgstr "プレイリスト"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:33
+msgid ""
+"If no playlist displayed, you need set YouTube channel ID on Setting > "
+"General."
+msgstr ""
+"プレイリストが表示されない場合、YouTubeチャンネルを設定 > 一般で入力する必要"
+"があります。"
+
+#: app/Fumikito/Kyom/Widgets/YoutubeVideos.php:36
+msgid "Display Subscription Button"
+msgstr "チャンネル登録ボタン表示"
+
 #: comments.php:15
 msgid "This post is password protected. Enter the password to view comments."
 msgstr ""
@@ -609,6 +654,22 @@ msgstr "Gianism がインストールされていません。"
 msgid "Google Analytics is not connected."
 msgstr "Google Analyticsが接続されていません。"
 
+#: functions/socials.php:315
+msgid "API Key for YouTube Data API is not set."
+msgstr "YouTube Data APIのAPIキーが設定されていません。"
+
+#: functions/socials.php:319
+msgid "YouTube Channel ID is not set."
+msgstr "YouTubeチャンネルIDが設定されていません。"
+
+#: functions/socials.php:332
+msgid "Failed to get valid API response."
+msgstr "有効なAPIレスポンスを得られませんでした。"
+
+#: functions/socials.php:381
+msgid "Failed to get valid response."
+msgstr "有効なレスポンスを得られませんでした。"
+
 #: header.php:11 header.php:87
 msgid "Menu"
 msgstr "メニュー"
@@ -642,6 +703,11 @@ msgstr "キーワードを入力……"
 msgid "Click to open spoiler"
 msgstr "ネタバレを表示する"
 
+#: hooks/callout.php:105
+#, php-format
+msgid "YouTube Live: <a href=\"%s\">%s</a> %s"
+msgstr "YouTube ライブ: <a href=\"%s\">%s</a> %s"
+
 #: hooks/members.php:55
 msgid "News Letter"
 msgstr "ニュースレター"
@@ -671,17 +737,21 @@ msgstr "フッターサイドバー"
 msgid "Displayed in footer. Settling 4 widgets is recommended."
 msgstr "フッターに設定されます。ウィジェット4つがおすすめです。"
 
-#: hooks/menu-and-widgets.php:37
+#: hooks/menu-and-widgets.php:35
 msgid "Mobile Menu"
 msgstr "モバイルメニュー"
 
-#: hooks/menu-and-widgets.php:38
+#: hooks/menu-and-widgets.php:36
 msgid "Desktop Menu"
 msgstr "デスクトップメニュー"
 
-#: hooks/menu-and-widgets.php:39
+#: hooks/menu-and-widgets.php:37
 msgid "Footer Menu"
 msgstr "フッターメニュー"
+
+#: hooks/menu-and-widgets.php:38
+msgid "Social Links"
+msgstr "ソーシャルリンク"
 
 #: hooks/settings.php:31
 msgid "Site Brand"
@@ -746,6 +816,50 @@ msgstr "警告（オレンジ）"
 #: hooks/settings.php:71
 msgid "Danger(Red)"
 msgstr "危険（赤）"
+
+#: hooks/settings.php:76
+msgid "Display YouTube Live"
+msgstr "YouTubeライブを表示"
+
+#: hooks/settings.php:77
+msgid ""
+"If set, scheduled live stream within this preiod(in days) will be called out "
+"at footer."
+msgstr ""
+"設定した場合、この期間（日数）のライブ配信がフッターのコールアウトに表示され"
+"ます。"
+
+#: hooks/settings.php:83
+msgid "YouTube channel related to your site."
+msgstr "サイトに関連したYouTubeチャンネル。"
+
+#: hooks/settings.php:87
+msgid "API Key"
+msgstr "APIキー"
+
+#: hooks/settings.php:88
+msgid ""
+"API Key of Google Cloud Platform. YouTube data API v3 is required to be "
+"included in libraries."
+msgstr ""
+"Google Cloud PlatformのAPIキー。YouTube Data API v3がライブラリで有効になって"
+"いる必要があります。"
+
+#: hooks/settings.php:92
+msgid "Channel ID"
+msgstr "チャンネルID"
+
+#: hooks/settings.php:93
+msgid ""
+"Your YouTube channel ID. You can get it from URL of YouTube studio. If both "
+"values are valid, you can get Channel Detail below."
+msgstr ""
+"YouTubeのチャンネルID。YouTubeスタジオのURLからわかります。上記の値が両方正し"
+"ければ、チャンネル詳細が下に表示されます。"
+
+#: hooks/settings.php:156
+msgid "Channel Information"
+msgstr "チャンネル情報"
 
 #: hooks/supports.php:83
 msgctxt "image-sizes"

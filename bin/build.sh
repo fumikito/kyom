@@ -2,25 +2,29 @@
 
 set -e
 
+# Set variables.
+PREFIX="refs/tags/"
+VERSION=${1#"$PREFIX"}
+
 # Install packages.
 composer install --no-dev --prefer-dist --no-suggest
 
 # Install NPM.
 npm install
-npm start
+npm run package
 
-# Remove unwanted files.
-rm -rf .git
-rm -rf .github
-rm -rf .gitignore
-rm -rf .browserslistrc
-rm -rf .eslintrc
-rm -rf bin
-rm -rf node_modules
-rm -rf tests
-rm -rf phpcs.xml.dist
-rm -rf phpunit.xml.dist
-rm -rf stylelint.config.js
-rm -rf webpack.config.js
-
+# Generate readme.txt
 curl -L https://raw.githubusercontent.com/fumikito/wp-readme/master/wp-readme.php | php
+
+# Change version string.
+sed -i.bak "s/nightly/${VERSION}/g" ./style.css
+
+# Remove unwanted files in distignore.
+files=(`cat ".distignore"`)
+
+for item in "${files[@]}"; do
+  if [ -e $item ]; then
+    rm -frv $item
+  fi
+done
+

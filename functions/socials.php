@@ -413,11 +413,13 @@ function kyom_get_scheduled_youtube_live_stream( $days ) {
 		list( $all, $title ) = $matches;
 		preg_match( '#"dateText":{"simpleText":"([^"]+)"}#u', $html, $matches );
 		list( $all, $date ) = $matches;
-		$lives[] = [
-			'title'    => $title,
-			'url'      => $url,
-			'schedule' => $date,
-		];
+		if ( $title && $date ) {
+			$lives[] = [
+				'title'    => $title,
+				'url'      => $url,
+				'schedule' => $date,
+			];
+		}
 	}
 	set_transient( 'youtube_live_scheduled', $lives, 3600 * 3 );
 	return $lives;

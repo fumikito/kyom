@@ -16,9 +16,6 @@ npm run package
 # Generate readme.txt
 curl -L https://raw.githubusercontent.com/fumikito/wp-readme/master/wp-readme.php | php
 
-# Change version string.
-sed -i.bak "s/nightly/${VERSION}/g" ./style.css
-
 # Remove unwanted files in distignore.
 files=(`cat ".distignore"`)
 

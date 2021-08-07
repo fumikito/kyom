@@ -1,23 +1,24 @@
-<?php do_action( 'kyom_before_site_footer' ); ?>
+<?php
+/**
+ * Footer template.
+ *
+ * @package kyom
+ */
+
+do_action( 'kyom_before_site_footer' );
+?>
 <footer class="site-footer">
 
 	<div class="uk-container">
-		<?php if ( $methods = kyom_get_social_links() ) : ?>
-		<div class="site-footer-social">
-			<ul class="uk-iconnav">
-				<?php foreach ( $methods as $key => $url ) :
-					if ( ! is_array( $url ) ) {
-						$url = [
-							'url' => $url,
-						];
-					}
-					?>
-				<li><a href="<?= esc_urL( $url['url'] ); ?>" uk-icon="<?= esc_attr( $key ) ?>"></a></li>
-				<?php endforeach; ?>
-			</ul>
 
-		</div>
-		<?php endif; ?>
+		<?php if ( has_nav_menu( 'social-links' ) ) {
+            wp_nav_menu( [
+                'theme_location'  => 'social-links',
+                'container'       => 'nav',
+                'container_class' => 'site-footer-social',
+                'menu_class'      => 'uk-iconnav',
+            ] );
+		} ?>
 
 		<?php if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
 		<div class="site-footer-widgets uk-grid-divider uk-grid" uk-grid>

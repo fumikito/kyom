@@ -262,3 +262,125 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:p
 	}
 	return $filtered;
 }
+
+/**
+ * Social key to make icons.
+ *
+ * @return string[]
+ */
+function kyom_social_keys() {
+	return [
+		'facebook',
+		'twitter',
+		'instagram',
+		'github',
+		'pinterest',
+		'youtube',
+		'wordpress',
+		'linkedin',
+		'dribbble',
+		'behance',
+		'google',
+	];
+}
+
+/**
+ * Get icon name from URL.
+ *
+ * @param string $url Base URL.
+ * @return string Icon name e.g. facebook.
+ */
+function kyom_icon_from_url( $url ) {
+	$icon = 'link';
+	foreach ( kyom_social_keys() as $key ) {
+		if ( preg_match( '#https?://(www\.)?' . $key . '\.(com|org)#u', $url ) ) {
+			return  $key;
+		}
+	}
+	return $icon;
+}
+
+/**
+ * Get YouTube channel information.
+ *
+ * @return array|WP_Error
+ */
+function kyom_get_youtube_channel() {
+	$caches = get_transient( 'kyom_youtube_channel' );
+	if ( false !== $caches ) {
+		return $caches;
+	}
+	$key = get_option( 'kyom_youtube_api_key', '' );
+	if ( ! $key ) {
+		return new WP_Error( 'no_api_key', __( 'API Key for YouTube Data API is not set.', 'kyom' ) );
+	}
+	$channel_id = get_option( 'kyom_youtube_channel_id', '' );
+	if ( ! $channel_id ) {
+		return new WP_Error( 'no_channel_id', __( 'YouTube Channel ID is not set.', 'kyom' ) );
+	}
+	$url = add_query_arg([
+		'part' => 'contentDetails,snippet',
+		'id'   => rawurlencode( $channel_id ),
+		'key'  => rawurlencode( $key )
+	], 'https://www.googleapis.com/youtube/v3/channels' );
+	$result = wp_remote_get( $url );
+	if ( is_wp_error( $result ) ) {
+		return $result;
+	}
+	$json = json_decode( $result['body'], true );
+	if ( ! $json ) {
+		return new WP_Error( 'api_error', __( 'Failed to get valid API response.', 'kyom' ) );
+	}
+	$return = $json['items'][0];
+	set_transient( 'kyom_youtube_channel', $return, 60 * 60 * 24 );
+	return $return;
+}
+
+/**
+ * Get YouTube playlist.
+ *
+ * @param bool $wp_error If false, return empty array.
+ * @return array|WP_Error
+ */
+function kyom_get_youtube_playlist( $wp_error = true ) {
+	$channel = kyom_get_youtube_channel();
+	if ( is_wp_error( $channel ) ) {
+		return $wp_error ? $channel : [];
+	}
+	return $channel['contentDetails']['relatedPlaylists'];
+}
+
+/**
+ * Get YouTube Play list.
+ *
+ * @param string $playlist   Playlist ID.
+ * @param int    $cache_time Cache life time.
+ * @return array|WP_Error
+ */
+function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
+	$cache_key = 'kyom_youtube_videos_in_' . $playlist;
+	$cache = get_transient( $cache_key );
+	if ( false !== $cache ) {
+		return $cache;
+	}
+	$channel = kyom_get_youtube_channel();
+	if ( is_wp_error( $channel ) ) {
+		return $channel;
+	}
+	$endpoint = add_query_arg( [
+		'part'       => 'contentDetails,snippet,status',
+		'playlistId' => rawurlencode( $playlist ),
+		'key'        => rawurlencode( get_option( 'kyom_youtube_api_key' ) )
+	], 'https://www.googleapis.com/youtube/v3/playlistItems' );
+	$response = wp_remote_get( $endpoint );
+	if ( is_wp_error( $response ) ) {
+		return $response;
+	}
+	$json = json_decode( $response['body'], true );
+	if ( ! $json ) {
+		return new WP_Error( 'parse_error', __( 'Failed to get valid response.', 'kyom') );
+	}
+	$result = $json['items'];
+	set_transient( $cache_key, $result, $cache_time );
+	return $result;
+}

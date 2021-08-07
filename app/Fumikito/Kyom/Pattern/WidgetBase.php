@@ -8,7 +8,7 @@ namespace Fumikito\Kyom\Pattern;
  * @property-read string $id_name
  */
 abstract class WidgetBase extends \WP_Widget {
-	
+
 	/**
 	 * WidgetBase constructor.
 	 *
@@ -22,14 +22,14 @@ abstract class WidgetBase extends \WP_Widget {
 			'description' => $this->description(),
 		], $control_options );
 	}
-	
+
 	/**
 	 * Get name string.
 	 *
 	 * @return string
 	 */
 	abstract protected function name():string;
-	
+
 	/**
 	 * Get description.
 	 *
@@ -38,7 +38,7 @@ abstract class WidgetBase extends \WP_Widget {
 	protected function description() {
 		return '';
 	}
-	
+
 	/**
 	 * Get form object.
 	 *
@@ -51,7 +51,7 @@ abstract class WidgetBase extends \WP_Widget {
 			]
 		];
 	}
-	
+
 	/**
 	 * Get formatted params
 	 *
@@ -72,7 +72,7 @@ abstract class WidgetBase extends \WP_Widget {
 		}
 		return $formatted;
 	}
-	
+
 	/**
 	 * Get fully filled instance data.
 	 *
@@ -86,7 +86,7 @@ abstract class WidgetBase extends \WP_Widget {
 		}
 		return wp_parse_args( $instance, $default );
 	}
-	
+
 	/**
 	 * Get form object.
 	 *
@@ -138,13 +138,27 @@ abstract class WidgetBase extends \WP_Widget {
 							esc_html( $setting['label'] )
 						);
 						break;
+                    case 'select':
+                        ?>
+                        <label>
+                            <?php echo esc_html( $setting['label'] ); ?><br />
+                            <select name="<?php echo esc_attr( $this->get_field_name( $key ) ) ?>">
+                                <?php foreach( $setting['options'] as $value => $opt_label ) : ?>
+                                <option value="<?php echo esc_attr( $value ) ?>"<?php selected( $value, $instance[ $key ] ) ?>>
+                                    <?php echo esc_html( $opt_label ) ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </label>
+                        <?php
+                        break;
 				} ?>
 			</p>
 			<?php
 		}
 	}
-	
-	
+
+
 	/**
 	 * Getter
 	 *

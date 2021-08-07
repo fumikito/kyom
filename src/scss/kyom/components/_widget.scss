@@ -296,3 +296,64 @@
     color: $global-muted-color;
   }
 }
+
+// YouTube
+.widget-youtube {
+
+  &-title {
+    font-size: $article-meta-font-size;
+    font-weight: $base-heading-font-weight;
+  }
+
+  &-list {
+    padding: 0;
+    margin: 0 0 10px;
+
+    &-item {
+      list-style: none;
+      margin: 0;
+      border-bottom: 1px solid $light-gray;
+      &:first-child {
+        border-top: 1px solid $light-gray;
+      }
+    }
+
+    &-link {
+      display: flex;
+      padding: 10px;
+    }
+
+    &-image {
+      width: auto;
+      height: auto;
+      flex: 0 1 90px;
+      margin-right: 10px;
+      object-fit: contain;
+    }
+
+    &-body {
+      font-size: $global-small-font-size;
+      color: $body-font-color;
+    }
+
+    &-title {
+      display: block;
+    }
+
+    &-meta {
+      font-size: 0.85em;
+      display: block;
+      color: $global-muted-color;
+    }
+  }
+
+  &-icon {
+    color: map-get( $socials-colors, youtube );
+    margin-right: 0.25em;
+    vertical-align: middle;
+  }
+
+  &-footer {
+    min-height: 48px;
+  }
+}

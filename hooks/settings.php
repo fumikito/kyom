@@ -73,6 +73,23 @@ add_action( 'admin_init', function () {
 				],
 			],
 		],
+		'kyom_youtube' => [
+			'label'       => 'YouTube',
+			'description' => __( 'YouTube channel related to your site.', 'kyom' ),
+			'page'        => 'general',
+			'options'     => [
+				'youtube_api_key' => [
+					'label'       => __( 'API Key', 'kyom' ),
+					'description' => __( 'API Key of Google Cloud Platform. YouTube data API v3 is required to be included in libraries.', 'kyom' ),
+					'type'        => 'text',
+				],
+				'youtube_channel_id' => [
+					'label'       => __( 'Channel ID', 'kyom' ),
+					'description' => __( 'Your YouTube channel ID. You can get it from URL of YouTube studio. If both values are valid, you can get Channel Detail below.', 'kyom' ),
+					'type'        => 'text',
+				],
+			],
+		],
 	];
 	foreach ( $settings as $id => $setting ) {
 		// Register section.
@@ -125,6 +142,14 @@ add_action( 'admin_init', function () {
 				}
 				if ( $option[ 'description' ] ) {
 					printf( '<p class="description">%s</p>', wp_kses_post( $option[ 'description' ] ) );
+				}
+				if ( 'youtube_channel_id' === $key ) {
+					$result = kyom_get_youtube_channel();
+					if ( is_wp_error( $result ) ) {
+						printf( '<p class="wp-ui-text-notification">%s</p>', esc_html( $result->get_error_message() ) );
+					} else {
+						printf( '<p class="description">%s: <strong>%s</strong></p>', esc_html__( 'Channel Information', 'kyom' ), esc_html( $result['snippet']['title']) );
+					}
 				}
 				echo '</div>';
 			}, $setting[ 'page' ], $id );

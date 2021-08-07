@@ -27,8 +27,6 @@ register_sidebar( [
 	'after_title'   => '</h2>'
 ] );
 
-
-
 /**
  * Register menus.
  */
@@ -37,6 +35,7 @@ add_action( 'init', function () {
 		'top-pages'    => __( 'Mobile Menu', 'kyom' ),
 		'top-pages-pc' => __( 'Desktop Menu', 'kyom' ),
 		'bottom-pages' => __( 'Footer Menu', 'kyom' ),
+		'social-links' => __( 'Social Links', 'kyom' ),
 	] );
 } );
 
@@ -48,3 +47,20 @@ add_action( 'widgets_init', function() {
 		register_widget( $class_name );
 	}
 } );
+
+/**
+ * Filter HTML output of menus.
+ *
+ * @param string   $item_output HTML.
+ * @param WP_Post  $item        Item object.
+ * @param int      $depth       Depth.
+ * @param stdClass $args        Menu arguments.
+ * @return string
+ */
+add_filter( 'walker_nav_menu_start_el', function( $item_output, $item, $depth, $args) {
+	if ( 'social-links' !== $args->theme_location ) {
+		return $item_output;
+	}
+	$brand = kyom_icon_from_url( $item->url );
+	return sprintf( '<a href="%s" uk-icon="%s"></a>', esc_url( $item->url ), esc_attr( $brand ) );
+}, 10, 4 );

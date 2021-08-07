@@ -17,9 +17,9 @@ add_filter( 'document_title_parts', function ( $title ) {
 		$title[ 'category' ] = implode( ', ', array_map( function ( $cat ) {
 			return $cat->name;
 		}, get_the_category( get_queried_object_id() ) ) );
-		
+
 	}
-	
+
 	return $title;
 } );
 
@@ -54,28 +54,19 @@ add_filter( 'user_contactmethods', function ( $methods ) {
 				break;
 		}
 	}
-	foreach (
-		[
-			'facebook'  => '',
-			'twitter'   => '',
-			'instagram' => '',
-			'github'    => '',
-			'pinterest' => '',
-			'youtube'   => '',
-			'wordpress' => 'WordPress',
-			'linkedin'  => '',
-			'dribbble'  => '',
-			'behance'   => '',
-			'google'    => '',
-		
-		] as $key => $label
-	) {
-		if ( ! $label ) {
-			$label = ucfirst( $key );
+	foreach ( kyom_social_keys() as $key ) {
+		switch ( $key ) {
+			case 'wordpress':
+				$label = 'WordPress';
+				break;
+			default:
+				$label = ucfirst( $key );
+				break;
 		}
-		$new_methods[ $key ] = $label . ' URL';
+		$label = apply_filters( 'kyom_contact_method_label', $label . ' URL', $key );
+		$new_methods[ $key ] = $label;
 	}
-	
+
 	return $new_methods;
 } );
 
@@ -102,7 +93,7 @@ function kyom_get_title_data( $post = null ) {
 	if ( ! $post ) {
 		return [];
 	}
-	
+
 	return array_filter( (array) get_post_meta( $post->ID, '_kyom_title_data', true ) );
 }
 
@@ -208,7 +199,7 @@ function kyom_title_separator( $title, $post = null ) {
 	}
 	return implode( '', array_map( function ( $token ) {
 		$classes = preg_match( '#[ぁ-んァ-ヶー一-龠]#u', $token ) ? 'jp' : 'ascii';
-		
+
 		return sprintf( '<span class="budou %s">%s</span>', $classes, esc_html( $token ) );
 	}, $parsed ) );
 }

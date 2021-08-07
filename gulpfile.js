@@ -19,7 +19,7 @@ gulp.task( 'sass', function () {
 		} ) )
 		.pipe( $.sourcemaps.init( { loadMaps: true } ) )
 		.pipe( $.sassGlob() )
-		.pipe( $.sass( {
+		.pipe( $.sass( require( 'node-sass' ) )( {
 			errLogToConsole: true,
 			outputStyle: 'compressed',
 			includePaths: [

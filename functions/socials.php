@@ -384,3 +384,41 @@ function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
 	set_transient( $cache_key, $result, $cache_time );
 	return $result;
 }
+
+/**
+ * Get scheduled live stream.
+ *
+ * @param int $days Get youtube stream in these days.
+ * @return array
+ */
+function kyom_get_scheduled_youtube_live_stream( $days ) {
+	$channel = kyom_get_youtube_channel();
+	if ( is_wp_error( $channel ) ) {
+		return [];
+	}
+	$cache = get_transient( 'youtube_live_scheduled' );
+	if ( false !== $cache ) {
+		return $cache;
+	}
+	$url = sprintf( 'https://www.youtube.com/channel/%s/live', $channel['id'] );
+	$response = wp_remote_get( $url );
+	if ( is_wp_error( $response ) ) {
+		return [];
+	}
+	$lives = [];
+	$html  = $response['body'];
+	if ( false !== strpos( $html, '<link rel="alternate" type="text/xml+oembed"' ) ) {
+		// Oembed exists, maybe scheduled live exists.
+		preg_match( '#<meta name="title" content="([^"]+)">#u', $html, $matches );
+		list( $all, $title ) = $matches;
+		preg_match( '#"dateText":{"simpleText":"([^"]+)"}#u', $html, $matches );
+		list( $all, $date ) = $matches;
+		$lives[] = [
+			'title'    => $title,
+			'url'      => $url,
+			'schedule' => $date,
+		];
+	}
+	set_transient( 'youtube_live_scheduled', $lives, 3600 * 3 );
+	return $lives;
+}

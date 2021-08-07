@@ -63,13 +63,18 @@ add_action( 'admin_init', function () {
 				],
 				'callout_style' => [
 					'type' => 'select',
-					'label' => __( 'Style' ),
+					'label' => __( 'Style', 'kyom' ),
 					'options' => [
 						'primary' => __( 'Blue(blue)', 'kyom' ),
 						'success' => __( 'Success(green)', 'kyom' ),
 						'warning' => __( 'Warning(orange)', 'kyom' ),
 						'danger' => __( 'Danger(Red)', 'kyom' ),
 					],
+				],
+				'show_live_stream' => [
+					'type'        => 'number',
+					'label'       => __( 'Display YouTube Live', 'kyom' ),
+					'description' => __( 'If set, scheduled live stream within this preiod(in days) will be called out at footer.', 'kyom' ),
 				],
 			],
 		],

@@ -77,7 +77,7 @@ class YoutubeVideos extends WidgetBase {
                         <span class="widget-youtube-list-title"><?php echo esc_html( $video['snippet']['title'] ) ?></span>
                         <span class="widget-youtube-list-meta">
                             <span uk-icon="calendar"></span>
-                            <?php echo $video['contentDetails']['videoPublishedAt'] ?>
+                            <?php echo date_i18n( get_option( 'date_format' ), strtotime( $video['contentDetails']['videoPublishedAt'] ) ) ?>
                         </span>
                     </p>
                 </a>

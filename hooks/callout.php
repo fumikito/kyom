@@ -11,6 +11,12 @@
  * @return array[]
  */
 function kyom_get_callouts() {
+    static $call_outs_set = false;
+    static $call_outs = [];
+    if ( $call_outs_set ) {
+        // Already set, return.
+        return $call_outs;
+    }
 	$call_outs = apply_filters( 'kyom_callouts', [] );
 	$call_outs = array_filter( array_map( function( $call_out ) {
 		$call_out = wp_parse_args( $call_out, [
@@ -80,3 +86,27 @@ add_filter( 'kyom_callouts', function( $call_outs ) {
 	];
 	return $call_outs;
 } );
+
+/**
+ * If opt
+ */
+add_filter( 'kyom_callouts', function( $call_outs ) {
+    // If days are not set, do nothing.
+    $days = (int) get_option( 'kyom_show_live_stream', 0 );
+    if ( ! $days ) {
+        return $call_outs;
+    }
+    // Get youtube stream.
+    $lives = kyom_get_scheduled_youtube_live_stream( $days );
+    if ( $lives) {
+        $call_outs = array_map( function( $live ) {
+            return [
+				'style'   => 'danger',
+				'text'    => sprintf( __( 'YouTube Live: <a href="%s">%s</a> %s', 'kyom' ), esc_url( $live['url'] ), esc_html( $live['title'] ), esc_html( $live['schedule'] ) ),
+				'icon'    => 'youtube',
+            ];
+        }, $lives );
+    }
+
+    return $call_outs;
+}, 10, 2 );

@@ -293,7 +293,7 @@ function kyom_social_keys() {
 function kyom_icon_from_url( $url ) {
 	$icon = 'link';
 	foreach ( kyom_social_keys() as $key ) {
-		if ( preg_match( '#https?://(www\.)?' . $key . '\.(com|org)#u', $url ) ) {
+		if ( preg_match( '#https?://(.*\.)?' . $key . '\.(co\.jp|jp|com|org)#u', $url ) ) {
 			return  $key;
 		}
 	}

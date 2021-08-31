@@ -16,11 +16,11 @@ add_action( 'after_setup_theme', function() {
 			continue;
 		}
 		$class_name = "Fumikito\\Kyom\\Customizer\\{$matches[1]}";
-		if ( ! class_exists( $class_name ) || ! method_exists( $class_name, 'register' ) ) {
+		if ( ! class_exists( $class_name ) ) {
 			trigger_error( 'Customizer class not found: ' . $class_name );
 			continue;
 		}
-		call_user_func( "{$class_name}::register" );
+		call_user_func( "{$class_name}::get_instance" );
 	}
 } );
 

@@ -11,7 +11,7 @@
  * Display ad after title.
  */
 add_action( 'kyom_before_content', function () {
-	$ad = get_option( 'kyom_ad_after_title' );
+	$ad = get_option( 'kyom_ad_after_title' ) && ! is_page();
 	$should_show = apply_filters( 'kyom_should_display_before_content_ad', (bool) $ad );
 	if ( ! $ad || ! $should_show ) {
 		return;

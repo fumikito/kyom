@@ -48,7 +48,7 @@ the_post();
 
 			<?php if ( has_excerpt() ) : ?>
 				<div class="entry-excerpt uk-container entry-container">
-					<?php the_excerpt(); ?>
+					<?php echo wp_kses_post( wpautop( get_the_excerpt() ) ); ?>
 				</div>
 			<?php endif; ?>
 

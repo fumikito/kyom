@@ -370,7 +370,8 @@ function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
 	$endpoint = add_query_arg( [
 		'part'       => 'contentDetails,snippet,status',
 		'playlistId' => rawurlencode( $playlist ),
-		'key'        => rawurlencode( get_option( 'kyom_youtube_api_key' ) )
+		'key'        => rawurlencode( get_option( 'kyom_youtube_api_key' ) ),
+		'maxResults' => 50,
 	], 'https://www.googleapis.com/youtube/v3/playlistItems' );
 	$response = wp_remote_get( $endpoint );
 	if ( is_wp_error( $response ) ) {
@@ -380,7 +381,9 @@ function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
 	if ( ! $json ) {
 		return new WP_Error( 'parse_error', __( 'Failed to get valid response.', 'kyom') );
 	}
-	$result = $json['items'];
+	$result = array_slice( array_values( array_filter( $json['items'], function( $item ) {
+		return ! preg_match( '/#[sS]horts/u', $item['snippet']['title'] );
+	} ) ), 0, 5 );
 	set_transient( $cache_key, $result, $cache_time );
 	return $result;
 }

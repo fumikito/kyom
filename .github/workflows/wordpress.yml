@@ -15,9 +15,9 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-18.04 ]  # OS. ubuntu-18.04 is also available.
-        php: [ '7.0', '7.3' ] # PHP versions to check.
-        wp: [ 'latest', '5.0' ]      # WordPress version to check.
+        operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
+        php: [ '7.2', '7.4' ] # PHP versions to check.
+        wp: [ 'latest', '5.9' ]      # WordPress version to check.
     services:
       mysql:
         image: mysql:5.7
@@ -30,10 +30,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup PHP
-        uses: nanasess/setup-php@master
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -53,19 +56,22 @@ jobs:
   deploy:
     needs: test
     if: contains(github.ref, 'master') && github.event_name == 'push'
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup PHP
-        uses: nanasess/setup-php@master
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.0'
+          php-version: 7.2
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install NPM
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: Build Package
         run: bash bin/build.sh ${{ github.ref }}
@@ -89,22 +95,22 @@ jobs:
     name: Build Theme
     needs: test
     if: contains(github.ref, 'tags/')
-    runs-on: ubuntu-18.04
-    strategy:
-      matrix:
-        zip: [ 'kyom' ] # Zip name.
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup PHP
-        uses: nanasess/setup-php@master
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.0'
+          php-version: 7.2
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install NPM
         uses: actions/setup-node@v1
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: Build package.
         run: bash bin/build.sh ${{ github.ref }}
@@ -123,7 +129,7 @@ jobs:
           prerelease: false
 
       - name: Create Zip
-        run: zip -r ${{ matrix.zip }}.zip ./
+        run: zip -r ${{ github.event.repository.name }.zip ./
 
       - name: Upload Release Zip
         id: upload-release-asset
@@ -132,6 +138,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./${{ matrix.zip }}.zip
-          asset_name: ${{ matrix.zip }}.zip
+          asset_path: ./${{ github.event.repository.name }.zip
+          asset_name: ${{ github.event.repository.name }.zip
           asset_content_type: application/zip

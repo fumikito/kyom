@@ -39,7 +39,7 @@ add_action('wp_head', function(){
 		$properties = [
 			'name'     => [
 				[ 'description', $desc ],
-				[ 'copyright', sprintf( 'copyright %s %S', kyom_oldest_date(), get_bloginfo( 'name' ) ) ],
+				[ 'copyright', sprintf( 'copyright %s %s', kyom_oldest_date(), get_bloginfo( 'name' ) ) ],
 				[ 'twitter:card', 'summary' ],
 				[ 'twitter:site', '@takahashifumiki' ],
 				[ 'twitter:url', $url ],

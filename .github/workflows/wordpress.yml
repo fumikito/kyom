@@ -76,7 +76,7 @@ jobs:
           node-version: '14'
 
       - name: Build Package
-        run: bash bin/build.sh ${{ github.ref }}
+        run: bash bin/build.sh refs/tags/${{ github.sha }}
 
       - name: Deploy to Server
         id: deploymaster

@@ -162,6 +162,4 @@ add_action( 'admin_init', function () {
 			register_setting( $setting['page'], 'kyom_' . $key );
 		}
 	}
-
-
 } );

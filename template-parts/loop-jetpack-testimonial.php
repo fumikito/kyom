@@ -13,10 +13,14 @@ $post_class = [
 					</div>
 				<?php endif; ?>
 				<div class="uk-width-expand">
-					<h3 class="uk-card-title uk-margin-remove-bottom"><?php the_title() ?></h3>
+					<h3 class="uk-card-title uk-margin-remove-bottom">
+						<a href="<?php the_permalink() ?>" class="uk-card-link">
+							<?php the_title() ?>
+						</a>
+					</h3>
 					<?php if ( $source = kyom_testimonial_source() ) : ?>
 						<p class="uk-text-meta uk-margin-remove-top">
-							<?= sprintf( _x( 'Via %s', 'quotes', 'kyom' ),  strip_tags( $source ) ) ?>
+							<?php printf( _x( 'Via %s', 'quotes', 'kyom' ),  strip_tags( $source ) ) ?>
 						</p>
 					<?php endif; ?>
 				</div>
@@ -27,9 +31,5 @@ $post_class = [
 			<span class="quote-right" uk-icon="icon:quote-right; ratio:2"></span>
 			<?php the_excerpt() ?>
 		</blockquote>
-		<div class="uk-card-footer">
-			<a href="<?php the_permalink() ?>" class="uk-button uk-button-text"><?php esc_html_e( 'See Full Quote', 'kyom' ) ?></a>
-		</div>
 	</div>
 </div>
-	

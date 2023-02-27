@@ -3,9 +3,10 @@ $img-margin: 1.5em;
 
 @mixin post-style(){
 
-  font-size: $kyom-font-size;
+  // Typography.
+  font-size: $kyom-font-size-article;
   @include bp-max($breakpoint-small){
-    font-size: $kyom-font-size-sm;
+    font-size: $kyom-font-size-article-sm;
   }
   line-height: 2.2;
   font-family: $font-serif;
@@ -94,7 +95,7 @@ $img-margin: 1.5em;
   }
 
   // Quotes
-  blockquote{
+  blockquote {
     font-style: normal;
     margin: 3em 0;
     padding-left: 1.75em;

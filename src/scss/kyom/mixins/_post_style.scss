@@ -71,6 +71,21 @@ $img-margin: 1.5em;
     }
   }
 
+  p.hamazon {
+	text-indent: 0;
+	margin: 3em 0;
+	padding: 1.5em;
+	font-family: $font-sans;
+	border: 1px solid #eee;
+	color: #ccc;
+	font-size: $kyom-font-size-sm;
+  }
+
+  [class*="wp-block-"] {
+	margin-top: 3em;
+	margin-bottom: 3em;
+  }
+
   ul,ol{
     margin: 3em 0;
     padding: 0 0 0 3em;

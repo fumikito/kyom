@@ -54,7 +54,20 @@ array_map( function( $template ) {
  *
  * @return string
  */
-function kyom_version() {
+function kyom_version( $display = false ) {
 	global $kyom_theme_info;
-	return $kyom_theme_info[ 'version' ] ?? '0.0.0';
+	$version = $kyom_theme_info[ 'version' ] ?? '0.0.0';
+	$version = trim( $version );
+	if ( ! $display ) {
+		return $version;
+	}
+	if ( preg_match( '/^\d+\.\d+\.\d+$/u', $version, $matches ) ) {
+		// This is sem ver.
+		return 'v' . $matches[0];
+	} elseif ( 'nightly' === $version ) {
+		return 'Nightly Version';
+	} else {
+		// This is commit hash.
+		return '#' . substr( $version, 0, 7 );
+	}
 }

@@ -39,8 +39,8 @@ do_action( 'kyom_before_site_footer' );
 		?>
 
 		<p class="site-footer-copy">
-			&copy; <?= kyom_oldest_date() ?> <a href="<?= home_url() ?>" rel="home"><?php bloginfo( 'name' ) ?></a>
-			| Powered by <a href="https://wordpress.org">WordPress <?= esc_html( $GLOBALS['wp_version'] ) ?></a> and <a href="https://github.com/fumikito/kyom">Kyom v<?= kyom_version() ?></a>.
+			&copy; <?php echo esc_html( kyom_oldest_date() ) ?> <a href="<?php echo home_url() ?>" rel="home"><?php bloginfo( 'name' ) ?></a>
+			| Powered by <a href="https://wordpress.org">WordPress <?php echo esc_html( $GLOBALS['wp_version'] ) ?></a> and <a href="https://github.com/fumikito/kyom">Kyom <?php echo kyom_version( true ) ?></a>.
 		</p>
 	</div>
 </footer>

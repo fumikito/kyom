@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2021-08-08 01:05+0900\n"
-"PO-Revision-Date: 2021-08-08 01:10+0900\n"
+"POT-Creation-Date: 2023-02-27 13:53+0900\n"
+"PO-Revision-Date: 2023-02-27 13:55+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -256,6 +256,54 @@ msgstr "設定した場合、お問い合わせボタンが表示されます。
 msgid "Content"
 msgstr "コンテンツ"
 
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:48
+msgid "Quotes Collection Setting"
+msgstr "名言集設定"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:51 functions/display.php:95
+msgid "Quotes Collection"
+msgstr "名言集"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:56
+msgid "Disabled"
+msgstr "有効にしない"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:57
+msgid "Enabled"
+msgstr "有効化する"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:91
+msgid "Quotes"
+msgstr "引用"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:92
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:180
+msgid "Quote"
+msgstr "すべての引用文"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:108
+msgid "Author"
+msgstr "作者"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:123
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:156 hooks/testimonial.php:90
+msgid "Source"
+msgstr "出典"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:158
+msgid "Franz Kafka"
+msgstr "フランツ・カフカ"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:235
+#, php-format
+msgctxt "quote-source"
+msgid "“%s”"
+msgstr "『%s』"
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:237
+msgid "Source Unknown"
+msgstr "出典不明"
+
 #: app/Fumikito/Kyom/Service/WordPressOrg.php:147
 #, php-format
 msgid "%s theme"
@@ -437,7 +485,7 @@ msgstr "はてなブックマーク"
 msgid "Display entries in Hatenna Bookmark."
 msgstr "はてなブックマークのエントリーを表示します。"
 
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:21 hooks/testimonial.php:66
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:21 hooks/testimonial.php:97
 msgid "URL"
 msgstr "URL"
 
@@ -613,10 +661,6 @@ msgstr "（%s）"
 msgid "Search Results"
 msgstr "検索結果"
 
-#: functions/display.php:95
-msgid "Quotes Collection"
-msgstr "名言集"
-
 #: functions/display.php:120
 #, php-format
 msgid "Search results of \"%s\"."
@@ -666,7 +710,7 @@ msgstr "YouTubeチャンネルIDが設定されていません。"
 msgid "Failed to get valid API response."
 msgstr "有効なAPIレスポンスを得られませんでした。"
 
-#: functions/socials.php:381
+#: functions/socials.php:382
 msgid "Failed to get valid response."
 msgstr "有効なレスポンスを得られませんでした。"
 
@@ -866,27 +910,34 @@ msgctxt "image-sizes"
 msgid "Big Rectangle"
 msgstr "大きい正方形"
 
-#: hooks/testimonial.php:47
+#: hooks/testimonial.php:40
+#, php-format
+msgctxt "cite-paren"
+msgid "“%s”"
+msgstr "『%s』"
+
+#: hooks/testimonial.php:43
+msgctxt "author-separator"
+msgid ", "
+msgstr "、"
+
+#: hooks/testimonial.php:78
 msgid "Testimonial Source"
 msgstr "推薦文の出典"
 
-#: hooks/testimonial.php:52
+#: hooks/testimonial.php:83
 msgid "Position"
 msgstr "肩書き"
 
-#: hooks/testimonial.php:55
+#: hooks/testimonial.php:86
 msgid "e.g. Critic"
 msgstr "例・批評家"
 
-#: hooks/testimonial.php:59
-msgid "Source"
-msgstr "出典"
-
-#: hooks/testimonial.php:62
+#: hooks/testimonial.php:93
 msgid "e.g. twitter"
 msgstr "例・twitter"
 
-#: hooks/testimonial.php:69
+#: hooks/testimonial.php:100
 msgid "e.g. https://example.com"
 msgstr "例・https://example.com"
 
@@ -898,7 +949,7 @@ msgstr "前のページに戻る"
 msgid "Input keywords and enter to search."
 msgstr "キーワードを入力して検索。"
 
-#: single-jetpack-testimonial.php:18
+#: single-jetpack-testimonial.php:19
 msgid "Testimonial By"
 msgstr "推薦文"
 
@@ -1001,19 +1052,12 @@ msgstr "フォローしてください"
 msgid "See all posts"
 msgstr "すべての投稿を見る"
 
-#: template-parts/loop-jetpack-testimonial.php:19
+#: template-parts/loop-jetpack-testimonial.php:23
+#: template-parts/loop-quotes.php:16
 #, php-format
 msgctxt "quotes"
 msgid "Via %s"
 msgstr "%s より"
-
-#: template-parts/loop-jetpack-testimonial.php:31
-msgid "See Full Quote"
-msgstr "すべての引用文を見る"
-
-#: template-parts/loop.php:37
-msgid "Continue Reading"
-msgstr "続きを読む"
 
 #: template-parts/pager.php:12
 #, php-format
@@ -1027,11 +1071,11 @@ msgctxt "pager"
 msgid "Next %s"
 msgstr "前の%s"
 
-#: template-parts/pagination.php:8
+#: template-parts/pagination.php:12
 msgid "Previous Posts"
 msgstr "以前の投稿"
 
-#: template-parts/pagination.php:14
+#: template-parts/pagination.php:18
 msgid "Next Posts"
 msgstr "次の投稿"
 
@@ -1058,6 +1102,12 @@ msgstr "https://takahashifumiki.com"
 #. Template Name of the plugin/theme
 msgid "Full Width"
 msgstr "最大幅最大幅"
+
+#~ msgid "See Full Quote"
+#~ msgstr "すべての引用文を見る"
+
+#~ msgid "Continue Reading"
+#~ msgstr "続きを読む"
 
 #~ msgid "A theme for Takahashi Fumiki"
 #~ msgstr "高橋文樹専用テーマ"

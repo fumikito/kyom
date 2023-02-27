@@ -1,16 +1,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2021-08-08 01:05+0900\n"
+"POT-Creation-Date: 2023-02-27 13:53+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -260,6 +260,54 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:48
+msgid "Quotes Collection Setting"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:51 functions/display.php:95
+msgid "Quotes Collection"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:56
+msgid "Disabled"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:57
+msgid "Enabled"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:91
+msgid "Quotes"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:92
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:180
+msgid "Quote"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:108
+msgid "Author"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:123
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:156 hooks/testimonial.php:90
+msgid "Source"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:158
+msgid "Franz Kafka"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:235
+#, php-format
+msgctxt "quote-source"
+msgid "“%s”"
+msgstr ""
+
+#: app/Fumikito/Kyom/Service/QuotesCollection.php:237
+msgid "Source Unknown"
+msgstr ""
+
 #: app/Fumikito/Kyom/Service/WordPressOrg.php:147
 #, php-format
 msgid "%s theme"
@@ -438,7 +486,7 @@ msgstr ""
 msgid "Display entries in Hatenna Bookmark."
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/Hatebu.php:21 hooks/testimonial.php:66
+#: app/Fumikito/Kyom/Widgets/Hatebu.php:21 hooks/testimonial.php:97
 msgid "URL"
 msgstr ""
 
@@ -617,10 +665,6 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: functions/display.php:95
-msgid "Quotes Collection"
-msgstr ""
-
 #: functions/display.php:120
 #, php-format
 msgid "Search results of \"%s\"."
@@ -666,7 +710,7 @@ msgstr ""
 msgid "Failed to get valid API response."
 msgstr ""
 
-#: functions/socials.php:381
+#: functions/socials.php:382
 msgid "Failed to get valid response."
 msgstr ""
 
@@ -857,27 +901,34 @@ msgctxt "image-sizes"
 msgid "Big Rectangle"
 msgstr ""
 
-#: hooks/testimonial.php:47
+#: hooks/testimonial.php:40
+#, php-format
+msgctxt "cite-paren"
+msgid "“%s”"
+msgstr ""
+
+#: hooks/testimonial.php:43
+msgctxt "author-separator"
+msgid ", "
+msgstr ""
+
+#: hooks/testimonial.php:78
 msgid "Testimonial Source"
 msgstr ""
 
-#: hooks/testimonial.php:52
+#: hooks/testimonial.php:83
 msgid "Position"
 msgstr ""
 
-#: hooks/testimonial.php:55
+#: hooks/testimonial.php:86
 msgid "e.g. Critic"
 msgstr ""
 
-#: hooks/testimonial.php:59
-msgid "Source"
-msgstr ""
-
-#: hooks/testimonial.php:62
+#: hooks/testimonial.php:93
 msgid "e.g. twitter"
 msgstr ""
 
-#: hooks/testimonial.php:69
+#: hooks/testimonial.php:100
 msgid "e.g. https://example.com"
 msgstr ""
 
@@ -889,7 +940,7 @@ msgstr ""
 msgid "Input keywords and enter to search."
 msgstr ""
 
-#: single-jetpack-testimonial.php:18
+#: single-jetpack-testimonial.php:19
 msgid "Testimonial By"
 msgstr ""
 
@@ -991,18 +1042,11 @@ msgstr ""
 msgid "See all posts"
 msgstr ""
 
-#: template-parts/loop-jetpack-testimonial.php:19
+#: template-parts/loop-jetpack-testimonial.php:23
+#: template-parts/loop-quotes.php:16
 #, php-format
 msgctxt "quotes"
 msgid "Via %s"
-msgstr ""
-
-#: template-parts/loop-jetpack-testimonial.php:31
-msgid "See Full Quote"
-msgstr ""
-
-#: template-parts/loop.php:37
-msgid "Continue Reading"
 msgstr ""
 
 #: template-parts/pager.php:12
@@ -1017,11 +1061,11 @@ msgctxt "pager"
 msgid "Next %s"
 msgstr ""
 
-#: template-parts/pagination.php:8
+#: template-parts/pagination.php:12
 msgid "Previous Posts"
 msgstr ""
 
-#: template-parts/pagination.php:14
+#: template-parts/pagination.php:18
 msgid "Next Posts"
 msgstr ""
 

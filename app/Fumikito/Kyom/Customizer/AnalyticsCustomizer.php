@@ -32,6 +32,13 @@ class AnalyticsCustomizer extends CustomizerSetting {
 				],
 				'stored' => 'option',
 			],
+			'kyom_facebook_app_id' => [
+				'label' => __( 'Facebook APP ID', 'kyom' ),
+				'input_attr' => [
+					'placeholder' => '264573556888294',
+				],
+				'stored' => 'option',
+			],
 		];
 	}
 }

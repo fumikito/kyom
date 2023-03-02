@@ -70,19 +70,24 @@ add_action( 'wp_head', function () {
 /**
  * Render facebook & twitter widgets
  *
- * @todo Move app ID to option.
  */
 add_action( 'wp_body_open', function() {
+	$fb_app_id = get_option( 'kyom_facebook_app_id' );
+	if ( $fb_app_id ) :
 	?>
 	<div id="fb-root"></div>
-	<script> ( function ( d, s, id ) {
-			var js, fjs = d.getElementsByTagName( s )[ 0 ];
-			if ( d.getElementById( id ) ) return;
-			js = d.createElement( s );
-			js.id = id;
-			js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=264573556888294";
-			fjs.parentNode.insertBefore( js, fjs );
-		}( document, 'script', 'facebook-jssdk' ) );</script>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId            : '<?php echo esc_js( $fb_app_id ); ?>',
+				autoLogAppEvents : true,
+				xfbml            : true,
+				version          : 'v16.0'
+			});
+		};
+	</script>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js"></script>
+	<?php endif; ?>
 	<script> ! function ( d, s, id ) {
 		var js, fjs = d.getElementsByTagName( s )[ 0 ], p = /^http:/.test( d.location ) ? 'http' : 'https';
 		if ( ! d.getElementById( id ) ) {

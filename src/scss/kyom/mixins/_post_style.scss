@@ -1,486 +1,522 @@
 $img-margin: 1.5em;
 
 
-@mixin post-style(){
+@mixin post-style() {
 
-  // Typography.
-  font-size: $kyom-font-size-article;
-  @include bp-max($breakpoint-small){
-    font-size: $kyom-font-size-article-sm;
-  }
-  line-height: 2.2;
-  font-family: $font-serif;
-  color: $body-font-color;
-  @include night-shift((
-    color: $body-font-night-color
-  ));
+	// Typography.
+	font-size: $kyom-font-size-article;
+	@include bp-max($breakpoint-small) {
+		font-size: $kyom-font-size-article-sm;
+	}
+	line-height: 2.2;
+	font-family: $font-serif;
+	color: $body-font-color;
+	@include night-shift((
+			color: $body-font-night-color
+	));
 
-  // link
-  a:not([class]){
-    &:link {
-      color: $body-font-emphasis-color;
-      text-decoration: underline;
-    }
+	// link
+	a:not([class]) {
+		&:link {
+			color: $body-font-emphasis-color;
+			text-decoration: underline;
+		}
 
-    &:visited {
-      color: $body-font-muted-color;
-      text-decoration: underline;
-    }
+		&:visited {
+			color: $body-font-muted-color;
+			text-decoration: underline;
+		}
 
-    &:hover,
-    &:active {
-      color: $global-link-color;
-      text-decoration: none;
-    }
-  }
+		&:hover,
+		&:active {
+			color: $global-link-color;
+			text-decoration: none;
+		}
+	}
 
-  // Sans-serif
-  .uk-alert-warning,
-  aside,
-  .tmkm-amazon-view {
-    font-family: $font-sans;
-  }
+	// Sans-serif
+	.uk-alert-warning,
+	aside,
+	.tmkm-amazon-view {
+		font-family: $font-sans;
+	}
 
-  p{
-    margin: 0;
-    text-align: justify;
-    text-justify: inter-ideograph;
-    text-indent: 1em;
-    .in-english-please &{
-      text-align: left;
-    }
-    &.no-indent{
-      text-indent: 0;
-    }
-    &.wp-block-subhead{
-      text-indent: 0;
-      font-style: normal;
-      opacity: 1;
-      color: $gray;
-    }
-    &.has-drop-cap{
-      text-indent: 0;
-      &:first-letter{
-        width: auto;
-        min-width: 0;
-        height: auto;
-        font-size: 4em;
-        margin: 0 0.2em 0.2em 0;
-        padding: 0;
-      }
-    }
-  }
+	p {
+		margin: 0;
+		text-align: justify;
+		text-justify: inter-ideograph;
+		text-indent: 1em;
 
-  p.hamazon {
-	text-indent: 0;
-	margin: 3em 0;
-	padding: 1.5em;
-	font-family: $font-sans;
-	border: 1px solid #eee;
-	color: #ccc;
-	font-size: $kyom-font-size-sm;
-  }
+		.in-english-please & {
+			text-align: left;
+		}
 
-  [class*="wp-block-"] {
-	margin-top: 3em;
-	margin-bottom: 3em;
-  }
+		&.no-indent {
+			text-indent: 0;
+		}
 
-  ul,ol{
-    margin: 3em 0;
-    padding: 0 0 0 3em;
+		&.wp-block-subhead {
+			text-indent: 0;
+			font-style: normal;
+			opacity: 1;
+			color: $gray;
+		}
 
-    @include bp-max( $breakpoint-smallphone ) {
-      padding-left: 2em;
-    }
-  }
+		&.has-drop-cap {
+			text-indent: 0;
 
-  dl{
-    @extend .uk-description-list;
-    @extend .uk-description-list-divider;
-    dt{
-      font-family: $font-sans-bold;
-      font-size: 1em;
-      text-transform: none;
-    }
-    dd{
-      color: $body-font-muted-color;
-      line-height: 1.6;
-    }
-  }
+			&:first-letter {
+				width: auto;
+				min-width: 0;
+				height: auto;
+				font-size: 4em;
+				margin: 0 0.2em 0.2em 0;
+				padding: 0;
+			}
+		}
+	}
 
-  // Quotes
-  blockquote {
-    font-style: normal;
-    margin: 3em 0;
-    padding-left: 1.75em;
-    border-left: 0.25em solid #eee;
-    font-size: 1em;
-    color: $body-font-muted-color;
-    &.is-large{
-      margin: 2em 0;
-      font-size: 1.4em;
-    }
-    &,p{
-      line-height: 1.8;
-    }
-    cite{
-      display: block;
-      font-size: 0.75em;
-      margin-top: 0.5em;
-      text-align: right;
-    }
-  }
-  .wp-block-pullquote{
-    position: relative;
-    blockquote{
-      position: relative;
-      border-left: none;
-      padding: 2em;
-      z-index: 3;
-    }
-    &:before, &:after{
-      font-size: 8em;
-      position: absolute;
-      color: $light-gray;
-      font-family: $font-serif;
-    }
-    &:before{
-      content: "“";
-      top: 0;
-      left: 0;
-    }
-    &:after{
-      content: "”";
-      right: 0;
-      bottom: 0;
-    }
-  }
+	p.hamazon {
+		text-indent: 0;
+		margin: 3em 0;
+		padding: 1.5em;
+		font-family: $font-sans;
+		border: 1px solid #eee;
+		color: #ccc;
+		font-size: $kyom-font-size-sm;
+		overflow: auto;
+	}
 
-  q{
-    font-family: $font-sans;
-    color: $body-font-emphasis-color;
-    font-style: normal;
-  }
+	[class*="wp-block-"] {
+		margin-top: 3em;
+		margin-bottom: 3em;
+	}
 
-  aside{
-    font-size: 0.75em;
-    margin: 1.5em 0;
-    padding: 1em;
-    border: 1px dashed #eee;
-    color: $body-font-muted-color;
-    @include night-shift((
-      color: $body-font-night-muted,
-      border-color: #333,
-    ));
-  }
+	ul, ol {
+		margin: 3em 0;
+		padding: 0 0 0 3em;
 
-  address{
-    background-color: $light-gray;
-    padding: 1em;
-    margin: 3em 0;
-    font-family: $font-sans;
-    font-size: 0.85em;
-    p{
-      text-indent: 0;
-    }
-  }
+		@include bp-max($breakpoint-smallphone) {
+			padding-left: 2em;
+		}
+	}
 
-  // Inline elements
-  big{
-    font-weight: bold;
-    color: $body-font-emphasis-color;
-    font-size: 2em;
-  }
+	dl {
+		@extend .uk-description-list;
+		@extend .uk-description-list-divider;
 
-  strong{
-    font-family: $font-sans-bold;
-  }
+		dt {
+			font-family: $font-sans-bold;
+			font-size: 1em;
+			text-transform: none;
+		}
 
-  em{
-    font-style: italic;
-    color: $body-font-emphasis-color;
-    .post-in-cjk &{
-      font-style: normal;
-      text-emphasis: sesame filled;
-    }
-  }
-  pre em{
-    .post-in-cjk &{
-      text-emphasis: none;
-    }
-  }
+		dd {
+			color: $body-font-muted-color;
+			line-height: 1.6;
+		}
+	}
 
-  // Headings
+	// Quotes
+	blockquote {
+		font-style: normal;
+		margin: 3em 0;
+		padding-left: 1.75em;
+		border-left: 0.25em solid #eee;
+		font-size: 1em;
+		color: $body-font-muted-color;
 
-  h1, h2, h3, h4, h5, h6{
-    margin: 2.5em 0 1em;
-    clear: both;
-    font-family: $font-title;
-    font-weight: $base-strong-font-weight;
-    color: $body-font-emphasis-color;
-    @include night-shift((
-      color: $body-font-night-emphasis,
-    ));
-  }
+		&.is-large {
+			margin: 2em 0;
+			font-size: 1.4em;
+		}
 
-  h1 {
-    padding: 0.5em;
-    margin-bottom: 0.5em;
-    border: 1px solid $body-font-emphasis-color;
-    display: table;
-    &.has-text-align-center {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    &.has-text-align-right {
-      margin-left: auto;
-      margin-right: 0;
-    }
-    @include night-shift((
-       border-color: $body-font-night-emphasis,
-    ));
-  }
+		&, p {
+			line-height: 1.8;
+		}
 
-  h2 {
-    padding-bottom: 0.5em;
-    margin-bottom: 0.5em;
-    border-bottom: 1px solid $body-font-emphasis-color;
-    @include night-shift((
-            border-bottom-color: $body-font-night-emphasis,
-    ));
-  }
+		cite {
+			display: block;
+			font-size: 0.75em;
+			margin-top: 0.5em;
+			text-align: right;
+		}
+	}
+	.wp-block-pullquote {
+		position: relative;
 
-  h3 {
-    position: relative;
-    padding-bottom: 0.5em;
-    margin-bottom: 0.5em;
-    &::after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      width: 120px;
-      background-color: $body-font-emphasis-color;
-      bottom: 0;
-      left: 0;
-      @include night-shift((
-          background-color: $body-font-night-emphasis,
-      ));
-    }
-    &.has-align-center,
-    &.has-text-align-center,
-    &[style*="center"]{
-      &:after {
-        left: 50%;
-        margin-left: -60px;
-      }
-    }
-    &.has-align-right,
-    &.has-text-align-right,
-    &[style*="right"]{
-      &:after {
-        left: auto;
-        right: 0;
-      }
-    }
-  }
+		blockquote {
+			position: relative;
+			border-left: none;
+			padding: 2em;
+			z-index: 3;
+		}
 
-  // Table
-  table{
-    clear: both;
-    @extend .uk-table;
-    @extend .uk-table-hover;
-    @extend .uk-table-divider;
-    @extend .uk-table-responsive;
-    font-size: 0.8em;
-    margin: 2em 0;
-    font-family: $font-sans;
-    th{
-      font-family: $font-sans-bold;
-    }
-  }
+		&:before, &:after {
+			font-size: 8em;
+			position: absolute;
+			color: $light-gray;
+			font-family: $font-serif;
+		}
 
-  // images
-  .alignleft,
-  .alignright{
-    margin: $img-margin;
-  }
+		&:before {
+			content: "“";
+			top: 0;
+			left: 0;
+		}
 
-  .alignright {
-    float: right;
-    clear: left;
-    margin-right: 0;
-    & + &{
-      clear: none;
-    }
-  }
-  .alignleft {
-    float: left;
-    clear: both;
-    & + &{
-      clear: none;
-    }
-    margin-left: 0;
-  }
+		&:after {
+			content: "”";
+			right: 0;
+			bottom: 0;
+		}
+	}
 
-  li{
-    ul, ol{
-      margin: 0;
-    }
-  }
+	q {
+		font-family: $font-sans;
+		color: $body-font-emphasis-color;
+		font-style: normal;
+	}
 
-  .aligncenter,
-  div.alignnon,
-  figure.alignnon {
-    margin: $img-margin auto;
-  }
-  img.aligncenter {
-    display: block;
-  }
-  img {
-    max-width: 100%;
-    max-height: 90vh;
-    width: auto;
-    height: auto;
-  }
-  .wp-caption{
-    max-width: 100%;
-    &-text{
-      @extend .uk-text-muted;
-      font-size: $kyom-font-size-sm;
-      font-family: $font-sans;
-      margin: 0.5em 0 0;
-      text-align: center;
-    }
-  }
-  .alignfull,
-  .alignwide {
-    .wp-caption-text {
-      margin-right: 15px;
-      margin-left: 15px;
-    }
-  }
-  .wp-block-image{
-    margin: 2em 0;
-    text-align: center;
-  }
+	aside {
+		font-size: 0.75em;
+		margin: 1.5em 0;
+		padding: 1em;
+		border: 1px dashed #eee;
+		color: $body-font-muted-color;
+		@include night-shift((
+				color: $body-font-night-muted,
+				border-color: #333,
+		));
+	}
 
-  .wp-block-media-text{
-    margin: 3em 0;
-    .wp-block-media-text__content{
-      padding: 0 1em;
-    }
-  }
+	address {
+		background-color: $light-gray;
+		padding: 1em;
+		margin: 3em 0;
+		font-family: $font-sans;
+		font-size: 0.85em;
 
-  .wp-block-cover {
-    margin-top: 3em;
-    margin-bottom: 3em;
-  }
+		p {
+			text-indent: 0;
+		}
+	}
 
-  .wp-block-group{
-    margin-top: 3em;
-    margin-bottom: 3em;
-    &.has-background {
-      padding: 3em;
-    }
-  }
+	// Inline elements
+	big {
+		font-weight: bold;
+		color: $body-font-emphasis-color;
+		font-size: 2em;
+	}
 
-  // embeds
-  iframe{
-    display: block;
-    margin: 3em auto;
-    max-width: 100%;
-  }
-  audio{
-    height: 60px;
-  }
-  video{
+	strong {
+		font-family: $font-sans-bold;
+	}
 
-  }
+	em {
+		font-style: italic;
+		color: $body-font-emphasis-color;
 
-  em{
-    font-size: 1em;
-  }
+		.post-in-cjk & {
+			font-style: normal;
+			text-emphasis: sesame filled;
+		}
+	}
+	pre em {
+		.post-in-cjk & {
+			text-emphasis: none;
+		}
+	}
 
-  .syntaxhighlighter, pre{
-    margin-top: 3em;
-    margin-bottom: 3em;
-    border: none;
-    background-color: $light-gray;
-  }
-  pre.wp-block-verse{
-    background-color: transparent;
-    font-family: $font-serif;
-    padding: 1em;
-    margin: 3em 0;
-    color: $body-font-emphasis-color;
-    font-size: 1.2em;
-  }
+	// Headings
 
-  // File
-  .wp-block-file{
-    text-align: center;
-    padding: 1.5em;
-    background-color: $slightly-gray;
-    margin: 3em 0;
-    position: relative;
-    a:first-child{
-      margin-right: 0.25em;
-    }
-    a.wp-block-file__button:last-child{
-      @extend %post-link-button;
-    }
-  }
+	h1, h2, h3, h4, h5, h6 {
+		margin: 2.5em 0 1em;
+		clear: both;
+		font-family: $font-title;
+		font-weight: $base-strong-font-weight;
+		color: $body-font-emphasis-color;
+		@include night-shift((
+				color: $body-font-night-emphasis,
+		));
+	}
 
-  // Button
-  .wp-block-button{
-    &__link{
-      @extend %post-link-button;
-    }
-    &.is-style-outline{
-      .wp-block-button__link{
-        &:link, &:visited {
-          color: $body-font-emphasis-color;
-          background-color: transparent;
-          border-color: $body-font-emphasis-color;
-          text-decoration: none;
-        }
-        &:hover, &:active {
-          color: #fff;
-          background-color: $body-font-emphasis-color;
-          border-color: $body-font-emphasis-color;
-        }
-      }
-    }
-  }
+	h1 {
+		padding: 0.5em;
+		margin-bottom: 0.5em;
+		border: 1px solid $body-font-emphasis-color;
+		display: table;
 
-  // Separator
-  hr{
-    border-color: $light-gray;
-    width: 50%;
-    margin: 3em auto;
-    &.is-style-wide{
-      width: auto;
-      margin-left: -1 * $container-padding-horizontal;
-      margin-right: -1 * $container-padding-horizontal;
-      @include bp-min( $breakpoint-small ){
-        margin-left: -1 * $container-padding-horizontal-s;
-        margin-right: -1 * $container-padding-horizontal-s;
-      }
-      /* Tablet landscape and bigger */
-      @media (min-width: $breakpoint-medium) {
-          margin-left: -1 * $container-padding-horizontal-m;
-          margin-right: -1 * $container-padding-horizontal-m;
-      }
-    }
-    &-is-style-dots:before{
-      color: $light-gray;
-    }
-  }
+		&.has-text-align-center {
+			margin-left: auto;
+			margin-right: auto;
+		}
 
-  // Vendor.
-  .wp-block-embed-giphy {
-	text-align: center;
-  }
+		&.has-text-align-right {
+			margin-left: auto;
+			margin-right: 0;
+		}
+
+		@include night-shift((
+				border-color: $body-font-night-emphasis,
+		));
+	}
+
+	h2 {
+		padding-bottom: 0.5em;
+		margin-bottom: 0.5em;
+		border-bottom: 1px solid $body-font-emphasis-color;
+		@include night-shift((
+				border-bottom-color: $body-font-night-emphasis,
+		));
+	}
+
+	h3 {
+		position: relative;
+		padding-bottom: 0.5em;
+		margin-bottom: 0.5em;
+
+		&::after {
+			content: "";
+			position: absolute;
+			height: 1px;
+			width: 120px;
+			background-color: $body-font-emphasis-color;
+			bottom: 0;
+			left: 0;
+			@include night-shift((
+					background-color: $body-font-night-emphasis,
+			));
+		}
+
+		&.has-align-center,
+		&.has-text-align-center,
+		&[style*="center"] {
+			&:after {
+				left: 50%;
+				margin-left: -60px;
+			}
+		}
+
+		&.has-align-right,
+		&.has-text-align-right,
+		&[style*="right"] {
+			&:after {
+				left: auto;
+				right: 0;
+			}
+		}
+	}
+
+	// Table
+	table {
+		clear: both;
+		@extend .uk-table;
+		@extend .uk-table-hover;
+		@extend .uk-table-divider;
+		@extend .uk-table-responsive;
+		font-size: 0.8em;
+		margin: 2em 0;
+		font-family: $font-sans;
+
+		th {
+			font-family: $font-sans-bold;
+		}
+	}
+
+	// images
+	.alignleft,
+	.alignright {
+		margin: $img-margin;
+	}
+
+	.alignright {
+		float: right;
+		clear: left;
+		margin-right: 0;
+
+		& + & {
+			clear: none;
+		}
+	}
+	.alignleft {
+		float: left;
+		clear: both;
+
+		& + & {
+			clear: none;
+		}
+
+		margin-left: 0;
+	}
+
+	li {
+		ul, ol {
+			margin: 0;
+		}
+	}
+
+	.aligncenter,
+	div.alignnon,
+	figure.alignnon {
+		margin: $img-margin auto;
+	}
+	img.aligncenter {
+		display: block;
+	}
+	img {
+		max-width: 100%;
+		max-height: 90vh;
+		width: auto;
+		height: auto;
+	}
+	.wp-caption {
+		max-width: 100%;
+
+		&-text {
+			@extend .uk-text-muted;
+			font-size: $kyom-font-size-sm;
+			font-family: $font-sans;
+			margin: 0.5em 0 0;
+			text-align: center;
+		}
+	}
+	.alignfull,
+	.alignwide {
+		.wp-caption-text {
+			margin-right: 15px;
+			margin-left: 15px;
+		}
+	}
+	.wp-block-image {
+		margin: 2em 0;
+		text-align: center;
+	}
+
+	.wp-block-media-text {
+		margin: 3em 0;
+
+		.wp-block-media-text__content {
+			padding: 0 1em;
+		}
+	}
+
+	.wp-block-cover {
+		margin-top: 3em;
+		margin-bottom: 3em;
+	}
+
+	.wp-block-group {
+		margin-top: 3em;
+		margin-bottom: 3em;
+
+		&.has-background {
+			padding: 3em;
+		}
+	}
+
+	// embeds
+	iframe {
+		display: block;
+		margin: 3em auto;
+		max-width: 100%;
+	}
+	audio {
+		height: 60px;
+	}
+	video {
+
+	}
+
+	em {
+		font-size: 1em;
+	}
+
+	.syntaxhighlighter, pre {
+		margin-top: 3em;
+		margin-bottom: 3em;
+		border: none;
+		background-color: $light-gray;
+	}
+	pre.wp-block-verse {
+		background-color: transparent;
+		font-family: $font-serif;
+		padding: 1em;
+		margin: 3em 0;
+		color: $body-font-emphasis-color;
+		font-size: 1.2em;
+	}
+
+	// File
+	.wp-block-file {
+		text-align: center;
+		padding: 1.5em;
+		background-color: $slightly-gray;
+		margin: 3em 0;
+		position: relative;
+
+		a:first-child {
+			margin-right: 0.25em;
+		}
+
+		a.wp-block-file__button:last-child {
+			@extend %post-link-button;
+		}
+	}
+
+	// Button
+	.wp-block-button {
+		&__link {
+			@extend %post-link-button;
+		}
+
+		&.is-style-outline {
+			.wp-block-button__link {
+				&:link, &:visited {
+					color: $body-font-emphasis-color;
+					background-color: transparent;
+					border-color: $body-font-emphasis-color;
+					text-decoration: none;
+				}
+
+				&:hover, &:active {
+					color: #fff;
+					background-color: $body-font-emphasis-color;
+					border-color: $body-font-emphasis-color;
+				}
+			}
+		}
+	}
+
+	// Separator
+	hr {
+		border-color: $light-gray;
+		width: 50%;
+		margin: 3em auto;
+
+		&.is-style-wide {
+			width: auto;
+			margin-left: -1 * $container-padding-horizontal;
+			margin-right: -1 * $container-padding-horizontal;
+			@include bp-min($breakpoint-small) {
+				margin-left: -1 * $container-padding-horizontal-s;
+				margin-right: -1 * $container-padding-horizontal-s;
+			}
+			/* Tablet landscape and bigger */
+			@media (min-width: $breakpoint-medium) {
+				margin-left: -1 * $container-padding-horizontal-m;
+				margin-right: -1 * $container-padding-horizontal-m;
+			}
+		}
+
+		&-is-style-dots:before {
+			color: $light-gray;
+		}
+	}
+
+	// Vendor.
+	.wp-block-embed-giphy {
+		text-align: center;
+	}
 
 }

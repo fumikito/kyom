@@ -41,7 +41,25 @@ HTML;
 } );
 
 /**
- * Add Atutomatic ad of Google Adsense
+ * Display related ads.
+ */
+add_action( 'kyom_content_footer', function () {
+	if ( ! function_exists( 'related_post_patch' ) ) {
+		return;
+	}
+	$result = get_the_related_post_patch();
+	if ( ! $result ) {
+		return;
+	}
+	echo <<<HTML
+<div class="uk-margin-medium-bottom">
+{$result}
+</div>
+HTML;
+} );
+
+/**
+ * Add Automatic ad of Google Adsense
  */
 add_action( 'wp_head', function() {
 	if ( ! ( $client_id = get_option( 'kyom_ad_automatic' ) ) ) {

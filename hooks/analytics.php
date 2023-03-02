@@ -13,6 +13,7 @@ add_action( 'wp_head', function () {
 	if ( ! ( $tracking_id = get_option( 'kyom_tracking_id' ) ) ) {
 		return;
 	}
+	$optiona_tag = get_option( 'kyom_tracking_id_option' );
 	// Define page type.
 	if ( is_front_page() ) {
 		$page_type = 'front';
@@ -47,19 +48,21 @@ add_action( 'wp_head', function () {
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', '<?= esc_attr( $tracking_id ) ?>', {
+		var config = {
 			'custom_map': {
 				'dimension1': 'role',
 				'dimension2': 'web_font',
 				'dimension3': 'post_type',
-		  }
-	  } );
-      <?php if ( is_singular() ) : ?>
-	  gtag('event', 'custom_dimension', {
-	  	  'role': document.cookie.match( /ctwp_uuid/ ) ? 'subscriber' : 'anonymous',
-		  'post_type': '<?php echo esc_js( $page_type ) ?>',
-	  } );
-	  <?php endif; ?>
+			}
+		};
+		<?php if ( is_singular() ) : ?>
+		config.role = document.cookie.match(/ctwp_uuid/) ? 'subscriber' : 'anonymous';
+		config.post_type = '<?php echo esc_js( $page_type ) ?>';
+		<?php endif; ?>
+		gtag('config', '<?= esc_attr( $tracking_id ) ?>', config );
+		<?php if ( $optiona_tag ) : ?>
+		gtag('config', '<?= esc_attr( $optiona_tag ) ?>', config );
+		<?php endif; ?>
 	</script>
 	<?php
 }, 9999 );

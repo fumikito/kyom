@@ -71,7 +71,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install NPM
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -82,13 +82,13 @@ jobs:
         id: deploymaster
         uses: Pendect/action-rsyncer@v1.1.0
         env:
-          DEPLOY_KEY: ${{secrets.HAMETUHA_GITHUB_ACTIONS_KEY}}
+          DEPLOY_KEY: ${{secrets.ID_RSA_FUMIKI_VPS_SAKURA}}
         with:
           flags: '-rptv --checksum --delete'
           options: ''
           ssh_options: ''
           src: './'
-          dest: 'ec2-user@direct.takahashifumiki.com:/var/www/vhosts/takahashifumiki.com/wp-content/themes/kyom/'
+          dest: 'fumiki@fumiki.sakura.ne.jp:/home/fumiki/www/main/wp-content/themes/kyom/'
 
       - name: Display Deploy Status
         run: echo "${{ steps.deploymaster.outputs.status }}"
@@ -110,7 +110,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install NPM
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 

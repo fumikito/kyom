@@ -13,7 +13,7 @@ add_action( 'wp_head', function () {
 	if ( ! ( $tracking_id = get_option( 'kyom_tracking_id' ) ) ) {
 		return;
 	}
-	$optiona_tag = get_option( 'kyom_tracking_id_option' );
+	$optional_tag = get_option( 'kyom_tracking_id_option' );
 	// Define page type.
 	if ( is_front_page() ) {
 		$page_type = 'front';
@@ -60,8 +60,8 @@ add_action( 'wp_head', function () {
 		config.post_type = '<?php echo esc_js( $page_type ) ?>';
 		<?php endif; ?>
 		gtag('config', '<?= esc_attr( $tracking_id ) ?>', config );
-		<?php if ( $optiona_tag ) : ?>
-		gtag('config', '<?= esc_attr( $optiona_tag ) ?>', config );
+		<?php if ( $optional_tag ) : ?>
+		gtag('config', '<?= esc_attr( $optional_tag ) ?>', config );
 		<?php endif; ?>
 	</script>
 	<?php

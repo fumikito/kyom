@@ -12,14 +12,23 @@ use Fumikito\Kyom\Pattern\WidgetBase;
  */
 class YoutubeChannel extends WidgetBase {
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function name(): string {
 		return __( 'YouTube Channel', 'kyom' );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function description() {
 		return __( 'Display YouTube channel widget. Needs API Key and Channel ID.', 'kyom' );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_params() {
 		return array_merge( parent::get_params(), [
             'layout' => [
@@ -33,7 +42,9 @@ class YoutubeChannel extends WidgetBase {
         ] );
 	}
 
-
+	/**
+	 * {@inheritdoc}
+	 */
 	public function widget( $args, $instance ) {
 		$channel  = kyom_get_youtube_channel();
 		if ( is_wp_error( $channel ) ) {

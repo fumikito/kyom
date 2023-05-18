@@ -104,6 +104,23 @@ function kyom_get_content_length( $post = null ) {
 }
 
 /**
+ * Is post updated after published?
+ *
+ * @param null|int|WP_Post $post Post object.
+ * @return bool
+ */
+function kyom_is_updated( $post = null ) {
+	$post      = get_post( $post );
+	if ( 'publish' !== $post->post_status ) {
+		return false;
+	}
+	$updated   = strtotime( $post->post_modified );
+	$published = strtotime( $post->post_date );
+	$diff      = apply_filters( 'kyom_updated_post_time', 86400 * 7, $post );
+	return $updated > $published + $diff;
+}
+
+/**
  * Get formatted content length.
  *
  * @param null|int|WP_Post $post
@@ -190,4 +207,45 @@ function kyom_parse_string( $string ) {
 		return $response;
 	}
 	return json_decode( $response['body'], true );
+}
+
+/**
+ * Get attachment size
+ *
+ * @param bool             $raw  If true, return int.
+ * @param null|int|WP_Post $post Post object.
+ *
+ * @return string|int
+ */
+function kyom_attachment_size( $raw = false, $post = null ) {
+	$attachment = get_post( $post );
+	if ( ! is_attachment( $post ) ) {
+		return $raw ? 0 : 'N/A';
+	}
+	$file = get_attached_file( $attachment->ID );
+	if ( ! $file ) {
+		return $raw ? 0 : 'N/A';
+	}
+	$size = filesize( $file );
+	if ( false === $size ) {
+		return $raw ? 0 : 'N/A';
+	}
+	if ( $raw ) {
+		return $size;
+	}
+	$suffix = 'B';
+	foreach ( [
+		'TB' => 4,
+		'GB' => 3,
+		'MB' => 2,
+		'KB' => 1,
+	] as $unit => $pow ) {
+		$min = pow( 1024, $pow );
+		if ( $size > $min ) {
+			$suffix = $unit;
+			$size   = round( $size / $min, 2 );
+			break;
+		}
+	}
+	return $size . $suffix;
 }

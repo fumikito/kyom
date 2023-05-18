@@ -372,18 +372,22 @@ $img-margin: 1.5em;
 	}
 	.wp-caption {
 		max-width: 100%;
-
-		&-text {
-			@extend .uk-text-muted;
-			font-size: $kyom-font-size-sm;
-			font-family: $font-sans;
-			margin: 0.5em 0 0;
-			text-align: center;
-		}
+	}
+	.wp-element-caption,
+	.wp-caption-text {
+		@extend .uk-text-muted;
+		font-size: 0.85em;
+		font-family: $font-sans;
+		margin: 0.5em 0 0;
+		text-align: center;
+	}
+	.wp-block-file__embed {
+		margin-bottom: 0.5em;
 	}
 	.alignfull,
 	.alignwide {
-		.wp-caption-text {
+		.wp-caption-text,
+		.wp-element-caption {
 			margin-right: 15px;
 			margin-left: 15px;
 		}

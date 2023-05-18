@@ -4,27 +4,27 @@
 
 const $ = jQuery;
 
-const fitHeight = function ( $elem ) {
+const fitHeight = function( $elem ) {
 	let maximum = 0;
 	let length = 0;
-	$elem.each( function ( index, el ) {
+	$elem.each( function( index, el ) {
 		maximum = Math.max( $( el ).height(), maximum );
 		length++;
-	} );
+	});
 	$elem.css( 'height', maximum + 'px' );
 };
 
-$.fn.fitHeight = function () {
+$.fn.fitHeight = function() {
 	const self = this;
 	fitHeight( self );
 	let timer = null;
-	$( window ).resize( function () {
+	$( window ).resize( function() {
 		if ( timer ) {
 			clearTimeout( timer );
 		}
 		self.css( 'height', 'auto' );
-		timer = setTimeout( function () {
+		timer = setTimeout( function() {
 			fitHeight( self );
 		}, 10 );
-	} );
+	});
 };

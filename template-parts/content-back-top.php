@@ -7,8 +7,8 @@
 	}
 	?>
 	<div class="kyom-archive-back entry-container uk-text-center" uk-margin>
-		<a class="uk-button uk-button-default uk-button-large" href="<?= esc_url( $link ) ?>">
-			<?= esc_html( $label ) ?>
+		<a class="uk-button uk-button-default uk-button-large" href="<?php echo esc_url( $link ) ?>">
+			<?php echo esc_html( $label ) ?>
 		</a>
 	</div>
 <?php endif; ?>

@@ -47,6 +47,10 @@
 		color: $kyom-header-title-color;
 		color: var(--header-title-color);
 
+		&.no-thumbnail {
+			min-height: auto;
+		}
+
 		&-title {
 			position: relative;
 			z-index: 3;
@@ -169,26 +173,8 @@
 
 	&-meta {
 		margin-top: 1em;
-		position: absolute;
-		z-index: 2;
-		bottom: 0;
-		left: 40px;
-		right: 40px;
-		@include bp-max($breakpoint-medium) {
-			left: 30px;
-			right: 30px;
-		}
-		@include bp-max($breakpoint-smallphone) {
-			position: relative;
-			left: auto;
-			right: auto;
-			bottom: auto;
-
-			li {
-				display: block;
-				margin-left: 0 !important;
-			}
-		}
+		position: relative;
+		z-index: 3;
 
 		&-list {
 			padding: 0;

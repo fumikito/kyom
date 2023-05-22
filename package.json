@@ -54,7 +54,7 @@
     "imagemin-pngquant": "^9.0.0",
     "jest": "^27.0",
     "merge-stream": "^2.0.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^9.0.0",
     "regenerator-runtime": "^0.13.7",
     "uikit": "^3.7.2",
     "vinyl-named": "^1.1.0",

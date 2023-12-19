@@ -8,6 +8,7 @@ const named = require( 'vinyl-named' );
 const browserSync = require( 'browser-sync' ).create();
 const pngquant = require( 'imagemin-pngquant' );
 const mozjpeg = require( 'imagemin-mozjpeg' );
+const imageminPngquant = require("imagemin-pngquant");
 
 // Sass
 gulp.task( 'sass', function () {
@@ -89,23 +90,28 @@ gulp.task( 'copylib', function () {
 } );
 
 // Image min
-gulp.task( 'imagemin', function () {
+async function images_to_dist() {
+	const imagemin = await import('gulp-imagemin');
+	const imagePlugins = [
+		pngquant( {
+			quality: '65-80',
+			speed: 1,
+			floyd: 0
+		} ),
+		mozjpeg( {
+			quality: 85,
+			progressive: true
+		} ),
+		imagemin.svgo(),
+		imagemin.optipng(),
+		imagemin.gifsicle(),
+	];
 	return gulp.src( './src/img/**/*' )
-		.pipe( $.imagemin( [
-			pngquant( {
-				quality: '65-80',
-				speed: 1,
-				floyd: 0
-			} ),
-			mozjpeg( {
-				quality: 85,
-				progressive: true
-			} ),
-			$.imagemin.svgo(),
-			$.imagemin.optipng(),
-			$.imagemin.gifsicle()
-		], { verbose: true } ) )
+		.pipe( imagemin.default( imagePlugins, { verbose: true } ) )
 		.pipe( gulp.dest( './assets/img' ) );
+}
+gulp.task( 'imagemin', function ( done ) {
+	return images_to_dist();
 } );
 
 // Pug task

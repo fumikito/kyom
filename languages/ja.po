@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2023-02-27 13:53+0900\n"
-"PO-Revision-Date: 2023-02-27 13:55+0900\n"
+"POT-Creation-Date: 2023-05-19 17:38+0900\n"
+"PO-Revision-Date: 2023-05-19 17:39+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language: ja\n"
@@ -226,6 +226,26 @@ msgstr "解析"
 #: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:22
 msgid "Tracking ID"
 msgstr "トラッキングID"
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:29
+msgid "Optional Tracking ID"
+msgstr "追加のトラッキングID"
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:36
+msgid "Facebook APP ID"
+msgstr "Facebook アプリID"
+
+#: app/Fumikito/Kyom/Customizer/DesignCustomizer.php:19
+msgid "Design"
+msgstr "デザイン"
+
+#: app/Fumikito/Kyom/Customizer/DesignCustomizer.php:27
+msgid "Default Eyecatch"
+msgstr "デフォルトアイキャッチ"
+
+#: app/Fumikito/Kyom/Customizer/DesignCustomizer.php:28
+msgid "Default eyecatch for post object."
+msgstr "投稿のデフォルトアイキャッチ"
 
 #: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:14
 #: functions/users.php:53
@@ -504,24 +524,24 @@ msgctxt "hatebu"
 msgid "New"
 msgstr "新着"
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:16
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:19
 msgid "YouTube Channel"
 msgstr "YouTube チャンネル"
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:20
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:26
 msgid "Display YouTube channel widget. Needs API Key and Channel ID."
 msgstr ""
 "YouTubeチャンネルウィジェットを表示します。APIキーとチャンネルIDが必要です。"
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:26
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:35
 msgid "Subscribe Button"
 msgstr "チャンネル登録ボタン"
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:29
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:38
 msgid "Default"
 msgstr "デフォルトデフォルト"
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:30
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:39
 msgid "Wide"
 msgstr "ワイド"
 
@@ -586,19 +606,19 @@ msgstr "コメントは閉じられています。"
 msgid "See Also"
 msgstr "あわせて読みたい"
 
-#: functions/content.php:115
+#: functions/content.php:132
 #, php-format
 msgid "%s letter"
 msgid_plural "%s letters"
 msgstr[0] "%s文字"
 
-#: functions/content.php:117
+#: functions/content.php:134
 #, php-format
 msgid "%s word"
 msgid_plural "%s words"
 msgstr[0] "%s単語"
 
-#: functions/content.php:160
+#: functions/content.php:177
 #, php-format
 msgid "%s minute to read"
 msgid_plural "%s minutes to read"
@@ -953,15 +973,6 @@ msgstr "キーワードを入力して検索。"
 msgid "Testimonial By"
 msgstr "推薦文"
 
-#: singular.php:63
-#, php-format
-msgid ""
-"This post is published %s ago. Please consider the content may contain "
-"invalid information."
-msgstr ""
-"この投稿は %s 前に公開されました。いまではもう無効になった内容を含んでいるか"
-"もしれないことをご了承ください。"
-
 #: template-parts/archive-header.php:22
 #, php-format
 msgid "%1$s found and now %2$d page of %3$s. Try detailed search."
@@ -1035,22 +1046,9 @@ msgstr "または"
 msgid "Contact"
 msgstr "お問い合わせ"
 
-#: template-parts/footer-page.php:3
-msgid "Related Pages"
-msgstr "関連ページ"
-
-#: template-parts/footer-post.php:26
-msgctxt "author-box"
-msgid "Article Written By:"
-msgstr "文責・"
-
-#: template-parts/footer-post.php:36
-msgid "Follow Me Via:"
-msgstr "フォローしてください"
-
-#: template-parts/footer-post.php:52
-msgid "See all posts"
-msgstr "すべての投稿を見る"
+#: template-parts/content-meta.php:13
+msgid "Last Updated: "
+msgstr "最終更新： "
 
 #: template-parts/loop-jetpack-testimonial.php:23
 #: template-parts/loop-quotes.php:16
@@ -1078,6 +1076,45 @@ msgstr "以前の投稿"
 #: template-parts/pagination.php:18
 msgid "Next Posts"
 msgstr "次の投稿"
+
+#: template-parts/singular-footer-page.php:3
+msgid "Related Pages"
+msgstr "関連ページ"
+
+#: template-parts/singular-footer-post.php:26
+msgctxt "author-box"
+msgid "Article Written By:"
+msgstr "文責・"
+
+#: template-parts/singular-footer-post.php:36
+msgid "Follow Me Via:"
+msgstr "フォローしてください"
+
+#: template-parts/singular-footer-post.php:52
+msgid "See all posts"
+msgstr "すべての投稿を見る"
+
+#: template-parts/singular-header-attachment.php:15
+msgid "Attached File: "
+msgstr "添付ファイル："
+
+#: template-parts/singular-main-attachment.php:52
+msgid "Other Files"
+msgstr "その他のファイル"
+
+#: template-parts/singular-main-attachment.php:81
+#, php-format
+msgid "&raquo; See parent article \"%s\" &laquo;"
+msgstr "&raquo; 元の記事「\"%s\"」を読む &laquo;"
+
+#: template-parts/singular-main.php:13
+#, php-format
+msgid ""
+"This post is published %s ago. Please consider the content may contain "
+"invalid information."
+msgstr ""
+"この投稿は %s 前に公開されました。いまではもう無効になった内容を含んでいるか"
+"もしれないことをご了承ください。"
 
 #. Theme Name of the plugin/theme
 msgid "Kyom"

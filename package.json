@@ -40,7 +40,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^6.0.0",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "^8.0.0",
     "gulp-jshint": "^2.0",
     "gulp-load-plugins": "^2.0.4",
     "gulp-notify": "^4.0.0",

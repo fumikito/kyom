@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kyom\n"
-"POT-Creation-Date: 2023-02-27 13:53+0900\n"
+"POT-Creation-Date: 2023-05-19 17:38+0900\n"
 "PO-Revision-Date: 2018-11-12 23:59+0900\n"
 "Last-Translator: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
 "Language-Team: Takahashi Fumiki <takahashi.fumiki@hametuha.co.jp>\n"
@@ -229,6 +229,26 @@ msgstr ""
 
 #: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:22
 msgid "Tracking ID"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:29
+msgid "Optional Tracking ID"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/AnalyticsCustomizer.php:36
+msgid "Facebook APP ID"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/DesignCustomizer.php:19
+msgid "Design"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/DesignCustomizer.php:27
+msgid "Default Eyecatch"
+msgstr ""
+
+#: app/Fumikito/Kyom/Customizer/DesignCustomizer.php:28
+msgid "Default eyecatch for post object."
 msgstr ""
 
 #: app/Fumikito/Kyom/Customizer/NewsletterCustomizer.php:14
@@ -505,23 +525,23 @@ msgctxt "hatebu"
 msgid "New"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:16
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:19
 msgid "YouTube Channel"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:20
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:26
 msgid "Display YouTube channel widget. Needs API Key and Channel ID."
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:26
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:35
 msgid "Subscribe Button"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:29
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:38
 msgid "Default"
 msgstr ""
 
-#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:30
+#: app/Fumikito/Kyom/Widgets/YoutubeChannel.php:39
 msgid "Wide"
 msgstr ""
 
@@ -583,21 +603,21 @@ msgstr ""
 msgid "See Also"
 msgstr ""
 
-#: functions/content.php:115
+#: functions/content.php:132
 #, php-format
 msgid "%s letter"
 msgid_plural "%s letters"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/content.php:117
+#: functions/content.php:134
 #, php-format
 msgid "%s word"
 msgid_plural "%s words"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions/content.php:160
+#: functions/content.php:177
 #, php-format
 msgid "%s minute to read"
 msgid_plural "%s minutes to read"
@@ -944,13 +964,6 @@ msgstr ""
 msgid "Testimonial By"
 msgstr ""
 
-#: singular.php:63
-#, php-format
-msgid ""
-"This post is published %s ago. Please consider the content may contain "
-"invalid information."
-msgstr ""
-
 #: template-parts/archive-header.php:22
 #, php-format
 msgid "%1$s found and now %2$d page of %3$s. Try detailed search."
@@ -1025,21 +1038,8 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: template-parts/footer-page.php:3
-msgid "Related Pages"
-msgstr ""
-
-#: template-parts/footer-post.php:26
-msgctxt "author-box"
-msgid "Article Written By:"
-msgstr ""
-
-#: template-parts/footer-post.php:36
-msgid "Follow Me Via:"
-msgstr ""
-
-#: template-parts/footer-post.php:52
-msgid "See all posts"
+#: template-parts/content-meta.php:13
+msgid "Last Updated: "
 msgstr ""
 
 #: template-parts/loop-jetpack-testimonial.php:23
@@ -1067,6 +1067,43 @@ msgstr ""
 
 #: template-parts/pagination.php:18
 msgid "Next Posts"
+msgstr ""
+
+#: template-parts/singular-footer-page.php:3
+msgid "Related Pages"
+msgstr ""
+
+#: template-parts/singular-footer-post.php:26
+msgctxt "author-box"
+msgid "Article Written By:"
+msgstr ""
+
+#: template-parts/singular-footer-post.php:36
+msgid "Follow Me Via:"
+msgstr ""
+
+#: template-parts/singular-footer-post.php:52
+msgid "See all posts"
+msgstr ""
+
+#: template-parts/singular-header-attachment.php:15
+msgid "Attached File: "
+msgstr ""
+
+#: template-parts/singular-main-attachment.php:52
+msgid "Other Files"
+msgstr ""
+
+#: template-parts/singular-main-attachment.php:81
+#, php-format
+msgid "&raquo; See parent article \"%s\" &laquo;"
+msgstr ""
+
+#: template-parts/singular-main.php:13
+#, php-format
+msgid ""
+"This post is published %s ago. Please consider the content may contain "
+"invalid information."
 msgstr ""
 
 #. Theme Name of the plugin/theme

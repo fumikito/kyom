@@ -3,6 +3,7 @@
 .eslintrc
 .distignore
 .git
+.gitattributes
 .github
 .gitignore
 .node-version

@@ -437,6 +437,12 @@ $img-margin: 1.5em;
 		font-size: 1em;
 	}
 
+	code,
+	kbd,
+	samp {
+		font-size: .95em;
+	}
+
 	.syntaxhighlighter, pre {
 		margin-top: 3em;
 		margin-bottom: 3em;

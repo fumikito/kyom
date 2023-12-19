@@ -15,6 +15,9 @@
 		display: none;
 		@include bp-max($breakpoint-ipad-and-under) {
 			display: flex;
+
+			padding-left: 15px;
+			padding-right: 15px;
 		}
 	}
 
@@ -128,12 +131,14 @@
 					transition: width .3s $ease-in-out-sine;
 				}
 
-				&:link, &:visited {
+				&:link,
+				&:visited {
 					color: #fff;
 					text-decoration: none;
 				}
 
-				&:hover, &:active {
+				&:hover,
+				&:active {
 					color: #fff;
 					text-decoration: none;
 
@@ -157,6 +162,18 @@
 	&.jp + &.ascii {
 		margin-left: 0.15em;
 	}
+}
+
+// Navigation
+.kyom-header-navs {
+	ul {
+		gap: 0;
+
+		> li > a {
+			padding: 0 15px;
+		}
+	}
+
 }
 
 .kyom-navigations {

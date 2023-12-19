@@ -19,7 +19,7 @@
     "gulp": "gulp",
     "package": "gulp build",
     "fix": "eslint --fix src/js",
-	"lint:js": "gulp eslint",
+    "lint:js": "gulp eslint",
     "html": "gulp html",
     "test": "jest"
   },

@@ -59,7 +59,7 @@
     "uikit": "^3.7.2",
     "vinyl-named": "^1.1.0",
     "webpack": "^5.0.0",
-    "webpack-stream": "^6.0.0"
+    "webpack-stream": "^7.0.0"
   },
   "jest": {
     "browser": true

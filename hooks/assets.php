@@ -101,6 +101,10 @@ add_action( 'init', function() {
 	if ( is_admin() || ( isset( $_SERVER['SCRIPT_FILENAME'] ) && 'wp-login.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) ) {
 		return;
 	}
+    // If this is CLI, skip.
+    if ( defined( 'WP_CLI' ) && WP_CLI ) {
+        return;
+    }
 	// Store current version and url.
 	global $wp_scripts;
 	$jquery = $wp_scripts->registered['jquery-core'];

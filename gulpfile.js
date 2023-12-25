@@ -8,7 +8,6 @@ const named = require( 'vinyl-named' );
 const browserSync = require( 'browser-sync' ).create();
 const pngquant = require( 'imagemin-pngquant' );
 const mozjpeg = require( 'imagemin-mozjpeg' );
-const imageminPngquant = require("imagemin-pngquant");
 
 // Sass
 gulp.task( 'sass', function () {

@@ -83,6 +83,9 @@ jobs:
       - name: Lint Assets
         run: npm run lint:js
 
+      - name: Build Packages
+        run: npm run build
+
   status:
     name: Status Check
     needs: [ test, assets ]

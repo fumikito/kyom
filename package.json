@@ -55,7 +55,7 @@
     "jest": "^29.6",
     "merge-stream": "^2.0.0",
     "node-sass": "^9.0.0",
-    "regenerator-runtime": "^0.13.7",
+    "regenerator-runtime": "^0.14.1",
     "uikit": "^3.7.2",
     "vinyl-named": "^1.1.0",
     "webpack": "^5.0.0",

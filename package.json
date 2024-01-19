@@ -37,7 +37,7 @@
     "fg-loadcss": "^2.1.0",
     "fitie": "^1.0.0",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
+    "gulp-autoprefixer": "^9.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^6.0.0",
     "gulp-imagemin": "^8.0.0",

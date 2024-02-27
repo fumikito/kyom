@@ -10,9 +10,9 @@ use Fumikito\Kyom\Pattern\BlockBase;
  * @package Fumikito\Kyom\Blocks
  */
 class Testimonials extends BlockBase {
-	
+
 	protected $icon = 'dashicons-star-filled';
-	
+
 	/**
 	 * Check Jetpack is activated.
 	 *
@@ -21,15 +21,15 @@ class Testimonials extends BlockBase {
 	protected function is_available() {
 		return post_type_exists( 'jetpack-testimonial' );
 	}
-	
+
 	protected function get_name(): string {
 		return 'kyom-testimonial';
 	}
-	
+
 	protected function get_label(): string {
 		return __( 'Testimonials', 'kyom' );
 	}
-	
+
 	protected function get_params(): array {
 		return [
 			'number' => [
@@ -58,7 +58,7 @@ class Testimonials extends BlockBase {
 			],
 		];
 	}
-	
+
 	protected function render( $atts = [], $content = '' ) {
 		$args = [
 			'post_type' => 'jetpack-testimonial',
@@ -86,7 +86,7 @@ class Testimonials extends BlockBase {
 					<ul class="uk-slider-items uk-grid">
 						<?php foreach ( $posts as $post ) : setup_postdata( $post ); ?>
 							<li class="uk-width-3-4 uk-width-2-3@m">
-								<a href="<?php the_permalink( $post ) ?>">
+								<a href="<?php the_permalink( $post ) ?>" class="testimonial-slider-item">
 								<div class="uk-card uk-card-default">
 									<div class="uk-card-body">
 										<h3 class="uk-card-title">
@@ -115,6 +115,6 @@ class Testimonials extends BlockBase {
 		ob_end_clean();
 		return $content;
 	}
-	
-	
+
+
 }

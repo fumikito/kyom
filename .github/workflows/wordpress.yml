@@ -42,7 +42,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist
 
       - name: Start MySQL
         run: |
@@ -61,21 +61,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup PHP with composer v2
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          tools: composer
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install NPM
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-
-      - name: Install Dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Install NPM Dependencies
         run: npm install

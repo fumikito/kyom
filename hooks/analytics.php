@@ -55,10 +55,8 @@ add_action( 'wp_head', function () {
 				'dimension3': 'post_type',
 			}
 		};
-		<?php if ( is_singular() ) : ?>
 		config.role = document.cookie.match(/ctwp_uuid/) ? 'subscriber' : 'anonymous';
 		config.post_type = '<?php echo esc_js( $page_type ) ?>';
-		<?php endif; ?>
 		gtag('config', '<?= esc_attr( $tracking_id ) ?>', config );
 		<?php if ( $optional_tag ) : ?>
 		gtag('config', '<?= esc_attr( $optional_tag ) ?>', config );
@@ -82,7 +80,7 @@ add_action( 'wp_body_open', function() {
 				appId            : '<?php echo esc_js( $fb_app_id ); ?>',
 				autoLogAppEvents : true,
 				xfbml            : true,
-				version          : 'v16.0'
+				version          : 'v23.0'
 			});
 		};
 	</script>
@@ -98,4 +96,26 @@ add_action( 'wp_body_open', function() {
 		}
 	} ( document, 'script', 'twitter-wjs' );</script>
 	<?php
+} );
+
+/**
+ * Override ga communicator values.
+ */
+add_filter( 'ga_communicator_predefined_option', function( $option, $key ) {
+	switch ( $key ) {
+		case 'ga4-property':
+			$map = [
+				'ga4-property' => 'kyom_ga4_id',
+			];
+			return get_option( $map[ $key ] );
+		default:
+			return $option;
+	}
+}, 10, 2 );
+
+/**
+ * Override ga service account.
+ */
+add_filter( 'ga_communicator_predefined_key', function() {
+	return get_option( 'kyom_ga4_key' );
 } );

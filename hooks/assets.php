@@ -96,7 +96,7 @@ add_filter( 'script_loader_tag', function( $tag, $handle ) {
 /**
  * Move jQuery to footer
  */
-add_action( 'init', function() {
+add_action( 'wp_default_scripts', function( WP_Scripts $wp_scripts ) {
 	// Avoid admin and login screen.
 	if ( is_admin() || ( isset( $_SERVER['SCRIPT_FILENAME'] ) && 'wp-login.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) ) {
 		return;
@@ -106,17 +106,19 @@ add_action( 'init', function() {
         return;
     }
 	// Store current version and url.
-	global $wp_scripts;
+	if ( ! isset( $wp_scripts->registered['jquery-core'] ) ) {
+		return;
+	}
 	$jquery = $wp_scripts->registered['jquery-core'];
 	$jquery_ver = $jquery->ver;
 	$jquery_src = $jquery->src;
 	// Remove current version.
-	wp_deregister_script( 'jquery' );
-	wp_deregister_script( 'jquery-core' );
+	$wp_scripts->remove( 'jquery' );
+	$wp_scripts->remove( 'jquery-core' );
 	// Register again.
-	wp_register_script( 'jquery', false, ['jquery-core'], $jquery_ver, true );
-	wp_register_script( 'jquery-core', $jquery_src, [], $jquery_ver, true );
-}, 1 );
+	$wp_scripts->add( 'jquery', false, ['jquery-core'], $jquery_ver, 1 );
+	$wp_scripts->add( 'jquery-core', $jquery_src, [], $jquery_ver, 1 );
+}, 11 );
 
 /**
  * Detect if style is "critical"
@@ -126,45 +128,25 @@ add_action( 'init', function() {
  * @return bool
  */
 function kyom_is_critical_css( $handle ) {
-	return apply_filters( 'kyom_is_critical_css', in_array( $handle, [ 'uikit' ] ), $handle );
-}
-
-/**
- * Check if preloader exits.
- */
-function kyom_preloader_exists() {
-	return file_exists( get_template_directory() . '/assets/js/cssrelpreload.min.js' );
+	return apply_filters( 'kyom_is_critical_css', in_array( $handle, [ 'uikit', 'login' ] ), $handle );
 }
 
 /**
  * Rewrite style tags for preload.
  */
 add_filter( 'style_loader_tag', function( $tag, $handle, $href, $media ) {
-	if ( kyom_is_critical_css( $handle ) || ! kyom_preloader_exists() ) {
+	if ( kyom_is_critical_css( $handle ) || is_admin() || 'wp-login.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 		return $tag;
 	}
-	$html = <<<'HTML'
-<link rel="preload" href="%1$s" as="style" onload="this.onload=null;this.rel='stylesheet'" data-handle="%3$s" />
-<noscript>
-	%2$s
-</noscript>
-HTML;
-	return sprintf( $html, $href, $tag, $handle );
-}, 10, 4 );
-
-/**
- * Add preloader helper.
- */
-add_action( 'wp_head', function() {
-	if ( ! kyom_preloader_exists() ) {
+	if ( 'print' === $media || str_contains( $tag, 'preload' ) ) {
+		// Skip print and preload.
 		return;
 	}
-	$preloader = file_get_contents( get_template_directory() . '/assets/js/cssrelpreload.min.js' );
-	?>
-	<!-- CSS Preloader Polyfill -->
-	<script><?php echo $preloader ?></script>
-	<?php
-}, 11 );
+	$html = <<<'HTML'
+<link rel="stylesheet" href="%1$s" onload="this.onload=null;this.media='%2$s'" id="%3$s-css" media="print" />
+HTML;
+	return sprintf( $html, $href, esc_attr( $media ), esc_attr( $handle ) );
+}, 10, 4 );
 
 /**
  * Add post class.
@@ -188,32 +170,3 @@ add_filter( 'gettext_with_context', function( $translation, $text, $context, $do
 	}
 	return $translation;
 }, 10, 4 );
-
-/**
- * Start buffer for replacing img tag.
- */
-add_action( 'wp_head', function() {
-	ob_start();
-}, 9999 );
-
-/**
- * Replace img tag.
- */
-add_action( 'wp_footer', function() {
-	$body     = ob_get_contents();
-	$replaced = preg_replace_callback( '#<img([^>]+)>#u', function( $matches ) {
-		list( $match, $attr ) = $matches;
-		foreach ( [
-			'loading'  => 'lazy',
-			// 'decoding' => 'async', // Meaningless?
-		] as $key => $val ) {
-			if ( false !== strpos( $attr, $key . '=' ) ) {
-				continue;
-			}
-			$attr = sprintf( ' %s="%s"%s', $key, $val, $attr );
-		}
-		return sprintf( '<img%s>', $attr );
-	}, $body );
-	ob_end_clean();
-	echo $replaced;
-}, 9999 );

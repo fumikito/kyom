@@ -32,13 +32,15 @@ $body-font-night-color: #ddd;
 $body-font-night-emphasis: #fff;
 $body-font-night-muted: #888;
 
+$kyom-body-bg-color: #f3f1ee;
+
 $base-body-font-weight: 500;
 $base-strong-font-weight: 700;
 
 // Header
 $kyom-header-title-color: #000;
 $kyom-header-title-inverse: #fff;
-$kyom-header-bg-color: #fff;
+$kyom-header-bg-color: $slightly-gray;
 
 $breakpoint-smallphone: 420px;
 $breakpoint-ipad: 768px;

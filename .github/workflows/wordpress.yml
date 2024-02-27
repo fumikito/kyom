@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
-        php: [ '7.2', '7.4' ] # PHP versions to check.
+        php: [ '7.4' ] # PHP versions to check.
         wp: [ 'latest', '5.9' ]      # WordPress version to check.
     services:
       mysql:
@@ -42,7 +42,7 @@ jobs:
         run: composer validate
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist
 
       - name: Start MySQL
         run: |
@@ -61,21 +61,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Setup PHP with composer v2
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.2
-          tools: composer
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install NPM
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-
-      - name: Install Dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Install NPM Dependencies
         run: npm install
@@ -84,7 +73,7 @@ jobs:
         run: npm run lint:js
 
       - name: Build Packages
-        run: npm run build
+        run: npm run package
 
   status:
     name: Status Check
@@ -104,7 +93,7 @@ jobs:
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.2
+          php-version: 7.4
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -143,7 +132,7 @@ jobs:
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.2
+          php-version: 7.4
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

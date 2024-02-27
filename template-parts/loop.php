@@ -19,7 +19,12 @@ if ( is_sticky() || kyom_is_parent() ) {
 		<?php endif; ?>
 		<a class="uk-card-link" href="<?php the_permalink() ?>">
 			<div class="uk-card-header">
-				<span class="primary-term-link"><?php echo strip_tags( kyom_primary_term_link() ); ?></span>
+				<?php
+				$link = kyom_primary_term_link();
+				if ( $link ) :
+				?>
+				<span class="primary-term-link"><?php echo strip_tags( $link ); ?></span>
+				<?php endif; ?>
 				<h3 class="uk-card-title uk-margin-remove-bottom">
 					<?php the_title(); ?>
 				</h3>

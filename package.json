@@ -1,67 +1,69 @@
 {
-  "name": "@hametuha/kyom",
-  "version": "1.0.0",
-  "homepage": "https://github.comr/fumikito/kyom",
-  "description": "WordPress theme",
-  "main": "gulpfile.js",
-  "author": "Takahashi Fumiki",
-  "license": "GPL-3.0-or-later",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fumikito/kyom.git"
-  },
-  "bugs": {
-    "url": "https://github.com/fumikito/kyom/issues"
-  },
-  "scripts": {
-    "start": "gulp build",
-    "watch": "gulp watch",
-    "gulp": "gulp",
-    "package": "gulp build",
-    "fix": "eslint --fix src/js",
-    "lint:js": "gulp eslint",
-    "html": "gulp html",
-    "test": "jest"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/plugin-transform-react-jsx": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "@wordpress/browserslist-config": "^4.0.0",
-    "babel-jest": "^27.0.0",
-    "babel-loader": "^8.0.4",
-    "browser-sync": "^2.24.4",
-    "browserslist": "^4.14.0",
-    "eslint": "^8.46.0",
-    "eslint-config-wordpress": "^2.0.0",
-    "fg-loadcss": "^2.1.0",
-    "fitie": "^1.0.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-eslint": "^6.0.0",
-    "gulp-imagemin": "^8.0.0",
-    "gulp-jshint": "^2.0",
-    "gulp-load-plugins": "^2.0.4",
-    "gulp-notify": "^4.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-pug": "^5.0.0",
-    "gulp-sass": "^5.0.0",
-    "gulp-sass-glob": "^1.1.0",
-    "gulp-sourcemaps": "^3.0",
-    "gulp-uglify": "^3.0",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-pngquant": "^9.0.0",
-    "jest": "^29.6",
-    "merge-stream": "^2.0.0",
-    "node-sass": "^9.0.0",
-    "regenerator-runtime": "^0.13.7",
-    "uikit": "^3.7.2",
-    "vinyl-named": "^1.1.0",
-    "webpack": "^5.0.0",
-    "webpack-stream": "^7.0.0"
-  },
-  "jest": {
-    "browser": true
-  }
+	"name": "@hametuha/kyom",
+	"version": "1.0.0",
+	"homepage": "https://github.comr/fumikito/kyom",
+	"description": "WordPress theme",
+	"main": "gulpfile.js",
+	"author": "Takahashi Fumiki",
+	"license": "GPL-3.0-or-later",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fumikito/kyom.git"
+	},
+	"bugs": {
+		"url": "https://github.com/fumikito/kyom/issues"
+	},
+	"scripts": {
+		"start": "gulp build",
+		"watch": "gulp watch",
+		"gulp": "gulp",
+		"package": "gulp build",
+		"fix": "eslint --fix src/js",
+		"lint:js": "gulp eslint",
+		"html": "gulp html",
+		"test": "jest"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.2.0",
+		"@babel/plugin-transform-react-jsx": "^7.2.0",
+		"@babel/preset-env": "^7.2.0",
+		"@wordpress/browserslist-config": "^4.0.0",
+		"babel-jest": "^27.0.0",
+		"babel-loader": "^8.0.4",
+		"browser-sync": "^2.24.4",
+		"browserslist": "^4.14.0",
+		"eslint": "^8.46.0",
+		"eslint-config-wordpress": "^2.0.0",
+		"fitie": "^1.0.0",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-concat": "^2.6.0",
+		"gulp-eslint": "^6.0.0",
+		"gulp-imagemin": "^8.0.0",
+		"gulp-jshint": "^2.0",
+		"gulp-load-plugins": "^2.0.4",
+		"gulp-notify": "^4.0.0",
+		"gulp-plumber": "^1.0.0",
+		"gulp-pug": "^5.0.0",
+		"gulp-sass": "^5.0.0",
+		"gulp-sass-glob": "^1.1.0",
+		"gulp-sourcemaps": "^3.0",
+		"gulp-uglify": "^3.0",
+		"imagemin-mozjpeg": "^9.0.0",
+		"imagemin-pngquant": "^9.0.0",
+		"jest": "^29.6",
+		"merge-stream": "^2.0.0",
+		"node-sass": "^6.0.0",
+		"regenerator-runtime": "^0.13.7",
+		"uikit": "^3.7.2",
+		"vinyl-named": "^1.1.0",
+		"webpack": "^5.0.0",
+		"webpack-stream": "^7.0.0"
+	},
+	"jest": {
+		"browser": true
+	},
+	"volta": {
+		"node": "14.21.3"
+	}
 }

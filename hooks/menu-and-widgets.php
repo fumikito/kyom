@@ -62,5 +62,5 @@ add_filter( 'walker_nav_menu_start_el', function( $item_output, $item, $depth, $
 		return $item_output;
 	}
 	$brand = kyom_icon_from_url( $item->url );
-	return sprintf( '<a href="%s" uk-icon="%s"></a>', esc_url( $item->url ), esc_attr( $brand ) );
+	return sprintf( '<a href="%s" uk-icon="icon:%s; ratio: 2"></a>', esc_url( $item->url ), esc_attr( $brand ) );
 }, 10, 4 );

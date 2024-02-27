@@ -11,15 +11,6 @@ do_action( 'kyom_before_site_footer' );
 
 	<div class="uk-container">
 
-		<?php if ( has_nav_menu( 'social-links' ) ) {
-            wp_nav_menu( [
-                'theme_location'  => 'social-links',
-                'container'       => 'nav',
-                'container_class' => 'site-footer-social',
-                'menu_class'      => 'uk-iconnav',
-            ] );
-		} ?>
-
 		<?php if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
 		<div class="site-footer-widgets uk-grid-divider uk-grid" uk-grid>
 			<?php dynamic_sidebar( 'footer-sidebar' ) ?>
@@ -27,6 +18,15 @@ do_action( 'kyom_before_site_footer' );
 		<?php endif ?>
 
 		<?php
+		if ( has_nav_menu( 'social-links' ) ) {
+			wp_nav_menu( [
+				'theme_location'  => 'social-links',
+				'container'       => 'nav',
+				'container_class' => 'site-footer-social',
+				'menu_class'      => 'uk-iconnav',
+			] );
+		}
+
 		if ( has_nav_menu( 'bottom-pages' ) ) {
 			Kunoichi\SetMenu::nav_menu( [
 				'theme_location'  => 'bottom-pages',

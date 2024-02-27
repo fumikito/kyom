@@ -8,7 +8,7 @@ use Fumikito\Kyom\Service\QuotesCollection;
 use PHP_CodeSniffer\Standards\Generic\Tests\CodeAnalysis\ForLoopShouldBeWhileLoopUnitTest;
 
 /**
- * Query Collection Support
+ * Quotes Collection(deprecated plugin) Support
  *
  * @package kyom
  */

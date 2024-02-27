@@ -73,7 +73,7 @@ jobs:
         run: npm run lint:js
 
       - name: Build Packages
-        run: npm run build
+        run: npm run package
 
   status:
     name: Status Check

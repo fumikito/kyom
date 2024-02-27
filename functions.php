@@ -16,6 +16,13 @@ load_theme_textdomain( $kyom_theme_info[ 'domain' ], __DIR__ . '/languages' );
 // Load autoloader.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
+	// Enable GA communicator
+	define( 'GA_COMMUNICATOR_NO_RENDERER', true );
+	\Kunoichi\GaCommunicator::get_instance();
+
+	if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		WP_CLI::add_command( 'kyom', \Fumikito\Kyom\Commands\Check::class );
+	}
 }
 
 

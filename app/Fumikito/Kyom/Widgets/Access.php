@@ -16,7 +16,7 @@ class Access extends WidgetBase {
 	}
 
 	protected function description() {
-		return __( 'Display Access ranking by Google Analytics. Requires Gianism.', 'kyom' );
+		return __( 'Display Access ranking by Google Analytics.', 'kyom' );
 	}
 
 	protected function get_params() {
@@ -45,7 +45,7 @@ class Access extends WidgetBase {
 		] as $date => $label ) {
 			$cache_days = 'all' === $date ? 30 : $date / 6;
 			$cache_minutes = $cache_days * 24 * 60 * 60;
-			$cache_key  = 'kyom_ranking_cache_' . $cache_days;
+			$cache_key  = 'kyom_ranking_cache_' . $date;
 			$result = get_transient( $cache_key );
 			if ( false === $result ) {
 				$result = kyom_get_ranking( $date, $count, $instance['filters'] );

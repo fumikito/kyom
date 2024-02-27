@@ -27,7 +27,7 @@ function kyom_is_expired_post( $post = null ) {
  */
 function kyom_get_outdated_days( $post ) {
 	$post = get_post( $post );
-	
+
 	return floor( ( current_time( 'timestamp' ) - strtotime( $post->post_date ) ) / 60 / 60 / 24 );
 }
 
@@ -38,16 +38,20 @@ function kyom_get_outdated_days( $post ) {
  * @return string
  */
 function kyom_oldest_date( $format = 'Y' ) {
-	global $wpdb;
-	$query = <<<SQL
-		SELECT post_date FROM {$wpdb->posts}
-		WHERE post_type IN ( 'post', 'page' )
-		  AND post_status = 'publish'
-		LIMIT 1
-SQL;
-	$date = $wpdb->get_var( $query );
+	$query = new WP_Query( [
+		'post_type'   => [ 'page', 'post' ],
+		'post_status' => 'publish',
+		'posts_per_page' => 1,
+		'no_found_rows' => true,
+		'orderby' => 'date',
+		'order' => 'ASC',
+	] );
+	if ( ! $query->have_posts() ) {
+		return date_i18n( $format );
+	}
+	$date = $query->posts[0]->post_date;
 	$year = mysql2date( $format, $date );
-	
+
 	/**
 	 * kyom_copyright_year
 	 *
@@ -126,11 +130,11 @@ function kyom_date_diff( $date, $now = 'now', $gmt = false ) {
  */
 function kyom_is_new( $post = null ) {
 	$post = get_post( $post );
-	
+
 	/**
 	 * Days to decide the post is new or not.
 	 */
 	$kyom_new_limit = apply_filters( 'kyom', 7, $post );
-	
+
 	return ( current_time( 'timestamp', true ) - strtotime( $post->post_date_gmt ) ) / 60 / 60 /24 < $kyom_new_limit;
 }

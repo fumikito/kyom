@@ -143,22 +143,53 @@ function kyom_fetch_feed_items( $url ) {
  *
  * @return array
  */
-function kyom_get_ga_result( $start_date, $end_date, $metrics, $params = [] ) {
-	try{
-		if ( ! class_exists( 'Gianism\\Plugins\\Analytics' ) ) {
-			throw new \Exception( __( 'Gianism is not installed.', 'kyom' ), 500 );
+function kyom_get_ga_result( $start_date, $end_date, $metrics = 'screenPageViews', $params = [] ) {
+	try {
+		if ( $start_date < '2015-08-13' ) {
+			$start_date = '2015-08-14';
 		}
-		$google = Gianism\Plugins\Analytics::get_instance();
-		if( ! $google || ! $google->ga_profile['view'] ) {
-			throw new \Exception( __( 'Google Analytics is not connected.', 'kyom' ), 500 );
+		if ( ! class_exists( 'Kunoichi\\GaCommunicator' ) ) {
+			throw new \Exception( __( 'Library is not installed.', 'kyom' ), 500 );
 		}
-		$result = $google->ga->data_ga->get('ga:'.$google->ga_profile['view'], $start_date, $end_date, $metrics, $params);
-		if ( $result && $result->rows && ( 0 < count($result->rows) ) ) {
-			return $result->rows;
-		} else {
-			return [];
+		$args = [
+			'dateRanges' => [
+				[
+					'startDate' => $start_date,
+					'endDate' => $end_date,
+				],
+			],
+			'dimensions' => [
+				[
+					'name' => 'pagePath',
+				],
+				[
+					'name' => 'pageTitle',
+				],
+			],
+			'metrics' => [
+				[
+					'name' => $metrics,
+				],
+			],
+			'orderBys' => [
+				[
+					'metric' => [
+						'metricName' => $metrics,
+					],
+					'desc' => true,
+				],
+			],
+			'limit' => $params[ 'limit' ] ?? 20,
+		];
+		if ( ! empty( $params['filters'] ) ) {
+			$args['dimensionFilter'] = $params['filters'];
 		}
-	}  catch ( \Exception $e ) {
+		$result = \Kunoichi\GaCommunicator::get_instance()->ga4_get_report( $args );
+		if ( is_wp_error( $result ) ) {
+			throw new \Exception( $result->get_error_message(), 500 );
+		}
+		return $result;
+	} catch ( \Exception $e ) {
 		if ( WP_DEBUG ) {
 			trigger_error( sprintf( '[GA Error:%s] %s', $e->getCode(), $e->getMessage() ) );
 		}
@@ -172,11 +203,11 @@ function kyom_get_ga_result( $start_date, $end_date, $metrics, $params = [] ) {
  * @param string|int $from
  * @param int        $count
  * @param string     $filters
- * @param string     $dimensions
+ * @param string     $deprecated Unused variable.
  *
  * @return array
  */
-function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:pagePath' ) {
+function kyom_get_ranking( $from, $count = 5, $filters = '', $deprecated = '' ) {
 	// Use cache.
 	if ( ! $filters ) {
 		$structure = untrailingslashit( get_option( 'permalink_structure' ) );
@@ -207,22 +238,29 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $dimensions = 'ga:p
 			}
 			$structure = str_replace( $regexp, $replaced, $structure );
 		}
-		$filters = sprintf( 'ga:pagePath=~^%s', $structure );
+		$filters = $structure;
 	}
+	$filters = [
+		'filter' => [
+			'fieldName'    => 'pagePath',
+			'stringFilter' => [
+				'matchType' => 'PARTIAL_REGEXP',
+				'value'     => $filters,
+			],
+		],
+	];
 	if ( preg_match( '/\d+/u', $from ) ) {
 		$from = get_date_from_gmt( date_i18n( 'Y-m-d H:i:s', strtotime( sprintf( '%d days ago', $from ) ) ), 'Y-m-d' );
 	} else {
 		$from = kyom_oldest_date( 'Y-m-d' );
 	}
-	$result = kyom_get_ga_result( $from, date_i18n( 'Y-m-d' ), 'ga:pageviews', [
-		'max-results' => $count * 3,
-		'dimensions'  => $dimensions,
+	$result = kyom_get_ga_result( $from, date_i18n( 'Y-m-d' ), 'screenPageViews', [
+		'limit'       => $count * 3,
 		'filters'     => $filters,
-		'sort'        => '-ga:pageviews',
 	] );
 	$path_and_pvs = [];
 	// Arrange ranking with page path and pvs.
-	foreach ( $result as list( $page_path, $pv ) ) {
+	foreach ( $result as list( $page_path, $title, $pv ) ) {
 		// Remove amp trailing
 		$page_path = preg_replace( '#amp/$#u', '', $page_path );
 		if ( isset( $path_and_pvs[ $page_path ] ) ) {

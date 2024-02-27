@@ -39,6 +39,21 @@ class AnalyticsCustomizer extends CustomizerSetting {
 				],
 				'stored' => 'option',
 			],
+			'kyom_ga4_key' => [
+				'label' => __( 'Service Account Key for GA4', 'kyom' ),
+				'input_attr' => [
+					'placeholder' => __( 'Paste JSON here.', 'kyom' ),
+				],
+				'stored' => 'option',
+				'type'        => 'textarea'
+			],
+			'kyom_ga4_id' => [
+				'label' => __( 'GA4 Property ID', 'kyom' ),
+				'input_attr' => [
+					'placeholder' => '264573556888294',
+				],
+				'stored' => 'option',
+			],
 		];
 	}
 }

@@ -101,6 +101,15 @@ $img-margin: 1.5em;
 		}
 	}
 
+	ul,
+	ol,
+	dl {
+		& {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
 	dl {
 		@extend .uk-description-list;
 		@extend .uk-description-list-divider;
@@ -364,11 +373,23 @@ $img-margin: 1.5em;
 	img.aligncenter {
 		display: block;
 	}
+
+	.has-text-align-center {
+		text-align: center !important;
+	}
+	.has-text-align-left {
+		text-align: left !important;
+	}
+	.has-text-align-right {
+		text-align: right !important;
+	}
+
 	img {
 		max-width: 100%;
 		max-height: 90vh;
 		width: auto;
 		height: auto;
+		box-shadow: 0 0 15px rgba(0, 0, 0, .2);
 	}
 	.wp-caption {
 		max-width: 100%;

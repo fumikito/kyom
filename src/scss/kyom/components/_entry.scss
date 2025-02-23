@@ -29,6 +29,17 @@
 			li:first-child::before {
 				display: none !important;
 			}
+
+			a:link,
+			a:visited {
+				color: $kyom-header-title-color;
+				text-decoration: underline;
+			}
+
+			a:hover,
+			a:active {
+
+			}
 		}
 	}
 

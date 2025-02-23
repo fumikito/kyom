@@ -65,7 +65,7 @@ add_action( 'wp_head', function() {
 	if ( ! ( $client_id = get_option( 'kyom_ad_automatic' ) ) ) {
 		return;
 	}
-	if ( ! is_singular() ) {
+	if ( ! is_singular() || is_page() ) {
 		return;
 	}
 	?>
@@ -80,7 +80,7 @@ add_action( 'wp_head', function() {
 } );
 
 /**
- * Display automatic ad.
+ * Display in article ad.
  *
  * @internal
  * @param string $content
@@ -88,8 +88,8 @@ add_action( 'wp_head', function() {
  */
 function kyom_in_article_ads( $content ) {
 	$code = get_option( 'kyom_ad_content' );
-	$should_display_ad = apply_filters( 'kyom_should_display_in_article_ad', $code && ( 'post' === get_post_type() ), get_post() );
-	if ( ! $code || ! $should_display_ad ) {
+	$should_display_ad = apply_filters( 'kyom_should_display_in_article_ad', ( $code && ( 'post' === get_post_type() ) ), get_post() );
+	if ( ! $should_display_ad ) {
 		return $content;
 	}
 	$html   = sprintf( '<!DOCTYPE html><html><body>%s</body></html>', $content );

@@ -18,41 +18,41 @@ class AnalyticsCustomizer extends CustomizerSetting {
 
 	protected function get_fields(): array {
 		return [
-			'kyom_tracking_id' => [
-				'label' => __( 'Tracking ID', 'kyom' ),
+			'kyom_tracking_id'        => [
+				'label'      => __( 'Tracking ID', 'kyom' ),
 				'input_attr' => [
-					'placeholder' => 'UA-5329295-4'
+					'placeholder' => 'UA-5329295-4',
 				],
-				'stored' => 'option',
+				'stored'     => 'option',
 			],
 			'kyom_tracking_id_option' => [
-				'label' => __( 'Optional Tracking ID', 'kyom' ),
+				'label'      => __( 'Optional Tracking ID', 'kyom' ),
 				'input_attr' => [
 					'placeholder' => 'G-K61M5SDFXM',
 				],
-				'stored' => 'option',
+				'stored'     => 'option',
 			],
-			'kyom_facebook_app_id' => [
-				'label' => __( 'Facebook APP ID', 'kyom' ),
+			'kyom_facebook_app_id'    => [
+				'label'      => __( 'Facebook APP ID', 'kyom' ),
 				'input_attr' => [
 					'placeholder' => '264573556888294',
 				],
-				'stored' => 'option',
+				'stored'     => 'option',
 			],
-			'kyom_ga4_key' => [
-				'label' => __( 'Service Account Key for GA4', 'kyom' ),
+			'kyom_ga4_key'            => [
+				'label'      => __( 'Service Account Key for GA4', 'kyom' ),
 				'input_attr' => [
 					'placeholder' => __( 'Paste JSON here.', 'kyom' ),
 				],
-				'stored' => 'option',
-				'type'        => 'textarea'
+				'stored'     => 'option',
+				'type'       => 'textarea',
 			],
-			'kyom_ga4_id' => [
-				'label' => __( 'GA4 Property ID', 'kyom' ),
+			'kyom_ga4_id'             => [
+				'label'      => __( 'GA4 Property ID', 'kyom' ),
 				'input_attr' => [
 					'placeholder' => '264573556888294',
 				],
-				'stored' => 'option',
+				'stored'     => 'option',
 			],
 		];
 	}

@@ -53,7 +53,7 @@ function kyom_not_found_image() {
  * @return string
  */
 function kyom_term_image( $term, $size = 'post-thumbnail' ) {
-	$url = '';
+	$url      = '';
 	$image_id = get_term_meta( $term->term_id, 'image', true );
 	if ( $image_id ) {
 		$url = wp_get_attachment_image_url( $image_id, $size );

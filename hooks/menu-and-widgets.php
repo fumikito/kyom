@@ -15,7 +15,7 @@ register_sidebar( [
 	'before_widget' => '<div id="%1$s" class="widget normal-widget"><div class="normal-widget-inner %2$s">',
 	'after_widget'  => '</div></div>',
 	'before_title'  => '<h2  class="uk-heading-line uk-text-center normal-widget-title"><span>',
-	'after_title'   => '</span></h2>'
+	'after_title'   => '</span></h2>',
 ] );
 register_sidebar( [
 	'name'          => __( 'Footer Sidebar', 'kyom' ),
@@ -24,7 +24,7 @@ register_sidebar( [
 	'before_widget' => '<div id="%1$s" class="widget site-footer-widget %2$s">',
 	'after_widget'  => '</div>',
 	'before_title'  => '<h2 class="site-footer-widget-title">',
-	'after_title'   => '</h2>'
+	'after_title'   => '</h2>',
 ] );
 
 /**
@@ -42,7 +42,7 @@ add_action( 'init', function () {
 /**
  * Register widgets.
  */
-add_action( 'widgets_init', function() {
+add_action( 'widgets_init', function () {
 	foreach ( kyom_iterate_dir( 'Widgets' ) as $class_name ) {
 		register_widget( $class_name );
 	}
@@ -57,7 +57,7 @@ add_action( 'widgets_init', function() {
  * @param stdClass $args        Menu arguments.
  * @return string
  */
-add_filter( 'walker_nav_menu_start_el', function( $item_output, $item, $depth, $args) {
+add_filter( 'walker_nav_menu_start_el', function ( $item_output, $item, $depth, $args ) {
 	if ( 'social-links' !== $args->theme_location ) {
 		return $item_output;
 	}

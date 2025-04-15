@@ -21,12 +21,12 @@ class Access extends WidgetBase {
 
 	protected function get_params() {
 		return array_merge( parent::get_params(), [
-			'count' => [
+			'count'   => [
 				'type'  => 'number',
 				'label' => __( 'Number to display.', 'kyom' ),
 			],
 			'filters' => [
-				'label' => __( 'Filters Expression', 'kyom' ),
+				'label'       => __( 'Filters Expression', 'kyom' ),
 				'description' => __( 'Google Analytics Core Reporting API filter. Requires programing knowledge.' ),
 				'placeholder' => 'ga:pagePath~=/(foo|var)/\\d+',
 			],
@@ -35,18 +35,18 @@ class Access extends WidgetBase {
 
 	public function widget( $args, $instance ) {
 		$instance = $this->get_filled_instance( $instance );
-		$count = max( 5, $instance['count'] );
-		$title = $instance['title'];
-		$ranking = [];
+		$count    = max( 5, $instance['count'] );
+		$title    = $instance['title'];
+		$ranking  = [];
 		foreach ( [
 			3     => _x( '3 days', 'ranking', 'kyom' ),
 			30    => _x( '30 days', 'ranking', 'kyom' ),
 			'all' => _x( 'Total', 'ranking', 'kyom' ),
 		] as $date => $label ) {
-			$cache_days = 'all' === $date ? 30 : $date / 6;
+			$cache_days    = 'all' === $date ? 30 : $date / 6;
 			$cache_minutes = $cache_days * 24 * 60 * 60;
-			$cache_key  = 'kyom_ranking_cache_' . $date;
-			$result = get_transient( $cache_key );
+			$cache_key     = 'kyom_ranking_cache_' . $date;
+			$result        = get_transient( $cache_key );
 			if ( false === $result ) {
 				$result = kyom_get_ranking( $date, $count, $instance['filters'] );
 				set_transient( $cache_key, $result, $cache_minutes );
@@ -70,26 +70,26 @@ class Access extends WidgetBase {
 		?>
 		<ul uk-tab class="uk-tab">
 			<?php $done = false; foreach ( $ranking as $rank ) : ?>
-				<li class="<?= $done ? '' : 'uk-active' ?>">
-					<a href="#"><?= esc_html( $rank['label'] ) ?></a></li>
+				<li class="<?php echo $done ? '' : 'uk-active'; ?>">
+					<a href="#"><?php echo esc_html( $rank['label'] ); ?></a></li>
 			<?php endforeach; ?>
 		</ul>
 		<ul class="uk-switcher uk-margin">
 			<?php foreach ( $ranking as $rank ) : ?>
-			<li id="ga-ranking-<?= $rank['days'] ?>" class="kyom-simple-list-wrapper">
+			<li id="ga-ranking-<?php echo $rank['days']; ?>" class="kyom-simple-list-wrapper">
 				<ul class="kyom-simple-list">
 					<?php foreach ( $rank['posts'] as $item ) : ?>
 						<li class="kyom-simple-list-item">
-							<a href="<?php the_permalink( $item['post'] ) ?>" class="kyom-simple-list-link">
+							<a href="<?php the_permalink( $item['post'] ); ?>" class="kyom-simple-list-link">
 								<div class="kyom-simple-list-count">
-									<?= kyom_short_digits( $item['pv'] ) ?>
+									<?php echo kyom_short_digits( $item['pv'] ); ?>
 								</div>
 								<h3 class="kyom-simple-list-title">
-									<?= esc_html( get_the_title( $item[ 'post' ] ) ) ?>
+									<?php echo esc_html( get_the_title( $item['post'] ) ); ?>
 								</h3>
 								<div class="kyom-simple-list-meta">
 									<span uk-icon="calendar"></span>
-									<?= get_the_time( get_option( 'date_format' ), $item[ 'post' ] ) ?>
+									<?php echo get_the_time( get_option( 'date_format' ), $item['post'] ); ?>
 								</div>
 							</a>
 						</li>

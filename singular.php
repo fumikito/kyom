@@ -4,14 +4,14 @@ the_post();
 ?>
 
 	<main class="main">
-		<article <?php post_class( 'entry' ) ?>>
+		<article <?php post_class( 'entry' ); ?>>
 
 			<?php do_action( 'kyom_before_article' ); ?>
 
 			<?php get_template_part( 'template-parts/singular-header', get_post_type() ); ?>
 
 			<div class="entry-breadcrumb">
-				<?php kyom_breadcrumb() ?>
+				<?php kyom_breadcrumb(); ?>
 			</div>
 
 			<?php if ( has_excerpt() && ! is_attachment() ) : ?>
@@ -30,7 +30,7 @@ the_post();
 
 			</div>
 
-			<?php get_template_part( 'template-parts/content-footer', get_post_type() ) ?>
+			<?php get_template_part( 'template-parts/content-footer', get_post_type() ); ?>
 
 			<footer class="entry-footer entry-container uk-container">
 
@@ -49,7 +49,7 @@ the_post();
 
 			</footer>
 
-			<?php get_sidebar() ?>
+			<?php get_sidebar(); ?>
 
 			<?php do_action( 'kyom_after_article' ); ?>
 

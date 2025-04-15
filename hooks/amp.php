@@ -8,14 +8,13 @@
 /**
  * Amd amp footer.
  */
-add_filter( 'amp_post_article_footer_meta', function( $meta ) {
-	$meta = array_merge( [ 'kyom-after-content' ], $meta );
+add_filter( 'amp_post_article_footer_meta', function ( $meta ) {
+	$meta   = array_merge( [ 'kyom-after-content' ], $meta );
 	$meta[] = 'kyom-related-posts';
 	return $meta;
 } );
 
 add_action( 'amp_post_template_head', function () {
-
 } );
 
 
@@ -43,14 +42,13 @@ add_action( 'amp_post_template_css', function ( $amp_template ) {
   border-color: {$color};
 }
 CSS;
-
 } );
 
 /**
  * Remove merriweather
  */
 add_action( 'amp_post_template_data', function ( $data ) {
-	if ( 'ja' == kyom_is_cjk() ) {
+	if ( kyom_is_cjk() ) {
 		$data['font_urls'] = [
 			'FontAwesome' => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 		];
@@ -64,7 +62,8 @@ add_action( 'amp_post_template_data', function ( $data ) {
 add_action( 'pre_amp_render_post', function () {
 	add_filter( 'the_content', function ( $content ) {
 		// Ad title.
-		if ( $amp_ad = get_option( 'kyom_ad_amp_title' ) ) {
+		$amp_ad = get_option( 'kyom_ad_amp_title' );
+		if ( $amp_ad ) {
 			$ad      = <<<HTML
 <div class="amp-ad-container">{$amp_ad}</div>
 HTML;
@@ -77,12 +76,12 @@ HTML;
 /**
  * ロゴ追加
  */
-add_filter( 'amp_post_template_metadata', function ( $data ){
+add_filter( 'amp_post_template_metadata', function ( $data ) {
 	$data['publisher']['logo'] = [
-		'@type' => 'ImageObject',
-		'url' => get_stylesheet_directory_uri().'/styles/img/favicon/amp-logo.png',
+		'@type'  => 'ImageObject',
+		'url'    => get_stylesheet_directory_uri() . '/styles/img/favicon/amp-logo.png',
 		'height' => 60,
-		'width' => 600,
+		'width'  => 600,
 	];
 	return $data;
 } );
@@ -94,11 +93,11 @@ add_filter( 'amp_post_template_analytics', function ( $analytics ) {
 	if ( ! is_array( $analytics ) ) {
 		$analytics = [];
 	}
-	
-	if ( ! ( $tracking_id = get_option( 'kyom_tracking_id' ) ) ) {
+	$tracking_id = get_option( 'kyom_tracking_id' );
+	if ( ! $tracking_id ) {
 		return $analytics;
 	}
-	
+
 	// https://developers.google.com/analytics/devguides/collection/amp-analytics/
 	$analytics['googleanalytics'] = [
 		'type'        => 'googleanalytics',
@@ -117,6 +116,6 @@ add_filter( 'amp_post_template_analytics', function ( $analytics ) {
 			],
 		],
 	];
-	
+
 	return $analytics;
 } );

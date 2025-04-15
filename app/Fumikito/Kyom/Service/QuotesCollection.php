@@ -19,10 +19,10 @@ class QuotesCollection extends Singleton {
 	 * {@inheritdoc}
 	 */
 	protected function init() {
-		add_action( 'admin_init', [$this, 'register_settings'] );
+		add_action( 'admin_init', [ $this, 'register_settings' ] );
 		if ( $this->active() ) {
 			// Post type and taxonomy.
-			add_action( 'init', [$this, 'post_types'] );
+			add_action( 'init', [ $this, 'post_types' ] );
 			// Meta data
 			add_action( 'save_post_' . $this->post_type, [ $this, 'save_post' ], 10, 2 );
 			add_action( 'add_meta_boxes', [ $this, 'add_meta_boxes' ] );
@@ -46,16 +46,15 @@ class QuotesCollection extends Singleton {
 			return;
 		}
 		add_settings_section( 'kyom-quotes-section', __( 'Quotes Collection Setting', 'kyom' ), function () {
-
 		}, 'writing' );
 		add_settings_field( 'kyom-quotes', __( 'Quotes Collection', 'kyom' ), function () {
 			?>
-            <select name="kyom-quotes">
+			<select name="kyom-quotes">
 				<?php
 				foreach ( [
-							  __( 'Disabled', 'kyom' ) => false,
-							  __( 'Enabled', 'kyom' ) => true,
-						  ] as $label => $selected ) {
+					__( 'Disabled', 'kyom' ) => false,
+					__( 'Enabled', 'kyom' )  => true,
+				] as $label => $selected ) {
 					printf(
 						'<option value="%s"%s>%s</option>',
 						( $selected ? 1 : '' ),
@@ -64,7 +63,7 @@ class QuotesCollection extends Singleton {
 					);
 				}
 				?>
-            </select>
+			</select>
 			<?php
 		}, 'writing', 'kyom-quotes-section' );
 		register_setting( 'writing', 'kyom-quotes' );
@@ -76,7 +75,7 @@ class QuotesCollection extends Singleton {
 	 * @return bool
 	 */
 	public function active() {
-		return (bool)get_option( 'kyom-quotes', '' );
+		return (bool) get_option( 'kyom-quotes', '' );
 	}
 
 	/**
@@ -101,8 +100,8 @@ class QuotesCollection extends Singleton {
 			'supports'    => [
 				'editor',
 				'slug',
-			]
-        ] );
+			],
+		] );
 		// Authors.
 		register_taxonomy( 'author', [ $this->post_type ], [
 			'label'             => __( 'Author', 'kyom' ),
@@ -196,9 +195,9 @@ class QuotesCollection extends Singleton {
 		switch ( $column ) {
 			case 'text':
 				echo get_the_content( null, false, $post_id );
-				echo "<br />―― ";
+				echo '<br />―― ';
 				$source_text = get_post_meta( $post_id, '_quote_source', true ) ?: '---';
-				$source_url = get_post_meta( $post_id, '_quote_url', true );
+				$source_url  = get_post_meta( $post_id, '_quote_url', true );
 				if ( ! preg_match( '#^https?://.+#u', $source_url ) ) {
 					$source_url = '';
 				}
@@ -237,7 +236,7 @@ class QuotesCollection extends Singleton {
 				$source = __( 'Source Unknown', 'kyom' );
 			}
 			if ( $authors && ! is_wp_error( $authors ) ) {
-				$source .= ' ' . implode( ', ', array_map( function( $author ) {
+				$source .= ' ' . implode( ', ', array_map( function ( $author ) {
 					return $author->name;
 				}, $authors ) );
 			}

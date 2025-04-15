@@ -26,14 +26,14 @@ remove_action( 'embed_footer', 'print_embed_sharing_dialog' );
 /**
  * Change image size.
  */
-add_filter( 'embed_thumbnail_image_size', function() {
+add_filter( 'embed_thumbnail_image_size', function () {
 	return 'medium';
 } );
 
 /**
  * Render CSS
  */
-add_action( 'embed_head', function() {
+add_action( 'embed_head', function () {
 	$oembed_stylesheet = apply_filters( 'kyom_oembed_css_path', get_template_directory() . '/assets/css/kyom-oembed.css' );
 	if ( ! file_exists( $oembed_stylesheet ) ) {
 		return;
@@ -42,4 +42,3 @@ add_action( 'embed_head', function() {
 	$style = str_replace( 'sourceMappingURL=', 'sourceMappingURL=' . get_template_directory_uri() . '/assets/css/', $style ); // Remove source map.
 	printf( "<style>\n%s\n</style>", $style );
 } );
-

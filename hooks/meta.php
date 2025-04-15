@@ -14,7 +14,7 @@
  */
 add_filter( 'document_title_parts', function ( $title ) {
 	if ( is_single() ) {
-		$title[ 'category' ] = implode( ', ', array_map( function ( $cat ) {
+		$title['category'] = implode( ', ', array_map( function ( $cat ) {
 			return $cat->name;
 		}, get_the_category( get_queried_object_id() ) ) );
 
@@ -56,14 +56,14 @@ add_filter( 'user_contactmethods', function ( $methods ) {
 	}
 	foreach ( kyom_social_keys() as $key ) {
 		switch ( $key ) {
-			case 'wordpress':
+			case 'WordPress':
 				$label = 'WordPress';
 				break;
 			default:
 				$label = ucfirst( $key );
 				break;
 		}
-		$label = apply_filters( 'kyom_contact_method_label', $label . ' URL', $key );
+		$label               = apply_filters( 'kyom_contact_method_label', $label . ' URL', $key );
 		$new_methods[ $key ] = $label;
 	}
 
@@ -75,7 +75,11 @@ add_filter( 'user_contactmethods', function ( $methods ) {
  * If redirect to is set, move permanently.
  */
 add_action( 'template_redirect', function () {
-	if ( is_singular() && ( $redirect_to = get_post_meta( get_queried_object_id(), 'redirect_to', true ) ) ) {
+	if ( ! is_singular() ) {
+		return;
+	}
+	$redirect_to = get_post_meta( get_queried_object_id(), 'redirect_to', true );
+	if ( $redirect_to ) {
 		wp_redirect( $redirect_to, 301 );
 		exit;
 	}

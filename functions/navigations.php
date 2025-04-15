@@ -14,18 +14,18 @@ function kyom_breadcrumb() {
 		return;
 	}
 	$option = get_option( 'bcn_options', [] );
-	$delimiter = $option['hseparator'] ?? ' &gt; ';
-	$bcn = explode( $delimiter, bcn_display( true ) );
-	$items = array_map( function( $link ) {
-		if ( 0 === strpos( $link, '<a ' ) ) {
-			// This is link.
-			$markup = $link;
-		} else {
-			$markup = sprintf( '<span>%s</span>', $link );
-		}
-		return sprintf( '<li>%s</li>', $markup );
-	}, $bcn );
-	printf( '<ul class="uk-breadcrumb">%s</ul>', implode( '', $items ) );
+	$bcn    = bcn_display_list( true );
+	foreach ( [
+		'property="itemListElement"' => 'itemprop="itemListElement"',
+		'typeof="ListItem"'          => 'itemscope itemtype="https://schema.org/ListItem"',
+		' typeof="WebPage"'          => '',
+		'property="item"'            => 'itemprop="item"',
+		'property="name"'            => 'itemprop="name"',
+		'property="position"'        => 'itemprop="position"',
+	] as $search => $repl ) {
+		$bcn = str_replace( $search, $repl, $bcn );
+	}
+	printf( '<ul class="uk-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">%s</ul>', $bcn );
 }
 
 /**
@@ -44,7 +44,8 @@ function kyom_archive_top( $post = null ) {
 			case 'page':
 				break;
 			case 'post':
-				if ( $front_id = get_option( 'page_for_posts' ) ) {
+				$front_id = get_option( 'page_for_posts' );
+				if ( $front_id ) {
 					$link = get_permalink( $front_id );
 				} else {
 					$link = home_url();

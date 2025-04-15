@@ -56,12 +56,12 @@ function kyom_make_cf_request( $endpoint, $params = [], $method = 'GET' ) {
 	if ( WP_DEBUG ) {
 		error_log( var_export( $opts, true ) );
 	}
-	
+
 	$result = curl_exec( $ch );
 	if ( ! $result ) {
 		$error = new WP_Error( curl_errno( $ch ), curl_error( $ch ) );
 		curl_close( $ch );
-		
+
 		return $error;
 	} else {
 		curl_close( $ch );
@@ -72,7 +72,7 @@ function kyom_make_cf_request( $endpoint, $params = [], $method = 'GET' ) {
 			if ( WP_DEBUG ) {
 				error_log( $result );
 			}
-			
+
 			return $response;
 		}
 	}
@@ -90,8 +90,8 @@ function kyom_purge_cf_cache( $post ) {
 		return null;
 	}
 	$urls = [ home_url( '/' ) ];
-	if ( 'post' == $post->post_type ) {
-		$urls[] = get_permalink( $post );
+	if ( 'post' === $post->post_type ) {
+		$urls[]     = get_permalink( $post );
 		$categories = get_the_category( $post->ID );
 		if ( $categories && ! is_wp_error( $categories ) ) {
 			foreach ( array_merge( get_the_category( $post->ID ), get_the_tags( $post->ID ) ) as $term ) {

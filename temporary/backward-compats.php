@@ -6,14 +6,14 @@
 /**
  * Add ebook post type.
  */
-add_action( 'init', function() {
+add_action( 'init', function () {
 	if ( function_exists( 'lwp_files' ) ) {
 		return;
 	}
 	register_post_type( 'ebook', [
-		'label'  => '電子書籍',
-		'public' => true,
-	    'supports' => [ 'title', 'editor', 'author', 'custom-fields' ],
+		'label'    => '電子書籍',
+		'public'   => true,
+		'supports' => [ 'title', 'editor', 'author', 'custom-fields' ],
 	] );
 } );
 
@@ -24,10 +24,10 @@ add_action( 'init', function() {
  */
 function fumiki_mailchimp_url() {
 	return add_query_arg( [
-		'u'  => '9b5777bb4451fb83373411d34',
-		'id' => 'bf9c92d04a',
+		'u'          => '9b5777bb4451fb83373411d34',
+		'id'         => 'bf9c92d04a',
 		'REGISTERED' => urlencode( date_i18n( 'Y-m-d' ) ),
-		'SOURCE' => urlencode( 'takahashifumiki.com' ),
+		'SOURCE'     => urlencode( 'takahashifumiki.com' ),
 	], 'https://takahashifumiki.us14.list-manage.com/subscribe/post' );
 }
 
@@ -46,13 +46,13 @@ add_action( 'kyom_before_site_footer', function () {
 			</p>
 			
 			<form
-					action="<?= esc_attr( fumiki_mailchimp_url() ) ?>"
+					action="<?php echo esc_attr( fumiki_mailchimp_url() ); ?>"
 					method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
 					class="validate wpcf7-form"
 					target="_blank" novalidate>
 					<p class="section-newsletter-mail-input">
 						<input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL"
-							   placeholder="e.g. info@takahashifumiki.com">
+								placeholder="e.g. info@takahashifumiki.com">
 					</p>
 
 				<fieldset class="uk-fieldset section-newsletter-extra">
@@ -63,29 +63,31 @@ add_action( 'kyom_before_site_footer', function () {
 					<div class="form-group">
 						<label for="mce-FNAME">お名前 </label>
 						<input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME"
-							   placeholder="e.g. 高橋文樹">
+								placeholder="e.g. 高橋文樹">
 					</div>
 					<div class="form-group">
 						<label for="mce-MMERGE2">会社・団体 </label>
 						<input type="text" value="" name="MMERGE2" class="form-control" id="mce-MMERGE2"
-							   placeholder="e.g. 株式会社破滅派">
+								placeholder="e.g. 株式会社破滅派">
 					</div>
 					</div>
 					<div class="form-group">
-						<?php foreach (
+						<?php
+						foreach (
 							[
 								'出版関連',
 								'編集者',
 								'作家・ライター',
 								'Web関連',
 								'学生',
-								'その他'
+								'その他',
 							] as $index => $label
-						) : ?>
-							<label for="mce-MMERGE3-<?= $index ?>" class="inline-label">
-								<input class="uk-radio" type="radio" value="<?= esc_attr( $label ) ?>" name="MMERGE3"
-									   id="mce-MMERGE3-<?= $index ?>">
-								<?= esc_html( $label ) ?>
+						) :
+							?>
+							<label for="mce-MMERGE3-<?php echo $index; ?>" class="inline-label">
+								<input class="uk-radio" type="radio" value="<?php echo esc_attr( $label ); ?>" name="MMERGE3"
+										id="mce-MMERGE3-<?php echo $index; ?>">
+								<?php echo esc_html( $label ); ?>
 							</label>
 						<?php endforeach; ?>
 					</div>
@@ -95,7 +97,7 @@ add_action( 'kyom_before_site_footer', function () {
 					</div>
 					<p class="uk-text-center">
 						<input type="submit" value="購読する" name="subscribe" id="mc-embedded-subscribe"
-							   class="btn btn-raised btn-lg btn-primary uk-button-large">
+								class="btn btn-raised btn-lg btn-primary uk-button-large">
 					</p>
 					</div>
 				</fieldset>
@@ -111,7 +113,7 @@ add_shortcode( 'mailchimp', function ( $atts = [], $contnet = '' ) {
 	<!-- Begin MailChimp Signup Form -->
 	<div id="mc_embed_signup">
 		<form
-			action="<?= esc_attr( fumiki_mailchimp_url() )?>"
+			action="<?php echo esc_attr( fumiki_mailchimp_url() ); ?>"
 			method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate wpcf7-form"
 			target="_blank" novalidate>
 			
@@ -133,12 +135,19 @@ add_shortcode( 'mailchimp', function ( $atts = [], $contnet = '' ) {
 					<input type="text" value="" name="MMERGE2" class="form-control" id="mce-MMERGE2" placeholder="e.g. 株式会社破滅派">
 				</p>
 				<div class="form-group">
-					<?php foreach ( [
-						'出版関連', '編集者', '作家・ライター', 'Web関連', '学生', 'その他'
-					] as $index=> $label ) : ?>
-						<label for="mce-MMERGE3-<?= $index ?>">
-							<input class="uk-radio" type="radio" value="<?= esc_attr( $label ) ?>" name="MMERGE3" id="mce-MMERGE3-<?= $index ?>">
-							<?= esc_html( $label ) ?>
+					<?php
+					foreach ( [
+						'出版関連',
+						'編集者',
+						'作家・ライター',
+						'Web関連',
+						'学生',
+						'その他',
+					] as $index => $label ) :
+						?>
+						<label for="mce-MMERGE3-<?php echo $index; ?>">
+							<input class="uk-radio" type="radio" value="<?php echo esc_attr( $label ); ?>" name="MMERGE3" id="mce-MMERGE3-<?php echo $index; ?>">
+							<?php echo esc_html( $label ); ?>
 						</label>
 					<?php endforeach; ?>
 				</div>
@@ -148,7 +157,7 @@ add_shortcode( 'mailchimp', function ( $atts = [], $contnet = '' ) {
 				</div>
 				<p class="text-center">
 					<input type="submit" value="購読する" name="subscribe" id="mc-embedded-subscribe"
-						   class="btn btn-raised btn-lg btn-primary">
+							class="btn btn-raised btn-lg btn-primary">
 				</p>
 			</fieldset>
 			<aside>
@@ -160,7 +169,7 @@ add_shortcode( 'mailchimp', function ( $atts = [], $contnet = '' ) {
 	<?php
 	$form = ob_get_contents();
 	ob_end_clean();
-	
+
 	return implode( "\n", array_filter( array_map( function ( $line ) {
 		return trim( $line );
 	}, explode( "\n", $form ) ) ) );

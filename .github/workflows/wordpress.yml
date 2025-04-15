@@ -1,59 +1,40 @@
-name: Kyom Theme Workflow
+name: Kyom Theme Test
 
 on:
-  push:
-    branches:
-      - master
-    tags:
-      - '*'
   pull_request:
     branches:
       - master
 
 jobs:
   test:
-    runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest ]  # OS. ubuntu-18.04 is also available.
-        php: [ '7.4' ] # PHP versions to check.
-        wp: [ 'latest', '5.9' ]      # WordPress version to check.
-    services:
-      mysql:
-        image: mysql:5.7
-        options: --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306" --health-interval 20s --health-timeout 10s --health-retries 10
-        ports:
-          - 3306/tcp
-        env:
-          MYSQL_ROOT_PASSWORD: root
-    name: UnitTest on WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }}
+        php: [ '8.2', '8.3' ] # PHP versions to check.
+        wp: [ 'latest', '6.6' ]      # WordPress version to check.
+    uses: tarosky/workflows/.github/workflows/wp-unit-test.yml@main
+    with:
+      php_version: ${{ matrix.php }}
+      wp_version: ${{ matrix.wp }}
+
+  phpcs:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: 8.2
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
       - name: Install dependencies
         run: composer install --prefer-dist
 
-      - name: Start MySQL
-        run: |
-          sudo systemctl start mysql
-          mysql -h 127.0.0.1 --port 3306 -u root --password=root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';"
-
-      - name: Install WordPress
-        run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ matrix.wp }}
-
       - name: Run test suite
-        run: composer test
+        run: composer lint
 
   assets:
     name: Test Assets
@@ -72,102 +53,15 @@ jobs:
       - name: Lint Assets
         run: npm run lint:js
 
-      - name: Build Packages
+      - name: Check build really succeeds
         run: npm run package
 
   status:
     name: Status Check
-    needs: [ test, assets ]
+    needs: [ phpcs, assets ]
     runs-on: ubuntu-latest
+    if: always()
     steps:
-      - name: Status OK
-        run: echo "OK"
-
-  deploy:
-    needs: status
-    if: contains(github.ref, 'master') && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Setup PHP with composer v2
-        uses: shivammathur/setup-php@v2
+      - uses: re-actors/alls-green@release/v1
         with:
-          php-version: 7.4
-          tools: composer
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install NPM
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Build Package
-        run: bash bin/build.sh refs/tags/${{ github.sha }}
-
-      - name: Deploy to Server
-        id: deploymaster
-        uses: Pendect/action-rsyncer@v1.1.0
-        env:
-          DEPLOY_KEY: ${{secrets.ID_RSA_FUMIKI_VPS_SAKURA}}
-        with:
-          flags: '-rptv --checksum --delete'
-          options: ''
-          ssh_options: ''
-          src: './'
-          dest: 'fumiki@fumiki.sakura.ne.jp:/home/fumiki/www/main/wp-content/themes/kyom/'
-
-      - name: Display Deploy Status
-        run: echo "${{ steps.deploymaster.outputs.status }}"
-
-  release:
-    name: Build Theme
-    needs: status
-    if: contains(github.ref, 'tags/')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Setup PHP with composer v2
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          tools: composer
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install NPM
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Build package.
-        run: bash bin/build.sh ${{ github.ref }}
-
-      - name: Deploy Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Create Zip
-        run: zip -r ${{ github.event.repository.name }}.zip ./
-
-      - name: Upload Release Zip
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./${{ github.event.repository.name }}.zip
-          asset_name: ${{ github.event.repository.name }}.zip
-          asset_content_type: application/zip
+          jobs: ${{ toJSON(needs) }}

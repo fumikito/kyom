@@ -39,12 +39,12 @@ function kyom_get_outdated_days( $post ) {
  */
 function kyom_oldest_date( $format = 'Y' ) {
 	$query = new WP_Query( [
-		'post_type'   => [ 'page', 'post' ],
-		'post_status' => 'publish',
+		'post_type'      => [ 'page', 'post' ],
+		'post_status'    => 'publish',
 		'posts_per_page' => 1,
-		'no_found_rows' => true,
-		'orderby' => 'date',
-		'order' => 'ASC',
+		'no_found_rows'  => true,
+		'orderby'        => 'date',
+		'order'          => 'ASC',
 	] );
 	if ( ! $query->have_posts() ) {
 		return date_i18n( $format );
@@ -94,13 +94,7 @@ function kyom_date_diff( $date, $now = 'now', $gmt = false ) {
 	if ( $gmt ) {
 		$time_zone = new DateTimeZone( 'UTC' );
 	} else {
-		$wp_timezone = (int) get_option( 'gmt_offset', 0 );
-		if ( $wp_timezone < 0 ) {
-			$offset = sprintf( '-%02d00', absint( $wp_timezone ) );
-		} else {
-			$offset = sprintf( '+%02d00', $wp_timezone );
-		}
-		$time_zone = new DateTimeZone( $offset );
+		$wp_timezone = wp_timezone();
 	}
 	$date = new DateTime( $date, $time_zone );
 	$now  = new DateTime( $now, $time_zone );
@@ -110,7 +104,7 @@ function kyom_date_diff( $date, $now = 'now', $gmt = false ) {
 	} elseif ( $diff->m ) {
 		$label = sprintf( _n( '%s month ago', '%s months ago', $diff->m, 'kyom' ), $diff->m );
 	} elseif ( $diff->d ) {
-		$label = 1 == $diff->d ? __( 'Yesterday' ) : sprintf( __( '%s days ago', 'kyom' ), $diff->d );
+		$label = ( 1 === $diff->d ) ? __( 'Yesterday' ) : sprintf( __( '%s days ago', 'kyom' ), $diff->d );
 	} elseif ( $diff->h ) {
 		$label = sprintf( _n( '%s hour ago', '%s hours ago', $diff->h, 'kyom' ), $diff->h );
 	} elseif ( 1 < $diff->i ) {
@@ -136,5 +130,5 @@ function kyom_is_new( $post = null ) {
 	 */
 	$kyom_new_limit = apply_filters( 'kyom', 7, $post );
 
-	return ( current_time( 'timestamp', true ) - strtotime( $post->post_date_gmt ) ) / 60 / 60 /24 < $kyom_new_limit;
+	return ( current_time( 'timestamp', true ) - strtotime( $post->post_date_gmt ) ) / 60 / 60 / 24 < $kyom_new_limit;
 }

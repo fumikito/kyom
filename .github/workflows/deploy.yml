@@ -1,0 +1,48 @@
+name: Kyom Theme Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  deploy:
+    if: contains(github.ref, 'master') && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://takahashifumiki.com
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Build Package
+        run: bash bin/build.sh refs/tags/${{ github.sha }}
+
+      - name: Deploy to Server
+        id: deploymaster
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{secrets.ID_RSA_FUMIKI_VPS_SAKURA}}
+        with:
+          flags: '-rptv --checksum --delete'
+          options: ''
+          ssh_options: ''
+          src: './'
+          dest: 'fumiki@fumiki.sakura.ne.jp:/home/fumiki/www/main/wp-content/themes/kyom/'
+
+      - name: Display Deploy Status
+        run: echo "${{ steps.deploymaster.outputs.status }}"

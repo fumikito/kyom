@@ -1,6 +1,9 @@
-<?php if ( $related_pages = kyom_get_related_pages() ) : ?>
+<?php
+$related_pages = kyom_get_related_pages();
+if ( $related_pages ) :
+	?>
 	<h2 class="uk-heading-line uk-text-center">
-		<span><?php esc_html_e( 'Related Pages', 'kyom' ) ?></span>
+		<span><?php esc_html_e( 'Related Pages', 'kyom' ); ?></span>
 	</h2>
 	<div class="uk-container archive-container">
 		<div class="uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid="masonry: true">

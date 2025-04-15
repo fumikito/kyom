@@ -9,7 +9,7 @@
 /**
  * Register theme support
  */
-add_action( 'after_setup_theme', function() {
+add_action( 'after_setup_theme', function () {
 	// Title tag.
 	add_theme_support( 'title-tag' );
 
@@ -50,18 +50,16 @@ add_action( 'after_setup_theme', function() {
 		'caption',
 	] );
 
-
 	// Feed links.
 	if ( apply_filters( 'kyom_automatic_feed_links', true ) ) {
 		add_theme_support( 'automatic-feed-links' );
 	}
-
 } );
 
 /**
  * Add comment reply link
  */
-add_action( 'wp_enqueue_scripts', function() {
+add_action( 'wp_enqueue_scripts', function () {
 	if ( ! is_singular() ) {
 		return;
 	}
@@ -78,7 +76,7 @@ add_action( 'wp_enqueue_scripts', function() {
  *
  * @return array
  */
-add_filter( 'image_size_names_choose', function( $sizes ) {
+add_filter( 'image_size_names_choose', function ( $sizes ) {
 	return array_merge( $sizes, [
 		'big-block' => _x( 'Big Rectangle', 'image-sizes', 'kyom' ),
 	] );

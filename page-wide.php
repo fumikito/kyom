@@ -10,4 +10,5 @@ the_post();
 	<?php the_content(); ?>
 </main>
 
-<?php get_footer();
+<?php
+get_footer();

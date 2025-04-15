@@ -1,0 +1,67 @@
+name: Kyom Theme Workflow
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  tags-check:
+    name: Check Branch for Tag
+    uses: tarosky/workflows/.github/workflows/check-tag-in-branch.yml@main
+    if: contains(github.ref, 'refs/tags/')
+    with:
+      allowed_branch: "master"
+
+  release:
+    name: Build Theme
+    needs: tags-check
+    runs-on: ubuntu-latest
+    enviroment:
+      name: release
+      url: https://github.com/fumikito/kyom/releases
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Build package.
+        run: bash bin/build.sh ${{ github.ref }}
+
+      - name: Deploy Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Create Zip
+        run: zip -r ${{ github.event.repository.name }}.zip ./
+
+      - name: Upload Release Zip
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./${{ github.event.repository.name }}.zip
+          asset_name: ${{ github.event.repository.name }}.zip
+          asset_content_type: application/zip

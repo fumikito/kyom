@@ -11,30 +11,30 @@ use Kunoichi\ThemeCustomizer\CustomizerSetting;
  * @package kyom
  */
 class AdCustomizer extends CustomizerSetting {
-	
+
 	protected $section_id = 'kyom_ad_section';
-	
+
 	protected function section_setting() {
 		return [
-			'title'      => __( 'Advertisement', 'kyom' ),
-			'priority'   => 10000,
+			'title'    => __( 'Advertisement', 'kyom' ),
+			'priority' => 10000,
 		];
 	}
-	
+
 	protected function get_fields(): array {
 		$fields = [
 			'kyom_ad_after_title' => [
 				'label'       => __( 'Ad after title', 'kyom' ),
 				'description' => __( 'If set, advertisement will be displayed just after single post page title.', 'kyom' ),
 				'stored'      => 'option',
-				'type'        => 'textarea'
+				'type'        => 'textarea',
 			],
 			'kyom_ad_related'     => [
 				'label'       => __( 'Related Ad', 'kyom' ),
 				'description' => __( 'If you have related ad of Google Adsense, paste code here.', 'kyom' ),
 				'stored'      => 'option',
-				'type'        => 'textarea'
-			
+				'type'        => 'textarea',
+
 			],
 			'kyom_ad_automatic'   => [
 				'label'       => __( 'Automatic Ad', 'kyom' ),
@@ -44,7 +44,7 @@ class AdCustomizer extends CustomizerSetting {
 					'placeholder' => 'e.g. ca-pub-0000000000000000',
 				],
 			],
-			'kyom_ad_content' => [
+			'kyom_ad_content'     => [
 				'label'       => __( 'In Article Ad', 'kyom' ),
 				'description' => __( 'Insert code for in article ads.', 'kyom' ),
 				'type'        => 'textarea',
@@ -62,9 +62,9 @@ class AdCustomizer extends CustomizerSetting {
 </amp-ad>
 HTML;
 			$amp_ad = str_replace( "\n", '&#13;&#10;', $amp_ad );
-			
+
 			$args = array_merge( $fields, [
-				'kyom_ad_amp_title' => [
+				'kyom_ad_amp_title'   => [
 					'label'       => __( 'Ad after Title on AMP', 'kyom' ),
 					'description' => __( 'Enter AMP ad tag.', 'kyom' ),
 					'type'        => 'textarea',
@@ -82,7 +82,7 @@ HTML;
 					],
 					'stored'      => 'option',
 				],
-				'kyom_ad_amp_last' => [
+				'kyom_ad_amp_last'    => [
 					'label'       => __( 'Ad after related posts on AMP', 'kyom' ),
 					'description' => __( 'Enter AMP ad tag.', 'kyom' ),
 					'type'        => 'textarea',

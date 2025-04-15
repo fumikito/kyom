@@ -47,18 +47,18 @@ class QuotesCommand extends \WP_CLI_Command {
 	 */
 	public function migrate( $args, $assoc ) {
 		$dry_run = ! empty( $assoc['dry-run'] );
-		$quotes = $this->query();
+		$quotes  = $this->query();
 		if ( empty( $quotes ) ) {
 			\WP_CLI::error( 'No quotes exist.' );
 		}
 		$imported = 0;
 		$total    = count( $quotes );
 		foreach ( $quotes as $quote ) {
-			$query = new \WP_Query( [
+			$query   = new \WP_Query( [
 				'post_type'      => QuotesCollection::get_instance()->post_type,
 				'post_status'    => 'any',
 				'posts_per_page' => 1,
-				'meta_query' => [
+				'meta_query'     => [
 					[
 						'key'   => '_old_quote_id',
 						'value' => $quote->quote_id,
@@ -77,7 +77,7 @@ class QuotesCommand extends \WP_CLI_Command {
 			}
 			// Should be import.
 			if ( $dry_run ) {
-				$imported++;
+				++$imported;
 			} else {
 				$post_args = [
 					'post_type'    => QuotesCollection::get_instance()->post_type,
@@ -98,7 +98,7 @@ class QuotesCommand extends \WP_CLI_Command {
 				update_post_meta( $inserted, '_quote_source', $quote->source );
 				wp_set_object_terms( $inserted, $quote->author, 'author' );
 				echo '.';
-				$imported++;
+				++$imported;
 			}
 		}
 		\WP_CLI::line( '' );
@@ -112,6 +112,7 @@ class QuotesCommand extends \WP_CLI_Command {
 			$query = <<<SQL
 				DROP TABLE {$wpdb->prefix}quotescollection
 SQL;
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$result = $wpdb->query( $query );
 			if ( $result ) {
 				\WP_CLI::success( 'Old table are dropped.' );
@@ -131,10 +132,10 @@ SQL;
 		$query = <<<SQL
 			SELECT * FROM {$wpdb->prefix}quotescollection
 SQL;
-		return array_map( function( $row ) {
+		return array_map( function ( $row ) {
 			$row->quote_id = (int) $row->quote_id;
 			return $row;
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}, $wpdb->get_results( $query ) );
-
 	}
 }

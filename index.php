@@ -4,6 +4,11 @@
  */
 get_header();
 
+?>
+	<div class="entry-breadcrumb">
+		<?php kyom_breadcrumb(); ?>
+	</div>
+<?php
 
 
 if ( have_posts() ) {
@@ -13,5 +18,7 @@ if ( have_posts() ) {
 } else {
 	get_template_part( 'template-parts/archive-no' );
 }
+
+
 
 get_footer();

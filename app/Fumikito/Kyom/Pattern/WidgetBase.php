@@ -28,7 +28,7 @@ abstract class WidgetBase extends \WP_Widget {
 	 *
 	 * @return string
 	 */
-	abstract protected function name():string;
+	abstract protected function name(): string;
 
 	/**
 	 * Get description.
@@ -48,7 +48,7 @@ abstract class WidgetBase extends \WP_Widget {
 		return [
 			'title' => [
 				'label' => __( 'Title' ),
-			]
+			],
 		];
 	}
 
@@ -60,7 +60,7 @@ abstract class WidgetBase extends \WP_Widget {
 	protected function get_formatted_params() {
 		$formatted = [];
 		foreach ( $this->get_params() as $key => $setting ) {
-			$setting = wp_parse_args( $setting, [
+			$setting           = wp_parse_args( $setting, [
 				'default'     => '',
 				'type'        => 'text',
 				'label'       => '',
@@ -102,7 +102,8 @@ abstract class WidgetBase extends \WP_Widget {
 		foreach ( $this->get_formatted_params() as $key => $setting ) {
 			?>
 			<p class="kyom-widget-control">
-				<?php switch ( $setting['type'] ) {
+				<?php
+				switch ( $setting['type'] ) {
 					case 'number':
 					case 'text':
 					case 'url':
@@ -116,7 +117,7 @@ abstract class WidgetBase extends \WP_Widget {
 							esc_html( $setting['label'] ),
 							esc_attr( $setting['type'] ),
 							esc_attr( $instance[ $key ] ),
-							esc_attr( $setting[ 'placeholder' ] )
+							esc_attr( $setting['placeholder'] )
 						);
 						break;
 					case 'textarea':
@@ -127,7 +128,7 @@ abstract class WidgetBase extends \WP_Widget {
 							esc_html( $setting['label'] ),
 							esc_textarea( $instance[ $key ] ),
 							$setting['rows'],
-							esc_attr( $setting[ 'placeholder' ] )
+							esc_attr( $setting['placeholder'] )
 						);
 						break;
 					case 'bool':
@@ -138,21 +139,22 @@ abstract class WidgetBase extends \WP_Widget {
 							esc_html( $setting['label'] )
 						);
 						break;
-                    case 'select':
-                        ?>
-                        <label>
-                            <?php echo esc_html( $setting['label'] ); ?><br />
-                            <select name="<?php echo esc_attr( $this->get_field_name( $key ) ) ?>">
-                                <?php foreach( $setting['options'] as $value => $opt_label ) : ?>
-                                <option value="<?php echo esc_attr( $value ) ?>"<?php selected( $value, $instance[ $key ] ) ?>>
-                                    <?php echo esc_html( $opt_label ) ?>
-                                </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                        <?php
-                        break;
-				} ?>
+					case 'select':
+						?>
+						<label>
+							<?php echo esc_html( $setting['label'] ); ?><br />
+							<select name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>">
+								<?php foreach ( $setting['options'] as $value => $opt_label ) : ?>
+								<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $value, $instance[ $key ] ); ?>>
+									<?php echo esc_html( $opt_label ); ?>
+								</option>
+								<?php endforeach; ?>
+							</select>
+						</label>
+						<?php
+						break;
+				}
+				?>
 			</p>
 			<?php
 		}

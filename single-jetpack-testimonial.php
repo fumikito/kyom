@@ -4,10 +4,10 @@ the_post();
 ?>
 
 	<main class="main">
-		<article <?php post_class( 'entry' ) ?>>
+		<article <?php post_class( 'entry' ); ?>>
 
 			<div class="uk-container entry-breadcrumb">
-				<?php kyom_breadcrumb() ?>
+				<?php kyom_breadcrumb(); ?>
 			</div>
 
 			<?php do_action( 'kyom_before_article' ); ?>
@@ -16,13 +16,16 @@ the_post();
 
 				<?php if ( 'quotes' !== get_post_type() ) : ?>
 				<h1 class="pull-quote-title">
-					<small><?php esc_html_e( 'Testimonial By', 'kyom' ) ?></small>
+					<small><?php esc_html_e( 'Testimonial By', 'kyom' ); ?></small>
 					<?php if ( has_post_thumbnail() ) : ?>
-						<?php the_post_thumbnail( 'face-rectangle' ) ?>
+						<?php the_post_thumbnail( 'face-rectangle' ); ?>
 					<?php endif; ?>
-					<span class="pull-quote-title-text"><?php the_title() ?></span>
-					<?php if ( $position = get_post_meta( get_the_ID(), '_source_position', true ) ) : ?>
-						<small><?= esc_html( $position ) ?></small>
+					<span class="pull-quote-title-text"><?php the_title(); ?></span>
+					<?php
+					$position = get_post_meta( get_the_ID(), '_source_position', true );
+					if ( $position ) :
+						?>
+						<small><?php echo esc_html( $position ); ?></small>
 					<?php endif; ?>
 				</h1>
 				<?php endif; ?>
@@ -31,10 +34,13 @@ the_post();
 					<span class="pull-quote-icon-left" uk-icon="icon: quote-right; ratio: 3"></span>
 					<span class="pull-quote-icon-right" uk-icon="icon: quote-right; ratio: 3"></span>
 
-					<?= wp_kses_post( wpautop( $post->post_content ) ); ?>
-					<?php if ( $source = kyom_testimonial_source() ) : ?>
+					<?php
+					echo wp_kses_post( wpautop( $post->post_content ) );
+					$source = kyom_testimonial_source();
+					if ( $source ) :
+						?>
 						<cite class="pull-quote-source">
-						<?= $source ?>
+						<?php echo $source; ?>
 						</cite>
 					<?php endif; ?>
 				</blockquote>

@@ -11,7 +11,7 @@ $kyom_theme_info = get_file_data( __DIR__ . '/style.css', [
 ] );
 
 // Register domain.
-load_theme_textdomain( $kyom_theme_info[ 'domain' ], __DIR__ . '/languages' );
+load_theme_textdomain( $kyom_theme_info['domain'], __DIR__ . '/languages' );
 
 // Load autoloader.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
@@ -27,7 +27,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
 
 // Load all subroutines.
-$templates = [];
+$templates         = [];
 $directory_to_scan = [ __DIR__ ];
 // If child theme exists, add them.
 if ( __DIR__ !== get_stylesheet_directory() ) {
@@ -43,7 +43,7 @@ foreach ( $directory_to_scan as $theme_dir ) {
 					continue;
 				}
 				$slug = $dir . '/' . $matches[1];
-				if ( ! in_array( $slug, $templates ) ) {
+				if ( ! in_array( $slug, $templates, true ) ) {
 					$templates[] = $slug;
 				}
 			}
@@ -52,7 +52,7 @@ foreach ( $directory_to_scan as $theme_dir ) {
 }
 
 // Load them all.
-array_map( function( $template ) {
+array_map( function ( $template ) {
 	get_template_part( $template );
 }, $templates );
 
@@ -63,7 +63,7 @@ array_map( function( $template ) {
  */
 function kyom_version( $display = false ) {
 	global $kyom_theme_info;
-	$version = $kyom_theme_info[ 'version' ] ?? '0.0.0';
+	$version = $kyom_theme_info['version'] ?? '0.0.0';
 	$version = trim( $version );
 	if ( ! $display ) {
 		return $version;

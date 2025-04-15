@@ -11,7 +11,7 @@
  * @return string
  */
 function kyom_get_content_locale( $post = null ) {
-	$post = get_post( $post );
+	$post   = get_post( $post );
 	$locale = get_post_meta( $post->ID, '_locale', true );
 	if ( ! $locale ) {
 		$locale = get_locale();
@@ -73,7 +73,7 @@ function kyom_get_top_category( $post = null ) {
  * @return bool
  */
 function kyom_is_cjk( $post = null, $global = false ) {
-	$locale = kyom_get_content_locale( $post );
+	$locale    = kyom_get_content_locale( $post );
 	$lang_code = explode( '_', $locale );
 	switch ( $lang_code[0] ) {
 		case 'ja':
@@ -110,7 +110,7 @@ function kyom_get_content_length( $post = null ) {
  * @return bool
  */
 function kyom_is_updated( $post = null ) {
-	$post      = get_post( $post );
+	$post = get_post( $post );
 	if ( 'publish' !== $post->post_status ) {
 		return false;
 	}
@@ -174,7 +174,7 @@ function kyom_reading_minutes( $post = null ) {
  */
 function kyom_reading_time( $post = null ) {
 	$minutes = kyom_reading_minutes( $post );
-	return sprintf( _n(  '%s minute to read', '%s minutes to read', $minutes, 'kyom' ), number_format( $minutes ) );
+	return sprintf( _n( '%s minute to read', '%s minutes to read', $minutes, 'kyom' ), number_format( $minutes ) );
 }
 
 /**
@@ -185,7 +185,7 @@ function kyom_reading_time( $post = null ) {
  * @return bool
  */
 function kyom_is_parent( $post = null ) {
-	$post = get_post( $post );
+	$post   = get_post( $post );
 	$global = get_queried_object();
 	if ( ! is_a( $global, 'WP_Post' ) ) {
 		return false;
@@ -201,7 +201,7 @@ function kyom_is_parent( $post = null ) {
  * @return array|WP_Error
  */
 function kyom_parse_string( $string ) {
-	$endpoint = 'https://punctuate.space/json?q='.rawurlencode( $string );
+	$endpoint = 'https://punctuate.space/json?q=' . rawurlencode( $string );
 	$response = wp_remote_get( $endpoint );
 	if ( is_wp_error( $response ) ) {
 		return $response;

@@ -13,7 +13,7 @@ do_action( 'kyom_before_site_footer' );
 
 		<?php if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
 		<div class="site-footer-widgets uk-grid-divider uk-grid" uk-grid>
-			<?php dynamic_sidebar( 'footer-sidebar' ) ?>
+			<?php dynamic_sidebar( 'footer-sidebar' ); ?>
 		</div>
 		<?php endif ?>
 
@@ -39,8 +39,8 @@ do_action( 'kyom_before_site_footer' );
 		?>
 
 		<p class="site-footer-copy">
-			&copy; <?php echo esc_html( kyom_oldest_date() ) ?> <a href="<?php echo home_url() ?>" rel="home"><?php bloginfo( 'name' ) ?></a>
-			| Powered by <a href="https://wordpress.org">WordPress <?php echo esc_html( $GLOBALS['wp_version'] ) ?></a> and <a href="https://github.com/fumikito/kyom">Kyom <?php echo kyom_version( true ) ?></a>.
+			&copy; <?php echo esc_html( kyom_oldest_date() ); ?> <a href="<?php echo home_url(); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+			| Powered by <a href="https://wordpress.org">WordPress <?php echo esc_html( $GLOBALS['wp_version'] ); ?></a> and <a href="https://github.com/fumikito/kyom">Kyom <?php echo kyom_version( true ); ?></a>.
 		</p>
 	</div>
 </footer>

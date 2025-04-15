@@ -3,8 +3,8 @@
 use Gianism\Api\Ga;
 
 
-class FumikiTotalPv extends Ga
-{
+class FumikiTotalPv extends Ga {
+
 
 	const ACTION = 'fumiki_pv';
 
@@ -29,11 +29,9 @@ class FumikiTotalPv extends Ga
 	protected function get_params() {
 		return array(
 			'max-results' => 100,
-			'dimensions' => 'ga:pagePath',
-			'filters' => 'ga:dimension3==post'  ,
-			'sort' => '-ga:pageviews',
+			'dimensions'  => 'ga:pagePath',
+			'filters'     => 'ga:dimension3==post',
+			'sort'        => '-ga:pageviews',
 		);
 	}
-
-
 }

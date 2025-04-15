@@ -26,7 +26,7 @@ add_filter( 'nocache_headers', function ( $headers ) {
 	} else {
 		$headers['X-Accel-Expires'] = 0;
 	}
-	
+
 	return $headers;
 }, 1 );
 
@@ -57,7 +57,7 @@ add_action( 'template_redirect', function () {
  * Purge CloudFlare cache when posts are saved.
  */
 add_action( 'save_post', function ( $post_id, $post ) {
-	if ( 'post' == $post->post_type && 'publish' == $post->post_status ) {
+	if ( 'post' === $post->post_type && 'publish' === $post->post_status ) {
 		kyom_purge_cf_cache( $post );
 	}
 }, 10, 2 );

@@ -35,21 +35,21 @@ function kyom_hatena_total_bookmark_count() {
  */
 function kyom_get_hatena_rss( $fqdn, $sort = 'count', $limit = 5 ) {
 	$endpoint = sprintf( 'http://b.hatena.ne.jp/entrylist?mode=rss&url=%s&sort=%s', $fqdn, $sort );
-	$feed = fetch_feed( $endpoint );
+	$feed     = fetch_feed( $endpoint );
 	if ( is_wp_error( $feed ) ) {
 		return [];
 	} else {
 		if ( 'count' === $sort ) {
 			$rank = [];
 			for ( $i = 0, $l = $feed->get_item_quantity(); $i < $l; $i++ ) {
-				$item = $feed->get_item( $i );
-				$rank[$i] = $item->get_item_tags( 'http://www.hatena.ne.jp/info/xmlns#', 'bookmarkcount' )[0]['data'];
+				$item       = $feed->get_item( $i );
+				$rank[ $i ] = $item->get_item_tags( 'http://www.hatena.ne.jp/info/xmlns#', 'bookmarkcount' )[0]['data'];
 			}
-			arsort($rank);
+			arsort( $rank );
 			$items = [];
 			foreach ( $rank as $index => $value ) {
-				$items[] = $feed->get_item($index);
-				if ( $limit <= count($items) ) {
+				$items[] = $feed->get_item( $index );
+				if ( $limit <= count( $items ) ) {
 					break;
 				}
 			}
@@ -113,6 +113,7 @@ function kyom_fetch_feed_items( $url ) {
 						'title'     => (string) $item->title,
 						'excerpt'   => (string) $item->description,
 						'url'       => (string) $item->children( 'dc', true )->relation,
+						// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 						'post_date' => date_i18n( 'Y-m-d H:i:s', strtotime( $item->pubDate ) + 60 * 60 * 9 ),
 						'category'  => (string) $item->category,
 						'image'     => str_replace( 'http://', 'https://', (string) $thumbnials['url'] ),
@@ -155,7 +156,7 @@ function kyom_get_ga_result( $start_date, $end_date, $metrics = 'screenPageViews
 			'dateRanges' => [
 				[
 					'startDate' => $start_date,
-					'endDate' => $end_date,
+					'endDate'   => $end_date,
 				],
 			],
 			'dimensions' => [
@@ -166,20 +167,20 @@ function kyom_get_ga_result( $start_date, $end_date, $metrics = 'screenPageViews
 					'name' => 'pageTitle',
 				],
 			],
-			'metrics' => [
+			'metrics'    => [
 				[
 					'name' => $metrics,
 				],
 			],
-			'orderBys' => [
+			'orderBys'   => [
 				[
 					'metric' => [
 						'metricName' => $metrics,
 					],
-					'desc' => true,
+					'desc'   => true,
 				],
 			],
-			'limit' => $params[ 'limit' ] ?? 20,
+			'limit'      => $params['limit'] ?? 20,
 		];
 		if ( ! empty( $params['filters'] ) ) {
 			$args['dimensionFilter'] = $params['filters'];
@@ -254,9 +255,9 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $deprecated = '' ) 
 	} else {
 		$from = kyom_oldest_date( 'Y-m-d' );
 	}
-	$result = kyom_get_ga_result( $from, date_i18n( 'Y-m-d' ), 'screenPageViews', [
-		'limit'       => $count * 3,
-		'filters'     => $filters,
+	$result       = kyom_get_ga_result( $from, date_i18n( 'Y-m-d' ), 'screenPageViews', [
+		'limit'   => $count * 3,
+		'filters' => $filters,
 	] );
 	$path_and_pvs = [];
 	// Arrange ranking with page path and pvs.
@@ -274,7 +275,8 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $deprecated = '' ) 
 	$ranking = [];
 	foreach ( $path_and_pvs as $page_path => $pv ) {
 		$permalink = home_url( $page_path );
-		if ( ! ( $post_id = url_to_postid( $permalink ) ) ) {
+		$post_id   = url_to_postid( $permalink );
+		if ( ! $post_id ) {
 			continue;
 		}
 		$ranking[] = [
@@ -287,7 +289,7 @@ function kyom_get_ranking( $from, $count = 5, $filters = '', $deprecated = '' ) 
 		$more = 0;
 		foreach ( $ranking as $r ) {
 			if ( $rank['pv'] < $r['pv'] ) {
-				$more++;
+				++$more;
 			}
 		}
 		$ranking[ $index ]['rank'] = $more + 1;
@@ -332,7 +334,7 @@ function kyom_icon_from_url( $url ) {
 	$icon = 'link';
 	foreach ( kyom_social_keys() as $key ) {
 		if ( preg_match( '#https?://(.*\.)?' . $key . '\.(co\.jp|jp|com|org)#u', $url ) ) {
-			return  $key;
+			return $key;
 		}
 	}
 	return $icon;
@@ -356,10 +358,10 @@ function kyom_get_youtube_channel() {
 	if ( ! $channel_id ) {
 		return new WP_Error( 'no_channel_id', __( 'YouTube Channel ID is not set.', 'kyom' ) );
 	}
-	$url = add_query_arg([
+	$url    = add_query_arg([
 		'part' => 'contentDetails,snippet',
 		'id'   => rawurlencode( $channel_id ),
-		'key'  => rawurlencode( $key )
+		'key'  => rawurlencode( $key ),
 	], 'https://www.googleapis.com/youtube/v3/channels' );
 	$result = wp_remote_get( $url );
 	if ( is_wp_error( $result ) ) {
@@ -397,7 +399,7 @@ function kyom_get_youtube_playlist( $wp_error = true ) {
  */
 function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
 	$cache_key = 'kyom_youtube_videos_in_' . $playlist;
-	$cache = get_transient( $cache_key );
+	$cache     = get_transient( $cache_key );
 	if ( false !== $cache ) {
 		return $cache;
 	}
@@ -417,9 +419,9 @@ function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
 	}
 	$json = json_decode( $response['body'], true );
 	if ( ! $json ) {
-		return new WP_Error( 'parse_error', __( 'Failed to get valid response.', 'kyom') );
+		return new WP_Error( 'parse_error', __( 'Failed to get valid response.', 'kyom' ) );
 	}
-	$result = array_slice( array_values( array_filter( $json['items'], function( $item ) {
+	$result = array_slice( array_values( array_filter( $json['items'], function ( $item ) {
 		return ! preg_match( '/#[sS]horts/u', $item['snippet']['title'] );
 	} ) ), 0, 5 );
 	set_transient( $cache_key, $result, $cache_time );
@@ -441,7 +443,7 @@ function kyom_get_scheduled_youtube_live_stream( $days ) {
 	if ( false !== $cache ) {
 		return $cache;
 	}
-	$url = sprintf( 'https://www.youtube.com/channel/%s/live', $channel['id'] );
+	$url      = sprintf( 'https://www.youtube.com/channel/%s/live', $channel['id'] );
 	$response = wp_remote_get( $url );
 	if ( is_wp_error( $response ) ) {
 		return [];

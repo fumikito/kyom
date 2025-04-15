@@ -9,14 +9,14 @@
 /**
  * Add media to RSS2.0
  */
-add_action( 'rss2_ns', function() {
+add_action( 'rss2_ns', function () {
 	echo 'xmlns:media="http://search.yahoo.com/mrss/"';
 } );
 
 /**
  * Add thumbnails to media tag.
  */
-add_action('rss2_item', function() {
+add_action('rss2_item', function () {
 	$src = apply_filters( 'kyom_rss_thumbnail_src', get_the_post_thumbnail_url( null, 'full' ) );
 	if ( ! $src ) {
 		return;
@@ -35,10 +35,10 @@ EOS;
  *
  * @param array $links
  */
-add_action( 'pre_ping', function( &$links ) {
-	foreach ( $links as $index => $link ){
+add_action( 'pre_ping', function ( &$links ) {
+	foreach ( $links as $index => $link ) {
 		if ( false !== strpos( home_url(), $link ) ) {
-			unset($links[$index]);
+			unset( $links[ $index ] );
 		}
 	}
 });

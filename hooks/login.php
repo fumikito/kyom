@@ -8,7 +8,7 @@
  *
  * @return string
  */
-add_filter( 'login_headerurl', function() {
+add_filter( 'login_headerurl', function () {
 	return home_url();
 } );
 

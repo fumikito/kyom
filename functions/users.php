@@ -48,14 +48,16 @@ function kyom_get_social_links( $user = null, $with_label = false ) {
 		return [];
 	}
 	$methods = [];
-	if ( $page = get_post( get_option( 'newsletter_page', 0 ) ) ) {
-		$methods[ 'mail' ] = [
+	$page    = get_post( get_option( 'newsletter_page', 0 ) );
+	if ( $page ) {
+		$methods['mail'] = [
 			'label' => __( 'Newsletter', 'kyom' ),
 			'url'   => get_permalink( $page ),
 		];
 	}
 	foreach ( wp_get_user_contact_methods( $user ) as $key => $label ) {
-		if ( $meta = get_user_meta( $user->ID, $key, true ) ) {
+		$meta = get_user_meta( $user->ID, $key, true );
+		if ( $meta ) {
 			$methods[ $key ] = $with_label ? [
 				'label' => preg_replace( '/ URL$/u', '', $label ),
 				'url'   => $meta,
@@ -75,11 +77,14 @@ function kyom_get_social_links( $user = null, $with_label = false ) {
  */
 function kyom_is_primary_comment( $comment ) {
 	$primary = false;
-	$post = get_post( $comment->comment_post_ID );
-	if ( $comment->user_id == $post->post_author ) {
+	$post    = get_post( $comment->comment_post_ID );
+	if ( (int) $comment->user_id === (int) $post->post_author ) {
 		$primary = true;
-	} elseif ( ( $user_id = email_exists( $comment->comment_author_email ) ) && $user_id == $post->post_author ) {
-		$primary = true;
+	} else {
+		$user_id = email_exists( $comment->comment_author_email );
+		if ( $user_id && $user_id === (int) $post->post_author ) {
+			$primary = true;
+		}
 	}
 
 	/**
@@ -104,8 +109,8 @@ function kyom_get_last_login( $user_id = false ) {
 	if ( ! $user_id ) {
 		$user_id = get_current_user_id();
 	}
-	$last_login = get_user_meta( $user_id, 'last_login', true );
-	$date_format = get_option( 'date_format') . ' ' . get_option('time_format' );
+	$last_login     = get_user_meta( $user_id, 'last_login', true );
+	$date_format    = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 	$the_last_login = mysql2date( $date_format, $last_login, false );
 	return $the_last_login;
 }
@@ -116,7 +121,7 @@ function kyom_get_last_login( $user_id = false ) {
  * @return string
  */
 function kyom_get_user_role() {
-	if( current_user_can( 'edit_others_posts' ) ) {
+	if ( current_user_can( 'edit_others_posts' ) ) {
 		$role = 'editor';
 	} elseif ( current_user_can( 'edit_posts' ) ) {
 		$role = 'author';

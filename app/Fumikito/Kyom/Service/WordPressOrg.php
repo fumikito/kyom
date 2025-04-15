@@ -1,5 +1,4 @@
 <?php
-
 namespace Fumikito\Kyom\Service;
 
 
@@ -9,6 +8,7 @@ use Masterminds\HTML5;
  * WordPress.org helper
  *
  * @package kyom
+ * @phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
  */
 class WordPressOrg {
 
@@ -41,10 +41,10 @@ class WordPressOrg {
 			if ( is_wp_error( $response ) ) {
 				return [];
 			}
-			$data['url'] = $url;
+			$data['url']       = $url;
 			$data['downloads'] = 0;
-			$html5 = new HTML5();
-			$document = $html5->loadHTML( $response['body'] );
+			$html5             = new HTML5();
+			$document          = $html5->loadHTML( $response['body'] );
 			// Get since.
 			$member_since = '';
 			foreach ( $document->getElementById( 'user-member-since' )->getElementsByTagName( 'strong' ) as $strong ) {
@@ -52,7 +52,7 @@ class WordPressOrg {
 				$member_since .= $strong->nodeValue;
 			}
 			if ( $member_since ) {
-				$data[ 'member_since' ] = strtotime( $member_since );
+				$data['member_since'] = strtotime( $member_since );
 			}
 			// Get badges.
 			$badges = [];
@@ -71,56 +71,57 @@ class WordPressOrg {
 			$data['downloads'] = 0;
 			foreach ( [
 				'theme',
-				'plugin'
+				'plugin',
 			] as $extension ) {
-				$id = "content-{$extension}s";
-				$plugins = [];
+				$id              = "content-{$extension}s";
+				$plugins         = [];
 				$plugin_download = 0;
-				$container = $document->getElementById( $id );
+				$container       = $document->getElementById( $id );
 				if ( $container ) {
 					foreach ( $container->getElementsByTagName( 'li' ) as $li ) {
-						$plugin = [];
+						$plugin  = [];
 						$counter = 0;
 						foreach ( $li->getElementsByTagName( 'a' ) as $link ) {
 							if ( ( ! $counter && 'theme' === $extension ) || ( $counter && 'plugin' === $extension ) ) {
 								// Text Link.
-								$plugin[ 'name' ]   = trim( $link->nodeValue );
-								$plugin[ 'url' ]    = trim( $link->getAttribute( 'href' ) );
-								$plugin[ 'rating' ] = 0;
+								$plugin['name']   = trim( $link->nodeValue );
+								$plugin['url']    = trim( $link->getAttribute( 'href' ) );
+								$plugin['rating'] = 0;
 								foreach ( $link->parentNode->getElementsByTagName( 'div' ) as $div ) {
-									if ( $rating = trim( $div->getAttribute( 'title' ) ) ) {
+									$rating = trim( $div->getAttribute( 'title' ) );
+									if ( $rating ) {
 										if ( preg_match_all( '#\d#u', $rating, $match ) ) {
-											$plugin[ 'rating' ] = $match[ 0 ][ 0 ] / $match[ 0 ][ 1 ];
+											$plugin['rating'] = $match[0][0] / $match[0][1];
 										}
 									}
 								}
-								if ( 'theme' == $extension ) {
+								if ( 'theme' === $extension ) {
 									// Get screenshot
 									foreach ( $link->getElementsByTagName( 'img' ) as $image ) {
-										$plugin[ 'screen_shot' ] = $image->getAttribute( 'src' );
+										$plugin['screen_shot'] = $image->getAttribute( 'src' );
 									}
 								}
 							} elseif ( 'plugins' === $extension ) {
 								if ( preg_match_all( '#url\(\'([^\']+)(\d{3}x\d{3})([^\']+)\'\)#u', $link->nodeValue, $matches, PREG_SET_ORDER ) ) {
 									foreach ( $matches as $match ) {
-										$label            = '256x256' == $match[ 2 ] ? 'icon_large' : 'icon_small';
-										$plugin[ $label ] = $match[ 1 ] . $match[ 2 ] . $match[ 3 ];
+										$label            = '256x256' === $match[2] ? 'icon_large' : 'icon_small';
+										$plugin[ $label ] = $match[1] . $match[2] . $match[3];
 									}
 								}
 							}
-							$counter ++;
+							++$counter;
 						}
 						// Get install counts.
 						foreach ( $li->getElementsByTagName( 'p' ) as $p ) {
-							$plugin[ 'downloads' ] = (int) preg_replace( '#\D#u', '', trim( $p->nodeValue ) );
-							$plugin_download       += $plugin[ 'downloads' ];
+							$plugin['downloads'] = (int) preg_replace( '#\D#u', '', trim( $p->nodeValue ) );
+							$plugin_download    += $plugin['downloads'];
 						}
 						$plugins[] = $plugin;
 					}
 				}
 				$data[ $extension . 's' ]          = $plugins;
 				$data[ $extension . '_downloads' ] = $plugin_download;
-				$data['downloads'] += $plugin_download;
+				$data['downloads']                += $plugin_download;
 			}
 			// Get themes.
 			$data['last_updated'] = current_time( 'mysql' );
@@ -163,8 +164,9 @@ class WordPressOrg {
 	 * @return string
 	 */
 	public static function translate_role( $role ) {
-		return implode( ' ', array_map( function( $string ) {
-			return _x( $string, 'wordpress', 'kyom' );
+		return implode( ' ', array_map( function ( $string ) {
+			// phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
+			return _x( $string, 'WordPress', 'kyom' );
 		}, explode( ' ', $role ) ) );
 	}
 
@@ -175,18 +177,18 @@ class WordPressOrg {
 	 * @see $this->translate_role
 	 */
 	private function translate_role_segment() {
-		_x( 'Developer', 'wordpress', 'kyom' );
-		_x( 'Speaker', 'wordpress', 'kyom' );
-		_x( 'Plugin', 'wordpress', 'kyom' );
-		_x( 'Theme', 'wordpress', 'kyom' );
-		_x( 'Organizer', 'wordpress', 'kyom' );
-		_x( 'Editor', 'wordpress', 'kyom' );
-		_x( 'Contributor', 'wordpress', 'kyom' );
-		_x( 'Core', 'wordpress', 'kyom' );
-		_x( 'Meta', 'wordpress', 'kyom' );
-		_x( 'Support', 'wordpress', 'kyom' );
-		_x( 'Translation', 'wordpress', 'kyom' );
-		_x( 'Team', 'wordpress', 'kyom' );
-		_x( 'Commiter', 'wordpress', 'kyom' );
+		_x( 'Developer', 'WordPress', 'kyom' );
+		_x( 'Speaker', 'WordPress', 'kyom' );
+		_x( 'Plugin', 'WordPress', 'kyom' );
+		_x( 'Theme', 'WordPress', 'kyom' );
+		_x( 'Organizer', 'WordPress', 'kyom' );
+		_x( 'Editor', 'WordPress', 'kyom' );
+		_x( 'Contributor', 'WordPress', 'kyom' );
+		_x( 'Core', 'WordPress', 'kyom' );
+		_x( 'Meta', 'WordPress', 'kyom' );
+		_x( 'Support', 'WordPress', 'kyom' );
+		_x( 'Translation', 'WordPress', 'kyom' );
+		_x( 'Team', 'WordPress', 'kyom' );
+		_x( 'Commiter', 'WordPress', 'kyom' );
 	}
 }

@@ -19,7 +19,7 @@ $rel          = $is_own ? 'target="_top"' : 'target="_blank" rel="noopener noref
 ?>
 <div <?php post_class( [ 'wp-embed', ( $is_own ? 'wp-embed-own' : 'wp-embed-external' ) ] ); ?>>
 
-	<a class="wp-embed-link" href="<?php the_permalink(); ?>" <?php echo $rel ?>>
+	<a class="wp-embed-link" href="<?php the_permalink(); ?>" <?php echo $rel; ?>>
 		
 		<?php if ( $thumbnail_id ) : ?>
 			<div class="wp-embed-featured-image">
@@ -36,7 +36,7 @@ $rel          = $is_own ? 'target="_top"' : 'target="_blank" rel="noopener noref
 			<h1 class="wp-embed-heading"><?php the_title(); ?></h1>
 			
 			<p class="wp-embed-date">
-				<time datetime="<?php echo esc_attr( get_the_date( '' ) ) ?>"><?php the_date() ?></time>
+				<time datetime="<?php echo esc_attr( get_the_date( '' ) ); ?>"><?php the_date(); ?></time>
 			</p>
 			
 		</div>

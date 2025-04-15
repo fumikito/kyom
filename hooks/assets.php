@@ -8,10 +8,10 @@
 /**
  * Register scripts and styles.
  */
-add_action( 'init', function() {
+add_action( 'init', function () {
 
 	// Main style.
-	wp_register_style( 'uikit', get_template_directory_uri(). '/assets/css/style.css', [  ], kyom_version() );
+	wp_register_style( 'uikit', get_template_directory_uri() . '/assets/css/style.css', [], kyom_version() );
 
 	// icons
 	$uikit_version = '3.3.6';
@@ -27,7 +27,7 @@ add_action( 'init', function() {
 
 	// Particle.js
 	wp_register_script( 'particle-js', 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js', [], '2.0.0', true );
-	wp_register_script( 'kyom-particle', get_template_directory_uri() . '/assets/js/particle.js', ['particle-js'], kyom_version(), true );
+	wp_register_script( 'kyom-particle', get_template_directory_uri() . '/assets/js/particle.js', [ 'particle-js' ], kyom_version(), true );
 
 	// Netabare
 	wp_register_script( 'kyom-netabare', get_template_directory_uri() . '/assets/js/netabare.js', [ 'jquery' ], kyom_version(), true );
@@ -36,7 +36,7 @@ add_action( 'init', function() {
 	] );
 
 	// Gooogle Platform
-    wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
+	wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
 
 	// Theme
 	wp_register_script( 'kyom', get_template_directory_uri() . '/assets/js/app.js', [
@@ -56,7 +56,7 @@ add_action( 'init', function() {
 /**
  * Enqueue scripts
  */
-add_action( 'wp_enqueue_scripts', function() {
+add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'uikit' );
 	wp_enqueue_script( 'kyom' );
 	wp_enqueue_script( 'fitie' );
@@ -65,7 +65,7 @@ add_action( 'wp_enqueue_scripts', function() {
 /**
  * Enqueue admin style.
  */
-add_action( 'admin_enqueue_scripts', function() {
+add_action( 'admin_enqueue_scripts', function () {
 	wp_enqueue_style( 'kyom-admin' );
 } );
 
@@ -85,9 +85,9 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_dequeue_style( 'yarppWidgetCss' );
 }, 11 );
 
-add_filter( 'script_loader_tag', function( $tag, $handle ) {
+add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare', 'fitie', 'particle-js', 'kyom-particle' ];
-	if ( in_array( $handle, $deferrable ) ) {
+	if ( in_array( $handle, $deferrable, true ) ) {
 		$tag = str_replace( '<script', '<script defer', $tag );
 	}
 	return $tag;
@@ -96,27 +96,27 @@ add_filter( 'script_loader_tag', function( $tag, $handle ) {
 /**
  * Move jQuery to footer
  */
-add_action( 'wp_default_scripts', function( WP_Scripts $wp_scripts ) {
+add_action( 'wp_default_scripts', function ( WP_Scripts $wp_scripts ) {
 	// Avoid admin and login screen.
 	if ( is_admin() || ( isset( $_SERVER['SCRIPT_FILENAME'] ) && 'wp-login.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) ) {
 		return;
 	}
-    // If this is CLI, skip.
-    if ( defined( 'WP_CLI' ) && WP_CLI ) {
-        return;
-    }
+	// If this is CLI, skip.
+	if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		return;
+	}
 	// Store current version and url.
 	if ( ! isset( $wp_scripts->registered['jquery-core'] ) ) {
 		return;
 	}
-	$jquery = $wp_scripts->registered['jquery-core'];
+	$jquery     = $wp_scripts->registered['jquery-core'];
 	$jquery_ver = $jquery->ver;
 	$jquery_src = $jquery->src;
 	// Remove current version.
 	$wp_scripts->remove( 'jquery' );
 	$wp_scripts->remove( 'jquery-core' );
 	// Register again.
-	$wp_scripts->add( 'jquery', false, ['jquery-core'], $jquery_ver, 1 );
+	$wp_scripts->add( 'jquery', false, [ 'jquery-core' ], $jquery_ver, 1 );
 	$wp_scripts->add( 'jquery-core', $jquery_src, [], $jquery_ver, 1 );
 }, 11 );
 
@@ -128,13 +128,13 @@ add_action( 'wp_default_scripts', function( WP_Scripts $wp_scripts ) {
  * @return bool
  */
 function kyom_is_critical_css( $handle ) {
-	return apply_filters( 'kyom_is_critical_css', in_array( $handle, [ 'uikit', 'login' ] ), $handle );
+	return apply_filters( 'kyom_is_critical_css', in_array( $handle, [ 'uikit', 'login' ], true ), $handle );
 }
 
 /**
  * Rewrite style tags for preload.
  */
-add_filter( 'style_loader_tag', function( $tag, $handle, $href, $media ) {
+add_filter( 'style_loader_tag', function ( $tag, $handle, $href, $media ) {
 	if ( kyom_is_critical_css( $handle ) || is_admin() || 'wp-login.php' === basename( $_SERVER['SCRIPT_FILENAME'] ) ) {
 		return $tag;
 	}
@@ -151,7 +151,7 @@ HTML;
 /**
  * Add post class.
  */
-add_filter( 'post_class', function( $classes, $additional_class, $post_id ) {
+add_filter( 'post_class', function ( $classes, $additional_class, $post_id ) {
 	$classes[] = kyom_is_cjk( $post_id ) ? 'post-in-cjk' : 'post-not-in-cjk';
 	return $classes;
 }, 10, 3 );
@@ -159,7 +159,7 @@ add_filter( 'post_class', function( $classes, $additional_class, $post_id ) {
 /**
  * Remove not serif jp to be loaded.
  */
-add_filter( 'gettext_with_context', function( $translation, $text, $context, $domain ) {
+add_filter( 'gettext_with_context', function ( $translation, $text, $context, $domain ) {
 	switch ( $context ) {
 		case 'Google Font Name and Variants':
 			$translation = 'off';

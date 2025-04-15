@@ -33,7 +33,7 @@ add_filter( 'wp_pagenavi', function ( $html ) {
 		}
 		return "<li class=\"{$class_name}\">{$matches[0]}</li>";
 	}, $html );
-	
+
 	// Wrap with ul as you like.
 	return <<<HTML
 <div class="wp-paginavi">

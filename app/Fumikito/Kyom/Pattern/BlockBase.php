@@ -11,18 +11,18 @@ namespace Fumikito\Kyom\Pattern;
  * @property array  $params
  */
 abstract class BlockBase {
-	
+
 	protected $namespace = 'kyom';
 
 	protected static $instances = [];
-	
+
 	protected $icon = '';
-	
+
 	/**
 	 * @var bool If true, content will be used.
 	 */
 	protected $allow_content = false;
-	
+
 	/**
 	 * Detect if this is available.
 	 *
@@ -31,7 +31,7 @@ abstract class BlockBase {
 	protected function is_available() {
 		return true;
 	}
-	
+
 	/**
 	 * Constructor
 	 */
@@ -46,14 +46,14 @@ abstract class BlockBase {
 		// Register short cake.
 		add_action( 'register_shortcode_ui', [ $this, 'register_shortcake' ], 10, 2 );
 	}
-	
+
 	/**
 	 * Do something in constructor
 	 */
-	protected function init(){
+	protected function init() {
 		// Do something.
 	}
-	
+
 	/**
 	 * Limits post type
 	 *
@@ -62,21 +62,21 @@ abstract class BlockBase {
 	protected function limits() {
 		return [];
 	}
-	
+
 	/**
 	 * Get label
 	 *
 	 * @return string
 	 */
-	abstract protected function get_label():string;
-	
+	abstract protected function get_label(): string;
+
 	/**
 	 * Should return shortcode naem.
 	 *
 	 * @return string
 	 */
-	abstract protected function get_name():string;
-	
+	abstract protected function get_name(): string;
+
 	/**
 	 * Process short code.
 	 *
@@ -87,14 +87,14 @@ abstract class BlockBase {
 	public function do_short_code( $atts = [], $content = '' ) {
 		$default = [];
 		foreach ( $this->params as $key => $param ) {
-			$default[ $key ] = $atts[ $key ] ?? $param[ 'default' ];
+			$default[ $key ] = $atts[ $key ] ?? $param['default'];
 		}
 		$output = $this->render( $default, $content );
-		return implode( "\n", array_filter( array_map( function( $row ) {
+		return implode( "\n", array_filter( array_map( function ( $row ) {
 			return trim( $row );
 		}, explode( "\n", $output ) ) ) );
 	}
-	
+
 	/**
 	 * Register short code UI.
 	 */
@@ -104,16 +104,17 @@ abstract class BlockBase {
 			'listItemImage' => $this->icon,
 		];
 		if ( $this->allow_content ) {
-			$args['inner_content']  = [
+			$args['inner_content'] = [
 				'label' => __( 'Content', 'kyom' ),
 			];
 		}
-		if ( $limit = $this->limits() ) {
+		$limit = $this->limits();
+		if ( $limit ) {
 			$args['post_type'] = $limit;
 		}
 		$args['attrs'] = [];
 		foreach ( $this->params as $key => $param ) {
-			$param = wp_parse_args( $param, [
+			$param           = wp_parse_args( $param, [
 				'attr'        => $key,
 				'label'       => '',
 				'description' => '',
@@ -125,15 +126,15 @@ abstract class BlockBase {
 		}
 		shortcode_ui_register_for_shortcode( $this->get_name(), $args );
 	}
-	
+
 	/**
 	 * Params of this block.
 	 *
 	 * @see https://github.com/wp-shortcake/Shortcake/blob/master/dev.php
 	 * @return array
 	 */
-	abstract protected function get_params():array;
-	
+	abstract protected function get_params(): array;
+
 	/**
 	 * Rendering result.
 	 *
@@ -143,7 +144,7 @@ abstract class BlockBase {
 	 * @return string
 	 */
 	abstract protected function render( $atts = [], $content = '' );
-	
+
 	/**
 	 * Get instance.
 	 *
@@ -156,7 +157,7 @@ abstract class BlockBase {
 		}
 		return self::$instances[ $class_name ];
 	}
-	
+
 	/**
 	 * Getter
 	 *

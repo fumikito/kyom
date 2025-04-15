@@ -10,24 +10,25 @@
  * Register analytics tag.
  */
 add_action( 'wp_head', function () {
-	if ( ! ( $tracking_id = get_option( 'kyom_tracking_id' ) ) ) {
+	$tracking_id = get_option( 'kyom_tracking_id' );
+	if ( ! $tracking_id ) {
 		return;
 	}
 	$optional_tag = get_option( 'kyom_tracking_id_option' );
 	// Define page type.
 	if ( is_front_page() ) {
 		$page_type = 'front';
-	} else if ( is_home() ) {
+	} elseif ( is_home() ) {
 		$page_type = 'home';
-	} else if ( is_post_type_archive() ) {
+	} elseif ( is_post_type_archive() ) {
 		$page_type = get_post_type() . '-archive';
-	} else if ( is_singular() ) {
+	} elseif ( is_singular() ) {
 		$page_type = get_queried_object()->post_type;
-	} else if ( is_category() ) {
+	} elseif ( is_category() ) {
 		$page_type = 'category';
-	} else if ( is_tag() ) {
+	} elseif ( is_tag() ) {
 		$page_type = 'tag';
-	} else if ( is_tax() ) {
+	} elseif ( is_tax() ) {
 		$taxonomies = get_taxonomies();
 		$page_type  = 'taxonomy';
 		foreach ( $taxonomies as $tax ) {
@@ -36,14 +37,14 @@ add_action( 'wp_head', function () {
 				break;
 			}
 		}
-	} else if ( is_search() ) {
+	} elseif ( is_search() ) {
 		$page_type = 'search';
 	} else {
 		$page_type = 'undefined';
 	}
 	?>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=<?= esc_attr( $tracking_id ) ?>"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $tracking_id ); ?>"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
@@ -56,10 +57,10 @@ add_action( 'wp_head', function () {
 			}
 		};
 		config.role = document.cookie.match(/ctwp_uuid/) ? 'subscriber' : 'anonymous';
-		config.post_type = '<?php echo esc_js( $page_type ) ?>';
-		gtag('config', '<?= esc_attr( $tracking_id ) ?>', config );
+		config.post_type = '<?php echo esc_js( $page_type ); ?>';
+		gtag('config', '<?php echo esc_attr( $tracking_id ); ?>', config );
 		<?php if ( $optional_tag ) : ?>
-		gtag('config', '<?= esc_attr( $optional_tag ) ?>', config );
+		gtag('config', '<?php echo esc_attr( $optional_tag ); ?>', config );
 		<?php endif; ?>
 	</script>
 	<?php
@@ -69,10 +70,10 @@ add_action( 'wp_head', function () {
  * Render facebook & twitter widgets
  *
  */
-add_action( 'wp_body_open', function() {
+add_action( 'wp_body_open', function () {
 	$fb_app_id = get_option( 'kyom_facebook_app_id' );
 	if ( $fb_app_id ) :
-	?>
+		?>
 	<div id="fb-root"></div>
 	<script>
 		window.fbAsyncInit = function() {
@@ -101,7 +102,7 @@ add_action( 'wp_body_open', function() {
 /**
  * Override ga communicator values.
  */
-add_filter( 'ga_communicator_predefined_option', function( $option, $key ) {
+add_filter( 'ga_communicator_predefined_option', function ( $option, $key ) {
 	switch ( $key ) {
 		case 'ga4-property':
 			$map = [
@@ -116,6 +117,6 @@ add_filter( 'ga_communicator_predefined_option', function( $option, $key ) {
 /**
  * Override ga service account.
  */
-add_filter( 'ga_communicator_predefined_key', function() {
+add_filter( 'ga_communicator_predefined_key', function () {
 	return get_option( 'kyom_ga4_key' );
 } );

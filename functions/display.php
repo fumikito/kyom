@@ -27,40 +27,42 @@ function kyom_paren( $string ) {
  *
  * @return string
  */
-function kyom_hex2rgba($color, $opacity = false) {
-	
+function kyom_hex2rgba( $color, $opacity = false ) {
+
 	$default = 'rgb(0,0,0)';
-	
+
 	//Return default if no color provided
-	if(empty($color))
+	if ( empty( $color ) ) {
 		return $default;
-	
+	}
+
 	//Sanitize $color if "#" is provided
-	if ($color[0] == '#' ) {
+	if ( '#' === $color[0] ) {
 		$color = substr( $color, 1 );
 	}
-	
+
 	//Check if color has 6 or 3 characters and get values
-	if (strlen($color) == 6) {
+	if ( strlen( $color ) === 6 ) {
 		$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-	} elseif ( strlen( $color ) == 3 ) {
+	} elseif ( strlen( $color ) === 3 ) {
 		$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
 	} else {
 		return $default;
 	}
-	
+
 	//Convert hexadec to rgb
-	$rgb =  array_map('hexdec', $hex);
-	
+	$rgb = array_map( 'hexdec', $hex );
+
 	//Check if opacity is set(rgba or rgb)
-	if($opacity){
-		if(abs($opacity) > 1)
+	if ( $opacity ) {
+		if ( abs( $opacity ) > 1 ) {
 			$opacity = 1.0;
-		$output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+		}
+		$output = 'rgba(' . implode( ',', $rgb ) . ',' . $opacity . ')';
 	} else {
-		$output = 'rgb('.implode(",",$rgb).')';
+		$output = 'rgb(' . implode( ',', $rgb ) . ')';
 	}
-	
+
 	//Return rgb(a) color string
 	return $output;
 }
@@ -72,7 +74,7 @@ function kyom_hex2rgba($color, $opacity = false) {
  */
 function kyom_archive_slug() {
 	$slug = '';
-	
+
 	/**
 	 * kyom_archive_slug
 	 *
@@ -91,7 +93,7 @@ function kyom_archive_slug() {
 function kyom_archive_title() {
 	if ( is_search() ) {
 		$title = __( 'Search Results', 'kyom' );
-	} elseif ( 'all' == get_query_var( 'quote' ) ) {
+	} elseif ( 'all' === get_query_var( 'quote' ) ) {
 		$title = __( 'Quotes Collection', 'kyom' );
 	} elseif ( is_post_type_archive() ) {
 		$post_type        = get_query_var( 'post_type' );
@@ -110,12 +112,12 @@ function kyom_archive_title() {
  */
 function kyom_archive_description() {
 	$description = '';
-	$object = get_queried_object();
+	$object      = get_queried_object();
 	if ( is_a( $object, 'WP_Term' ) ) {
 		$description = $object->description;
 	} elseif ( is_post_type_archive() ) {
 		$post_type_object = get_post_type_object( get_query_var( 'post_type' ) );
-		$description = $post_type_object ? $post_type_object->description : '';
+		$description      = $post_type_object ? $post_type_object->description : '';
 	} elseif ( is_search() ) {
 		$description = sprintf( esc_html( __( 'Search results of "%s".', 'kyom' ) ), get_search_query() );
 	}
@@ -132,7 +134,7 @@ function kyom_searchable_taxonomies() {
 		'category' => 'cat',
 		'post_tag' => 'tag',
 	];
-	
+
 	return apply_filters( 'kyom_searchable_taxonomies', $default );
 }
 
@@ -145,8 +147,8 @@ function kyom_searchable_taxonomies() {
  */
 function kyom_short_digits( $number ) {
 	$number = (int) $number;
-	$base = [ 'K', 'M', 'B' ];
-	$hit  = 1;
+	$base   = [ 'K', 'M', 'B' ];
+	$hit    = 1;
 	$suffix = '';
 	foreach ( $base as $index => $letter ) {
 		$divider = pow( 1000, $index + 1 );

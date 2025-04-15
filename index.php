@@ -6,7 +6,7 @@ get_header();
 
 ?>
 	<div class="entry-breadcrumb">
-		<?php kyom_breadcrumb() ?>
+		<?php kyom_breadcrumb(); ?>
 	</div>
 <?php
 

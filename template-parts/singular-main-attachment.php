@@ -15,18 +15,18 @@ $siblings = get_children( [
 /**
  * Filter attachment meta data.
  */
-add_filter( 'prepend_attachment', function( $p ) {
+add_filter( 'prepend_attachment', function ( $p ) {
 	$file = get_attached_file( get_the_ID() );
 	if ( ! $file ) {
 		return $p;
 	}
 	if ( false !== strpos( get_post_mime_type(), 'image/' ) ) {
 		// Image.
-		 ob_start();
+		ob_start();
 		?>
 		<figure class="wp-block-image alignwide size-full">
 			<a href="<?php echo wp_get_attachment_image_url( get_the_ID(), 'full' ); ?>">
-				<?php echo wp_get_attachment_image( get_the_ID(), 'full' ) ?>
+				<?php echo wp_get_attachment_image( get_the_ID(), 'full' ); ?>
 			</a>
 			<?php if ( has_excerpt() ) : ?>
 			<figcaption class="wp-caption-text">
@@ -53,11 +53,11 @@ add_filter( 'prepend_attachment', function( $p ) {
 		<ol class="entry-attachment-list alignwide">
 			<?php foreach ( $siblings as $sibling ) : ?>
 				<li class="entry-attachment-item">
-					<a class="entry-attachment-link <?php echo ( $sibling->ID === get_the_ID() ? ' current' : '' ) ?>"
-					   href="<?php echo esc_url( get_permalink( $sibling ) ); ?>">
+					<a class="entry-attachment-link <?php echo ( get_the_ID() === $sibling->ID ? ' current' : '' ); ?>"
+						href="<?php echo esc_url( get_permalink( $sibling ) ); ?>">
 						<p class="entry-attachment-thumbnail">
 							<?php if ( false !== strpos( get_post_mime_type( $sibling ), 'image/' ) ) : ?>
-								<?php echo wp_get_attachment_image( $sibling->ID, 'thumbnail', false, ['class' => 'entry-attachment-thumbnail'] ); ?>
+								<?php echo wp_get_attachment_image( $sibling->ID, 'thumbnail', false, [ 'class' => 'entry-attachment-thumbnail' ] ); ?>
 							<?php else : ?>
 								<span uk-icon="icon: file-text; ratio: 3"></span>
 							<?php endif; ?>

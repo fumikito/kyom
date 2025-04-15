@@ -9,8 +9,8 @@
 /**
  * Remove Jetpack OGP
  */
-add_action( 'wp_head', function() {
-	remove_action('wp_head','jetpack_og_tags');
+add_action( 'wp_head', function () {
+	remove_action( 'wp_head', 'jetpack_og_tags' );
 }, 1 );
 
 
@@ -18,7 +18,7 @@ add_action( 'wp_head', function() {
 /**
  * Build OGP
  */
-add_action('wp_head', function(){
+add_action('wp_head', function () {
 	if ( is_front_page() || is_singular() ) {
 		$title = wp_get_document_title();
 		$url   = is_front_page() ? home_url() : get_permalink();
@@ -35,7 +35,7 @@ add_action('wp_head', function(){
 		$desc = explode( '<div class="sharedaddy sd-sharing-enabled">', apply_filters( 'the_excerpt', get_the_excerpt( $post ) ) );
 		$desc = str_replace( "\n", '', strip_tags( current( $desc ) ) );
 		wp_reset_postdata();
-		$dir = get_stylesheet_directory_uri();
+		$dir        = get_stylesheet_directory_uri();
 		$properties = [
 			'name'     => [
 				[ 'description', $desc ],
@@ -64,23 +64,28 @@ add_action('wp_head', function(){
 			],
 		];
 		if ( ! is_front_page() ) {
-			$terms = [];
-			if ( $categories = get_the_category( get_queried_object_id() ) ) {
+			$terms      = [];
+			$categories = get_the_category( get_queried_object_id() );
+			if ( $categories ) {
 				$terms += $categories;
 				foreach ( $categories as $term ) {
 					$properties['property'][] = [ 'article:section', $term->name ];
 				}
 			}
-			if ( $tags = get_the_tags( get_queried_object_id() ) ) {
+			$tags = get_the_tags( get_queried_object_id() );
+			if ( $tags ) {
 				$terms += $tags;
 				foreach ( $tags as $term ) {
 					$properties['property'][] = [ 'article:tag', $term->name ];
 				}
 			}
 			if ( $terms ) {
-				$properties['name'][] = [ 'keywords', implode( ',', array_map( function( $term ) {
-					return $term->name;
-				}, $terms ) ) ];
+				$properties['name'][] = [
+					'keywords',
+					implode( ',', array_map( function ( $term ) {
+										return $term->name;
+					}, $terms ) ),
+				];
 			}
 			$properties['property'][] = [ 'article:published_time', mysql2date( DateTime::ATOM, $post->post_date ) ];
 			$properties['property'][] = [ 'article:modified_time', mysql2date( DateTime::ATOM, $post->post_modified ) ];
@@ -95,7 +100,7 @@ add_action('wp_head', function(){
 		}
 		foreach ( $properties as $property => $vals ) {
 			foreach ( $vals as list( $key, $val ) ) {
-				printf( '<meta %s="%s" content="%s" />'."\n", $property, esc_attr( $key ), esc_attr( $val ) );
+				printf( '<meta %s="%s" content="%s" />' . "\n", $property, esc_attr( $key ), esc_attr( $val ) );
 			}
 		}
 	}

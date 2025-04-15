@@ -28,8 +28,8 @@ class Check extends \WP_CLI_Command {
 	 */
 	public function ranking( $args, $assoc ) {
 		list( $filter ) = $args;
-		$days = $assoc['days'] ?? 30;
-		$result = kyom_get_ranking( $days, 10, $filter );
+		$days           = $assoc['days'] ?? 30;
+		$result         = kyom_get_ranking( $days, 10, $filter );
 		if ( empty( $result ) ) {
 			\WP_CLI::error( __( 'No result found.', 'kyom' ) );
 		}

@@ -68,15 +68,17 @@ function kyom_get_hatena_rss( $fqdn, $sort = 'count', $limit = 5 ) {
  * @return array
  */
 function kyom_grab_feed_image( $item ) {
-	$images = [];
-	foreach ( $item->children( 'media', true )->group->content as $thumbnail ) {
-		$data                             = $thumbnail->attributes();
-		$attributes                       = $thumbnail->attributes();
-		$images[ (string) $data['size'] ] = [
-			(string) $data['url'],
-			(string) $data['width'],
-			(string) $data['height'],
-		];
+	$images   = [];
+	$contents = $item->children( 'media', true )->group->content;
+	if ( ! empty( $contents ) ) {
+		foreach ( $contents as $thumbnail ) {
+			$data                             = $thumbnail->attributes();
+			$images[ (string) $data['size'] ] = [
+				(string) $data['url'],
+				(string) $data['width'],
+				(string) $data['height'],
+			];
+		}
 	}
 
 	return $images;
@@ -116,7 +118,7 @@ function kyom_fetch_feed_items( $url ) {
 						// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 						'post_date' => date_i18n( 'Y-m-d H:i:s', strtotime( $item->pubDate ) + 60 * 60 * 9 ),
 						'category'  => (string) $item->category,
-						'image'     => str_replace( 'http://', 'https://', (string) $thumbnials['url'] ),
+						'image'     => $thumbnials ? str_replace( 'http://', 'https://', (string) $thumbnials['url'] ) : '',
 					);
 
 					$p['images'] = kyom_grab_feed_image( $item );

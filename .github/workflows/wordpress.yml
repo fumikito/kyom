@@ -58,7 +58,7 @@ jobs:
 
   status:
     name: Status Check
-    needs: [ phpcs, assets ]
+    needs: [ phpcs, assets, test ]
     runs-on: ubuntu-latest
     if: always()
     steps:

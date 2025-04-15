@@ -94,7 +94,7 @@ function kyom_date_diff( $date, $now = 'now', $gmt = false ) {
 	if ( $gmt ) {
 		$time_zone = new DateTimeZone( 'UTC' );
 	} else {
-		$wp_timezone = wp_timezone();
+		$time_zone = wp_timezone();
 	}
 	$date = new DateTime( $date, $time_zone );
 	$now  = new DateTime( $now, $time_zone );

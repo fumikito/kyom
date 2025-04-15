@@ -26,11 +26,13 @@ class Hero extends BlockBase {
 	protected function get_params(): array {
 		return [
 			'title'           => [
-				'label' => __( 'Title', 'kyom' ),
+				'label'   => __( 'Title', 'kyom' ),
+				'default' => get_bloginfo( 'name' ),
 			],
 			'background'      => [
-				'label' => __( 'Background Image', 'kyom' ),
-				'type'  => 'attachment',
+				'label'   => __( 'Background Image', 'kyom' ),
+				'type'    => 'attachment',
+				'default' => '',
 			],
 			'text_color'      => [
 				'label'   => __( 'Text Color', 'kyom' ),
@@ -68,7 +70,7 @@ class Hero extends BlockBase {
 		ob_start();
 		$style = '';
 		if ( $atts['background'] ) {
-			$src = wp_get_attachment_image_url( $atts['background'], 'full' )
+			$src = wp_get_attachment_image_url( $atts['background'], 'full' );
 			if ( $src ) {
 				$style = sprintf( 'background-image: url(\'%s\')', esc_url( $src ) );
 			}

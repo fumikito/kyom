@@ -32,7 +32,7 @@ if ( ! $author || ! $author->description ) {
 			</div>
 
 			<?php
-			$contacts = kyom_get_social_links( $author, true )
+			$contacts = kyom_get_social_links( $author, true );
 			if ( $contacts ) :
 				?>
 				<div class="author-block-contact">

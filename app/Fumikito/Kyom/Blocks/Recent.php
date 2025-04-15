@@ -32,6 +32,7 @@ class Recent extends BlockBase {
 				'type'     => 'term_select',
 				'taxonomy' => 'category',
 				'multiple' => true,
+				'default'  => '',
 			],
 		];
 	}

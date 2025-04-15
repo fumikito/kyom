@@ -121,6 +121,7 @@ abstract class BlockBase {
 				'type'        => 'text',
 				'options'     => [],
 				'meta'        => [],
+				'default'     => '',
 			] );
 			$args['attrs'][] = $param;
 		}
@@ -168,14 +169,11 @@ abstract class BlockBase {
 		switch ( $name ) {
 			case 'block_name':
 				return $this->namespace . '/' . $this->get_name();
-				break;
 			case 'params':
 				// Todo fill required params.
 				return $this->get_params();
-				break;
 			default:
 				return null;
-				break;
 		}
 	}
 }

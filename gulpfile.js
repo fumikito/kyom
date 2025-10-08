@@ -8,18 +8,27 @@ const named = require( 'vinyl-named' );
 const browserSync = require( 'browser-sync' ).create();
 const pngquant = require( 'imagemin-pngquant' );
 const mozjpeg = require( 'imagemin-mozjpeg' );
+const sass = $.sass( require( 'sass' ) );
+
+let plumber = true;
+gulp.task( 'noplumber', function( done ) {
+	plumber = false;
+	done();
+} );
 
 // Sass
 gulp.task( 'sass', function () {
-	return gulp.src( [
+	let task = gulp.src( [
 		'./src/scss/**/*.scss'
-	] )
-		.pipe( $.plumber( {
+	] );
+	if ( plumber ) {
+		task = task.pipe( $.plumber( {
 			errorHandler: $.notify.onError( '<%= error.message %>' )
 		} ) )
-		.pipe( $.sourcemaps.init( { loadMaps: true } ) )
+	}
+	return task.pipe( $.sourcemaps.init( { loadMaps: true } ) )
 		.pipe( $.sassGlob() )
-		.pipe( $.sass( require( 'node-sass' ) )( {
+		.pipe( sass( {
 			errLogToConsole: true,
 			outputStyle: 'compressed',
 			includePaths: [
@@ -35,11 +44,13 @@ gulp.task( 'sass', function () {
 
 // Minify All
 gulp.task( 'js', function () {
-	return gulp.src( [ './src/js/**/*.js' ] )
-		.pipe( $.plumber( {
-			errorHandler: $.notify.onError( '<%= error.message %>' )
-		} ) )
-		.pipe( named( function ( file ) {
+	let task = gulp.src( [ './src/js/**/*.js' ] );
+	if ( plumber ) {
+		task = task.pipe( $.plumber( {
+			errorHandler: $.notify.onError('<%= error.message %>')
+		}));
+	}
+	return task.pipe( named( function ( file ) {
 			return file.relative.replace( /\.[^.]+$/, '' );
 		} ) )
 		.pipe( webpack( {
@@ -159,7 +170,7 @@ gulp.task( 'watch', function () {
 } );
 
 // Build
-gulp.task( 'build', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) );
+gulp.task( 'build', gulp.series( 'noplumber', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) ) );
 
 // HTML task
 gulp.task( 'html', gulp.series( 'build', gulp.parallel( 'watch', 'server', 'reload' ) ) );

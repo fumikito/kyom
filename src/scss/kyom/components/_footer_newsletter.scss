@@ -33,7 +33,7 @@
     &:before{
       position: absolute;
       content: "";
-      top: $kyom-gap / 2;
+      top: $kyom-gap * 0.5;
       background-color: #fff;
       left: 50%;
       transform: translateX(-50%);
@@ -66,7 +66,7 @@
       max-height: 600px;
     }
     .uk-grid{
-      margin-bottom: $kyom-gap / 2;
+      margin-bottom: $kyom-gap * 0.5;
     }
     .inline-label{
       display: inline-block;
@@ -76,6 +76,6 @@
 
   &-mail-input{
     max-width: $breakpoint-small;
-    margin: $kyom-gap / 2 auto;
+    margin: $kyom-gap * 0.5 auto;
   }
 }

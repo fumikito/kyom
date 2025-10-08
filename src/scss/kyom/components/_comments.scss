@@ -13,7 +13,7 @@
 }
 
 .comments-title{
-  margin: $kyom-gap * 2 0 $kyom-gap / 2;
+  margin: $kyom-gap * 2 0 $kyom-gap * 0.5;
 }
 
 .comments-nav{
@@ -83,7 +83,7 @@
   li &{
     margin-top: $kyom-gap;
     border: 3px dashed $comment-primary-background;
-    padding: $kyom-gap / 2;
+    padding: $kyom-gap * 0.5;
   }
   .comment-reply-title{
     @extend .uk-heading-divider;

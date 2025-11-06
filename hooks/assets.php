@@ -170,3 +170,6 @@ add_filter( 'gettext_with_context', function ( $translation, $text, $context, $d
 	}
 	return $translation;
 }, 10, 4 );
+
+// Stop contain-intrinsic-size: 3000px 1500px
+add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );

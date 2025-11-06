@@ -43,3 +43,16 @@
 		z-index: 1;
 	}
 }
+
+aside.wp-block-group {
+	font-size: 0.75em;
+	&::before {
+		content: "注釈";
+		position: absolute;
+		top: -24px;
+		padding: 2px 5px;
+		left: 0;
+		background-color: $alert-primary-background;
+		color: #fff;
+	}
+}

@@ -23,7 +23,7 @@ class DesignCustomizer extends CustomizerSetting {
 
 	protected function get_fields(): array {
 		$fields = [
-			'kyom_default_eyecatch' => [
+			'kyom_default_eyecatch'     => [
 				'label'         => __( 'Default Eyecatch', 'kyom' ),
 				'description'   => __( 'Default eyecatch for post object.', 'kyom' ),
 				'stored'        => 'option',
@@ -32,7 +32,7 @@ class DesignCustomizer extends CustomizerSetting {
 				'width'         => 2048,
 				'height'        => 2048,
 			],
-			'kyom_not_found_image' => [
+			'kyom_not_found_image'      => [
 				'label'         => __( 'Not Found Image', 'kyom' ),
 				'description'   => __( 'Background image for 404 page.', 'kyom' ),
 				'stored'        => 'option',

@@ -87,7 +87,7 @@ $img-margin: 1.5em;
 		overflow: auto;
 	}
 
-	[class*="wp-block-"] {
+	> [class*="wp-block-"] {
 		margin-top: 3em;
 		margin-bottom: 3em;
 	}

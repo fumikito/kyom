@@ -1,6 +1,6 @@
 <?php
-$image      = kyom_not_found_image();
-$text_color = get_option( 'kyom_not_found_text_color', '' );
+$image       = kyom_not_found_image();
+$text_color  = get_option( 'kyom_not_found_text_color', '' );
 $color_style = $text_color ? sprintf( 'color: %s;', esc_attr( $text_color ) ) : '';
 ?>
 

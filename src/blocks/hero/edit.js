@@ -2,13 +2,18 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
 import { PanelBody, TextControl, SelectControl, Button } from '@wordpress/components';
 import { ColorPicker } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
 	const { title, background, textColor, textBackground, align, content } = attributes;
 
 	// 背景画像URLを取得
-	const backgroundUrl = background ? wp.media.attachment(background).get('url') : '';
+	const backgroundUrl = useSelect((select) => {
+		if (!background) return '';
+		const media = select('core').getMedia(background);
+		return media?.source_url || '';
+	}, [background]);
 
 	const blockProps = useBlockProps({
 		style: {

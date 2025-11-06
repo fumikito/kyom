@@ -1,26 +1,39 @@
-.netabare{
-  margin: 1em 0;
-  transition: filter .3s $ease-in-out-sine;
-  filter: blur( 5px );
-  position: relative;
-  z-index: 1;
+.netabare {
+	margin: 1em 0;
+	transition: filter .3s $ease-in-out-sine;
+	filter: blur(5px);
+	position: relative;
+	z-index: 1;
 
-  &-opener{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50% );
-    z-index: 2;
-    line-height: 1;
-    padding: 0.25em;
-    background-color: #fff;
-  }
+	&-opener {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+		line-height: 1;
+		padding: 0.5em 1em;
+		color: $global-inverse-color;
+		background-color: $global-warning-background;
+		border-radius: 5px;
+		font-size: 1em;
+		border: 1px solid $global-warning-background;
+		-webkit-appearance: none;
+		cursor: pointer;
+		box-shadow: 0 0 10px $global-color;
 
-  &-wrap{
-    position: relative;
-  }
+		&:hover {
+			color: $global-warning-background;
+			background-color: $global-inverse-color;
+			box-shadow: none;
+		}
+	}
 
-  &-opened{
-    filter: blur(0);
-  }
+	&-wrap {
+		position: relative;
+	}
+
+	&-opened {
+		filter: blur(0);
+	}
 }

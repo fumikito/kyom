@@ -35,7 +35,7 @@ add_action( 'init', function () {
 		'label' => __( 'Click to open spoiler', 'kyom' ),
 	] );
 
-	// Gooogle Platform
+	// Google Platform
 	wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
 
 	// Theme

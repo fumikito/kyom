@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kyom/activities",
+	"version": "1.0.0",
+	"title": "Recent Projects",
+	"category": "kyom",
+	"icon": "portfolio",
+	"description": "最近のプロジェクト（jetpack-portfolio）をスライドショーで表示します。",
+	"keywords": ["portfolio", "プロジェクト", "activities"],
+	"textdomain": "kyom",
+	"attributes": {
+		"number": {
+			"type": "number",
+			"default": 5
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

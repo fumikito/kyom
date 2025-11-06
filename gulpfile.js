@@ -119,38 +119,10 @@ async function images_to_dist() {
 		.pipe( imagemin.default( imagePlugins, { verbose: true } ) )
 		.pipe( gulp.dest( './assets/img' ) );
 }
+
+// Imageminをgulpタスクに
 gulp.task( 'imagemin', function ( done ) {
 	return images_to_dist();
-} );
-
-// Pug task
-gulp.task( 'pug', function () {
-	return gulp.src( [ 'src/pug/**/*', '!src/pug/**/_*' ] )
-		.pipe( $.plumber( {
-			errorHandler: $.notify.onError( '<%= error.message %>' )
-		} ) )
-		.pipe( $.pug( {
-			pretty: true
-		} ) )
-		.pipe( gulp.dest( 'assets' ) )
-} );
-
-// watch browser sync
-gulp.task( 'server', function () {
-	return browserSync.init( {
-		files: [ "assets/**/*" ],
-		server: {
-			baseDir: "./assets",
-			index: "index.html"
-		},
-		reloadDelay: 2000
-	} );
-} );
-
-gulp.task( 'reload', function () {
-	gulp.watch( 'assets/**/*', function () {
-		return browserSync.reload();
-	} );
 } );
 
 // watch
@@ -164,16 +136,10 @@ gulp.task( 'watch', function () {
 
 	// Minify Image
 	gulp.watch( 'src/img/**/*', gulp.task( 'imagemin' ) );
-
-	// Compile HTML
-	gulp.watch( 'src/pug/**/*', gulp.task( 'pug' ) );
 } );
 
 // Build
 gulp.task( 'build', gulp.series( 'noplumber', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) ) );
-
-// HTML task
-gulp.task( 'html', gulp.series( 'build', gulp.parallel( 'watch', 'server', 'reload' ) ) );
 
 // Default Tasks
 gulp.task( 'default', gulp.task( 'watch' ) );

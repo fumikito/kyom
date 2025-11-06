@@ -1,0 +1,14 @@
+// Testimonials block styles
+.testimonial-slider {
+  &-item {
+    display: block;
+    text-decoration: none;
+  }
+
+  &-face {
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+  }
+}

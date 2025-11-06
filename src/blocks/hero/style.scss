@@ -1,0 +1,38 @@
+/**
+ * フロントエンド・エディタ共通スタイル
+ */
+.kyom-hero {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+	min-height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.kyom-hero-box {
+		width: 100%;
+	}
+
+	.kyom-hero-container {
+		padding: 40px 20px;
+	}
+
+	.kyom-hero-title {
+		font-size: 2.5em;
+		font-weight: bold;
+		line-height: 1.2;
+		margin: 0;
+		padding: 10px 20px;
+		display: inline-block;
+	}
+
+	.kyom-hero-lead {
+		font-size: 1.2em;
+		line-height: 1.6;
+		padding: 10px 20px;
+		display: inline-block;
+		margin-top: 1em;
+	}
+}

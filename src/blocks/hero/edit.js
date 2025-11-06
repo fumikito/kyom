@@ -93,7 +93,7 @@ export default function Edit({ attributes, setAttributes }) {
 			<div {...blockProps}>
 				<div style={{
 					color: textColor,
-					backgroundColor: textBackground ? `${textBackground}99` : 'transparent',
+					textShadow: textBackground ? `0 0 5px ${textBackground}` : null,
 					padding: '20px',
 					textAlign: align,
 				}}>

@@ -4,7 +4,7 @@
 	"name": "kyom/testimonials",
 	"version": "1.0.0",
 	"title": "Testimonials",
-	"category": "widgets",
+	"category": "kyom",
 	"icon": "star-filled",
 	"description": "お客様の声（jetpack-testimonial）をスライダーで表示します。",
 	"keywords": ["testimonials", "お客様の声", "reviews"],

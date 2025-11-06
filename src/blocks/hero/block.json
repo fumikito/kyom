@@ -4,7 +4,7 @@
 	"name": "kyom/hero",
 	"version": "1.0.0",
 	"title": "Hero Unit",
-	"category": "design",
+	"category": "kyom",
 	"icon": "cover-image",
 	"description": "大きなヒーローセクションを表示します。",
 	"keywords": ["hero", "ヒーロー", "カバー"],

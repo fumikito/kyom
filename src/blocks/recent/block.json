@@ -4,7 +4,7 @@
 	"name": "kyom/recent",
 	"version": "1.0.0",
 	"title": "Recent Posts",
-	"category": "widgets",
+	"category": "kyom",
 	"icon": "admin-post",
 	"description": "最近の投稿を表示します。",
 	"keywords": ["recent", "posts", "最近の投稿"],

@@ -4,7 +4,7 @@
 	"name": "kyom/rss-slider",
 	"version": "1.0.0",
 	"title": "RSS Sliders",
-	"category": "widgets",
+	"category": "kyom",
 	"icon": "rss",
 	"description": "RSSフィードをスライダーで表示します。",
 	"keywords": ["rss", "feed", "slider"],

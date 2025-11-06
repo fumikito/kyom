@@ -34,3 +34,23 @@ add_action( 'init', function () {
 		register_block_type( $block_json );
 	}
 } );
+
+/**
+ * Register block category.
+ *
+ * @param array{title:string, slug:string, icon:string}[]
+ */
+add_filter( 'block_categories_all', function( $categories ) {
+	$new_categories = [];
+	foreach ( $categories as $category ) {
+		$new_categories[] = $category;
+		if ( 'widgets' === $category['slug'] ) {
+			$new_categories[] = [
+				'slug'  => 'kyom',
+				'title' => 'Kyom',
+				'icon'  => 'welcome-view-site',
+			];
+		}
+	}
+	return $new_categories;
+} );

@@ -20,18 +20,12 @@ if ( ! empty( $attributes['background'] ) ) {
 // テキストスタイルの構築
 $text_color = $attributes['textColor'] ?? '#ffffff';
 $text_background = $attributes['textBackground'] ?? '';
-// 背景色の透明度調整（kyom_hex2rgba関数を使用）
-if ( function_exists( 'kyom_hex2rgba' ) && $text_background ) {
-	$bg_color = kyom_hex2rgba( $text_background, 0.6 );
-} else {
-	$bg_color = 'transparent';
-}
 
-$text_style = sprintf(
-	'color: %s; background-color: %s',
-	esc_attr( $text_color ),
-	esc_attr( $bg_color )
-);
+$text_style = [sprintf( 'color: %s',$text_color ) ];
+if ( $text_background ) {
+	$text_style[] = sprintf( 'text-shadow: 0 0 5px %s', $text_background );
+}
+$text_style = implode( ';', $text_style );
 
 // タイトル取得（デフォルトはサイト名）
 $title = $attributes['title'] ?? get_bloginfo( 'name' );

@@ -4,7 +4,7 @@
 	"name": "kyom/activities",
 	"version": "1.0.0",
 	"title": "Recent Projects",
-	"category": "widgets",
+	"category": "kyom",
 	"icon": "portfolio",
 	"description": "最近のプロジェクト（jetpack-portfolio）をスライドショーで表示します。",
 	"keywords": ["portfolio", "プロジェクト", "activities"],

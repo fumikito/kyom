@@ -4,7 +4,7 @@
 	"name": "kyom/wordpress-activities",
 	"version": "1.0.0",
 	"title": "WordPress Activities",
-	"category": "widgets",
+	"category": "kyom",
 	"icon": "wordpress",
 	"description": "WordPress.orgでの活動を表示します。",
 	"keywords": ["wordpress", "activities", "profile"],

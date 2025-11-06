@@ -32,6 +32,14 @@ class DesignCustomizer extends CustomizerSetting {
 				'width'         => 2048,
 				'height'        => 2048,
 			],
+			'kyom_not_found_image' => [
+				'label'         => __( 'Not Found Image', 'kyom' ),
+				'description'   => __( 'Background image for 404 page.', 'kyom' ),
+				'stored'        => 'option',
+				'control_class' => 'WP_Customize_Media_Control',
+				'default'       => '',
+				'mime_type'     => 'image',
+			],
 		];
 		return $fields;
 	}

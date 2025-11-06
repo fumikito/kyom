@@ -40,7 +40,7 @@ add_action( 'init', function () {
  *
  * @param array{title:string, slug:string, icon:string}[]
  */
-add_filter( 'block_categories_all', function( $categories ) {
+add_filter( 'block_categories_all', function ( $categories ) {
 	$new_categories = [];
 	foreach ( $categories as $category ) {
 		$new_categories[] = $category;
@@ -58,7 +58,7 @@ add_filter( 'block_categories_all', function( $categories ) {
 /**
  * Enqueue block variations script for editor.
  */
-add_action( 'enqueue_block_editor_assets', function() {
+add_action( 'enqueue_block_editor_assets', function () {
 	wp_enqueue_script(
 		'kyom-block-variations',
 		get_template_directory_uri() . '/assets/js/block-variations.js',

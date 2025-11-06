@@ -40,6 +40,13 @@ class DesignCustomizer extends CustomizerSetting {
 				'default'       => '',
 				'mime_type'     => 'image',
 			],
+			'kyom_not_found_text_color' => [
+				'label'         => __( 'Not Found Text Color', 'kyom' ),
+				'description'   => __( 'Text color for 404 page. Leave empty for default.', 'kyom' ),
+				'stored'        => 'option',
+				'control_class' => 'WP_Customize_Color_Control',
+				'default'       => '',
+			],
 		];
 		return $fields;
 	}

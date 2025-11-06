@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kyom/recent",
+	"version": "1.0.0",
+	"title": "Recent Posts",
+	"category": "widgets",
+	"icon": "admin-post",
+	"description": "最近の投稿を表示します。",
+	"keywords": ["recent", "posts", "最近の投稿"],
+	"textdomain": "kyom",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"category": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

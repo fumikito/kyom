@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kyom/wordpress-activities",
+	"version": "1.0.0",
+	"title": "WordPress Activities",
+	"category": "widgets",
+	"icon": "wordpress",
+	"description": "WordPress.orgでの活動を表示します。",
+	"keywords": ["wordpress", "activities", "profile"],
+	"textdomain": "kyom",
+	"attributes": {
+		"userName": {
+			"type": "string",
+			"default": ""
+		},
+		"userMail": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"content": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

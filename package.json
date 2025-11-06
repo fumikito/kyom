@@ -14,13 +14,12 @@
 		"url": "https://github.com/fumikito/kyom/issues"
 	},
 	"scripts": {
-		"start": "gulp build",
+		"start": "gulp build && npm run build:block",
 		"watch": "gulp watch",
 		"gulp": "gulp",
-		"package": "gulp build",
+		"package": "gulp build && npm run build:block",
 		"fix": "eslint --fix src/js",
 		"lint:js": "gulp eslint",
-		"html": "gulp html",
 		"test": "jest",
 		"create:block": "node bin/create-block.js",
 		"build:block": "wp-scripts build --source-path=src/blocks --output-path=assets/blocks",

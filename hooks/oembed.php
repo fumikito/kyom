@@ -42,3 +42,21 @@ add_action( 'embed_head', function () {
 	$style = str_replace( 'sourceMappingURL=', 'sourceMappingURL=' . get_template_directory_uri() . '/assets/css/', $style ); // Remove source map.
 	printf( "<style>\n%s\n</style>", $style );
 } );
+
+/**
+ * Allow top navigation for own site's oEmbed iframe.
+ *
+ * This enables target="_top" links in embed-content.php to work properly.
+ *
+ * @see https://github.com/fumikito/kyom/issues/66
+ */
+add_filter( 'embed_oembed_html', function ( $html, $url ) {
+	if ( false !== strpos( $url, home_url() ) ) {
+		$html = str_replace(
+			'sandbox="',
+			'sandbox="allow-top-navigation-by-user-activation ',
+			$html
+		);
+	}
+	return $html;
+}, 10, 2 );

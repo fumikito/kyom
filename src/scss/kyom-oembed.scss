@@ -9,6 +9,16 @@
 .wp-embed {
 	border: 1px solid $global-border;
 
+	&-own {
+		background-color: $off-white;
+		transition: box-shadow .3s linear;
+		box-shadow: 0 0 5px rgba(0,0,0,0.2);
+
+		&:hover {
+			box-shadow: 0 0 0 transparent;
+		}
+	}
+
 	&-link {
 		display: flex;
 		width: 100%;
@@ -16,12 +26,6 @@
 		padding: 15px;
 		box-sizing: border-box;
 		text-decoration: none;
-		transition: background-color .3s ease-in-out;
-
-		&:hover,
-		&:active {
-			background-color: $light-gray;
-		}
 	}
 
 	&-featured-image {
@@ -59,6 +63,12 @@
 		font-weight: $base-strong-font-weight;
 		color: $kyom-header-title-color;
 		margin: 5px 0 !important;
+		transition: color .3s ease-in-out;
+
+		a:hover &,
+		a:active & {
+			color: $global-link-color;
+		}
 	}
 
 	&-also-read {

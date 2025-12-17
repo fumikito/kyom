@@ -1,94 +1,94 @@
 .author-block {
-  margin: $kyom-gap 0;
+	margin: $kyom-gap 0;
 
-  box-sizing: border-box;
-  padding: 2em;
-  border: 1px solid $light-gray;
-  background-color: $off-white;
+	box-sizing: border-box;
+	padding: 2em;
+	border-top: 1px solid $semi-light-grey;
+	border-bottom: 1px solid $semi-light-grey;
 
-  @include bp-max($breakpoint-smallphone) {
-    padding: 1em;
-  }
+	@include bp-max($breakpoint-smallphone) {
+		padding: 1em;
+	}
 
 
-  &-title {
-    font-size: 1.2em;
-    font-family: $font-sans-bold;
-    font-weight: normal;
+	&-title {
+		font-size: 1.2em;
+		font-family: $font-sans-bold;
+		font-weight: normal;
 
-    small {
-      color: $global-muted-color;
-    }
-  }
+		small {
+			color: $global-muted-color;
+		}
+	}
 
-  &-body {
-    display: flex;
+	&-body {
+		display: flex;
 
-    @include bp-max($breakpoint-smallphone) {
-      display: block;
-      text-align: center;
-    }
-  }
+		@include bp-max($breakpoint-smallphone) {
+			display: block;
+			text-align: center;
+		}
+	}
 
-  &-image {
-    text-align: center;
-    flex: 0 1 150px;
-    @include bp-max($breakpoint-smallphone) {
-      flex: 0 1 80px;
-    }
+	&-image {
+		text-align: center;
+		flex: 0 1 150px;
+		@include bp-max($breakpoint-smallphone) {
+			flex: 0 1 80px;
+		}
 
-    img {
-      max-width: 100%;
-      width: auto;
-      height: auto;
-      border-radius: 50%;
-      filter: none;
-      margin-bottom: 20px;
-      @include bp-max($breakpoint-smallphone) {
-        max-width: 120px;
-      }
-    }
-  }
+		img {
+			max-width: 100%;
+			width: auto;
+			height: auto;
+			border-radius: 50%;
+			filter: none;
+			margin-bottom: 20px;
+			@include bp-max($breakpoint-smallphone) {
+				max-width: 120px;
+			}
+		}
+	}
 
-  &-content {
-    padding-left: 2em;
-    @include bp-max($breakpoint-smallphone) {
-      padding-left: 0;
-    }
-  }
+	&-content {
+		padding-left: 2em;
+		@include bp-max($breakpoint-smallphone) {
+			padding-left: 0;
+		}
+	}
 
-  &-description {
-    p {
-      font-size: 0.85em;
-    }
+	&-description {
+		p {
+			font-size: 0.85em;
+		}
 
-    margin-bottom: 2em;
-  }
+		margin-bottom: 2em;
+	}
 
-  &-contact {
-    &-title {
-      font-size: 1em;
-      font-family: $font-sans;
-      margin-bottom: 1em;
-    }
+	&-contact {
+		&-title {
+			font-size: 1em;
+			font-family: $font-sans;
+			margin-bottom: 1em;
+		}
 
-    &-links {
-      a {
-        margin-right: 0.5em;
-        margin-bottom: 0.5em;
-        background: #fff;
-      }
-    }
+		&-links {
+			a {
+				margin-right: 0.5em;
+				margin-bottom: 0.5em;
+				background: #fff;
+			}
+		}
 
-    &-link {
+		&-link {
 
-      &-method {
-        @include bp-max($breakpoint-small-max) {
-          display: none;
-        }
-      }
-    }
-  }
+			&-method {
+				@include bp-max($breakpoint-small-max) {
+					display: none;
+				}
+			}
+		}
+	}
 
 
 }

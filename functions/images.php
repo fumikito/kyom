@@ -31,11 +31,21 @@ function kyom_thumbnail_bg( $post = null, $size = 'full' ) {
  * @return array
  */
 function kyom_not_found_image() {
-	$image = [
+	$image       = [
 		'url'     => get_template_directory_uri() . '/assets/img/not-found.jpg',
 		'version' => filemtime( get_template_directory() . '/assets/img/not-found.jpg' ),
 		'credit'  => '(C) Marcelo Jaboo https://www.pexels.com/photo/brown-wooden-armchair-on-brown-wooden-floor-696407/',
 	];
+	$saved_image = get_option( 'kyom_not_found_image' );
+	if ( $saved_image ) {
+		$url  = wp_get_attachment_image_url( $saved_image, 'full' );
+		$file = get_attached_file( $saved_image );
+		if ( $url && file_exists( $file ) ) {
+			$image['url']     = $url;
+			$image['version'] = filemtime( $file );
+			$image['credit']  = wp_get_attachment_caption( $saved_image );
+		}
+	}
 
 	/**
 	 * kyom_not_found_image

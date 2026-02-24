@@ -1,5 +1,5 @@
 /**
- * Fit heihgt functions.
+ * Fit height functions.
  */
 
 const $ = jQuery;

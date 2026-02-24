@@ -24,6 +24,10 @@
 
 	&-form {
 		padding: 0 15px;
+		display: flex;
+		justify-content: start;
+		align-items: center;
+
 		@include bp-max($breakpoint-ipad-and-under) {
 			display: none;
 		}
@@ -48,6 +52,9 @@
 
 		&-link {
 			transition: opacity .2s $ease-in-out-sine;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
 			&:hover {
 				opacity: .6;

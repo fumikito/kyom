@@ -59,7 +59,7 @@
   }
 
   width: 33%;
-  margin-bottom: $kyom-gap / 2;
+  margin-bottom: $kyom-gap * 0.5;
   @include bp-max($breakpoint-large) {
     width: 50%;
   }

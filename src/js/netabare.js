@@ -9,7 +9,7 @@
 const $ = jQuery;
 
 $( '.netabare' ).each( ( index, section ) => {
-	$( section ).wrap( '<div class="netabare-wrap"></div>' ).after( `<a href="#" class="netabare-opener">${ Netabare.label }</a>` );
+	$( section ).wrap( '<div class="netabare-wrap"></div>' ).after( `<button class="netabare-opener">${ Netabare.label }</button>` );
 });
 
 $( '.netabare-opener' ).click( function( e ) {

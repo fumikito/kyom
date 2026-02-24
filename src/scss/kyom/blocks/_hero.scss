@@ -1,45 +1,49 @@
-.kyom-hero{
-  position: relative;
-  transition: height .3s $ease-in-out-sine;
-  height: 90vh;
-  @include bp-max( $breakpoint-small ){
-    height: 30vh;
-  }
-  min-height: 400px;
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  &-box{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 50%;
-    @include bp-max( $breakpoint-small ) {
-      width: 100%;
-    }
-  }
-  &-container{
-    max-width: $breakpoint-xlarge;
-    padding: $kyom-gap;
-  }
-  &-title{
-    color: #fff;
-    font-family: $font-sans;
-    font-weight: normal;
-    display: inline-block;
-    padding:5px;
-    margin-bottom: 5px;
-  }
+.kyom-hero {
+	position: relative;
+	transition: height .3s $ease-in-out-sine;
+	height: 90vh;
+	@include bp-max($breakpoint-small) {
+		height: 30vh;
+	}
+	min-height: 400px;
+	background-color: #000;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
 
-  &-lead{
-    font-family: $font-sans;
-    color: $light-gray;
-    padding: 5px;
-    display: inline-block;
-    p{
-      margin: 0;
-    }
-  }
+	&-box {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 50%;
+		@include bp-max($breakpoint-small) {
+			width: 100%;
+		}
+	}
+
+	&-container {
+		max-width: $breakpoint-xlarge;
+		padding: $kyom-gap;
+	}
+
+	&-title {
+		color: #fff;
+		font-family: $font-serif;
+		font-weight: 700;
+		display: inline-block;
+		padding: 5px;
+		margin-bottom: 5px;
+	}
+
+	&-lead {
+		font-family: $font-serif;
+		color: $light-gray;
+		padding: 5px;
+		display: inline-block;
+
+		p {
+			margin: 0;
+		}
+	}
 }

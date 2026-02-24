@@ -35,7 +35,7 @@ add_action( 'init', function () {
 		'label' => __( 'Click to open spoiler', 'kyom' ),
 	] );
 
-	// Gooogle Platform
+	// Google Platform
 	wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
 
 	// Theme
@@ -170,3 +170,6 @@ add_filter( 'gettext_with_context', function ( $translation, $text, $context, $d
 	}
 	return $translation;
 }, 10, 4 );
+
+// Stop contain-intrinsic-size: 3000px 1500px
+add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );

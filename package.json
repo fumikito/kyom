@@ -14,20 +14,25 @@
 		"url": "https://github.com/fumikito/kyom/issues"
 	},
 	"scripts": {
-		"start": "gulp build",
+		"start": "gulp build && npm run build:block",
 		"watch": "gulp watch",
 		"gulp": "gulp",
-		"package": "gulp build",
+		"package": "gulp build && npm run build:block",
 		"fix": "eslint --fix src/js",
 		"lint:js": "gulp eslint",
-		"html": "gulp html",
-		"test": "jest"
+		"test": "jest",
+		"create:block": "node bin/create-block.js",
+		"build:block": "wp-scripts build --source-path=src/blocks --output-path=assets/blocks",
+		"watch:block": "wp-scripts start --source-path=src/blocks --output-path=assets/blocks",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.2.0",
 		"@babel/plugin-transform-react-jsx": "^7.2.0",
 		"@babel/preset-env": "^7.2.0",
 		"@wordpress/browserslist-config": "^4.0.0",
+		"@wordpress/icons": "^11.1.0",
+		"@wordpress/scripts": "^30.27.0",
 		"babel-jest": "^27.0.0",
 		"babel-loader": "^8.0.4",
 		"browser-sync": "^2.24.4",
@@ -49,13 +54,16 @@
 		"gulp-sass-glob": "^1.1.0",
 		"gulp-sourcemaps": "^3.0",
 		"gulp-uglify": "^3.0",
+		"husky": "^9.1.7",
 		"imagemin-mozjpeg": "^9.0.0",
 		"imagemin-pngquant": "^9.0.0",
 		"jest": "^29.6",
+		"lint-staged": "^16.2.6",
 		"merge-stream": "^2.0.0",
-		"node-sass": "^6.0.0",
 		"regenerator-runtime": "^0.13.7",
-		"uikit": "^3.7.2",
+		"sass": "^1.93.2",
+		"sass-migrator": "^2.4.2",
+		"uikit": "^3.24.2",
 		"vinyl-named": "^1.1.0",
 		"webpack": "^5.0.0",
 		"webpack-stream": "^7.0.0"
@@ -64,6 +72,9 @@
 		"browser": true
 	},
 	"volta": {
-		"node": "14.21.3"
+		"node": "20.18.1"
+	},
+	"tsWorkflows": {
+		"blockSrcDir": "src/blocks"
 	}
 }

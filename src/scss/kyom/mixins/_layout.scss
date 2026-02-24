@@ -12,3 +12,11 @@
     @content;
   }
 }
+
+ul.is-layout-flow,
+ul.is-layout-constrained,
+ul.is-layout-grid {
+	gap: $kyom-gap;
+	padding-left: $kyom-gap !important;
+	padding-right: $kyom-gap !important;
+}

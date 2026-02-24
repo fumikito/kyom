@@ -8,18 +8,27 @@ const named = require( 'vinyl-named' );
 const browserSync = require( 'browser-sync' ).create();
 const pngquant = require( 'imagemin-pngquant' );
 const mozjpeg = require( 'imagemin-mozjpeg' );
+const sass = $.sass( require( 'sass' ) );
+
+let plumber = true;
+gulp.task( 'noplumber', function( done ) {
+	plumber = false;
+	done();
+} );
 
 // Sass
 gulp.task( 'sass', function () {
-	return gulp.src( [
+	let task = gulp.src( [
 		'./src/scss/**/*.scss'
-	] )
-		.pipe( $.plumber( {
+	] );
+	if ( plumber ) {
+		task = task.pipe( $.plumber( {
 			errorHandler: $.notify.onError( '<%= error.message %>' )
 		} ) )
-		.pipe( $.sourcemaps.init( { loadMaps: true } ) )
+	}
+	return task.pipe( $.sourcemaps.init( { loadMaps: true } ) )
 		.pipe( $.sassGlob() )
-		.pipe( $.sass( require( 'node-sass' ) )( {
+		.pipe( sass( {
 			errLogToConsole: true,
 			outputStyle: 'compressed',
 			includePaths: [
@@ -35,11 +44,13 @@ gulp.task( 'sass', function () {
 
 // Minify All
 gulp.task( 'js', function () {
-	return gulp.src( [ './src/js/**/*.js' ] )
-		.pipe( $.plumber( {
-			errorHandler: $.notify.onError( '<%= error.message %>' )
-		} ) )
-		.pipe( named( function ( file ) {
+	let task = gulp.src( [ './src/js/**/*.js' ] );
+	if ( plumber ) {
+		task = task.pipe( $.plumber( {
+			errorHandler: $.notify.onError('<%= error.message %>')
+		}));
+	}
+	return task.pipe( named( function ( file ) {
 			return file.relative.replace( /\.[^.]+$/, '' );
 		} ) )
 		.pipe( webpack( {
@@ -108,38 +119,10 @@ async function images_to_dist() {
 		.pipe( imagemin.default( imagePlugins, { verbose: true } ) )
 		.pipe( gulp.dest( './assets/img' ) );
 }
+
+// Imageminをgulpタスクに
 gulp.task( 'imagemin', function ( done ) {
 	return images_to_dist();
-} );
-
-// Pug task
-gulp.task( 'pug', function () {
-	return gulp.src( [ 'src/pug/**/*', '!src/pug/**/_*' ] )
-		.pipe( $.plumber( {
-			errorHandler: $.notify.onError( '<%= error.message %>' )
-		} ) )
-		.pipe( $.pug( {
-			pretty: true
-		} ) )
-		.pipe( gulp.dest( 'assets' ) )
-} );
-
-// watch browser sync
-gulp.task( 'server', function () {
-	return browserSync.init( {
-		files: [ "assets/**/*" ],
-		server: {
-			baseDir: "./assets",
-			index: "index.html"
-		},
-		reloadDelay: 2000
-	} );
-} );
-
-gulp.task( 'reload', function () {
-	gulp.watch( 'assets/**/*', function () {
-		return browserSync.reload();
-	} );
 } );
 
 // watch
@@ -153,16 +136,10 @@ gulp.task( 'watch', function () {
 
 	// Minify Image
 	gulp.watch( 'src/img/**/*', gulp.task( 'imagemin' ) );
-
-	// Compile HTML
-	gulp.watch( 'src/pug/**/*', gulp.task( 'pug' ) );
 } );
 
 // Build
-gulp.task( 'build', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) );
-
-// HTML task
-gulp.task( 'html', gulp.series( 'build', gulp.parallel( 'watch', 'server', 'reload' ) ) );
+gulp.task( 'build', gulp.series( 'noplumber', gulp.parallel( 'copylib', 'js', 'sass', 'imagemin' ) ) );
 
 // Default Tasks
 gulp.task( 'default', gulp.task( 'watch' ) );

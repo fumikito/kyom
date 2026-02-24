@@ -42,7 +42,8 @@ if ( post_password_required() ) {
 	<ul class="uk-comment-list">
 	<?php
 	wp_list_comments( [
-		'callback' => function ( $comment, $args, $depth ) {
+		'max_depth' => 1,
+		'callback'  => function ( $comment, $args, $depth ) {
 			echo '<li>';
 			/** @var WP_Comment $comment */
 			if ( in_array( $comment->comment_type, [ 'pingback', 'trackback' ], true ) ) {
@@ -100,17 +101,26 @@ if ( post_password_required() ) {
 						</div>
 					</div>
 					<div class="uk-position-top-right uk-position-small uk-hidden-hover">
-						<?php
-						comment_reply_link( array_merge( $args, array(
-							'add_below' => 'div-comment',
-							'depth'     => $depth,
-							'max_depth' => $args['max_depth'],
-							'before'    => '<div class="reply">',
-							'after'     => '</div>',
-						) ) );
-						?>
+						<?php if ( comments_open() ) : ?>
+							<button type="button" class="uk-button uk-button-text kyom-reply-btn"
+								data-comment-id="<?php echo esc_attr( $comment->comment_ID ); ?>"
+								data-comment-author="<?php echo esc_attr( $comment->comment_author ); ?>">
+								<?php esc_html_e( 'Reply', 'kyom' ); ?>
+							</button>
+						<?php endif; ?>
 					</div>
 				</header>
+				<?php if ( $comment->comment_parent ) :
+					$parent = get_comment( $comment->comment_parent );
+					if ( $parent ) : ?>
+						<div class="comment-reply-to">
+							<a href="#div-comment-<?php echo esc_attr( $parent->comment_ID ); ?>" class="comment-reply-link">
+								<span uk-icon="icon: reply; ratio: 0.8"></span>
+								<?php echo esc_html( $parent->comment_author ); ?>
+							</a>
+						</div>
+					<?php endif;
+				endif; ?>
 				<div class="uk-comment-body">
 					<?php echo wp_kses_post( wpautop( get_comment_text( $comment ) ) ); ?>
 				</div>
@@ -145,4 +155,4 @@ if ( post_password_required() ) {
 	?>
 <?php endif; ?>
 
-<?php comment_form(); ?>
+<div id="kyom-comment-app" data-post-id="<?php echo esc_attr( get_the_ID() ); ?>"></div>

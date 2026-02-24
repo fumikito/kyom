@@ -67,4 +67,16 @@ add_action( 'admin_init', function () {
 		] );
 	}, 'reading', 'newsletter' );
 	register_setting( 'reading', 'newsletter_page' );
+	add_settings_field( 'kyom_contact_page_id', __( 'Contact Page', 'kyom' ), function () {
+		$page_id = get_option( 'kyom_contact_page_id', 0 );
+		wp_dropdown_pages( [
+			'depth'            => 0,
+			'selected'         => $page_id,
+			'name'             => 'kyom_contact_page_id',
+			'id'               => 'kyom_contact_page_id',
+			'value_field'      => 'ID',
+			'show_option_none' => __( 'No contact page', 'kyom' ),
+		] );
+	}, 'reading', 'newsletter' );
+	register_setting( 'reading', 'kyom_contact_page_id' );
 } );

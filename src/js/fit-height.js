@@ -1,16 +1,16 @@
-/**
- * Fit height functions.
+/*!
+ * @handle kyom-fit-height
+ * @deps jquery
+ * @strategy defer
  */
 
 const $ = jQuery;
 
 const fitHeight = function( $elem ) {
 	let maximum = 0;
-	let length = 0;
 	$elem.each( function( index, el ) {
 		maximum = Math.max( $( el ).height(), maximum );
-		length++;
-	});
+	} );
 	$elem.css( 'height', maximum + 'px' );
 };
 
@@ -26,5 +26,5 @@ $.fn.fitHeight = function() {
 		timer = setTimeout( function() {
 			fitHeight( self );
 		}, 10 );
-	});
+	} );
 };

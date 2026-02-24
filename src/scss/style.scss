@@ -1,18 +1,50 @@
+/*!
+ * @handle uikit
+ */
+
 // 1. Your custom variables and variable overwrites.
 @import "kyom/variables";
-@import "kyom/mixins/*";
+@import "kyom/mixins/animation";
+@import "kyom/mixins/night_shift";
+@import "kyom/mixins/layout";
+@import "kyom/mixins/post_style";
 
 // 2. Import default variables and available mixins.
-@import "variables-theme.scss";
-@import "mixins-theme.scss";
+@import "../../node_modules/uikit/src/scss/variables-theme.scss";
+@import "../../node_modules/uikit/src/scss/mixins-theme.scss";
 
-// 3. Your custom mixin overwrites.
-//@mixin hook-card() { color: #000; }
+// 3. Import UIkit.
+@import "../../node_modules/uikit/src/scss/uikit-theme.scss";
 
-// 4. Import UIkit.
-@import "uikit-theme.scss";
-
-// 5. Import all local components.
+// 4. Import all local components.
 @import "kyom/global";
-@import "kyom/components/*";
-@import "kyom/blocks/*";
+@import "kyom/components/ads";
+@import "kyom/components/archive";
+@import "kyom/components/author";
+@import "kyom/components/body";
+@import "kyom/components/callout";
+@import "kyom/components/card";
+@import "kyom/components/comments";
+@import "kyom/components/entry";
+@import "kyom/components/footer";
+@import "kyom/components/footer_newsletter";
+@import "kyom/components/form-cf7";
+@import "kyom/components/full_width";
+@import "kyom/components/header";
+@import "kyom/components/jetpack";
+@import "kyom/components/list";
+@import "kyom/components/netabare";
+@import "kyom/components/pager";
+@import "kyom/components/portfolio";
+@import "kyom/components/search";
+@import "kyom/components/tag";
+@import "kyom/components/testimonial";
+@import "kyom/components/widget";
+@import "kyom/blocks/activities";
+@import "kyom/blocks/amazon";
+@import "kyom/blocks/core";
+@import "kyom/blocks/hero";
+@import "kyom/blocks/recent";
+@import "kyom/blocks/rss_slider";
+@import "kyom/blocks/testimonials";
+@import "kyom/blocks/wordpress-activities";

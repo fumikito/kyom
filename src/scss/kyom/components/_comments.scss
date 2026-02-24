@@ -95,8 +95,22 @@
   }
 }
 
+.comment-actions {
+  margin-top: $kyom-gap * 0.25;
+  font-size: 0.85rem;
+}
+
 .kyom-reply-btn {
   font-size: 0.85rem;
+  color: $gray;
+
+  .uk-icon {
+    margin-right: 0.15em;
+  }
+
+  &:hover {
+    color: $global-link-color;
+  }
 }
 
 .comment-respond{
@@ -127,4 +141,18 @@
     color: $gray;
   }
 
+}
+
+// Dynamic comment form (JS-rendered).
+.kyom-comment-form {
+  margin-top: $kyom-gap;
+
+  .kyom-comment-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.kyom-comment-login {
+  margin-top: $kyom-gap;
 }

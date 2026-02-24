@@ -56,22 +56,11 @@ add_filter( 'block_categories_all', function ( $categories ) {
 } );
 
 /**
- * Enqueue block variations script for editor.
+ * Enqueue block variations script and editor styles.
+ *
+ * These assets are registered via wp-dependencies.json in hooks/assets.php.
  */
 add_action( 'enqueue_block_editor_assets', function () {
-	wp_enqueue_script(
-		'kyom-block-variations',
-		get_template_directory_uri() . '/assets/js/block-variations.js',
-		[ 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ],
-		kyom_version(),
-		true
-	);
-
-	// Enqueue editor styles
-	wp_enqueue_style(
-		'kyom-editor-styles',
-		get_template_directory_uri() . '/assets/css/editor.css',
-		[],
-		kyom_version()
-	);
+	wp_enqueue_script( 'kyom-block-variations' );
+	wp_enqueue_style( 'kyom-editor-styles' );
 } );

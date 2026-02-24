@@ -1,12 +1,13 @@
-/**
- * Editor Styles
- *
- * @package kyom
+/*!
+ * @handle kyom-editor-styles
  */
 
 // 1. Your custom variables and variable overwrites.
 @import "kyom/variables";
-@import "kyom/mixins/*";
+@import "kyom/mixins/animation";
+@import "kyom/mixins/night_shift";
+@import "kyom/mixins/layout";
+@import "kyom/mixins/post_style";
 
 // 2. Import default variables and available mixins.
 @import "../../node_modules/uikit/src/scss/variables-theme.scss";

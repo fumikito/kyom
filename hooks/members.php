@@ -25,14 +25,14 @@ add_action('wp_login', function ( $login, WP_User $user ) {
  * Add cookie if user logged in.
  */
 add_action( 'wp_login', function ( $login_name, $current_user ) {
-	setcookie( 'kyom-customer', 1, current_time( 'timestamp' ) + ( 3600 * 24 * 14 ), '/', preg_replace( '#https?://#', '', rtrim( home_url(), '/' ) ) );
+	setcookie( 'kyom-customer', 1, current_time( 'timestamp' ) + ( 3600 * 24 * 14 ), '/', preg_replace( '#https?://#', '', rtrim( home_url(), '/' ) ), true );
 }, 10, 2 );
 
 /**
  * Remove cookie if user is logged out.
  */
 add_action('wp_logout', function () {
-	setcookie( 'kyom-customer', 1, current_time( 'timestamp' ) - 10, '/', preg_replace( '#https?://#', '', rtrim( home_url(), '/' ) ) );
+	setcookie( 'kyom-customer', 1, current_time( 'timestamp' ) - 10, '/', preg_replace( '#https?://#', '', rtrim( home_url(), '/' ) ), true );
 });
 
 

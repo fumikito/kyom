@@ -6,51 +6,48 @@
  */
 
 /**
- * Register scripts and styles.
+ * Register scripts and styles from wp-dependencies.json and vendor files.
  */
 add_action( 'init', function () {
+	// 1. Register assets from wp-dependencies.json.
+	$json_path = get_template_directory() . '/wp-dependencies.json';
+	if ( file_exists( $json_path ) ) {
+		$deps     = json_decode( file_get_contents( $json_path ), true );
+		$base_url = get_template_directory_uri();
+		foreach ( $deps as $dep ) {
+			if ( empty( $dep['path'] ) ) {
+				continue;
+			}
+			$url = $base_url . '/' . $dep['path'];
+			switch ( $dep['ext'] ) {
+				case 'css':
+					wp_register_style( $dep['handle'], $url, $dep['deps'], $dep['hash'], $dep['media'] );
+					break;
+				case 'js':
+					$args = [ 'in_footer' => $dep['footer'] ];
+					if ( in_array( $dep['strategy'], [ 'defer', 'async' ], true ) ) {
+						$args['strategy'] = $dep['strategy'];
+					}
+					wp_register_script( $dep['handle'], $url, $dep['deps'], $dep['hash'], $args );
+					break;
+			}
+		}
+	}
 
-	// Main style.
-	wp_register_style( 'uikit', get_template_directory_uri() . '/assets/css/style.css', [], kyom_version() );
-
-	// icons
+	// 2. Vendor scripts (not managed by wp-dependencies.json).
 	$uikit_version = '3.3.6';
-	wp_register_script( 'uikit', get_template_directory_uri() . '/assets/js/uikit.min.js', [], $uikit_version, true );
-	wp_register_script( 'uikit-icon', get_template_directory_uri() . '/assets/js/uikit-icons.min.js', [ 'uikit' ], $uikit_version, true );
+	wp_register_script( 'uikit', get_template_directory_uri() . '/assets/vendor/uikit.min.js', [], $uikit_version, true );
+	wp_register_script( 'uikit-icon', get_template_directory_uri() . '/assets/vendor/uikit-icons.min.js', [ 'uikit' ], $uikit_version, true );
 
-	// Fit height
-	wp_register_script( 'kyom-fit-height', get_template_directory_uri() . '/assets/js/fit-height.js', [ 'jquery' ], kyom_version(), true );
-
-	// Fitie
-	wp_register_script( 'fitie', get_template_directory_uri() . '/assets/js/fitie.js', [], '1.0.0', true );
-	wp_add_inline_script( 'fitie', 'window.fitie = {};', 'before' );
-
-	// Particle.js
+	// CDN scripts.
 	wp_register_script( 'particle-js', 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js', [], '2.0.0', true );
 	wp_register_script( 'kyom-particle', get_template_directory_uri() . '/assets/js/particle.js', [ 'particle-js' ], kyom_version(), true );
+	wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
 
-	// Netabare
-	wp_register_script( 'kyom-netabare', get_template_directory_uri() . '/assets/js/netabare.js', [ 'jquery' ], kyom_version(), true );
+	// 3. Localized data.
 	wp_localize_script( 'kyom-netabare', 'Netabare', [
 		'label' => __( 'Click to open spoiler', 'kyom' ),
 	] );
-
-	// Google Platform
-	wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
-
-	// Theme
-	wp_register_script( 'kyom', get_template_directory_uri() . '/assets/js/app.js', [
-		'kyom-netabare',
-		'kyom-fit-height',
-		'uikit-icon',
-	], kyom_version(), true );
-
-	// Admin theme.
-	list( $url, $version ) = kyom_asset_url_and_version( 'css/kyom-admin.css' );
-	wp_register_style( 'kyom-admin', $url, [], $version );
-
-	list( $url, $version ) = kyom_asset_url_and_version( 'css/kyom-oembed.css' );
-	wp_register_style( 'kyom-oembed', $url, [], $version );
 } );
 
 /**
@@ -59,7 +56,6 @@ add_action( 'init', function () {
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'uikit' );
 	wp_enqueue_script( 'kyom' );
-	wp_enqueue_script( 'fitie' );
 } );
 
 /**
@@ -84,14 +80,6 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_dequeue_style( 'yarppRelatedCss' );
 	wp_dequeue_style( 'yarppWidgetCss' );
 }, 11 );
-
-add_filter( 'script_loader_tag', function ( $tag, $handle ) {
-	$deferrable = [ 'kyom-fit-height', 'kyom', 'kyom-netabare', 'fitie', 'particle-js', 'kyom-particle' ];
-	if ( in_array( $handle, $deferrable, true ) ) {
-		$tag = str_replace( '<script', '<script defer', $tag );
-	}
-	return $tag;
-}, 10, 2 );
 
 /**
  * Move jQuery to footer

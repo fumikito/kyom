@@ -1,11 +1,13 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module"
-  },
-  "env": {
-    "browser": true,
-    "jquery": true
-  },
-  "extends": "wordpress"
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"es2021": true
+	},
+	"extends": ["plugin:@wordpress/eslint-plugin/recommended-with-formatting"],
+	"globals": {
+		"UIkit": "readonly",
+		"Netabare": "readonly",
+		"wp": "readonly"
+	}
 }

@@ -1,11 +1,9 @@
-/**
- * Block Variations
- *
- * @package kyom
+/*!
+ * @handle kyom-block-variations
+ * @deps wp-blocks,wp-dom-ready,wp-edit-post
  */
 
 wp.domReady( () => {
-
 	// Netabareブロック（Groupブロックのバリエーション）
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'netabare',
@@ -14,13 +12,13 @@ wp.domReady( () => {
 		category: 'kyom',
 		icon: 'hidden',
 		attributes: {
-			className: 'netabare'
+			className: 'netabare',
 		},
 		innerBlocks: [
-			[ 'core/paragraph', {placeholder: 'ネタバレの内容を入力...'} ]
+			[ 'core/paragraph', { placeholder: 'ネタバレの内容を入力...' } ],
 		],
-		scope: [ 'inserter' ]
-	});
+		scope: [ 'inserter' ],
+	} );
 
 	// 注釈ブロック（Groupブロックのバリエーション）
 	wp.blocks.registerBlockVariation( 'core/group', {
@@ -31,11 +29,11 @@ wp.domReady( () => {
 		icon: 'info',
 		attributes: {
 			tagName: 'aside',
-			className: 'annotation'
+			className: 'annotation',
 		},
 		innerBlocks: [
-			[ 'core/paragraph', {placeholder: '注釈の内容を入力...'} ]
+			[ 'core/paragraph', { placeholder: '注釈の内容を入力...' } ],
 		],
-		scope: [ 'inserter' ]
-	});
-});
+		scope: [ 'inserter' ],
+	} );
+} );

@@ -1,7 +1,10 @@
 @import "kyom/variables";
-@import "variables-theme.scss";
-@import "mixins-theme.scss";
-@import "kyom/mixins/*";
+@import "../../node_modules/uikit/src/scss/variables-theme.scss";
+@import "../../node_modules/uikit/src/scss/mixins-theme.scss";
+@import "kyom/mixins/animation";
+@import "kyom/mixins/night_shift";
+@import "kyom/mixins/layout";
+@import "kyom/mixins/post_style";
 
 body {
 }

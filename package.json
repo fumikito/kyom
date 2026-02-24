@@ -30,15 +30,22 @@
 	"watch": {
 		"build:css": {
 			"extensions": "scss",
-			"patterns": ["src/scss"]
+			"patterns": [
+				"src/scss"
+			]
 		},
 		"build:js": {
 			"extensions": "js",
-			"patterns": ["src/js"]
+			"patterns": [
+				"src/js"
+			]
 		},
 		"dump": {
 			"extensions": "js,css",
-			"patterns": ["assets/js", "assets/css"]
+			"patterns": [
+				"assets/js",
+				"assets/css"
+			]
 		}
 	},
 	"devDependencies": {
@@ -47,6 +54,7 @@
 		"@wordpress/icons": "^11.1.0",
 		"@wordpress/scripts": "^30.27.0",
 		"autoprefixer": "^10.4.16",
+		"baseline-browser-mapping": "^2.10.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.6",
 		"npm-watch": "^0.13.0",

@@ -4,7 +4,7 @@
 		"jquery": true,
 		"es2021": true
 	},
-	"extends": "@wordpress/eslint-plugin/recommended-with-formatting",
+	"extends": ["plugin:@wordpress/eslint-plugin/recommended-with-formatting"],
 	"globals": {
 		"UIkit": "readonly",
 		"Netabare": "readonly",

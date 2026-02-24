@@ -6,12 +6,6 @@
   font-size: 14px;
 }
 
-.uk-comment-list{
-  .children{
-    border-left: 5px solid $comment-primary-background;
-  }
-}
-
 .comments-title{
   margin: $kyom-gap * 2 0 $kyom-gap * 0.5;
 }
@@ -79,12 +73,33 @@
     margin-left: 1em;
   }
 }
-.comment-respond{
-  li &{
-    margin-top: $kyom-gap;
-    border: 3px dashed $comment-primary-background;
-    padding: $kyom-gap * 0.5;
+
+.comment-reply-to {
+  margin-bottom: $kyom-gap * 0.5;
+  font-size: 0.85em;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    padding: 2px 8px;
+    background-color: $light-gray;
+    border-radius: 3px;
+    color: $gray;
+    text-decoration: none;
+
+    &:hover {
+      background-color: darken($light-gray, 5%);
+      color: $body-font-emphasis-color;
+    }
   }
+}
+
+.kyom-reply-btn {
+  font-size: 0.85rem;
+}
+
+.comment-respond{
   .comment-reply-title{
     @extend .uk-heading-divider;
     small{
@@ -112,8 +127,4 @@
     color: $gray;
   }
 
-}
-
-#disqus_thread {
-	margin-top: 40px;
 }

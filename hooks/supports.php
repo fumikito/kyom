@@ -57,19 +57,6 @@ add_action( 'after_setup_theme', function () {
 } );
 
 /**
- * Add comment reply link
- */
-add_action( 'wp_enqueue_scripts', function () {
-	if ( ! is_singular() ) {
-		return;
-	}
-	if ( ! post_type_supports( get_post_type( get_queried_object() ), 'comments' ) ) {
-		return;
-	}
-	wp_enqueue_script( 'comment-reply' );
-} );
-
-/**
  * Add image sizes.
  *
  * @param array $sizes

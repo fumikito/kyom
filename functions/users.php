@@ -69,6 +69,19 @@ function kyom_get_social_links( $user = null, $with_label = false ) {
 }
 
 /**
+ * Get contact page URL.
+ *
+ * @return string Empty string if not set.
+ */
+function kyom_get_contact_url() {
+	$page_id = get_option( 'kyom_contact_page_id', 0 );
+	if ( ! $page_id ) {
+		return '';
+	}
+	return get_permalink( $page_id );
+}
+
+/**
  * Detect if comment is primary.
  *
  * @param WP_Comment $comment

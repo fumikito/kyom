@@ -100,15 +100,6 @@ if ( post_password_required() ) {
 							<?php endif; ?>
 						</div>
 					</div>
-					<div class="uk-position-top-right uk-position-small uk-hidden-hover">
-						<?php if ( comments_open() ) : ?>
-							<button type="button" class="uk-button uk-button-text kyom-reply-btn"
-								data-comment-id="<?php echo esc_attr( $comment->comment_ID ); ?>"
-								data-comment-author="<?php echo esc_attr( $comment->comment_author ); ?>">
-								<?php esc_html_e( 'Reply', 'kyom' ); ?>
-							</button>
-						<?php endif; ?>
-					</div>
 				</header>
 				<?php
 				if ( $comment->comment_parent ) :
@@ -116,7 +107,7 @@ if ( post_password_required() ) {
 					if ( $parent ) :
 						?>
 						<div class="comment-reply-to">
-							<a href="#div-comment-<?php echo esc_attr( $parent->comment_ID ); ?>" class="comment-reply-link">
+							<a href="#div-comment-<?php echo esc_attr( $parent->comment_ID ); ?>">
 								<span uk-icon="icon: reply; ratio: 0.8"></span>
 								<?php echo esc_html( $parent->comment_author ); ?>
 							</a>
@@ -128,6 +119,16 @@ if ( post_password_required() ) {
 				<div class="uk-comment-body">
 					<?php echo wp_kses_post( wpautop( get_comment_text( $comment ) ) ); ?>
 				</div>
+				<?php if ( comments_open() ) : ?>
+					<footer class="comment-actions">
+						<button type="button" class="uk-button uk-button-text kyom-reply-btn"
+							data-comment-id="<?php echo esc_attr( $comment->comment_ID ); ?>"
+							data-comment-author="<?php echo esc_attr( $comment->comment_author ); ?>">
+							<span uk-icon="icon: comment; ratio: 0.8"></span>
+							<?php esc_html_e( 'Reply', 'kyom' ); ?>
+						</button>
+					</footer>
+				<?php endif; ?>
 			</article>
 			<?php
 		},

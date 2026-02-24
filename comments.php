@@ -110,17 +110,21 @@ if ( post_password_required() ) {
 						<?php endif; ?>
 					</div>
 				</header>
-				<?php if ( $comment->comment_parent ) :
+				<?php
+				if ( $comment->comment_parent ) :
 					$parent = get_comment( $comment->comment_parent );
-					if ( $parent ) : ?>
+					if ( $parent ) :
+						?>
 						<div class="comment-reply-to">
 							<a href="#div-comment-<?php echo esc_attr( $parent->comment_ID ); ?>" class="comment-reply-link">
 								<span uk-icon="icon: reply; ratio: 0.8"></span>
 								<?php echo esc_html( $parent->comment_author ); ?>
 							</a>
 						</div>
-					<?php endif;
-				endif; ?>
+						<?php
+					endif;
+				endif;
+				?>
 				<div class="uk-comment-body">
 					<?php echo wp_kses_post( wpautop( get_comment_text( $comment ) ) ); ?>
 				</div>

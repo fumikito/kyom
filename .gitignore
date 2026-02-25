@@ -1,4 +1,5 @@
 assets/
+!assets/img/
 vendor/
 node_modules/
 package-lock.json

@@ -16,7 +16,7 @@
 	],
 	"minimum-stability": "stable",
 	"require": {
-		"php": ">=7.4",
+		"php": ">=8.2",
 		"masterminds/html5": "^2.3",
 		"kunoichi/theme-customizer": "^1.0",
 		"kunoichi/set-menu": "^1.0",

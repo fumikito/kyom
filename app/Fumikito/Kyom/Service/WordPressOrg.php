@@ -41,6 +41,7 @@ class WordPressOrg {
 			if ( is_wp_error( $response ) ) {
 				return [];
 			}
+			$data              = [];
 			$data['url']       = $url;
 			$data['downloads'] = 0;
 			$html5             = new HTML5();

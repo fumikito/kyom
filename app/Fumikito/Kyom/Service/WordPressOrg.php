@@ -41,28 +41,35 @@ class WordPressOrg {
 			if ( is_wp_error( $response ) ) {
 				return [];
 			}
+			$data              = [];
 			$data['url']       = $url;
 			$data['downloads'] = 0;
 			$html5             = new HTML5();
 			$document          = $html5->loadHTML( $response['body'] );
 			// Get since.
 			$member_since = '';
-			foreach ( $document->getElementById( 'user-member-since' )->getElementsByTagName( 'strong' ) as $strong ) {
-				/** @var \DOMElement $strong */
-				$member_since .= $strong->nodeValue;
+			$since_el     = $document->getElementById( 'user-member-since' );
+			if ( $since_el ) {
+				foreach ( $since_el->getElementsByTagName( 'strong' ) as $strong ) {
+					/** @var \DOMElement $strong */
+					$member_since .= $strong->nodeValue;
+				}
 			}
 			if ( $member_since ) {
 				$data['member_since'] = strtotime( $member_since );
 			}
 			// Get badges.
-			$badges = [];
-			foreach ( $document->getElementById( 'user-badges' )->getElementsByTagName( 'li' ) as $li ) {
-				$badge = [];
-				foreach ( $li->getElementsByTagName( 'div' ) as $div ) {
-					$badge['label'] = trim( $div->nextSibling->nodeValue );
-					$badge['class'] = explode( ' ', $div->getAttribute( 'class' ) );
-					if ( $badge['label'] && $badge['class'] ) {
-						$badges[] = $badge;
+			$badges    = [];
+			$badges_el = $document->getElementById( 'user-badges' );
+			if ( $badges_el ) {
+				foreach ( $badges_el->getElementsByTagName( 'li' ) as $li ) {
+					$badge = [];
+					foreach ( $li->getElementsByTagName( 'div' ) as $div ) {
+						$badge['label'] = trim( $div->nextSibling->nodeValue );
+						$badge['class'] = explode( ' ', $div->getAttribute( 'class' ) );
+						if ( $badge['label'] && $badge['class'] ) {
+							$badges[] = $badge;
+						}
 					}
 				}
 			}

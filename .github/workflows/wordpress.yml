@@ -20,7 +20,7 @@ jobs:
     name: PHP Syntax Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v6
 
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
@@ -40,10 +40,10 @@ jobs:
     name: Test Assets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v6
 
       - name: Install NPM
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
 

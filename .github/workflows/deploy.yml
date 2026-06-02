@@ -14,7 +14,7 @@ jobs:
       name: production
       url: https://takahashifumiki.com
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v6
 
       - name: Setup PHP with composer v2
         uses: shivammathur/setup-php@v2
@@ -25,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install NPM
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
 
@@ -33,16 +33,13 @@ jobs:
         run: bash bin/build.sh refs/tags/${{ github.sha }}
 
       - name: Deploy to Server
-        id: deploymaster
-        uses: Pendect/action-rsyncer@v1.1.0
         env:
-          DEPLOY_KEY: ${{secrets.ID_RSA_FUMIKI_VPS_SAKURA}}
-        with:
-          flags: '-rptv --checksum --delete'
-          options: ''
-          ssh_options: ''
-          src: './'
-          dest: 'fumiki@fumiki.sakura.ne.jp:/home/fumiki/www/main/wp-content/themes/kyom/'
-
-      - name: Display Deploy Status
-        run: echo "${{ steps.deploymaster.outputs.status }}"
+          DEPLOY_KEY: ${{ secrets.ID_RSA_FUMIKI_VPS_SAKURA }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H fumiki.sakura.ne.jp >> ~/.ssh/known_hosts
+          rsync -rptv --checksum --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            ./ fumiki@fumiki.sakura.ne.jp:/home/fumiki/www/main/wp-content/themes/kyom/

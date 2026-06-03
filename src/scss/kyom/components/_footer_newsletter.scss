@@ -4,6 +4,10 @@
   background: url( "../img/newsletter-sample.jpeg") center center no-repeat;
   background-size: cover;
 
+	@media screen and (max-width: 767px ) {
+		padding: $kyom-gap 0;
+	}
+
   &-title{
     text-align: center;
     color: #fff;

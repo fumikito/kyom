@@ -8,15 +8,23 @@
  * @var WP_Block $block      Block instance.
  */
 
-$title    = $attributes['title'] ?? __( 'Recent Posts', 'kyom' );
-$category = $attributes['category'] ?? '';
+$title         = $attributes['title'] ?? __( 'Recent Posts', 'kyom' );
+$category      = $attributes['category'] ?? '';
+$tag           = $attributes['tag'] ?? '';
+$ignore_sticky = $attributes['ignoreStickyPosts'] ?? false;
 
 $args = [
-	'post_type'      => 'post',
-	'post_status'    => 'publish',
-	'cat'            => $category,
-	'posts_per_page' => 5,
+	'post_type'           => 'post',
+	'post_status'         => 'publish',
+	'cat'                 => $category,
+	'posts_per_page'      => 5,
+	// スティッキーの先頭固定はカテゴリ/タグ未指定（is_home 扱い）のときだけ発動する。
+	'ignore_sticky_posts' => (bool) $ignore_sticky,
 ];
+// タグはスラッグ指定（ターム ID は DB 間でズレるため）。
+if ( $tag ) {
+	$args['tag'] = $tag;
+}
 
 $query = new WP_Query( $args );
 

@@ -49,26 +49,48 @@ if ( did_action( 'template_redirect' ) ) {
 				<?php
 				foreach ( $data['badges'] as $badge ) :
 					$label = \Fumikito\Kyom\Service\WordPressOrg::translate_role( $badge['label'] );
+					$title = trim( $label . ' ' . ( $badge['year'] ?? '' ) );
 					?>
-				<span class="wporg-role">
-					<span class="<?php echo esc_attr( implode( ' ', $badge['class'] ) ); ?>" title="<?php echo esc_attr( $label ); ?>"></span>
+				<span class="wporg-role <?php echo esc_attr( $badge['badge_class'] ); ?>" title="<?php echo esc_attr( $title ); ?>">
+					<span class="<?php echo esc_attr( $badge['icon_class'] ); ?>"></span>
 					<span class="wporg-role-text uk-visible@s" aria-hidden="true"><?php echo esc_html( $label ); ?></span>
 				</span>
 
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
+		<?php if ( ! empty( $data['active_installs_total'] ) ) : ?>
 		<div class="wporg-downloads">
 			<small><?php esc_html_e( 'Total', 'kyom' ); ?></small>
-			<strong><?php echo number_format( $data['downloads'] ); ?></strong>
-			<small><?php echo esc_html( _n( 'Download', 'Downloads', $data['downloads'], 'kyom' ) ); ?></small>
+			<strong><?php echo number_format( $data['active_installs_total'] ); ?></strong>
+			<small><?php echo esc_html( _n( 'Active Install', 'Active Installs', $data['active_installs_total'], 'kyom' ) ); ?></small>
 			<?php echo \Fumikito\Kyom\Service\WordPressOrg::delivering_item_count( $data, '<span class="wporg-downloads-items">(', ')</span>' ); ?>
 		</div>
+		<?php endif; ?>
+		<?php if ( ! empty( $data['releases']['versions'] ) ) : ?>
+		<div class="wporg-releases uk-text-center">
+			<h3 class="wporg-releases-title">
+				<?php
+				printf(
+					/* translators: %s: Number of WordPress releases. */
+					esc_html( _n( 'Contributed to %s WordPress release', 'Contributed to %s WordPress releases', count( $data['releases']['versions'] ), 'kyom' ) ),
+					esc_html( number_format( $data['releases']['count'] ?: count( $data['releases']['versions'] ) ) )
+				);
+				?>
+			</h3>
+			<ul class="wporg-releases-versions">
+				<?php foreach ( $data['releases']['versions'] as $version ) : ?>
+					<li class="wporg-release-chip" title="<?php echo esc_attr( $version['role'] ); ?>"><?php echo esc_html( $version['number'] ); ?></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		<?php endif; ?>
 		<p class="wporg-profile">
 			<?php echo get_avatar( $user_mail, 360, '', $user_name, [ 'class' => 'wporg-avatar uk-border-circle' ] ); ?>
 			<a href="<?php echo esc_url( \Fumikito\Kyom\Service\WordPressOrg::get_profile_url( $user_name ) ); ?>" class="wporg-profile-link">
 				<?php echo esc_html( $user_name ); ?>
 			</a>
+			<br />
 			<small>
 				<?php
 				printf(

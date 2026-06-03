@@ -10,6 +10,7 @@
 
 $title    = $attributes['title'] ?? __( 'Recent Posts', 'kyom' );
 $category = $attributes['category'] ?? '';
+$tag      = $attributes['tag'] ?? '';
 
 $args = [
 	'post_type'      => 'post',
@@ -17,6 +18,10 @@ $args = [
 	'cat'            => $category,
 	'posts_per_page' => 5,
 ];
+// タグはスラッグ指定（ターム ID は DB 間でズレるため）。
+if ( $tag ) {
+	$args['tag'] = $tag;
+}
 
 $query = new WP_Query( $args );
 

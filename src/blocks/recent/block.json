@@ -17,6 +17,10 @@
 		"category": {
 			"type": "string",
 			"default": ""
+		},
+		"tag": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

@@ -21,6 +21,10 @@
 		"tag": {
 			"type": "string",
 			"default": ""
+		},
+		"ignoreStickyPosts": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

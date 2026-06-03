@@ -1,13 +1,13 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ComboboxControl, Placeholder } from '@wordpress/components';
+import { PanelBody, TextControl, ComboboxControl, ToggleControl, Placeholder } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { postList } from '@wordpress/icons';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { title, category, tag } = attributes;
+	const { title, category, tag, ignoreStickyPosts } = attributes;
 
 	const blockProps = useBlockProps();
 
@@ -59,6 +59,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ ( value ) => setAttributes( { tag: value || '' } ) }
 						help={ __( 'Filter posts by tag (optional).', 'kyom' ) }
 						allowReset
+					/>
+					<ToggleControl
+						label={ __( 'Ignore sticky posts', 'kyom' ) }
+						checked={ !! ignoreStickyPosts }
+						onChange={ ( value ) => setAttributes( { ignoreStickyPosts: value } ) }
+						help={ __( 'Sticky posts are only pinned to the top when no category/tag filter is set.', 'kyom' ) }
 					/>
 				</PanelBody>
 			</InspectorControls>

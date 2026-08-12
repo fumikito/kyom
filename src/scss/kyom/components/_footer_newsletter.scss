@@ -83,3 +83,39 @@
     margin: $kyom-gap * 0.5 auto;
   }
 }
+
+// 旧フォームは wpcf7-form クラスを付けて Contact Form 7 のスタイルに
+// 相乗りしていた。同じ土台（%uk-form）を直接読むほうが素直なので、
+// .wpcf7-form や .comment-form と同じやり方に揃える。
+.kyom-newsletter-form {
+  @extend %uk-form;
+}
+
+// ハニーポット。スクリーンリーダーからも外してあるので、
+// 埋まっているのはフォームを解釈しないボットだけ。
+.kyom-newsletter-hp {
+  position: absolute;
+  left: -5000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.kyom-newsletter-message {
+  margin: $kyom-gap * 0.5 auto 0;
+  max-width: $breakpoint-small;
+  text-align: center;
+  font-family: $font-sans;
+
+  &:empty {
+    display: none;
+  }
+
+  .section-newsletter & {
+    color: #fff;
+  }
+
+  &.is-error {
+    color: $global-danger-background;
+  }
+}

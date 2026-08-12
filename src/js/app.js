@@ -100,7 +100,7 @@ $( '.kyom-navigations-list > li.menu-item-has-children > a ' ).click( function( 
 	$( this ).parent( 'li' ).toggleClass( 'active-menu' );
 } );
 
-// Open mail form.
-$( '.section-newsletter #mce-EMAIL' ).focus( function() {
+// Open mail form. メール欄の id はフォームごとに変わるので型で拾う。
+$( '.section-newsletter' ).on( 'focus', 'input[type="email"]', function() {
 	$( '.section-newsletter' ).addClass( 'toggle' );
 } );

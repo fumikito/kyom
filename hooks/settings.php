@@ -95,6 +95,23 @@ add_action( 'admin_init', function () {
 				],
 			],
 		],
+		'kyom_mailchimp'    => [
+			'label'       => 'Mailchimp',
+			'description' => __( 'Newsletter subscription is sent to Mailchimp through this site, so that the audience ID is never exposed to bots.', 'kyom' ),
+			'page'        => 'general',
+			'options'     => [
+				'mailchimp_api_key' => [
+					'label'       => __( 'API Key', 'kyom' ),
+					'description' => __( 'Issue a dedicated key from Mailchimp (Account &amp; billing &gt; Extras &gt; API keys). Defining <code>KYOM_MAILCHIMP_API_KEY</code> in wp-config.php takes precedence over this field and is recommended for production.', 'kyom' ),
+					'type'        => 'password',
+				],
+				'mailchimp_list_id' => [
+					'label'       => __( 'Audience ID', 'kyom' ),
+					'description' => __( 'Audience(list) ID of Mailchimp. If both values are valid, audience detail is displayed below.', 'kyom' ),
+					'type'        => 'text',
+				],
+			],
+		],
 	];
 	foreach ( $settings as $id => $setting ) {
 		// Register section.
@@ -154,6 +171,25 @@ add_action( 'admin_init', function () {
 						printf( '<p class="wp-ui-text-notification">%s</p>', esc_html( $result->get_error_message() ) );
 					} else {
 						printf( '<p class="description">%s: <strong>%s</strong></p>', esc_html__( 'Channel Information', 'kyom' ), esc_html( $result['snippet']['title'] ) );
+					}
+				}
+				if ( 'mailchimp_list_id' === $key && \Fumikito\Kyom\Service\MailchimpClient::is_ready() ) {
+					// 認証情報が正しいかを画面で確認できるようにする。
+					$result = \Fumikito\Kyom\Service\MailchimpClient::get_list();
+					if ( is_wp_error( $result ) ) {
+						printf( '<p class="wp-ui-text-notification">%s</p>', esc_html( $result->get_error_message() ) );
+					} else {
+						printf(
+							'<p class="description">%s: <strong>%s</strong>(%s)</p>',
+							esc_html__( 'Audience Information', 'kyom' ),
+							esc_html( $result['name'] ),
+							esc_html( sprintf(
+								// translators: %1$d is subscribed count, %2$s is 'enabled' or 'disabled'.
+								__( 'subscribers: %1$d, double opt-in: %2$s', 'kyom' ),
+								$result['stats']['member_count'],
+								empty( $result['double_optin'] ) ? __( 'disabled', 'kyom' ) : __( 'enabled', 'kyom' )
+							) )
+						);
 					}
 				}
 				echo '</div>';

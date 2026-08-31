@@ -84,3 +84,23 @@ add_action( 'template_redirect', function () {
 		exit;
 	}
 } );
+
+/**
+ * Keep attachment pages out of the search index.
+ *
+ * They exist as a browsing aid reached from the parent article
+ * （template-parts/singular-main-attachment.php）, not as search landing pages.
+ * Google was ranking them for queries that belong to the parent post,
+ * so noindex them while keeping `follow` so link equity reaches the parent.
+ *
+ * @param array $robots Robots directives.
+ *
+ * @return array
+ */
+add_filter( 'wp_robots', function ( $robots ) {
+	if ( is_attachment() ) {
+		$robots = wp_robots_no_robots( $robots );
+	}
+
+	return $robots;
+} );

@@ -90,6 +90,13 @@ $breadcrumb-item-font-size: 11px;
 // Sizing
 $kyom-gap: 40px;
 
+// 記事本文のブロック間マージン
+// $block-margin は総称ルール `> :where([class*="wp-block-"])` の既定値。
+// :where() で詳細度0にしてあるので、見出しや個別ブロックのルールが常に上書きできる。
+$block-margin: 1.5em;
+// 独立性の高い大きなブロック（埋め込み・カバー・グループ・広告など）。
+$block-margin-lg: 3em;
+
 // Comments
 $comment-list-margin-top: 40px;
 $comment-list-padding-left-m: 40px;

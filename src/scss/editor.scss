@@ -13,6 +13,26 @@
 @import "../../node_modules/uikit/src/scss/variables-theme.scss";
 @import "../../node_modules/uikit/src/scss/mixins-theme.scss";
 
+// 3. post-style() が @extend する UIkit コンポーネントとプレースホルダ。
+// UIkit 全体は読み込まない（管理画面のUIを壊すため）。
+@import "../../node_modules/uikit/src/scss/components/text.scss";
+@import "../../node_modules/uikit/src/scss/components/table.scss";
+@import "../../node_modules/uikit/src/scss/components/description-list.scss";
+@import "kyom/placeholders";
+
+// 4. 本文の組版をエディターにも適用する（WYSIWYG）。
+// フロントの `.entry-content` と同じ mixin を使うことで、書体・行間・字下げ・
+// ブロック間マージンをエディターと一致させる。タイトルは .is-root-container の
+// 外にあるため影響を受けない。
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container {
+	// UIkit の base（見出しサイズなど本文の基礎組版）をこのセレクタ配下に閉じ込めて読み込む。
+	// html / body への指定は `.is-root-container html` となり無効化されるため、
+	// 管理画面のUIには影響しない。post-style() を後に書いて上書きさせる。
+	@import "../../node_modules/uikit/src/scss/components/base.scss";
+
+	@include post-style();
+}
+
 // ネタバレブロックのエディタースタイル
 .wp-block-group.netabare {
 	position: relative;

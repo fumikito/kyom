@@ -17,6 +17,7 @@
 @import "../../node_modules/uikit/src/scss/uikit-theme.scss";
 
 // 4. Import all local components.
+@import "kyom/placeholders";
 @import "kyom/global";
 @import "kyom/components/ads";
 @import "kyom/components/archive";

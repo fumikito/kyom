@@ -1,4 +1,4 @@
-$img-margin: 1.5em;
+$img-margin: $block-margin;
 
 
 @mixin post-style() {
@@ -8,7 +8,9 @@ $img-margin: 1.5em;
 	@include bp-max($breakpoint-small) {
 		font-size: $kyom-font-size-article-sm;
 	}
-	line-height: 2.2;
+	// 段落マージンを持たない組版のため、行のアキ(0.8em)が字下げ(1em)と
+	// ブロック余白($block-margin)より小さくなるよう抑えている。
+	line-height: 1.8;
 	font-family: $font-serif;
 	color: $body-font-color;
 	@include night-shift((
@@ -78,7 +80,7 @@ $img-margin: 1.5em;
 
 	p.hamazon {
 		text-indent: 0;
-		margin: 3em 0;
+		margin: $block-margin-lg 0;
 		padding: 1.5em;
 		font-family: $font-sans;
 		border: 1px solid #eee;
@@ -87,13 +89,15 @@ $img-margin: 1.5em;
 		overflow: auto;
 	}
 
-	> [class*="wp-block-"] {
-		margin-top: 3em;
-		margin-bottom: 3em;
+	// 既定のブロック間マージン。:where() で詳細度を0にしてあるため、
+	// 見出し（h1-h6）や個別ブロックのルールが常にこれを上書きできる。
+	> :where([class*="wp-block-"]) {
+		margin-top: $block-margin;
+		margin-bottom: $block-margin;
 	}
 
 	ul, ol {
-		margin: 3em 0;
+		margin: $block-margin 0;
 		padding: 0 0 0 3em;
 
 		@include bp-max($breakpoint-smallphone) {
@@ -129,7 +133,7 @@ $img-margin: 1.5em;
 	// Quotes
 	blockquote {
 		font-style: normal;
-		margin: 3em 0;
+		margin: $block-margin 0;
 		padding-left: 1.75em;
 		border-left: 0.25em solid #eee;
 		font-size: 1em;
@@ -202,7 +206,7 @@ $img-margin: 1.5em;
 	address {
 		background-color: $light-gray;
 		padding: 1em;
-		margin: 3em 0;
+		margin: $block-margin 0;
 		font-family: $font-sans;
 		font-size: 0.85em;
 
@@ -421,7 +425,7 @@ $img-margin: 1.5em;
 	}
 
 	.wp-block-media-text {
-		margin: 3em 0;
+		margin: $block-margin-lg 0;
 
 		.wp-block-media-text__content {
 			padding: 0 1em;
@@ -429,13 +433,13 @@ $img-margin: 1.5em;
 	}
 
 	.wp-block-cover {
-		margin-top: 3em;
-		margin-bottom: 3em;
+		margin-top: $block-margin-lg;
+		margin-bottom: $block-margin-lg;
 	}
 
 	.wp-block-group {
-		margin-top: 3em;
-		margin-bottom: 3em;
+		margin-top: $block-margin-lg;
+		margin-bottom: $block-margin-lg;
 
 		&.has-background {
 			padding: 3em;
@@ -445,7 +449,7 @@ $img-margin: 1.5em;
 	// embeds
 	iframe {
 		display: block;
-		margin: 3em auto;
+		margin: $block-margin-lg auto;
 		max-width: 100%;
 	}
 	audio {
@@ -466,8 +470,8 @@ $img-margin: 1.5em;
 	}
 
 	.syntaxhighlighter, pre {
-		margin-top: 3em;
-		margin-bottom: 3em;
+		margin-top: $block-margin;
+		margin-bottom: $block-margin;
 		border: none;
 		background-color: $light-gray;
 	}
@@ -475,7 +479,7 @@ $img-margin: 1.5em;
 		background-color: transparent;
 		font-family: $font-serif;
 		padding: 1em;
-		margin: 3em 0;
+		margin: $block-margin 0;
 		color: $body-font-emphasis-color;
 		font-size: 1.2em;
 	}
@@ -485,7 +489,7 @@ $img-margin: 1.5em;
 		text-align: center;
 		padding: 1.5em;
 		background-color: $slightly-gray;
-		margin: 3em 0;
+		margin: $block-margin-lg 0;
 		position: relative;
 
 		a:first-child {
@@ -509,7 +513,7 @@ $img-margin: 1.5em;
 	hr {
 		border-color: $light-gray;
 		width: 50%;
-		margin: 3em auto;
+		margin: $block-margin-lg auto;
 
 		&.is-style-wide {
 			width: auto;

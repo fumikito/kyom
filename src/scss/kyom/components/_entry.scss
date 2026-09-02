@@ -238,14 +238,31 @@
 
 .entry-content {
 
+	// 本文の始まりを示す余白。本文側の境界なので em 系で持ち、記事内で
+	// 最大の余白（$block-margin-lg）と揃える。
+	padding-top: $block-margin-lg;
+
+	// 抜粋がある場合（singular.php で必ず直前に来る）は、抜粋の下マージン
+	// 3em と二重に効いてしまうので本文側を落とす。間隔は抜粋側が担う。
+	.entry-excerpt + & {
+		padding-top: 0;
+	}
+
 	@include post-style();
+
+	// .uk-clearfix の ::before によりマージン相殺が起きないため、先頭要素の
+	// margin-top が padding に加算される。書き出しの要素（段落・見出し・
+	// 旧記事通知など）によって余白が変わらないように打ち消す。
+	> :first-child {
+		margin-top: 0;
+	}
 
 	.uk-text-center p {
 		text-align: center !important;
 	}
 
 	.google-auto-placed {
-		margin: 3em 0;
+		margin: $block-margin-lg 0;
 	}
 
 	.tiled-gallery {
@@ -265,8 +282,8 @@
 	}
 
 	.wp-block-embed {
-		margin-top: 3em;
-		margin-bottom: 3em;
+		margin-top: $block-margin-lg;
+		margin-bottom: $block-margin-lg;
 
 		iframe {
 			margin-top: 0;

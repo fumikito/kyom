@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "kyom/follow",
+	"version": "1.0.0",
+	"title": "Follow",
+	"category": "kyom",
+	"icon": "share",
+	"description": "フォローしてもらうための導線を表示します。URLはプロフィールの連絡先情報、文言はカスタマイザーで設定します。",
+	"keywords": ["follow", "sns", "social", "フォロー"],
+	"textdomain": "kyom",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"lead": {
+			"type": "string",
+			"default": ""
+		},
+		"keys": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "string"
+			}
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php"
+}

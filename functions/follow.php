@@ -13,6 +13,11 @@
  * URL はユーザーの連絡先情報（kyom_get_social_links）が唯一の出所で、
  * 媒体ごとの説明文だけをカスタマイザーで持つ。
  *
+ * 計測: リンクには kyom-follow-ch-{媒体キー} を付けている。GA4 の
+ * Enhanced Measurement が拾う outbound click の linkClasses は <a> の
+ * クラスしか見ないため、どこの何が押されたかをここで判別できるようにする。
+ * ニュースレターは内部リンクなので outbound click では拾えない点に注意。
+ *
  * @package kyom
  */
 
@@ -343,7 +348,8 @@ function kyom_get_follow_html( $args = [] ) {
 
 				<?php if ( $data['primary'] ) : ?>
 					<div class="kyom-follow-primary">
-						<a class="kyom-follow-button" href="<?php echo esc_url( $data['primary']['url'] ); ?>">
+						<a class="kyom-follow-button kyom-follow-ch-<?php echo esc_attr( $data['primary']['key'] ); ?>"
+							href="<?php echo esc_url( $data['primary']['url'] ); ?>">
 							<span class="kyom-follow-button-label">
 								<?php echo esc_html( kyom_follow_primary_label( $data['primary']['key'], $data['primary']['label'] ) ); ?>
 							</span>
@@ -361,7 +367,8 @@ function kyom_get_follow_html( $args = [] ) {
 					<ul class="kyom-follow-list">
 						<?php foreach ( $data['secondary'] as $channel ) : ?>
 							<li class="kyom-follow-item kyom-follow-item-<?php echo esc_attr( $channel['key'] ); ?>">
-								<a class="kyom-follow-link" href="<?php echo esc_url( $channel['url'] ); ?>">
+								<a class="kyom-follow-link kyom-follow-ch-<?php echo esc_attr( $channel['key'] ); ?>"
+									href="<?php echo esc_url( $channel['url'] ); ?>">
 									<span class="kyom-follow-text">
 										<span class="kyom-follow-label"><?php echo esc_html( $channel['label'] ); ?></span>
 										<?php if ( $channel['description'] ) : ?>
@@ -379,7 +386,8 @@ function kyom_get_follow_html( $args = [] ) {
 					<ul class="kyom-follow-extras uk-iconnav">
 						<?php foreach ( $data['extras'] as $extra ) : ?>
 							<li>
-								<a href="<?php echo esc_url( $extra['url'] ); ?>" title="<?php echo esc_attr( $extra['label'] ); ?>"
+								<a class="kyom-follow-extra kyom-follow-ch-<?php echo esc_attr( $extra['key'] ); ?>"
+									href="<?php echo esc_url( $extra['url'] ); ?>" title="<?php echo esc_attr( $extra['label'] ); ?>"
 									uk-icon="icon: <?php echo esc_attr( $extra['icon'] ); ?>"></a>
 							</li>
 						<?php endforeach; ?>

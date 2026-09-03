@@ -323,6 +323,7 @@ function kyom_social_keys() {
 		'dribbble',
 		'behance',
 		'google',
+		'amazon',
 	];
 }
 
@@ -354,13 +355,29 @@ function kyom_social_label( $key ) {
  * @return string Icon name e.g. facebook.
  */
 function kyom_icon_from_url( $url ) {
-	$icon = 'link';
 	foreach ( kyom_social_keys() as $key ) {
 		if ( preg_match( '#https?://(.*\.)?' . $key . '\.(co\.jp|jp|com|org)#u', $url ) ) {
-			return $key;
+			return kyom_icon_name( $key );
 		}
 	}
-	return $icon;
+	return 'link';
+}
+
+/**
+ * 媒体キーに対応する UIkit のアイコン名。
+ *
+ * UIkit のアイコンセットに無い媒体は、意味の近いものへ写像する。
+ *
+ * @param string $key 媒体キー。
+ * @return string
+ */
+function kyom_icon_name( $key ) {
+	$fallbacks = [
+		// UIkit に amazon アイコンは無い。購入先なのでカートで代替する。
+		'amazon' => 'cart',
+	];
+	$icon      = isset( $fallbacks[ $key ] ) ? $fallbacks[ $key ] : $key;
+	return apply_filters( 'kyom_icon_name', $icon, $key );
 }
 
 /**

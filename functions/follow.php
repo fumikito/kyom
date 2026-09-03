@@ -2,8 +2,10 @@
 /**
  * Author profile / follow block helpers.
  *
- * サイトの「アクション」＝フォローしてもらうこと。心理的ハードルがもっとも低い
- * X を主アクションとして前に出し、他の媒体は細い罫線の副導線に落とす（デザイン D 案）。
+ * サイトの「アクション」を1つに絞って前に出し、他の媒体は細い罫線の副導線に
+ * 落とす（デザイン D 案）。主アクションは書籍（Amazon の著者ページ）で、これは
+ * GA4 の外部リンククリック実測で書籍購入が最多だったことに基づく。
+ * X / YouTube / ニュースレターは同列の副導線に置く。
  *
  * 記事末尾の著者ボックス（template-parts/singular-footer-post.php）とブロック
  * kyom/follow の双方が、この共有レンダラーを通る。
@@ -20,7 +22,7 @@
  * @return string
  */
 function kyom_follow_primary_key() {
-	return apply_filters( 'kyom_follow_primary_key', 'twitter' );
+	return apply_filters( 'kyom_follow_primary_key', 'amazon' );
 }
 
 /**
@@ -29,7 +31,7 @@ function kyom_follow_primary_key() {
  * @return string[]
  */
 function kyom_follow_secondary_keys() {
-	return apply_filters( 'kyom_follow_secondary_keys', [ 'youtube', 'mail' ] );
+	return apply_filters( 'kyom_follow_secondary_keys', [ 'twitter', 'youtube', 'mail' ] );
 }
 
 /**
@@ -55,7 +57,7 @@ function kyom_follow_icon( $key, $url = '' ) {
 	$icon = $url ? kyom_icon_from_url( $url ) : 'link';
 	if ( 'link' === $icon && in_array( $key, kyom_social_keys(), true ) ) {
 		// URL から判定できなくてもキー自体が媒体名ならそれを使う。
-		$icon = $key;
+		$icon = kyom_icon_name( $key );
 	}
 	return $icon;
 }
@@ -68,6 +70,9 @@ function kyom_follow_icon( $key, $url = '' ) {
  */
 function kyom_follow_action_label( $key ) {
 	switch ( $key ) {
+		case 'amazon':
+			$label = __( 'Browse', 'kyom' );
+			break;
 		case 'youtube':
 			$label = __( 'Watch', 'kyom' );
 			break;
@@ -79,6 +84,29 @@ function kyom_follow_action_label( $key ) {
 			break;
 	}
 	return apply_filters( 'kyom_follow_action_label', $label, $key );
+}
+
+/**
+ * 主アクションのボタン文言。
+ *
+ * 媒体によって動詞が変わる。書籍は「フォロー」ではなく「著作を見る」。
+ *
+ * @param string $key   媒体キー。
+ * @param string $label 媒体の表示名。
+ * @return string
+ */
+function kyom_follow_primary_label( $key, $label ) {
+	switch ( $key ) {
+		case 'amazon':
+			// translators: %s is a channel name like Amazon.
+			$text = sprintf( __( 'See books on %s', 'kyom' ), $label );
+			break;
+		default:
+			// translators: %s is a channel name like X.
+			$text = sprintf( __( 'Follow on %s', 'kyom' ), $label );
+			break;
+	}
+	return apply_filters( 'kyom_follow_primary_label', $text, $key, $label );
 }
 
 /**
@@ -270,10 +298,7 @@ function kyom_get_follow_html( $args = [] ) {
 					<div class="kyom-follow-primary">
 						<a class="kyom-follow-button" href="<?php echo esc_url( $data['primary']['url'] ); ?>">
 							<span class="kyom-follow-button-label">
-								<?php
-								// translators: %s is a channel name like X.
-								echo esc_html( sprintf( __( 'Follow on %s', 'kyom' ), $data['primary']['label'] ) );
-								?>
+								<?php echo esc_html( kyom_follow_primary_label( $data['primary']['key'], $data['primary']['label'] ) ); ?>
 							</span>
 							<?php if ( $data['primary']['handle'] ) : ?>
 								<span class="kyom-follow-button-handle"><?php echo esc_html( $data['primary']['handle'] ); ?></span>

@@ -1271,3 +1271,11 @@ msgstr "記事一覧へのリンクを表示"
 #: app/Fumikito/Kyom/Customizer/FollowCustomizer.php
 msgid "Describe what this channel is for."
 msgstr "この媒体が何のためのものかを書きます。"
+
+#: functions/follow.php
+msgid "See books on %s"
+msgstr "%s で著作を見る"
+
+#: functions/follow.php
+msgid "Browse"
+msgstr "見る"

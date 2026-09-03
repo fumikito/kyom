@@ -48,16 +48,17 @@ function kyom_follow_icon( $key, $url = '' ) {
  *
  * URL が未設定の媒体は含めない。
  *
- * @param string[] $keys 絞り込むキー。空なら kyom_follow_featured_keys() を使う。
+ * @param string[]     $keys 絞り込むキー。空なら kyom_follow_featured_keys() を使う。
+ * @param WP_User|null $user 対象ユーザー。null ならサイト代表ユーザー。
  * @return array[] key/label/url/description/icon を持つ配列。
  */
-function kyom_get_follow_channels( $keys = [] ) {
+function kyom_get_follow_channels( $keys = [], $user = null ) {
 	$featured = kyom_follow_featured_keys();
 	if ( $keys ) {
 		// 指定順ではなく既定の並び（ハードルの低い順）を保つ。
 		$featured = array_values( array_intersect( $featured, $keys ) );
 	}
-	$links    = kyom_get_social_links( null, true );
+	$links    = kyom_get_social_links( $user, true );
 	$channels = [];
 	foreach ( $featured as $key ) {
 		if ( empty( $links[ $key ]['url'] ) ) {
@@ -77,12 +78,13 @@ function kyom_get_follow_channels( $keys = [] ) {
 /**
  * 大きく見せる媒体以外の連絡先。アイコン列にまとめる用。
  *
+ * @param WP_User|null $user 対象ユーザー。null ならサイト代表ユーザー。
  * @return array[] key/label/url/icon を持つ配列。
  */
-function kyom_get_follow_extras() {
+function kyom_get_follow_extras( $user = null ) {
 	$featured = kyom_follow_featured_keys();
 	$extras   = [];
-	foreach ( kyom_get_social_links( null, true ) as $key => $link ) {
+	foreach ( kyom_get_social_links( $user, true ) as $key => $link ) {
 		if ( in_array( $key, $featured, true ) || empty( $link['url'] ) ) {
 			continue;
 		}
@@ -102,13 +104,19 @@ function kyom_get_follow_extras() {
  * ブロックの render.php とテンプレートの双方から呼ぶ共有レンダラー。
  *
  * @param array $args {
- *     @type string   $title         見出し。未指定ならカスタマイザーの値。
- *     @type string   $lead          リード文。未指定ならカスタマイザーの値。
- *     @type string[] $keys          表示する媒体の絞り込み。空なら全部。
- *     @type string   $class         追加のクラス名。
- *     @type string   $wrapper_attrs ラッパーに直接出す属性文字列。ブロックからは
- *                                   get_block_wrapper_attributes() の戻り値を渡す。
- *                                   指定時は $class より優先される。
+ *     @type string       $title         見出し。未指定ならカスタマイザーの値。
+ *     @type string       $lead          リード文。未指定ならカスタマイザーの値。
+ *     @type string[]     $keys          表示する媒体の絞り込み。空なら全部。
+ *     @type string       $class         追加のクラス名。
+ *     @type string       $wrapper_attrs ラッパーに直接出す属性文字列。ブロックからは
+ *                                       get_block_wrapper_attributes() の戻り値を渡す。
+ *                                       指定時は $class より優先される。
+ *     @type WP_User|null $user          対象ユーザー。null ならサイト代表ユーザー。
+ *                                       著者ボックスのように著者ごとに出し分けたい場合に使う。
+ *     @type bool         $show_lead     リード文を出すか。著者ボックスではサイト全体の
+ *                                       文言が合わないので false にする。
+ *     @type bool         $show_desc     媒体ごとの説明を出すか。同上。
+ *     @type int          $heading_level 見出しのレベル。既定は 2。
  * }
  * @return string 表示すべき媒体がなければ空文字。
  */
@@ -119,16 +127,21 @@ function kyom_get_follow_html( $args = [] ) {
 		'keys'          => [],
 		'class'         => '',
 		'wrapper_attrs' => '',
+		'user'          => null,
+		'show_lead'     => true,
+		'show_desc'     => true,
+		'heading_level' => 2,
 	] );
 
-	$channels = kyom_get_follow_channels( $args['keys'] );
+	$channels = kyom_get_follow_channels( $args['keys'], $args['user'] );
 	if ( ! $channels ) {
 		return '';
 	}
 
-	$title  = $args['title'] ? $args['title'] : (string) get_option( 'kyom_follow_title', '' );
-	$lead   = $args['lead'] ? $args['lead'] : (string) get_option( 'kyom_follow_lead', '' );
-	$extras = $args['keys'] ? [] : kyom_get_follow_extras();
+	$title   = $args['title'] ? $args['title'] : (string) get_option( 'kyom_follow_title', '' );
+	$lead    = $args['show_lead'] ? ( $args['lead'] ? $args['lead'] : (string) get_option( 'kyom_follow_lead', '' ) ) : '';
+	$extras  = $args['keys'] ? [] : kyom_get_follow_extras( $args['user'] );
+	$heading = 'h' . max( 2, min( 6, (int) $args['heading_level'] ) );
 	if ( $args['wrapper_attrs'] ) {
 		$wrapper = $args['wrapper_attrs'];
 	} else {
@@ -140,7 +153,7 @@ function kyom_get_follow_html( $args = [] ) {
 	?>
 	<section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped ?>>
 		<?php if ( $title ) : ?>
-			<h2 class="kyom-follow-title"><?php echo esc_html( $title ); ?></h2>
+			<<?php echo esc_html( $heading ); ?> class="kyom-follow-title"><?php echo esc_html( $title ); ?></<?php echo esc_html( $heading ); ?>>
 		<?php endif; ?>
 		<?php if ( $lead ) : ?>
 			<p class="kyom-follow-lead"><?php echo wp_kses_post( $lead ); ?></p>
@@ -152,7 +165,7 @@ function kyom_get_follow_html( $args = [] ) {
 						<span class="kyom-follow-icon" uk-icon="icon: <?php echo esc_attr( $channel['icon'] ); ?>; ratio: 1.4"></span>
 						<span class="kyom-follow-body">
 							<span class="kyom-follow-label"><?php echo esc_html( $channel['label'] ); ?></span>
-							<?php if ( $channel['description'] ) : ?>
+							<?php if ( $args['show_desc'] && $channel['description'] ) : ?>
 								<span class="kyom-follow-desc"><?php echo esc_html( $channel['description'] ); ?></span>
 							<?php endif; ?>
 						</span>

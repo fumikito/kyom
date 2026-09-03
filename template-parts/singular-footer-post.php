@@ -32,22 +32,20 @@ if ( ! $author || ! $author->description ) {
 			</div>
 
 			<?php
-			$contacts = kyom_get_social_links( $author, true );
-			if ( $contacts ) :
-				?>
-				<div class="author-block-contact">
-					<h3 class="author-block-contact-title"><?php esc_html_e( 'Follow Me Via:', 'kyom' ); ?></h3>
-					<p class="author-block-contact-links">
-						<?php foreach ( $contacts as $icon => $var ) : ?>
-							<a href="<?php echo esc_url( $var['url'] ); ?>" target="_blank"
-								class="uk-button uk-button-default uk-button-small author-button-contact-link">
-								<span uk-icon="<?php echo esc_attr( $icon ); ?>"></span>
-								<span class="author-block-contact-link-method"><?php echo esc_html( $var['label'] ); ?></span>
-							</a>
-						<?php endforeach; ?>
-					</p>
-				</div>
-			<?php endif; ?>
+			// フォロー導線はブロックと同じ共有レンダラーで出す。
+			// 記事ごとにブロックを挿入しなくても、著者ボックスから自動的に表示される。
+			$owner = kyom_get_owner();
+			kyom_the_follow( [
+				'user'          => $author,
+				'title'         => __( 'Follow Me Via:', 'kyom' ),
+				'heading_level' => 3,
+				'show_lead'     => false,
+				// 媒体ごとの説明はサイト所有者のチャンネルについて書かれた文言なので、
+				// 他の著者（Madame Claude 等）の記事では出さない。
+				'show_desc'     => $owner && (int) $author->ID === (int) $owner->ID,
+				'class'         => 'author-block-follow',
+			] );
+			?>
 
 			<p>
 				<a class="uk-button uk-button-secondary uk-button-small"

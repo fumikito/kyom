@@ -65,30 +65,4 @@
 		margin-bottom: 2em;
 	}
 
-	&-contact {
-		&-title {
-			font-size: 1em;
-			font-family: $font-sans;
-			margin-bottom: 1em;
-		}
-
-		&-links {
-			a {
-				margin-right: 0.5em;
-				margin-bottom: 0.5em;
-				background: #fff;
-			}
-		}
-
-		&-link {
-
-			&-method {
-				@include bp-max($breakpoint-small-max) {
-					display: none;
-				}
-			}
-		}
-	}
-
-
 }

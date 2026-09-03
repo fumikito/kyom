@@ -123,4 +123,16 @@
 		margin: $block-margin 0 0;
 		padding: 0;
 	}
+
+	// 著者ボックスの中で使うとき。すでに枠の中なので背景と余白を持たない。
+	&.author-block-follow {
+		margin: 0 0 $block-margin;
+		padding: 0;
+		background: none;
+
+		.kyom-follow-title {
+			font-family: $font-sans;
+			font-size: 1em;
+		}
+	}
 }

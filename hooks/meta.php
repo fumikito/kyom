@@ -55,14 +55,7 @@ add_filter( 'user_contactmethods', function ( $methods ) {
 		}
 	}
 	foreach ( kyom_social_keys() as $key ) {
-		switch ( $key ) {
-			case 'WordPress':
-				$label = 'WordPress';
-				break;
-			default:
-				$label = ucfirst( $key );
-				break;
-		}
+		$label               = kyom_social_label( $key );
 		$label               = apply_filters( 'kyom_contact_method_label', $label . ' URL', $key );
 		$new_methods[ $key ] = $label;
 	}

@@ -323,7 +323,29 @@ function kyom_social_keys() {
 		'dribbble',
 		'behance',
 		'google',
+		'amazon',
 	];
+}
+
+/**
+ * 媒体キーの表示名。
+ *
+ * ucfirst() だけでは "Youtube" のようにブランド表記が崩れるため、
+ * 正しい綴りを明示する。twitter は現行のサービス名 X を出す。
+ *
+ * @param string $key 媒体キー。
+ * @return string
+ */
+function kyom_social_label( $key ) {
+	$labels = [
+		'twitter'   => 'X',
+		'youtube'   => 'YouTube',
+		'wordpress' => 'WordPress',
+		'linkedin'  => 'LinkedIn',
+		'github'    => 'GitHub',
+	];
+	$label  = isset( $labels[ $key ] ) ? $labels[ $key ] : ucfirst( $key );
+	return apply_filters( 'kyom_social_label', $label, $key );
 }
 
 /**
@@ -333,13 +355,29 @@ function kyom_social_keys() {
  * @return string Icon name e.g. facebook.
  */
 function kyom_icon_from_url( $url ) {
-	$icon = 'link';
 	foreach ( kyom_social_keys() as $key ) {
 		if ( preg_match( '#https?://(.*\.)?' . $key . '\.(co\.jp|jp|com|org)#u', $url ) ) {
-			return $key;
+			return kyom_icon_name( $key );
 		}
 	}
-	return $icon;
+	return 'link';
+}
+
+/**
+ * 媒体キーに対応する UIkit のアイコン名。
+ *
+ * UIkit のアイコンセットに無い媒体は、意味の近いものへ写像する。
+ *
+ * @param string $key 媒体キー。
+ * @return string
+ */
+function kyom_icon_name( $key ) {
+	$fallbacks = [
+		// UIkit に amazon アイコンは無い。購入先なのでカートで代替する。
+		'amazon' => 'cart',
+	];
+	$icon      = isset( $fallbacks[ $key ] ) ? $fallbacks[ $key ] : $key;
+	return apply_filters( 'kyom_icon_name', $icon, $key );
 }
 
 /**

@@ -1,0 +1,1598 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Variant A — Simple Row",
+      "clip": true,
+      "width": 960,
+      "fill": "$bg-site",
+      "layout": "vertical",
+      "gap": 28,
+      "padding": [
+        64,
+        40
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "qBMsM",
+          "name": "Heading",
+          "fill": "$text-emphasis",
+          "content": "SNSでフォローしませんか？",
+          "fontFamily": "$font-serif",
+          "fontSize": 30,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "B2isZ",
+          "name": "Lead",
+          "fill": "$text-muted",
+          "textGrowth": "fixed-width",
+          "width": 600,
+          "content": "執筆の裏話や、日々の思考の断片はSNSでつぶやいています。最新の活動はSNSが一番早い。気軽にフォローして、話しかけてください。",
+          "lineHeight": 1.8,
+          "textAlign": "center",
+          "fontFamily": "$font-sans",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "rbUaD",
+          "name": "SNS Buttons",
+          "width": "fill_container",
+          "gap": 16,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "uIWEm",
+              "name": "X でフォロー",
+              "fill": "$sns-x",
+              "cornerRadius": 8,
+              "gap": 10,
+              "padding": [
+                14,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "JtJRo",
+                  "name": "Icon",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "twitter",
+                  "library": "feather",
+                  "fill": "#ffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "F4arl",
+                  "name": "Label",
+                  "fill": "#ffffff",
+                  "content": "X でフォロー",
+                  "fontFamily": "$font-sans",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "r1vIS",
+              "name": "Instagram",
+              "fill": "$sns-instagram",
+              "cornerRadius": 8,
+              "gap": 10,
+              "padding": [
+                14,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "qqICx",
+                  "name": "Icon",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "instagram",
+                  "library": "feather",
+                  "fill": "#ffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "DHTtJ",
+                  "name": "Label",
+                  "fill": "#ffffff",
+                  "content": "Instagram",
+                  "fontFamily": "$font-sans",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wLjHE",
+              "name": "YouTube",
+              "fill": "$sns-youtube",
+              "cornerRadius": 8,
+              "gap": 10,
+              "padding": [
+                14,
+                24
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "k01SdW",
+                  "name": "Icon",
+                  "width": 20,
+                  "height": 20,
+                  "icon": "youtube",
+                  "library": "feather",
+                  "fill": "#ffffff"
+                },
+                {
+                  "type": "text",
+                  "id": "Z4YMX",
+                  "name": "Label",
+                  "fill": "#ffffff",
+                  "content": "YouTube",
+                  "fontFamily": "$font-sans",
+                  "fontSize": 15,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "rNacd",
+      "x": 1040,
+      "y": 0,
+      "name": "Variant B — Channel Roles",
+      "clip": true,
+      "width": 960,
+      "fill": "$bg-site",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        64,
+        40
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "QbDnr",
+          "name": "Eyebrow",
+          "fill": "$accent-wp",
+          "content": "FOLLOW",
+          "fontFamily": "$font-sans",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "id": "PUecE",
+          "name": "Heading",
+          "fill": "$text-emphasis",
+          "content": "あなたに合った方法で、つながる",
+          "fontFamily": "$font-serif",
+          "fontSize": 30,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "wAK2P",
+          "name": "Lead",
+          "fill": "$text-muted",
+          "textGrowth": "fixed-width",
+          "width": 620,
+          "content": "媒体ごとに発信していることが少しずつ違います。気になるところから、気軽にフォローしてください。",
+          "lineHeight": 1.8,
+          "textAlign": "center",
+          "fontFamily": "$font-sans",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "TaKOI",
+          "name": "Channels",
+          "width": "fill_container",
+          "gap": 20,
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "QXdFP",
+              "name": "X (旧Twitter)",
+              "width": "fill_container",
+              "height": 252,
+              "fill": "$bg-card",
+              "cornerRadius": 12,
+              "stroke": "$border-light",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 18,
+              "padding": 28,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ii9jf",
+                  "name": "Top",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "twOrs",
+                      "name": "IconCircle",
+                      "width": 56,
+                      "height": 56,
+                      "fill": "$sns-x",
+                      "cornerRadius": 28,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "mzR6P",
+                          "name": "Icon",
+                          "width": 26,
+                          "height": 26,
+                          "icon": "twitter",
+                          "library": "feather",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "A6qmX",
+                      "name": "Name",
+                      "fill": "$text-emphasis",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "X (旧Twitter)",
+                      "textAlign": "center",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "o1w2pz",
+                      "name": "Role",
+                      "fill": "$text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "日々の思考や執筆の裏話を、リアルタイムで。",
+                      "lineHeight": 1.7,
+                      "textAlign": "center",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jmLpY",
+                  "name": "Follow Btn",
+                  "fill": "$sns-x",
+                  "cornerRadius": 6,
+                  "padding": [
+                    10,
+                    22
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "S4zgAi",
+                      "name": "BtnLabel",
+                      "fill": "#ffffff",
+                      "content": "Xでフォロー",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kDdrY",
+              "name": "YouTube ふみちゃんねる",
+              "width": "fill_container",
+              "height": 252,
+              "fill": "$bg-card",
+              "cornerRadius": 12,
+              "stroke": "$border-light",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 18,
+              "padding": 28,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "HKWey",
+                  "name": "Top",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "u4FGN",
+                      "name": "IconCircle",
+                      "width": 56,
+                      "height": 56,
+                      "fill": "$sns-youtube",
+                      "cornerRadius": 28,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "eN0ke",
+                          "name": "Icon",
+                          "width": 26,
+                          "height": 26,
+                          "icon": "youtube",
+                          "library": "feather",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "DcbMT",
+                      "name": "Name",
+                      "fill": "$text-emphasis",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "YouTube ふみちゃんねる",
+                      "textAlign": "center",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eYTtA",
+                      "name": "Role",
+                      "fill": "$text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "文学についてじっくり語り合う・聞く。",
+                      "lineHeight": 1.7,
+                      "textAlign": "center",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SGBxP",
+                  "name": "Follow Btn",
+                  "fill": "$sns-youtube",
+                  "cornerRadius": 6,
+                  "padding": [
+                    10,
+                    22
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Z7lwY4",
+                      "name": "BtnLabel",
+                      "fill": "#ffffff",
+                      "content": "チャンネル登録",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "M7kmQ",
+              "name": "ニュースレター",
+              "width": "fill_container",
+              "height": 252,
+              "fill": "$bg-card",
+              "cornerRadius": 12,
+              "stroke": "$border-light",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 18,
+              "padding": 28,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "X0Wny",
+                  "name": "Top",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "CIBiF",
+                      "name": "IconCircle",
+                      "width": 56,
+                      "height": 56,
+                      "fill": "$sns-mail",
+                      "cornerRadius": 28,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "ctVyg",
+                          "name": "Icon",
+                          "width": 26,
+                          "height": 26,
+                          "icon": "mail",
+                          "library": "feather",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "xBi07",
+                      "name": "Name",
+                      "fill": "$text-emphasis",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ニュースレター",
+                      "textAlign": "center",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wHq7t",
+                      "name": "Role",
+                      "fill": "$text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "深く知りたい人へ、コアな情報をお届け。",
+                      "lineHeight": 1.7,
+                      "textAlign": "center",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mph4z",
+                  "name": "Follow Btn",
+                  "fill": "$sns-mail",
+                  "cornerRadius": 6,
+                  "padding": [
+                    10,
+                    22
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "u7Rov",
+                      "name": "BtnLabel",
+                      "fill": "#ffffff",
+                      "content": "購読する",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "eTQu9",
+      "x": 2080,
+      "y": 0,
+      "name": "Variant C — Editorial",
+      "clip": true,
+      "width": 1040,
+      "fill": "$ed-surface",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "LBAwq",
+          "name": "Label Row",
+          "width": "fill_container",
+          "gap": 18,
+          "padding": [
+            28,
+            56
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "P9saE",
+              "name": "L0",
+              "fill": "$ed-muted",
+              "content": "SNS",
+              "fontFamily": "$font-mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "rectangle",
+              "id": "KFTId",
+              "name": "Divider",
+              "fill": "$ed-hairline",
+              "width": 1,
+              "height": 12
+            },
+            {
+              "type": "text",
+              "id": "hgwqp",
+              "name": "L1",
+              "fill": "$ed-muted",
+              "content": "FOLLOW",
+              "fontFamily": "$font-mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "rectangle",
+              "id": "jrkDJ",
+              "name": "Divider",
+              "fill": "$ed-hairline",
+              "width": 1,
+              "height": 12
+            },
+            {
+              "type": "text",
+              "id": "j99veQ",
+              "name": "L2",
+              "fill": "$ed-muted",
+              "content": "@takahashifumiki",
+              "fontFamily": "$font-mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "d4Ziu",
+          "name": "Hero",
+          "width": "fill_container",
+          "gap": 48,
+          "padding": [
+            40,
+            56,
+            64,
+            56
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "mUoEY",
+              "name": "Hero Left",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "DHbVS",
+                  "name": "Eyebrow",
+                  "fill": "$ed-accent",
+                  "content": "FOLLOW THE WRITER",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "fOUpk",
+                  "name": "Display",
+                  "fill": "$ed-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "日々の言葉を、\n追いかけて。",
+                  "lineHeight": 1.3,
+                  "fontFamily": "$font-serif",
+                  "fontSize": 60,
+                  "fontWeight": "300"
+                },
+                {
+                  "type": "text",
+                  "id": "qhdSF",
+                  "name": "Sub",
+                  "fill": "$ed-muted",
+                  "textGrowth": "fixed-width",
+                  "width": 480,
+                  "content": "執筆の裏話も、思考の断片も、最新の活動も。あなたに合った場所で、気軽に。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$font-serif",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lX63H",
+              "name": "Hero Illustration",
+              "width": 360,
+              "height": 300,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1780584623084.png",
+                "mode": "fill"
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xDCHi",
+          "name": "Channel List",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            0,
+            56,
+            56,
+            56
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "m7sS5e",
+              "name": "X（旧Twitter）",
+              "width": "fill_container",
+              "stroke": "$ed-hairline",
+              "strokeWidth": {
+                "top": 1
+              },
+              "padding": [
+                26,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Mw6uc",
+                  "name": "Left",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rDypS",
+                      "name": "Name",
+                      "fill": "$ed-ink",
+                      "content": "X（旧Twitter）",
+                      "fontFamily": "$font-serif",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VenBJ",
+                      "name": "Role",
+                      "fill": "$ed-muted",
+                      "content": "日々の思考と、執筆の裏話をリアルタイムで。",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "qHkS6",
+                  "name": "Link",
+                  "fill": "$ed-accent",
+                  "content": "FOLLOW →",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GhLtW",
+              "name": "YouTube ふみちゃんねる",
+              "width": "fill_container",
+              "stroke": "$ed-hairline",
+              "strokeWidth": {
+                "top": 1
+              },
+              "padding": [
+                26,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UiFvK",
+                  "name": "Left",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kklHT",
+                      "name": "Name",
+                      "fill": "$ed-ink",
+                      "content": "YouTube ふみちゃんねる",
+                      "fontFamily": "$font-serif",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "R4JKLU",
+                      "name": "Role",
+                      "fill": "$ed-muted",
+                      "content": "文学について、じっくり語り合う。",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "yGeuU",
+                  "name": "Link",
+                  "fill": "$ed-accent",
+                  "content": "FOLLOW →",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qDtgC",
+              "name": "ニュースレター",
+              "width": "fill_container",
+              "stroke": "$ed-hairline",
+              "strokeWidth": {
+                "top": 1
+              },
+              "padding": [
+                26,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "mo07I",
+                  "name": "Left",
+                  "layout": "vertical",
+                  "gap": 7,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "VtZid",
+                      "name": "Name",
+                      "fill": "$ed-ink",
+                      "content": "ニュースレター",
+                      "fontFamily": "$font-serif",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h5Z3k",
+                      "name": "Role",
+                      "fill": "$ed-muted",
+                      "content": "深く知りたい人へ、コアな情報を。",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Rcm1S",
+                  "name": "Link",
+                  "fill": "$ed-accent",
+                  "content": "FOLLOW →",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kldcD",
+          "name": "Inverse CTA",
+          "width": "fill_container",
+          "fill": "$ed-ink",
+          "padding": [
+            40,
+            56
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "p1tchP",
+              "name": "CTA Text",
+              "fill": "#ffffff",
+              "content": "迷ったら、まずは X から。",
+              "fontFamily": "$font-serif",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "IT3qv",
+              "name": "CTA Link",
+              "fill": "#ffffff",
+              "content": "@takahashifumiki →",
+              "fontFamily": "$font-mono",
+              "fontSize": 15,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Q4tbX",
+      "x": 3200,
+      "y": 0,
+      "name": "Variant D — Modern Magazine Profile",
+      "clip": true,
+      "width": 1040,
+      "fill": "#FBFAF8",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "kGxQl",
+          "name": "Top Bar",
+          "width": "fill_container",
+          "stroke": "$ed-ink",
+          "strokeWidth": {
+            "bottom": 2
+          },
+          "padding": [
+            22,
+            56
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Zeo7U",
+              "name": "BarL",
+              "fill": "$ed-ink",
+              "content": "PROFILE",
+              "fontFamily": "$font-mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "w7HTH4",
+              "name": "BarR",
+              "fill": "$ed-muted",
+              "content": "小説家 / SINCE 2002",
+              "fontFamily": "$font-mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Po4aB",
+          "name": "Body",
+          "width": "fill_container",
+          "gap": 48,
+          "padding": [
+            48,
+            56
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Cuyiw",
+              "name": "Portrait",
+              "metadata": {
+                "type": "unsplash",
+                "username": "christianbuehner",
+                "link": "https://unsplash.com/@christianbuehner",
+                "author": "Christian Buehner"
+              },
+              "width": 280,
+              "height": 340,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "https://images.unsplash.com/photo-1639242210298-27861f84eab1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODA1ODk4MDF8&ixlib=rb-4.1.0&q=80&w=1080",
+                "mode": "fill"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "M0mhol",
+              "name": "Content",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ldlah",
+                  "name": "Eyebrow",
+                  "fill": "$ed-accent",
+                  "content": "WRITTEN BY",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "B9hrx",
+                  "name": "Name",
+                  "fill": "$ed-ink",
+                  "content": "高橋文樹",
+                  "lineHeight": 1.1,
+                  "fontFamily": "$font-sans",
+                  "fontSize": 52,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "kQQpq",
+                  "name": "Role",
+                  "fill": "$ed-muted",
+                  "content": "小説家・破滅派主宰",
+                  "fontFamily": "$font-sans",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "P7fkfU",
+                  "name": "Bio",
+                  "fill": "$ed-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "1979年生まれ。「東京者」で第41回文藝賞受賞。文芸誌・破滅派を主宰し、WordPress開発者としても活動。日々考えていることを、さまざまな場所で発信しています。",
+                  "lineHeight": 1.95,
+                  "fontFamily": "$font-serif",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "aM31x",
+                  "name": "Primary X",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "XUGuj",
+                      "name": "X Button",
+                      "fill": "$ed-accent",
+                      "gap": 12,
+                      "padding": [
+                        15,
+                        28
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nihNb",
+                          "name": "t",
+                          "fill": "#ffffff",
+                          "content": "X でフォロー",
+                          "fontFamily": "$font-sans",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "fsvh0",
+                          "name": "h",
+                          "fill": "#FFFFFFCC",
+                          "content": "@takahashifumiki",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "Jv16T",
+                      "name": "cap",
+                      "fill": "$ed-muted",
+                      "content": "日々の言葉と雑談は、ここで。",
+                      "fontFamily": "$font-sans",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KWVLB",
+                  "name": "Other Channels",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "yY2ha",
+                      "name": "YouTube ふみちゃんねる",
+                      "width": "fill_container",
+                      "stroke": "$ed-hairline",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "padding": [
+                        14,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "O4zHmY",
+                          "name": "l",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "oexke",
+                              "name": "n",
+                              "fill": "$ed-ink",
+                              "content": "YouTube ふみちゃんねる",
+                              "fontFamily": "$font-sans",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Thaud",
+                              "name": "r",
+                              "fill": "$ed-muted",
+                              "content": "話す、高橋文樹。",
+                              "fontFamily": "$font-sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "J19ZCb",
+                          "name": "a",
+                          "fill": "$ed-muted",
+                          "content": "見る →",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mUVVf",
+                      "name": "ニュースレター",
+                      "width": "fill_container",
+                      "stroke": "$ed-hairline",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "padding": [
+                        14,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "NZs2V",
+                          "name": "l",
+                          "layout": "vertical",
+                          "gap": 3,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "VZDYQ",
+                              "name": "n",
+                              "fill": "$ed-ink",
+                              "content": "ニュースレター",
+                              "fontFamily": "$font-sans",
+                              "fontSize": 14,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "vyRby",
+                              "name": "r",
+                              "fill": "$ed-muted",
+                              "content": "読みに来なくていい人へ。",
+                              "fontFamily": "$font-sans",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "kvEBP",
+                          "name": "a",
+                          "fill": "$ed-muted",
+                          "content": "登録 →",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 12,
+                          "fontWeight": "normal",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "JDEF7",
+                  "name": "See All",
+                  "fill": "$ed-ink",
+                  "content": "記事一覧をすべて見る →",
+                  "fontFamily": "$font-sans",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "k1le4Z",
+      "x": 4320,
+      "y": 0,
+      "name": "Variant E - Writer Works",
+      "clip": true,
+      "width": 1040,
+      "fill": "#FBFAF8",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "xh1Nj",
+          "name": "Top Bar",
+          "width": "fill_container",
+          "stroke": "$ed-ink",
+          "strokeWidth": {
+            "bottom": 2
+          },
+          "padding": [
+            22,
+            56
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "c9ePs",
+              "name": "BarL",
+              "fill": "$ed-ink",
+              "content": "PROFILE",
+              "fontFamily": "$font-mono",
+              "fontSize": 13,
+              "fontWeight": "normal",
+              "letterSpacing": 3
+            },
+            {
+              "type": "text",
+              "id": "zePOQ",
+              "name": "BarR",
+              "fill": "$ed-muted",
+              "content": "小説家 ／ 〈破滅派〉主宰",
+              "fontFamily": "$font-mono",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XfzZs",
+          "name": "Body",
+          "width": "fill_container",
+          "gap": 48,
+          "padding": [
+            48,
+            56
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "vElX8",
+              "name": "Portrait",
+              "metadata": {
+                "type": "unsplash",
+                "username": "brivel_bariki",
+                "link": "https://unsplash.com/@brivel_bariki",
+                "author": "Brivel Bariki"
+              },
+              "width": 280,
+              "height": 340,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "https://images.unsplash.com/photo-1614807547811-4174d3582092?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODA1OTMwMTN8&ixlib=rb-4.1.0&q=80&w=1080",
+                "mode": "fill"
+              }
+            },
+            {
+              "type": "frame",
+              "id": "Q07cPq",
+              "name": "Content",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RMLoV",
+                  "name": "Eyebrow",
+                  "fill": "$ed-accent",
+                  "content": "WRITTEN BY",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 12,
+                  "fontWeight": "normal",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "mImbA",
+                  "name": "Name",
+                  "fill": "$ed-ink",
+                  "content": "高橋文樹",
+                  "lineHeight": 1.1,
+                  "fontFamily": "$font-sans",
+                  "fontSize": 52,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "Z5uTF",
+                  "name": "Role",
+                  "fill": "$ed-muted",
+                  "content": "小説家・文芸誌〈破滅派〉主宰",
+                  "fontFamily": "$font-sans",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "N3QB14",
+                  "name": "Bio",
+                  "fill": "$ed-ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "真顔で、本を作っています。文芸誌〈破滅派〉を主宰し、執筆から出版のリアルまで、つくる過程のすべてを面白がる作家です。",
+                  "lineHeight": 1.95,
+                  "fontFamily": "$font-serif",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "jERpr",
+                  "name": "Actions",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "XgLPm",
+                      "name": "Books CTA",
+                      "layout": "vertical",
+                      "gap": 7,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "amS0q",
+                          "name": "Books Button",
+                          "fill": "$ed-accent",
+                          "padding": [
+                            16,
+                            30
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "JhVku",
+                              "name": "t",
+                              "fill": "#ffffff",
+                              "content": "高橋文樹の本を読む →",
+                              "fontFamily": "$font-sans",
+                              "fontSize": 17,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "oVuzE",
+                          "name": "cap",
+                          "fill": "$ed-muted",
+                          "content": "これまでの著作はこちら（Amazon 著者ページ）",
+                          "fontFamily": "$font-sans",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "I4c0P",
+                      "name": "YouTube Button",
+                      "stroke": "$ed-ink",
+                      "strokeWidth": 1.5,
+                      "padding": [
+                        13,
+                        26
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wQlhQ",
+                          "name": "t",
+                          "fill": "$ed-ink",
+                          "content": "ふみちゃんねるで、制作の裏側を見る →",
+                          "fontFamily": "$font-sans",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rIrFw",
+                      "name": "Follow Row",
+                      "width": "fill_container",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Me77C",
+                          "name": "lead",
+                          "fill": "$ed-muted",
+                          "content": "日々ゆるく繋がるなら",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 11,
+                          "fontWeight": "normal",
+                          "letterSpacing": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "Li5yN",
+                          "name": "X",
+                          "fill": "$ed-ink",
+                          "content": "X",
+                          "fontFamily": "$font-sans",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "E5PNA",
+                          "name": "Instagram",
+                          "fill": "$ed-ink",
+                          "content": "Instagram",
+                          "fontFamily": "$font-sans",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "C8aPee",
+                          "name": "ニュースレター",
+                          "fill": "$ed-ink",
+                          "content": "ニュースレター",
+                          "fontFamily": "$font-sans",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent-wp": {
+      "type": "color",
+      "value": "#21759b"
+    },
+    "bg-card": {
+      "type": "color",
+      "value": "#fcfcfc"
+    },
+    "bg-site": {
+      "type": "color",
+      "value": "#f3f1ee"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#eeeeee"
+    },
+    "font-sans": {
+      "type": "string",
+      "value": "Noto Sans JP"
+    },
+    "font-serif": {
+      "type": "string",
+      "value": "Noto Serif JP"
+    },
+    "gap": {
+      "type": "number",
+      "value": 40
+    },
+    "sns-facebook": {
+      "type": "color",
+      "value": "#3b5998"
+    },
+    "sns-instagram": {
+      "type": "color",
+      "value": "#833ab4"
+    },
+    "sns-mail": {
+      "type": "color",
+      "value": "#888888"
+    },
+    "sns-x": {
+      "type": "color",
+      "value": "#1da1f2"
+    },
+    "sns-youtube": {
+      "type": "color",
+      "value": "#ff0000"
+    },
+    "text": {
+      "type": "color",
+      "value": "#333333"
+    },
+    "text-emphasis": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#666666"
+    },
+    "ed-accent": {
+      "type": "color",
+      "value": "#C1432E"
+    },
+    "ed-hairline": {
+      "type": "color",
+      "value": "#DDDAD2"
+    },
+    "ed-ink": {
+      "type": "color",
+      "value": "#111111"
+    },
+    "ed-muted": {
+      "type": "color",
+      "value": "#666666"
+    },
+    "ed-surface": {
+      "type": "color",
+      "value": "#FCFAF7"
+    },
+    "font-mono": {
+      "type": "string",
+      "value": "IBM Plex Mono"
+    }
+  }
+}

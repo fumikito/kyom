@@ -1,0 +1,303 @@
+// 著者プロフィール／フォロー導線（デザイン D 案 "Modern Magazine Profile"）。
+//
+// 主アクションを朱色のベタ塗りボタンで前に出し、他の媒体は細い罫線の副導線に
+// 落とす。どれを主役にするかはカスタマイザーで切り替わる（既定は Amazon）。
+// 記事末尾の著者ボックスとブロック kyom/follow が同じマークアップを共有する。
+//
+// 子要素は `&-` の連結ではなくネストした子孫セレクタ（詳細度 0,2,0）で書く。
+// 本文中では post-style() の `.entry-content h2` `.entry-content p`（0,1,1）が
+// 勝ってしまい、見出しに罫線が付いたり段落が字下げされたりして、本文の内と外で
+// 見た目が変わってしまうため。
+
+// D 案のトークン。デザインファイル（design/follow-block.pen）の変数と対応する。
+$follow-accent: #c1432e; // ed-accent 朱色
+$follow-ink: #111111; // ed-ink
+$follow-hairline: #ddddd2; // ed-hairline
+$follow-surface: #fbfaf8; // Variant D の背景
+
+.kyom-follow {
+	margin-top: $block-margin-lg;
+	margin-bottom: $block-margin-lg;
+	background-color: $follow-surface;
+
+	// 見出しバー
+	.kyom-follow-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+		padding: 22px $kyom-gap;
+		border-bottom: 2px solid $follow-ink;
+
+		@include bp-max($breakpoint-small) {
+			padding: 14px $kyom-gap * 0.5;
+		}
+	}
+
+	.kyom-follow-bar-label,
+	.kyom-follow-bar-meta {
+		font-family: $font-mono;
+		text-indent: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.kyom-follow-bar-label {
+		font-size: 13px;
+		letter-spacing: 3px;
+		color: $follow-ink;
+	}
+
+	.kyom-follow-bar-meta {
+		font-size: 12px;
+		letter-spacing: 1px;
+		color: $body-font-muted-color;
+	}
+
+	// 本体（左に肖像、右に内容）
+	.kyom-follow-body {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 48px;
+		padding: 48px $kyom-gap;
+
+		@include bp-max($breakpoint-small) {
+			flex-direction: column;
+			gap: $kyom-gap * 0.5;
+			padding: $kyom-gap * 0.5;
+		}
+	}
+
+	.kyom-follow-portrait {
+		flex: 0 0 280px;
+		width: 280px;
+		height: 340px;
+		overflow: hidden;
+
+		// モバイルでは2カラムが崩れて写真の「カラム」という役割が消えるため、
+		// 比率を保って縮めるのではなく全幅の「扉」に切り替える。左右端が本文と
+		// 揃うので、左軸1本という D 案の骨格が保たれる。
+		@include bp-max($breakpoint-small) {
+			flex: 0 0 auto;
+			width: 100%;
+			height: 260px;
+		}
+	}
+
+	.kyom-follow-avatar {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.kyom-follow-content {
+		flex: 1 1 0;
+		min-width: 0;
+	}
+
+	.kyom-follow-eyebrow {
+		margin: 0 0 0.8em;
+		font-family: $font-mono;
+		font-size: 12px;
+		letter-spacing: 3px;
+		color: $follow-accent;
+		text-indent: 0;
+	}
+
+	.kyom-follow-name {
+		margin: 0;
+		padding: 0;
+		border: none;
+		font-family: $font-title;
+		font-size: 52px;
+		font-weight: 900;
+		line-height: 1.1;
+		color: $follow-ink;
+		text-indent: 0;
+
+		// post-style() の h3 が使う装飾下線を打ち消す。
+		&::after {
+			content: none;
+		}
+
+		@include bp-max($breakpoint-small) {
+			font-size: 32px;
+		}
+	}
+
+	.kyom-follow-role {
+		margin: 0.6em 0 0;
+		font-family: $font-sans;
+		font-size: 15px;
+		color: $body-font-muted-color;
+		text-indent: 0;
+	}
+
+	.kyom-follow-bio {
+		margin: 1.1em 0 0;
+
+		p {
+			margin: 0 0 0.6em;
+			font-family: $font-serif;
+			font-size: 16px;
+			line-height: 1.9;
+			color: $follow-ink;
+			text-align: left;
+			text-indent: 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// 主アクション
+	.kyom-follow-primary {
+		margin-top: 1.2em;
+	}
+
+	.kyom-follow-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		padding: 15px 28px;
+		background-color: $follow-accent;
+		transition: background-color 0.2s $ease-in-out-sine;
+
+		&:link,
+		&:visited {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		&:hover,
+		&:active {
+			background-color: darken($follow-accent, 8%);
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+
+	.kyom-follow-button-label {
+		font-family: $font-sans;
+		font-size: 16px;
+		font-weight: $base-strong-font-weight;
+	}
+
+	.kyom-follow-button-handle {
+		font-family: $font-mono;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.kyom-follow-caption {
+		margin: 0.6em 0 0;
+		font-family: $font-sans;
+		font-size: 13px;
+		color: $body-font-muted-color;
+		text-indent: 0;
+	}
+
+	// 副導線
+	.kyom-follow-list {
+		margin: 1.4em 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.kyom-follow-item {
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid $follow-hairline;
+
+		&:last-child {
+			border-bottom: 1px solid $follow-hairline;
+		}
+	}
+
+	.kyom-follow-link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+		padding: 14px 0;
+
+		&:link,
+		&:visited {
+			color: $follow-ink;
+			text-decoration: none;
+		}
+
+		&:hover,
+		&:active {
+			color: $follow-accent;
+			text-decoration: none;
+		}
+	}
+
+	.kyom-follow-text {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		min-width: 0;
+	}
+
+	.kyom-follow-label {
+		font-family: $font-sans;
+		font-size: 14px;
+		font-weight: $base-strong-font-weight;
+		line-height: 1.4;
+	}
+
+	.kyom-follow-desc {
+		font-family: $font-sans;
+		font-size: 12px;
+		line-height: 1.5;
+		color: $body-font-muted-color;
+	}
+
+	.kyom-follow-action {
+		flex: 0 0 auto;
+		font-family: $font-mono;
+		font-size: 12px;
+		letter-spacing: 1px;
+		color: $body-font-muted-color;
+	}
+
+	// その他の連絡先はアイコン列で添える
+	.kyom-follow-extras {
+		margin: 1.2em 0 0;
+		padding: 0;
+	}
+
+	.kyom-follow-archive {
+		margin: 1.4em 0 0;
+		text-indent: 0;
+
+		a {
+			font-family: $font-sans;
+			font-size: 13px;
+			font-weight: $base-strong-font-weight;
+
+			&:link,
+			&:visited {
+				color: $follow-ink;
+				text-decoration: none;
+			}
+
+			&:hover,
+			&:active {
+				color: $follow-accent;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// 記事末尾の著者ボックスとして使うとき。本文の外なので左右いっぱいに使う。
+	&.kyom-follow-author-box {
+		margin-top: 0;
+	}
+}

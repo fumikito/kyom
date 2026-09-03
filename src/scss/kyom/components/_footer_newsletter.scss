@@ -1,6 +1,16 @@
 .section-newsletter{
   position: relative;
   padding: $kyom-gap;
+
+  // フォロー導線のアンカーから飛んできたときに一時的に強調する。
+  // スクロールするだけでは何が起きたか分かりづらいため。
+  &.is-active{
+    input[type="email"]{
+      outline: 3px solid $global-warning-background;
+      outline-offset: 2px;
+      transition: outline-color .2s $ease-in-out-sine;
+    }
+  }
   background: url( "../img/newsletter-sample.jpeg") center center no-repeat;
   background-size: cover;
 

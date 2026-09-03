@@ -76,7 +76,7 @@ function kyom_newsletter_form( $context = 'footer' ) {
 				<?php esc_html_e( '高橋文樹が最近の活動報告、サイトでパブリックにできない情報などをお伝えするメーリングリストです。滅多に送りませんので、ぜひご登録お願いいたします。', 'kyom' ); ?>
 			</p>
 		<?php endif; ?>
-		<form class="kyom-newsletter-form" novalidate>
+		<form class="kyom-newsletter-form" data-context="<?php echo esc_attr( $context ); ?>" novalidate>
 			<p class="section-newsletter-mail-input<?php echo $is_footer ? '' : ' form-group'; ?>">
 				<?php // フッター版はメール欄だけを大きく見せるデザインなので、ラベルは読み上げ専用にする。 ?>
 				<label class="<?php echo $is_footer ? 'uk-hidden-visually' : ''; ?>" for="<?php echo esc_attr( $uid ); ?>-email">
@@ -133,6 +133,22 @@ function kyom_newsletter_form( $context = 'footer' ) {
 }
 
 /**
+ * フッターのニュースレターセクションへのアンカー。
+ *
+ * フォーム自体の id は描画順の連番（kyom-newsletter-1, -2 …）なので、
+ * ショートコードが同一ページにあると番号がずれてアンカー先に使えない。
+ * セクション側に固定の id を振り、その参照をここに集約する。
+ *
+ * @return string Mailchimp が未設定でフォームが出ないときは空文字。
+ */
+function kyom_newsletter_anchor() {
+	if ( ! \Fumikito\Kyom\Service\MailchimpClient::is_ready() ) {
+		return '';
+	}
+	return '#newsletter';
+}
+
+/**
  * Display newsletter section at footer.
  */
 add_action( 'kyom_before_site_footer', function () {
@@ -141,7 +157,7 @@ add_action( 'kyom_before_site_footer', function () {
 		return;
 	}
 	?>
-	<section class="section-newsletter">
+	<section class="section-newsletter" id="<?php echo esc_attr( ltrim( kyom_newsletter_anchor(), '#' ) ); ?>">
 		<div class="section-newsletter-cover"></div>
 		<div class="uk-container">
 			<?php echo $form; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

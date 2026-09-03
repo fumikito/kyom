@@ -18,8 +18,9 @@ phpcs.ruleset.xml
 phpunit.xml.dist
 README.md
 webpack.config.js
-wordpress
+/wordpress
 bin
+/design
 tests
 style.css.bak
 readme.txt.bak

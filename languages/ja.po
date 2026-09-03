@@ -1279,3 +1279,15 @@ msgstr "%s で著作を見る"
 #: functions/follow.php
 msgid "Browse"
 msgstr "見る"
+
+#: app/Fumikito/Kyom/Customizer/FollowCustomizer.php
+msgid "Primary Action"
+msgstr "主アクション"
+
+#: app/Fumikito/Kyom/Customizer/FollowCustomizer.php
+msgid "This channel gets the big button. The others move to the list below it."
+msgstr "この媒体が大きなボタンになります。残りはその下のリストに並びます。"
+
+#: app/Fumikito/Kyom/Customizer/FollowCustomizer.php
+msgid "Description: %s"
+msgstr "説明文：%s"

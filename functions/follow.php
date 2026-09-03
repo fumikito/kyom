@@ -3,9 +3,9 @@
  * Author profile / follow block helpers.
  *
  * サイトの「アクション」を1つに絞って前に出し、他の媒体は細い罫線の副導線に
- * 落とす（デザイン D 案）。主アクションは書籍（Amazon の著者ページ）で、これは
- * GA4 の外部リンククリック実測で書籍購入が最多だったことに基づく。
- * X / YouTube / ニュースレターは同列の副導線に置く。
+ * 落とす（デザイン D 案）。どれを主役にするかはカスタマイザーで切り替えられ、
+ * 既定は書籍（Amazon の著者ページ）。GA4 の外部リンククリック実測で書籍購入が
+ * 最多だったことに基づく。主役に選ばれなかった媒体は自動的に副導線へ回る。
  *
  * 記事末尾の著者ボックス（template-parts/singular-footer-post.php）とブロック
  * kyom/follow の双方が、この共有レンダラーを通る。
@@ -17,30 +17,77 @@
  */
 
 /**
- * 主アクションに据える媒体のキー。
+ * 主役の候補になる媒体のキー。表示したい順に並べる。
+ *
+ * この並びから主役を1つ抜き、残りが副導線になる。
+ *
+ * @return string[]
+ */
+function kyom_follow_channel_keys() {
+	return apply_filters( 'kyom_follow_channel_keys', [ 'amazon', 'twitter', 'youtube', 'mail' ] );
+}
+
+/**
+ * 媒体キーの表示名。
+ *
+ * mail は連絡先情報のキーではないので個別に持つ。
+ *
+ * @param string $key 媒体キー。
+ * @return string
+ */
+function kyom_follow_channel_label( $key ) {
+	if ( 'mail' === $key ) {
+		return __( 'Newsletter', 'kyom' );
+	}
+	return kyom_social_label( $key );
+}
+
+/**
+ * 主アクションに据える媒体のキー。カスタマイザーで切り替える。
  *
  * @return string
  */
 function kyom_follow_primary_key() {
-	return apply_filters( 'kyom_follow_primary_key', 'amazon' );
+	$keys  = kyom_follow_channel_keys();
+	$saved = (string) get_option( 'kyom_follow_primary', '' );
+	$key   = in_array( $saved, $keys, true ) ? $saved : (string) reset( $keys );
+	return apply_filters( 'kyom_follow_primary_key', $key );
 }
 
 /**
- * 副導線に並べる媒体のキー。並び順のとおりに表示する。
+ * 副導線に並べる媒体のキー。候補から主役を差し引いたもの。
  *
  * @return string[]
  */
 function kyom_follow_secondary_keys() {
-	return apply_filters( 'kyom_follow_secondary_keys', [ 'twitter', 'youtube', 'mail' ] );
+	$primary = kyom_follow_primary_key();
+	$keys    = array_values( array_filter(
+		kyom_follow_channel_keys(),
+		function ( $key ) use ( $primary ) {
+			return $key !== $primary;
+		}
+	) );
+	return apply_filters( 'kyom_follow_secondary_keys', $keys );
 }
 
 /**
- * 主アクション＋副導線のキー。
+ * 主アクション＋副導線のキー。アイコン列から除外する判定に使う。
  *
  * @return string[]
  */
 function kyom_follow_featured_keys() {
-	return array_merge( [ kyom_follow_primary_key() ], kyom_follow_secondary_keys() );
+	return kyom_follow_channel_keys();
+}
+
+/**
+ * 主役の設定値を検証する。
+ *
+ * @param string $value 入力値。
+ * @return string 候補外なら既定値。
+ */
+function kyom_sanitize_follow_primary( $value ) {
+	$keys = kyom_follow_channel_keys();
+	return in_array( $value, $keys, true ) ? $value : (string) reset( $keys );
 }
 
 /**

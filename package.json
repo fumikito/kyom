@@ -22,7 +22,7 @@
 		"dump": "grab-deps dump assets/js,assets/css",
 		"watch": "npm-watch",
 		"lint:js": "wp-scripts lint-js src/js",
-		"fix": "wp-scripts lint-js --fix src/js",
+		"fix": "wp-scripts lint-js src/js --fix",
 		"test": "wp-scripts test-unit-js",
 		"create:block": "node bin/create-block.js",
 		"prepare": "husky"
@@ -50,9 +50,9 @@
 	},
 	"devDependencies": {
 		"@kunoichi/grab-deps": "*",
-		"@wordpress/browserslist-config": "^4.0.0",
-		"@wordpress/icons": "^11.1.0",
-		"@wordpress/scripts": "^30.27.0",
+		"@wordpress/browserslist-config": "^6.54.0",
+		"@wordpress/icons": "^13.3.0",
+		"@wordpress/scripts": "^32.6.0",
 		"autoprefixer": "^10.4.16",
 		"baseline-browser-mapping": "^2.10.0",
 		"husky": "^9.1.7",

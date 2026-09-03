@@ -78,7 +78,7 @@
 				}
 				form.reset();
 				setMessage( body.message || config.i18n.success, false );
-			} catch ( error ) {
+			} catch {
 				setMessage( config.i18n.error, true );
 			} finally {
 				button.disabled = false;

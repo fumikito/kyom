@@ -102,7 +102,7 @@
 					<button type="button" class="uk-button uk-button-text uk-margin-small-left kyom-cancel-reply">
 						${ config.i18n.cancel }
 					</button>
-				</span>`
+				</span>`,
 			).show();
 		} else {
 			info.empty().hide();

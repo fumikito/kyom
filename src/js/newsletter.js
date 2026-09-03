@@ -16,6 +16,55 @@
 ( function() {
 	const config = window.KyomNewsletter || {};
 	const forms = document.querySelectorAll( '.kyom-newsletter-form' );
+
+	/**
+	 * Send an event to GA4 if gtag is available.
+	 *
+	 * 購読は REST への POST で完結しページ遷移が起きないため、
+	 * 何もしないと GA4 からは登録が一切見えない。
+	 *
+	 * @param {string} name   Event name.
+	 * @param {Object} params Event parameters.
+	 */
+	function track( name, params ) {
+		if ( 'function' === typeof window.gtag ) {
+			window.gtag( 'event', name, params || {} );
+		}
+	}
+
+	/**
+	 * アンカーでフォームへ飛んできたとき、フォームを「起こす」。
+	 *
+	 * スクロールするだけでは何が起きたか分かりづらいので、
+	 * メール欄にフォーカスを当てて枠を一時的に強調する。
+	 */
+	function initAnchors() {
+		const target = document.getElementById( 'newsletter' );
+		if ( ! target ) {
+			return;
+		}
+		document.addEventListener( 'click', function( event ) {
+			const link = event.target.closest( 'a[href="#newsletter"]' );
+			if ( ! link ) {
+				return;
+			}
+			track( 'newsletter_open', { from: link.className || 'unknown' } );
+			target.classList.add( 'is-active' );
+			const email = target.querySelector( 'input[type="email"]' );
+			if ( email ) {
+				// スクロールが終わってからフォーカスする。
+				window.setTimeout( function() {
+					email.focus( { preventScroll: true } );
+				}, 400 );
+			}
+			window.setTimeout( function() {
+				target.classList.remove( 'is-active' );
+			}, 2000 );
+		} );
+	}
+
+	initAnchors();
+
 	if ( ! forms.length || ! config.restUrl ) {
 		return;
 	}
@@ -77,6 +126,9 @@
 					return;
 				}
 				form.reset();
+				track( 'newsletter_subscribe', {
+					context: form.dataset.context || 'unknown',
+				} );
 				setMessage( body.message || config.i18n.success, false );
 			} catch {
 				setMessage( config.i18n.error, true );

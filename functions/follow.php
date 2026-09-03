@@ -187,14 +187,24 @@ function kyom_follow_handle_from_url( $url ) {
  * @return array
  */
 function kyom_follow_build_channel( $key, $link, $with_desc = true ) {
+	$url = $link['url'];
+	// ニュースレターのフォームは全ページのフッターに常設されている。別ページへ
+	// 飛ばすと同じフォームを見せるだけの一段になるので、同一ページ内の
+	// アンカーに差し替える。Mailchimp 未設定でフォームが出ないときはページへ。
+	if ( 'mail' === $key && function_exists( 'kyom_newsletter_anchor' ) ) {
+		$anchor = kyom_newsletter_anchor();
+		if ( $anchor ) {
+			$url = $anchor;
+		}
+	}
 	return [
 		'key'         => $key,
 		'label'       => $link['label'],
-		'url'         => $link['url'],
+		'url'         => $url,
 		'description' => $with_desc ? (string) get_option( 'kyom_follow_desc_' . $key, '' ) : '',
-		'icon'        => kyom_follow_icon( $key, $link['url'] ),
+		'icon'        => kyom_follow_icon( $key, $url ),
 		'action'      => kyom_follow_action_label( $key ),
-		'handle'      => kyom_follow_handle_from_url( $link['url'] ),
+		'handle'      => kyom_follow_handle_from_url( $url ),
 	];
 }
 

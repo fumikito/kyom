@@ -1,0 +1,162 @@
+// 画面右下に固定で出す、最新YouTubeショートのカード。
+//
+// 色は _variables.scss の編集的パレット（$ed-*）を著者プロフィールと共有する。
+// 子要素はネストした子孫セレクタで書く（_follow.scss と同じ作法）。
+//
+// 表示は JS が担う。hidden で描画されているものを外し、少し遅らせて
+// .is-visible を付けて滑り込ませる。閉じた記録は localStorage に持つ。
+
+.kyom-shorts {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 98;
+	width: 140px;
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 0.4s $ease-in-out-sine, transform 0.4s $ease-in-out-sine;
+
+	&[hidden] {
+		display: none;
+	}
+
+	&.is-visible {
+		opacity: 1;
+		transform: none;
+	}
+
+	@include bp-max($breakpoint-small) {
+		right: 12px;
+		bottom: 12px;
+		width: 108px;
+	}
+
+	// 閉じるボタン
+	.kyom-shorts-close {
+		position: absolute;
+		top: -10px;
+		right: -10px;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 26px;
+		height: 26px;
+		padding: 0;
+		border: 1px solid $ed-hairline;
+		border-radius: 50%;
+		background-color: #fff;
+		color: $ed-ink;
+		cursor: pointer;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+		transition: background-color 0.2s $ease-in-out-sine, color 0.2s $ease-in-out-sine;
+
+		&:hover,
+		&:focus {
+			border-color: $ed-accent;
+			background-color: $ed-accent;
+			color: #fff;
+		}
+	}
+
+	.kyom-shorts-link {
+		display: block;
+
+		&:link,
+		&:visited,
+		&:hover,
+		&:active {
+			text-decoration: none;
+		}
+
+		&:hover .kyom-shorts-image {
+			transform: scale(1.06);
+		}
+	}
+
+	// 縦型のサムネイル
+	.kyom-shorts-thumb {
+		position: relative;
+		display: block;
+		aspect-ratio: 9 / 16;
+		overflow: hidden;
+		background-color: $ed-ink;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+	}
+
+	.kyom-shorts-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.4s $ease-in-out-sine;
+	}
+
+	.kyom-shorts-tag {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 3px 7px;
+		background-color: $ed-accent;
+		color: #fff;
+		font-family: $font-mono;
+		font-size: 9px;
+		letter-spacing: 2px;
+		line-height: 1.2;
+	}
+
+	.kyom-shorts-play {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		// 影だけでは明るいサムネイルにアイコンが埋もれるので下地を敷く。
+		background-color: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		transform: translate(-50%, -50%);
+		transition: background-color 0.2s $ease-in-out-sine;
+
+		@include bp-max($breakpoint-small) {
+			width: 28px;
+			height: 28px;
+		}
+	}
+
+	.kyom-shorts-link:hover .kyom-shorts-play {
+		background-color: $ed-accent;
+	}
+
+	.kyom-shorts-caption {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		// タイトルの長さは揃わないので2行で打ち切る。
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		padding: 20px 8px 8px;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+		color: #fff;
+		font-family: $font-sans;
+		font-size: 10px;
+		line-height: 1.4;
+	}
+}
+
+// 画面下に固定されるコールアウトバー（.kyom-callouts、z-index 99）と
+// 重ならないよう、バーがあるときは上に逃がす。
+.has-callouts .kyom-shorts {
+	bottom: 70px;
+
+	@include bp-max($breakpoint-small) {
+		bottom: 62px;
+	}
+}

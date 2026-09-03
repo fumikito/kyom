@@ -6,24 +6,17 @@
 	"title": "Follow",
 	"category": "kyom",
 	"icon": "share",
-	"description": "フォローしてもらうための導線を表示します。URLはプロフィールの連絡先情報、文言はカスタマイザーで設定します。",
-	"keywords": ["follow", "sns", "social", "フォロー"],
+	"description": "著者プロフィールとフォロー導線を表示します。URLはプロフィールの連絡先情報、文言はカスタマイザーで設定します。",
+	"keywords": ["follow", "sns", "social", "profile", "フォロー"],
 	"textdomain": "kyom",
 	"attributes": {
-		"title": {
-			"type": "string",
-			"default": ""
+		"showBio": {
+			"type": "boolean",
+			"default": true
 		},
-		"lead": {
-			"type": "string",
-			"default": ""
-		},
-		"keys": {
-			"type": "array",
-			"default": [],
-			"items": {
-				"type": "string"
-			}
+		"showArchive": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {

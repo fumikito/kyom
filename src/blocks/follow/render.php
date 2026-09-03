@@ -3,7 +3,7 @@
  * Follow block rendering.
  *
  * 実際のマークアップ生成は kyom_get_follow_html() に集約している。
- * テンプレートからは kyom_the_follow() で同じものを呼べる。
+ * 記事末尾の著者ボックスも同じ関数を通る。
  *
  * @package kyom
  * @var array    $attributes Block attributes.
@@ -16,9 +16,8 @@ if ( ! function_exists( 'kyom_get_follow_html' ) ) {
 }
 
 echo kyom_get_follow_html( [ // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped
-	'title'         => $attributes['title'] ?? '',
-	'lead'          => $attributes['lead'] ?? '',
-	'keys'          => $attributes['keys'] ?? [],
+	'show_bio'      => $attributes['showBio'] ?? true,
+	'show_archive'  => $attributes['showArchive'] ?? true,
 	// align 等の supports をラッパーに反映させる。
 	'wrapper_attrs' => get_block_wrapper_attributes( [ 'class' => 'kyom-follow' ] ),
 ] );

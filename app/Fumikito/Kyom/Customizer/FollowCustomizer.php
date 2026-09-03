@@ -25,23 +25,7 @@ class FollowCustomizer extends CustomizerSetting {
 	}
 
 	protected function get_fields(): array {
-		$fields = [
-			'kyom_follow_title' => [
-				'label'             => __( 'Title', 'kyom' ),
-				'description'       => __( 'Heading of the follow block.', 'kyom' ),
-				'stored'            => 'option',
-				'default'           => '',
-				'sanitize_callback' => 'sanitize_text_field',
-			],
-			'kyom_follow_lead'  => [
-				'label'             => __( 'Lead', 'kyom' ),
-				'description'       => __( 'Explain why readers should follow you.', 'kyom' ),
-				'type'              => 'textarea',
-				'stored'            => 'option',
-				'default'           => '',
-				'sanitize_callback' => 'wp_kses_post',
-			],
-		];
+		$fields = [];
 		// 媒体ごとの役割を書く1行。キーはフォロー導線で大きく見せる媒体に対応する。
 		foreach ( kyom_follow_featured_keys() as $key ) {
 			$fields[ 'kyom_follow_desc_' . $key ] = [

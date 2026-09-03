@@ -1223,3 +1223,51 @@ msgstr "最大幅最大幅"
 
 #~ msgid "See All Posts"
 #~ msgstr "すべての投稿を見る"
+
+#: functions/follow.php
+msgid "Follow on %s"
+msgstr "%s でフォロー"
+
+#: functions/follow.php
+msgid "Watch"
+msgstr "見る"
+
+#: functions/follow.php
+msgid "Subscribe"
+msgstr "登録"
+
+#: functions/follow.php
+msgid "Follow"
+msgstr "フォロー"
+
+#: functions/follow.php
+msgid "SINCE %s"
+msgstr "SINCE %s"
+
+#: hooks/user-profile.php
+msgid "Author Box"
+msgstr "著者ボックス"
+
+#: hooks/user-profile.php
+msgid "Role Title"
+msgstr "肩書き"
+
+#: hooks/user-profile.php
+msgid "e.g. Novelist"
+msgstr "例：小説家"
+
+#: hooks/user-profile.php
+msgid "Displayed under your name in the author box. Leave empty to hide."
+msgstr "著者ボックスの名前の下に表示されます。空欄なら表示しません。"
+
+#: src/blocks/follow/edit.js
+msgid "Show biography"
+msgstr "紹介文を表示"
+
+#: src/blocks/follow/edit.js
+msgid "Show link to all posts"
+msgstr "記事一覧へのリンクを表示"
+
+#: app/Fumikito/Kyom/Customizer/FollowCustomizer.php
+msgid "Describe what this channel is for."
+msgstr "この媒体が何のためのものかを書きます。"

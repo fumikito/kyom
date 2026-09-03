@@ -1,27 +1,44 @@
 <?php
 /**
- * Follow action block helpers.
+ * Author profile / follow block helpers.
  *
- * サイトの「アクション」＝フォローしてもらうことなので、
- * その導線をブロックとテンプレートの双方から同じマークアップで出せるようにする。
+ * サイトの「アクション」＝フォローしてもらうこと。心理的ハードルがもっとも低い
+ * X を主アクションとして前に出し、他の媒体は細い罫線の副導線に落とす（デザイン D 案）。
  *
- * URL はサイト代表ユーザーの連絡先情報（kyom_get_social_links）を唯一の出所とし、
- * 「なぜフォローすべきか」の文言だけをカスタマイザーで持つ。
+ * 記事末尾の著者ボックス（template-parts/singular-footer-post.php）とブロック
+ * kyom/follow の双方が、この共有レンダラーを通る。
+ *
+ * URL はユーザーの連絡先情報（kyom_get_social_links）が唯一の出所で、
+ * 媒体ごとの説明文だけをカスタマイザーで持つ。
  *
  * @package kyom
  */
 
 /**
- * 大きく見せる媒体のキー。
+ * 主アクションに据える媒体のキー。
  *
- * 読者の心理的ハードルが低い順に並べる。
- * twitter / youtube は連絡先情報のキー、mail は kyom_get_social_links が
- * ニュースレターページから合成する擬似キー。
+ * @return string
+ */
+function kyom_follow_primary_key() {
+	return apply_filters( 'kyom_follow_primary_key', 'twitter' );
+}
+
+/**
+ * 副導線に並べる媒体のキー。並び順のとおりに表示する。
+ *
+ * @return string[]
+ */
+function kyom_follow_secondary_keys() {
+	return apply_filters( 'kyom_follow_secondary_keys', [ 'youtube', 'mail' ] );
+}
+
+/**
+ * 主アクション＋副導線のキー。
  *
  * @return string[]
  */
 function kyom_follow_featured_keys() {
-	return apply_filters( 'kyom_follow_featured_keys', [ 'twitter', 'youtube', 'mail' ] );
+	return array_merge( [ kyom_follow_primary_key() ], kyom_follow_secondary_keys() );
 }
 
 /**
@@ -44,104 +61,173 @@ function kyom_follow_icon( $key, $url = '' ) {
 }
 
 /**
- * フォロー導線で大きく見せる媒体の一覧。
+ * 副導線の行末に出す動詞。
  *
- * URL が未設定の媒体は含めない。
- *
- * @param string[]     $keys 絞り込むキー。空なら kyom_follow_featured_keys() を使う。
- * @param WP_User|null $user 対象ユーザー。null ならサイト代表ユーザー。
- * @return array[] key/label/url/description/icon を持つ配列。
+ * @param string $key 媒体キー。
+ * @return string
  */
-function kyom_get_follow_channels( $keys = [], $user = null ) {
-	$featured = kyom_follow_featured_keys();
-	if ( $keys ) {
-		// 指定順ではなく既定の並び（ハードルの低い順）を保つ。
-		$featured = array_values( array_intersect( $featured, $keys ) );
+function kyom_follow_action_label( $key ) {
+	switch ( $key ) {
+		case 'youtube':
+			$label = __( 'Watch', 'kyom' );
+			break;
+		case 'mail':
+			$label = __( 'Subscribe', 'kyom' );
+			break;
+		default:
+			$label = __( 'Follow', 'kyom' );
+			break;
 	}
-	$links    = kyom_get_social_links( $user, true );
-	$channels = [];
-	foreach ( $featured as $key ) {
-		if ( empty( $links[ $key ]['url'] ) ) {
-			continue;
-		}
-		$channels[] = [
-			'key'         => $key,
-			'label'       => $links[ $key ]['label'],
-			'url'         => $links[ $key ]['url'],
-			'description' => (string) get_option( 'kyom_follow_desc_' . $key, '' ),
-			'icon'        => kyom_follow_icon( $key, $links[ $key ]['url'] ),
-		];
-	}
-	return $channels;
+	return apply_filters( 'kyom_follow_action_label', $label, $key );
 }
 
 /**
- * 大きく見せる媒体以外の連絡先。アイコン列にまとめる用。
+ * URL からアカウント名（@つき）を推測する。
  *
- * @param WP_User|null $user 対象ユーザー。null ならサイト代表ユーザー。
- * @return array[] key/label/url/icon を持つ配列。
+ * X のボタンにハンドルを添えるために使う。判定できなければ空文字。
+ *
+ * @param string $url 対象URL。
+ * @return string
  */
-function kyom_get_follow_extras( $user = null ) {
-	$featured = kyom_follow_featured_keys();
-	$extras   = [];
-	foreach ( kyom_get_social_links( $user, true ) as $key => $link ) {
+function kyom_follow_handle_from_url( $url ) {
+	$path = (string) wp_parse_url( $url, PHP_URL_PATH );
+	$path = trim( $path, '/' );
+	if ( ! $path || false !== strpos( $path, '/' ) ) {
+		return '';
+	}
+	return '@' . ltrim( $path, '@' );
+}
+
+/**
+ * 一媒体ぶんの情報を組み立てる。
+ *
+ * @param string $key       媒体キー。
+ * @param array  $link      kyom_get_social_links() の1要素。
+ * @param bool   $with_desc 説明文を含めるか。
+ * @return array
+ */
+function kyom_follow_build_channel( $key, $link, $with_desc = true ) {
+	return [
+		'key'         => $key,
+		'label'       => $link['label'],
+		'url'         => $link['url'],
+		'description' => $with_desc ? (string) get_option( 'kyom_follow_desc_' . $key, '' ) : '',
+		'icon'        => kyom_follow_icon( $key, $link['url'] ),
+		'action'      => kyom_follow_action_label( $key ),
+		'handle'      => kyom_follow_handle_from_url( $link['url'] ),
+	];
+}
+
+/**
+ * 表示する媒体をまとめて返す。
+ *
+ * @param WP_User|null $user      対象ユーザー。null ならサイト代表ユーザー。
+ * @param bool         $with_desc 説明文を含めるか。
+ * @return array primary / secondary / extras を持つ配列。
+ */
+function kyom_get_follow_data( $user = null, $with_desc = true ) {
+	$links       = kyom_get_social_links( $user, true );
+	$primary_key = kyom_follow_primary_key();
+	$featured    = kyom_follow_featured_keys();
+	$data        = [
+		'primary'   => null,
+		'secondary' => [],
+		'extras'    => [],
+	];
+	if ( ! empty( $links[ $primary_key ]['url'] ) ) {
+		$data['primary'] = kyom_follow_build_channel( $primary_key, $links[ $primary_key ], $with_desc );
+	}
+	foreach ( kyom_follow_secondary_keys() as $key ) {
+		if ( empty( $links[ $key ]['url'] ) ) {
+			continue;
+		}
+		$data['secondary'][] = kyom_follow_build_channel( $key, $links[ $key ], $with_desc );
+	}
+	foreach ( $links as $key => $link ) {
 		if ( in_array( $key, $featured, true ) || empty( $link['url'] ) ) {
 			continue;
 		}
-		$extras[] = [
+		$data['extras'][] = [
 			'key'   => $key,
 			'label' => $link['label'],
 			'url'   => $link['url'],
 			'icon'  => kyom_follow_icon( $key, $link['url'] ),
 		];
 	}
-	return $extras;
+	return $data;
 }
 
 /**
- * フォロー導線のHTMLを返す。
+ * ユーザーの肩書き。
  *
- * ブロックの render.php とテンプレートの双方から呼ぶ共有レンダラー。
+ * @param WP_User|null $user 対象ユーザー。
+ * @return string 未設定なら空文字。
+ */
+function kyom_get_user_role_title( $user ) {
+	if ( ! $user ) {
+		return '';
+	}
+	return (string) get_user_meta( $user->ID, KYOM_USER_ROLE_TITLE_KEY, true );
+}
+
+/**
+ * ユーザーの活動開始年。登録日から導出する。
+ *
+ * @param WP_User|null $user 対象ユーザー。
+ * @return string 4桁の年。取れなければ空文字。
+ */
+function kyom_get_user_since( $user ) {
+	if ( ! $user || empty( $user->user_registered ) ) {
+		return '';
+	}
+	return mysql2date( 'Y', $user->user_registered );
+}
+
+/**
+ * 著者プロフィール／フォロー導線のHTMLを返す。
  *
  * @param array $args {
- *     @type string       $title         見出し。未指定ならカスタマイザーの値。
- *     @type string       $lead          リード文。未指定ならカスタマイザーの値。
- *     @type string[]     $keys          表示する媒体の絞り込み。空なら全部。
- *     @type string       $class         追加のクラス名。
+ *     @type WP_User|null $user          対象ユーザー。null ならサイト代表ユーザー。
  *     @type string       $wrapper_attrs ラッパーに直接出す属性文字列。ブロックからは
  *                                       get_block_wrapper_attributes() の戻り値を渡す。
- *                                       指定時は $class より優先される。
- *     @type WP_User|null $user          対象ユーザー。null ならサイト代表ユーザー。
- *                                       著者ボックスのように著者ごとに出し分けたい場合に使う。
- *     @type bool         $show_lead     リード文を出すか。著者ボックスではサイト全体の
- *                                       文言が合わないので false にする。
- *     @type bool         $show_desc     媒体ごとの説明を出すか。同上。
- *     @type int          $heading_level 見出しのレベル。既定は 2。
+ *     @type string       $class         追加のクラス名。$wrapper_attrs 指定時は無視。
+ *     @type bool         $show_bio      紹介文を出すか。
+ *     @type bool         $show_archive  「記事一覧をすべて見る」を出すか。
+ *     @type int          $heading_level 名前の見出しレベル。既定は 2。
  * }
- * @return string 表示すべき媒体がなければ空文字。
+ * @return string 表示すべきものがなければ空文字。
  */
 function kyom_get_follow_html( $args = [] ) {
 	$args = wp_parse_args( $args, [
-		'title'         => '',
-		'lead'          => '',
-		'keys'          => [],
-		'class'         => '',
-		'wrapper_attrs' => '',
 		'user'          => null,
-		'show_lead'     => true,
-		'show_desc'     => true,
+		'wrapper_attrs' => '',
+		'class'         => '',
+		'show_bio'      => true,
+		'show_archive'  => true,
 		'heading_level' => 2,
 	] );
 
-	$channels = kyom_get_follow_channels( $args['keys'], $args['user'] );
-	if ( ! $channels ) {
+	$user = $args['user'] ? $args['user'] : kyom_get_owner();
+	if ( ! $user ) {
+		return '';
+	}
+	$owner = kyom_get_owner();
+	// 媒体ごとの説明はサイト所有者のチャンネルについて書かれた文言なので、
+	// 他の著者（Madame Claude 等）には出さない。
+	$with_desc = $owner && (int) $user->ID === (int) $owner->ID;
+	$data      = kyom_get_follow_data( $user, $with_desc );
+	if ( ! $data['primary'] && ! $data['secondary'] && ! $data['extras'] ) {
 		return '';
 	}
 
-	$title   = $args['title'] ? $args['title'] : (string) get_option( 'kyom_follow_title', '' );
-	$lead    = $args['show_lead'] ? ( $args['lead'] ? $args['lead'] : (string) get_option( 'kyom_follow_lead', '' ) ) : '';
-	$extras  = $args['keys'] ? [] : kyom_get_follow_extras( $args['user'] );
 	$heading = 'h' . max( 2, min( 6, (int) $args['heading_level'] ) );
+	$role    = kyom_get_user_role_title( $user );
+	$since   = kyom_get_user_since( $user );
+	$meta    = array_filter( [
+		$role,
+		// translators: %s is a 4 digit year.
+		$since ? sprintf( __( 'SINCE %s', 'kyom' ), $since ) : '',
+	] );
 	if ( $args['wrapper_attrs'] ) {
 		$wrapper = $args['wrapper_attrs'];
 	} else {
@@ -152,44 +238,99 @@ function kyom_get_follow_html( $args = [] ) {
 	ob_start();
 	?>
 	<section <?php echo $wrapper; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped ?>>
-		<?php if ( $title ) : ?>
-			<<?php echo esc_html( $heading ); ?> class="kyom-follow-title"><?php echo esc_html( $title ); ?></<?php echo esc_html( $heading ); ?>>
-		<?php endif; ?>
-		<?php if ( $lead ) : ?>
-			<p class="kyom-follow-lead"><?php echo wp_kses_post( $lead ); ?></p>
-		<?php endif; ?>
-		<ul class="kyom-follow-list">
-			<?php foreach ( $channels as $channel ) : ?>
-				<li class="kyom-follow-item kyom-follow-item-<?php echo esc_attr( $channel['key'] ); ?>">
-					<a class="kyom-follow-link" href="<?php echo esc_url( $channel['url'] ); ?>">
-						<span class="kyom-follow-icon" uk-icon="icon: <?php echo esc_attr( $channel['icon'] ); ?>; ratio: 1.4"></span>
-						<span class="kyom-follow-body">
-							<span class="kyom-follow-label"><?php echo esc_html( $channel['label'] ); ?></span>
-							<?php if ( $args['show_desc'] && $channel['description'] ) : ?>
-								<span class="kyom-follow-desc"><?php echo esc_html( $channel['description'] ); ?></span>
+
+		<div class="kyom-follow-bar">
+			<span class="kyom-follow-bar-label"><?php esc_html_e( 'PROFILE', 'kyom' ); ?></span>
+			<?php if ( $meta ) : ?>
+				<span class="kyom-follow-bar-meta"><?php echo esc_html( implode( ' / ', $meta ) ); ?></span>
+			<?php endif; ?>
+		</div>
+
+		<div class="kyom-follow-body">
+
+			<div class="kyom-follow-portrait">
+				<?php echo get_avatar( $user->ID, 560, '', $user->display_name, [ 'class' => 'kyom-follow-avatar' ] ); ?>
+			</div>
+
+			<div class="kyom-follow-content">
+
+				<p class="kyom-follow-eyebrow"><?php esc_html_e( 'WRITTEN BY', 'kyom' ); ?></p>
+
+				<<?php echo esc_html( $heading ); ?> class="kyom-follow-name"><?php echo esc_html( $user->display_name ); ?></<?php echo esc_html( $heading ); ?>>
+
+				<?php if ( $role ) : ?>
+					<p class="kyom-follow-role"><?php echo esc_html( $role ); ?></p>
+				<?php endif; ?>
+
+				<?php if ( $args['show_bio'] && $user->description ) : ?>
+					<div class="kyom-follow-bio"><?php echo wp_kses_post( wpautop( $user->description ) ); ?></div>
+				<?php endif; ?>
+
+				<?php if ( $data['primary'] ) : ?>
+					<div class="kyom-follow-primary">
+						<a class="kyom-follow-button" href="<?php echo esc_url( $data['primary']['url'] ); ?>">
+							<span class="kyom-follow-button-label">
+								<?php
+								// translators: %s is a channel name like X.
+								echo esc_html( sprintf( __( 'Follow on %s', 'kyom' ), $data['primary']['label'] ) );
+								?>
+							</span>
+							<?php if ( $data['primary']['handle'] ) : ?>
+								<span class="kyom-follow-button-handle"><?php echo esc_html( $data['primary']['handle'] ); ?></span>
 							<?php endif; ?>
-						</span>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-		<?php if ( $extras ) : ?>
-			<ul class="kyom-follow-extras uk-iconnav">
-				<?php foreach ( $extras as $extra ) : ?>
-					<li>
-						<a href="<?php echo esc_url( $extra['url'] ); ?>" title="<?php echo esc_attr( $extra['label'] ); ?>"
-							uk-icon="icon: <?php echo esc_attr( $extra['icon'] ); ?>"></a>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-		<?php endif; ?>
+						</a>
+						<?php if ( $data['primary']['description'] ) : ?>
+							<p class="kyom-follow-caption"><?php echo esc_html( $data['primary']['description'] ); ?></p>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( $data['secondary'] ) : ?>
+					<ul class="kyom-follow-list">
+						<?php foreach ( $data['secondary'] as $channel ) : ?>
+							<li class="kyom-follow-item kyom-follow-item-<?php echo esc_attr( $channel['key'] ); ?>">
+								<a class="kyom-follow-link" href="<?php echo esc_url( $channel['url'] ); ?>">
+									<span class="kyom-follow-text">
+										<span class="kyom-follow-label"><?php echo esc_html( $channel['label'] ); ?></span>
+										<?php if ( $channel['description'] ) : ?>
+											<span class="kyom-follow-desc"><?php echo esc_html( $channel['description'] ); ?></span>
+										<?php endif; ?>
+									</span>
+									<span class="kyom-follow-action"><?php echo esc_html( $channel['action'] ); ?> &rarr;</span>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+
+				<?php if ( $data['extras'] ) : ?>
+					<ul class="kyom-follow-extras uk-iconnav">
+						<?php foreach ( $data['extras'] as $extra ) : ?>
+							<li>
+								<a href="<?php echo esc_url( $extra['url'] ); ?>" title="<?php echo esc_attr( $extra['label'] ); ?>"
+									uk-icon="icon: <?php echo esc_attr( $extra['icon'] ); ?>"></a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+
+				<?php if ( $args['show_archive'] ) : ?>
+					<p class="kyom-follow-archive">
+						<a href="<?php echo esc_url( get_author_posts_url( $user->ID ) ); ?>">
+							<?php esc_html_e( 'See all posts', 'kyom' ); ?> &rarr;
+						</a>
+					</p>
+				<?php endif; ?>
+
+			</div>
+		</div>
 	</section>
 	<?php
 	return trim( ob_get_clean() );
 }
 
 /**
- * フォロー導線を出力する。
+ * 著者プロフィール／フォロー導線を出力する。
  *
  * @param array $args kyom_get_follow_html() と同じ。
  * @return void

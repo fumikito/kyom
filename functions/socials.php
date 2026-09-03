@@ -327,6 +327,27 @@ function kyom_social_keys() {
 }
 
 /**
+ * 媒体キーの表示名。
+ *
+ * ucfirst() だけでは "Youtube" のようにブランド表記が崩れるため、
+ * 正しい綴りを明示する。twitter は現行のサービス名 X を出す。
+ *
+ * @param string $key 媒体キー。
+ * @return string
+ */
+function kyom_social_label( $key ) {
+	$labels = [
+		'twitter'   => 'X',
+		'youtube'   => 'YouTube',
+		'wordpress' => 'WordPress',
+		'linkedin'  => 'LinkedIn',
+		'github'    => 'GitHub',
+	];
+	$label  = isset( $labels[ $key ] ) ? $labels[ $key ] : ucfirst( $key );
+	return apply_filters( 'kyom_social_label', $label, $key );
+}
+
+/**
  * Get icon name from URL.
  *
  * @param string $url Base URL.

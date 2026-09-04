@@ -97,3 +97,44 @@ add_filter( 'wp_robots', function ( $robots ) {
 
 	return $robots;
 } );
+
+
+/**
+ * Keep crawlers out of internal search results.
+ *
+ * A 2019 link-spam campaign hammered `/?s=<korean spam with URLs>` and those
+ * URLs are still sitting in third-party link indexes. Moz's DotBot re-crawls
+ * them to this day: of the 2,417 `?s=` requests this site served in the 31
+ * days to 2026-09-03, 2,160 were DotBot working through that list and 208
+ * were bingbot. Only about 15 came from a browser.
+ *
+ * Search results are the one template WP Super Cache never caches, so every
+ * one of those is a full render plus a LIKE query at the origin. Both bots
+ * honour robots.txt, so this removes 98% of it without touching PHP.
+ *
+ * Core already sends `noindex, follow` on these pages, so nothing of value
+ * is lost by keeping compliant crawlers away from them entirely.
+ *
+ * The rules must land inside the `User-agent: *` group and ahead of the
+ * `Sitemap:` line that core appends at priority 0 — simple parsers treat a
+ * blank line as the end of a group — hence the negative priority.
+ *
+ * @filter robots_txt
+ *
+ * @param string $output Robots.txt content.
+ * @param bool   $public Whether the site is public.
+ *
+ * @return string
+ */
+add_filter( 'robots_txt', function ( $output, $public ) {
+	if ( ! $public ) {
+		return $output;
+	}
+	// `/*?s=` covers search under sub-paths, `/?s=` the literal prefix for
+	// parsers with no wildcard support, `/*&s=` search combined with filters.
+	foreach ( [ '/?s=', '/*?s=', '/*&s=' ] as $pattern ) {
+		$output .= 'Disallow: ' . $pattern . "\n";
+	}
+
+	return $output;
+}, -1, 2 );

@@ -19,11 +19,14 @@
 const KYOM_YOUTUBE_SHORTS_CACHE = 'kyom_youtube_shorts';
 
 /**
- * 動画IDごとの「ショートか」の判定結果を溜めるキャッシュキー。
+ * 動画IDごとの「ショートか」の判定結果を溜めるオプション名。
  *
- * ショートかどうかは後から変わらないので期限を切らない。
+ * ショートかどうかは後から変わらない永続データなので、transient ではなく
+ * オプションに置く。揮発性のオブジェクトキャッシュに置くと、キャッシュが
+ * 飛んだときに判定結果を全部失い、動画1本ごとの HEAD リクエストをやり直す
+ * ことになる。autoload はしない（動画数に応じて増えるし、cron しか読まない）。
  */
-const KYOM_YOUTUBE_SHORT_FLAGS_CACHE = 'kyom_youtube_short_flags';
+const KYOM_YOUTUBE_SHORT_FLAGS_OPTION = 'kyom_youtube_short_flags';
 
 /**
  * 定期実行の cron フック名。
@@ -71,7 +74,7 @@ function kyom_youtube_shorts_scan_size() {
  * @return array<string, bool>
  */
 function kyom_youtube_short_flags() {
-	$flags = get_transient( KYOM_YOUTUBE_SHORT_FLAGS_CACHE );
+	$flags = get_option( KYOM_YOUTUBE_SHORT_FLAGS_OPTION, [] );
 	return is_array( $flags ) ? $flags : [];
 }
 
@@ -263,7 +266,7 @@ function kyom_refresh_youtube_shorts() {
 	usort( $shorts, function ( $a, $b ) {
 		return strtotime( $b['published'] ) <=> strtotime( $a['published'] );
 	} );
-	set_transient( KYOM_YOUTUBE_SHORT_FLAGS_CACHE, $flags, 0 );
+	update_option( KYOM_YOUTUBE_SHORT_FLAGS_OPTION, $flags, false );
 	set_transient( KYOM_YOUTUBE_SHORTS_CACHE, $shorts, WEEK_IN_SECONDS );
 	delete_transient( 'kyom_youtube_shorts_pending' );
 }

@@ -83,15 +83,20 @@ add_action( 'admin_init', function () {
 			'description' => __( 'YouTube channel related to your site.', 'kyom' ),
 			'page'        => 'general',
 			'options'     => [
-				'youtube_api_key'    => [
+				'youtube_api_key'        => [
 					'label'       => __( 'API Key', 'kyom' ),
 					'description' => __( 'API Key of Google Cloud Platform. YouTube data API v3 is required to be included in libraries.', 'kyom' ),
 					'type'        => 'text',
 				],
-				'youtube_channel_id' => [
+				'youtube_channel_id'     => [
 					'label'       => __( 'Channel ID', 'kyom' ),
 					'description' => __( 'Your YouTube channel ID. You can get it from URL of YouTube studio. If both values are valid, you can get Channel Detail below.', 'kyom' ),
 					'type'        => 'text',
+				],
+				'youtube_shorts_max_age' => [
+					'label'       => __( 'Shorts Freshness (days)', 'kyom' ),
+					'description' => __( 'Shorts older than this are not displayed. If nothing is fresh enough, the section disappears instead of advertising a dormant channel. Default is 60.', 'kyom' ),
+					'type'        => 'number',
 				],
 			],
 		],

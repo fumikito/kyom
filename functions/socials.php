@@ -448,11 +448,15 @@ function kyom_get_youtube_playlist( $wp_error = true ) {
  * @param int    $cache_time Cache life time.
  * @return array|WP_Error
  */
-function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
-	$cache_key = 'kyom_youtube_videos_in_' . $playlist;
+function kyom_get_youtube_videos( $playlist, $cache_time = 3600, $count = 5 ) {
+	// 保存するのは素の items。ショートの除外と件数の切り出しは読み出し時に
+	// 行う。除外の判定材料（cron が解決するショート判定）が後から埋まっても、
+	// キャッシュを待たずに反映されるようにするため。構造を変えたのでキャッシュ
+	// キーを v2 にして旧キャッシュを無効化する。
+	$cache_key = 'kyom_youtube_videos_v2_in_' . $playlist;
 	$cache     = get_transient( $cache_key );
 	if ( false !== $cache ) {
-		return $cache;
+		return kyom_youtube_filter_videos( $cache, $count );
 	}
 	$channel = kyom_get_youtube_channel();
 	if ( is_wp_error( $channel ) ) {
@@ -472,11 +476,46 @@ function kyom_get_youtube_videos( $playlist, $cache_time = 3600 ) {
 	if ( ! $json ) {
 		return new WP_Error( 'parse_error', __( 'Failed to get valid response.', 'kyom' ) );
 	}
-	$result = array_slice( array_values( array_filter( $json['items'], function ( $item ) {
-		return ! preg_match( '/#[sS]horts/u', $item['snippet']['title'] );
-	} ) ), 0, 5 );
-	set_transient( $cache_key, $result, $cache_time );
-	return $result;
+	if ( empty( $json['items'] ) || ! is_array( $json['items'] ) ) {
+		return new WP_Error( 'parse_error', __( 'Failed to get valid response.', 'kyom' ) );
+	}
+	set_transient( $cache_key, $json['items'], $cache_time );
+	return kyom_youtube_filter_videos( $json['items'], $count );
+}
+
+/**
+ * playlistItems からショートを除き、先頭 $count 件を返す。
+ *
+ * @param array $items playlistItems の items。
+ * @param int   $count 返す件数。
+ * @return array
+ */
+function kyom_youtube_filter_videos( $items, $count ) {
+	$filtered = array_values( array_filter( $items, 'kyom_youtube_video_is_not_short' ) );
+	return array_slice( $filtered, 0, max( 1, (int) $count ) );
+}
+
+/**
+ * playlistItems の1件がショートでないか。
+ *
+ * 以前はタイトルの #Shorts タグだけで判定していたが、新しいショートには
+ * タグが付いておらず除外が機能していなかった。判定は cron が解決した結果
+ * （kyom_youtube_is_short）を使い、まだ解決していない動画についてのみ、
+ * 従来どおりタイトルで暫定的に判断する。
+ *
+ * @param array $item playlistItems の1件。
+ * @return bool
+ */
+function kyom_youtube_video_is_not_short( $item ) {
+	$video_id = isset( $item['contentDetails']['videoId'] ) ? $item['contentDetails']['videoId'] : '';
+	if ( $video_id ) {
+		$is_short = kyom_youtube_is_short( $video_id );
+		if ( ! is_null( $is_short ) ) {
+			return ! $is_short;
+		}
+	}
+	$title = isset( $item['snippet']['title'] ) ? $item['snippet']['title'] : '';
+	return ! preg_match( '/#[sS]horts/u', $title );
 }
 
 /**

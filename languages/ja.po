@@ -1291,3 +1291,22 @@ msgstr "この媒体が大きなボタンになります。残りはその下の
 #: app/Fumikito/Kyom/Customizer/FollowCustomizer.php
 msgid "Description: %s"
 msgstr "説明文：%s"
+
+# YouTube ショート（#97）
+msgid "SHORTS"
+msgstr "SHORTS"
+
+msgid "Dismiss"
+msgstr "閉じる"
+
+msgid "Shorts Freshness (days)"
+msgstr "ショートの鮮度（日数）"
+
+msgid "Shorts older than this are not displayed. If nothing is fresh enough, the section disappears instead of advertising a dormant channel. Default is 60."
+msgstr "これより古いショートは表示しません。新しいものが1本も無ければ、カード自体を出しません（更新の止まったチャンネルを宣伝しないため）。既定は60日です。"
+
+msgid "Unknown error."
+msgstr "不明なエラーです。"
+
+msgid "Could not determine whether %1$s is a short (HTTP %2$d)."
+msgstr "%1$s がショートかどうかを判定できませんでした（HTTP %2$d）。"

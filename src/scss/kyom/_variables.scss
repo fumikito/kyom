@@ -97,6 +97,13 @@ $block-margin: 1.5em;
 // 独立性の高い大きなブロック（埋め込み・カバー・グループ・広告など）。
 $block-margin-lg: 3em;
 
+// 編集的パレット（design/*.pen の ed-* 変数に対応）。
+// 雑誌的な見せ方をするブロック（著者プロフィール、ショート一覧など）で共有する。
+$ed-accent: #c1432e; // 朱色
+$ed-ink: #111111;
+$ed-hairline: #ddddd2;
+$ed-surface: #fbfaf8;
+
 // Comments
 $comment-list-margin-top: 40px;
 $comment-list-padding-left-m: 40px;

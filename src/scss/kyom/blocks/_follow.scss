@@ -9,11 +9,12 @@
 // 勝ってしまい、見出しに罫線が付いたり段落が字下げされたりして、本文の内と外で
 // 見た目が変わってしまうため。
 
-// D 案のトークン。デザインファイル（design/follow-block.pen）の変数と対応する。
-$follow-accent: #c1432e; // ed-accent 朱色
-$follow-ink: #111111; // ed-ink
-$follow-hairline: #ddddd2; // ed-hairline
-$follow-surface: #fbfaf8; // Variant D の背景
+// D 案のトークン。値は _variables.scss の編集的パレットに集約してある
+// （2つ目のブロックでも同じ色を使うため）。
+$follow-accent: $ed-accent;
+$follow-ink: $ed-ink;
+$follow-hairline: $ed-hairline;
+$follow-surface: $ed-surface;
 
 .kyom-follow {
 	margin-top: $block-margin-lg;

@@ -26,6 +26,21 @@ const KYOM_YOUTUBE_SHORTS_CACHE = 'kyom_youtube_shorts';
 const KYOM_YOUTUBE_SHORT_FLAGS_CACHE = 'kyom_youtube_short_flags';
 
 /**
+ * 定期実行の cron フック名。
+ */
+const KYOM_YOUTUBE_SHORTS_CRON = 'kyom_refresh_youtube_shorts';
+
+/**
+ * 即時実行（自己修復）の cron フック名。
+ *
+ * 定期実行と同じフック名にしてはいけない。wp_get_schedule() は「そのフックの
+ * 次の1件」の schedule しか見ないため、消化されない単発イベントが先頭に居座ると
+ * 定期イベントの有無を判定できなくなり、毎リクエスト定期イベントを積んでしまう。
+ * 実際にそれで本番の cron オプションが 473KB まで膨らんだ。
+ */
+const KYOM_YOUTUBE_SHORTS_CRON_NOW = 'kyom_refresh_youtube_shorts_now';
+
+/**
  * ショートを何日以内のものに限るか。
  *
  * 投稿が途絶えているときに半年前の動画を「最新」として出し続けると、
@@ -266,7 +281,7 @@ function kyom_schedule_youtube_shorts_refresh() {
 		return;
 	}
 	set_transient( 'kyom_youtube_shorts_pending', 1, 10 * MINUTE_IN_SECONDS );
-	wp_schedule_single_event( time(), 'kyom_refresh_youtube_shorts' );
+	wp_schedule_single_event( time(), KYOM_YOUTUBE_SHORTS_CRON_NOW );
 }
 
 /**

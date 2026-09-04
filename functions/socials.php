@@ -349,18 +349,29 @@ function kyom_social_label( $key ) {
 }
 
 /**
+ * URL から媒体キーを判定する。
+ *
+ * @param string $url 判定対象のURL。
+ * @return string 媒体キー。判定できなければ空文字。
+ */
+function kyom_social_key_from_url( $url ) {
+	foreach ( kyom_social_keys() as $key ) {
+		if ( preg_match( '#https?://(.*\.)?' . $key . '\.(co\.jp|jp|com|org)#u', $url ) ) {
+			return $key;
+		}
+	}
+	return '';
+}
+
+/**
  * Get icon name from URL.
  *
  * @param string $url Base URL.
  * @return string Icon name e.g. facebook.
  */
 function kyom_icon_from_url( $url ) {
-	foreach ( kyom_social_keys() as $key ) {
-		if ( preg_match( '#https?://(.*\.)?' . $key . '\.(co\.jp|jp|com|org)#u', $url ) ) {
-			return kyom_icon_name( $key );
-		}
-	}
-	return 'link';
+	$key = kyom_social_key_from_url( $url );
+	return $key ? kyom_icon_name( $key ) : 'link';
 }
 
 /**

@@ -66,5 +66,15 @@ add_filter( 'walker_nav_menu_start_el', function ( $item_output, $item, $depth, 
 		return $item_output;
 	}
 	$brand = kyom_icon_from_url( $item->url );
-	return sprintf( '<a href="%s" uk-icon="icon:%s; ratio: 2"></a>', esc_url( $item->url ), esc_attr( $brand ) );
+	// 計測用に媒体キーのクラスを付ける。UIkit が実行時に付ける uk-icon しか
+	// 無いと GA4 の linkClasses で媒体も設置場所も割れないため。フォロー
+	// ブロックの kyom-follow-ch-* とは別系統にして、どちらを押したか区別する。
+	$key   = kyom_social_key_from_url( $item->url );
+	$class = 'kyom-social-' . ( $key ? $key : 'link' );
+	return sprintf(
+		'<a class="%1$s" href="%2$s" uk-icon="icon:%3$s; ratio: 2"></a>',
+		esc_attr( $class ),
+		esc_url( $item->url ),
+		esc_attr( $brand )
+	);
 }, 10, 4 );

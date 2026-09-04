@@ -149,6 +149,53 @@
 		font-size: 10px;
 		line-height: 1.4;
 	}
+
+	// 中間幅では本文の右端に重なる。実測で1024px幅のとき本文テキストを120px
+	// 覆っていたため、既定はたたんでおき、ポインタを乗せたときだけ広げる。
+	// ホバーできない端末（タッチ）では畳まない。閉じるボタンに触れなくなるため。
+	@media only screen and ( min-width: $breakpoint-small ) and ( hover: hover ) {
+		width: 64px;
+		transition:
+			width 0.25s $ease-in-out-sine,
+			opacity 0.4s $ease-in-out-sine,
+			transform 0.4s $ease-in-out-sine;
+
+		&:hover,
+		&:focus-within {
+			width: 140px;
+		}
+
+		// たたんでいる間は文字要素と閉じるボタンを消す。64px幅では読めないうえ、
+		// 見えない当たり判定を残すとクリック事故になる。
+		.kyom-shorts-tag,
+		.kyom-shorts-caption,
+		.kyom-shorts-close {
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.2s $ease-in-out-sine;
+		}
+
+		&:hover .kyom-shorts-tag,
+		&:hover .kyom-shorts-caption,
+		&:hover .kyom-shorts-close,
+		&:focus-within .kyom-shorts-tag,
+		&:focus-within .kyom-shorts-caption,
+		&:focus-within .kyom-shorts-close {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
+		.kyom-shorts-play {
+			width: 26px;
+			height: 26px;
+		}
+
+		&:hover .kyom-shorts-play,
+		&:focus-within .kyom-shorts-play {
+			width: 34px;
+			height: 34px;
+		}
+	}
 }
 
 // 画面下に固定されるコールアウトバー（.kyom-callouts、z-index 99）と

@@ -92,8 +92,15 @@ function kyom_grab_feed_image( $item ) {
  * @return array
  */
 function kyom_fetch_feed_items( $url ) {
-	$posts = get_transient( 'rss_cache_' . $url );
-	if ( WP_DEBUG ) {
+	// URLをそのままキーに使うと長さで詰まるのでハッシュ化する（WordPressOrg と同じ作法）。
+	$cache_key = 'kyom_rss_' . md5( $url );
+	$posts     = get_transient( $cache_key );
+	// 開発中はキャッシュを無視して毎回取り直す。
+	//
+	// 判定に WP_DEBUG を使ってはいけない。このサイトは本番でもエラーログを
+	// 取るために WP_DEBUG を true にしているため、開発用のバイパスが本番で
+	// 恒久的に効いてしまい、フィード取得（実測300ms前後）が毎リクエスト走る。
+	if ( 'production' !== wp_get_environment_type() ) {
 		$posts = false;
 	}
 	if ( false === $posts ) {
@@ -124,9 +131,12 @@ function kyom_fetch_feed_items( $url ) {
 					$p['images'] = kyom_grab_feed_image( $item );
 					$posts[]     = $p;
 				}
-				// Save transient.
-				set_transient( 'hametuha_kdp', $posts, 60 * 60 * 2 );
 			}
+			// 読み出しキーと同じキーに書く。以前は 'hametuha_kdp' に書いていて
+			// キーが食い違い、キャッシュが一度もヒットしていなかった。
+			// 取得に失敗したときも短めに空をキャッシュする。フィードが落ちて
+			// いる間、毎リクエストで5秒のタイムアウトを待つのを避けるため。
+			set_transient( $cache_key, $posts, $posts ? 60 * 60 * 2 : 5 * MINUTE_IN_SECONDS );
 		} catch ( Exception $e ) {
 			return [];
 		}

@@ -43,6 +43,13 @@ add_action( 'init', function () {
 	wp_register_script( 'particle-js', 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js', [], '2.0.0', true );
 	wp_register_script( 'kyom-particle', get_template_directory_uri() . '/assets/js/particle.js', [ 'particle-js' ], kyom_version(), true );
 	wp_register_script( 'google-api-platform', 'https://apis.google.com/js/platform.js', [], null, true );
+	// Turnstile は class="cf-turnstile" を自動で探して描画する（暗黙レンダリング）。
+	// フッターとショートコードで同一ページに複数フォームが出るため、
+	// 明示レンダリングよりこちらのほうが扱いが簡単。
+	wp_register_script( 'cf-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js', [], null, [
+		'in_footer' => true,
+		'strategy'  => 'defer',
+	] );
 
 	// 3. Localized data.
 	wp_localize_script( 'kyom-netabare', 'Netabare', [

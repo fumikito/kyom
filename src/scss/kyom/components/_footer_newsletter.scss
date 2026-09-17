@@ -76,8 +76,11 @@
       padding: $kyom-gap;
     }
 
+    // 展開時の上限。Turnstile のウィジェット（約65px）を足すと
+    // モバイル幅で 600px に対し残り 14px しかなく、送信ボタンが切れる寸前だった。
+    // max-height は transition のための見かけの上限なので、余裕を持たせて困らない。
     .toggle &{
-      max-height: 600px;
+      max-height: 800px;
     }
     .uk-grid{
       margin-bottom: $kyom-gap * 0.5;
@@ -109,6 +112,14 @@
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+// Turnstile のウィジェットは 300px 固定で描画される。
+// フッター版は中央寄せのレイアウトなので、左端に寄らないよう揃える。
+.kyom-newsletter-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto $kyom-gap * 0.5;
 }
 
 .kyom-newsletter-message {

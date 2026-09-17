@@ -138,11 +138,23 @@ class MailchimpClient {
 	 * `status_if_new` を渡すのが重要で、これにより「すでに購読解除した人を
 	 * こちらの操作で再購読させてしまう」事故が構造的に起きない。
 	 *
+	 * `ip_signup` を必ず渡すこと。サーバー経由で登録するようにした結果、
+	 * 渡さないと Mailchimp は API 呼び出し元＝**このサーバーの IP** を記録してしまう。
+	 * 2026-09 に汚染を調べたとき、211 件すべてが同じ IP になっていて、
+	 * 2019 年の調査で最も役に立った判別材料を自分で潰していたことが分かった。
+	 *
+	 * なお `ip_signup` を渡すと、**Mailchimp は `ip_opt`（確認クリック時の IP）にも
+	 * 同じ値を勝手に入れる**（2026-09-17 に実測。こちらからは送っていない）。
+	 * そのため `ip_opt` が空かどうかは確認済み判定に使えない。
+	 * 未確認の判定には `status` と `timestamp_opt` を見ること
+	 * ——この 2 つは pending のまま正しく残る。
+	 *
 	 * @param string $email        Email address.
 	 * @param array  $merge_fields Merge fields like FNAME.
+	 * @param string $ip           Client IP address who submitted the form.
 	 * @return array|\WP_Error
 	 */
-	public static function subscribe( $email, $merge_fields = [] ) {
+	public static function subscribe( $email, $merge_fields = [], $ip = '' ) {
 		$email = strtolower( trim( $email ) );
 		if ( ! is_email( $email ) ) {
 			return new \WP_Error( 'kyom_mailchimp_invalid_email', __( 'Email address is invalid.', 'kyom' ) );
@@ -151,14 +163,19 @@ class MailchimpClient {
 			'REGISTERED' => date_i18n( 'Y-m-d' ),
 			'SOURCE'     => wp_parse_url( home_url(), PHP_URL_HOST ),
 		], $merge_fields ) );
+		$body         = [
+			'email_address' => $email,
+			'status_if_new' => 'pending',
+			'merge_fields'  => $merge_fields,
+		];
+		// プライベートアドレスは調査の役に立たないうえ Mailchimp 側で弾かれ得るので送らない。
+		if ( $ip && filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+			$body['ip_signup'] = $ip;
+		}
 		return self::request(
 			'PUT',
 			sprintf( '/lists/%s/members/%s', rawurlencode( self::list_id() ), md5( $email ) ),
-			[
-				'email_address' => $email,
-				'status_if_new' => 'pending',
-				'merge_fields'  => $merge_fields,
-			]
+			$body
 		);
 	}
 }

@@ -270,18 +270,23 @@ add_action( 'rest_api_init', function () {
 				$verified = \Fumikito\Kyom\Service\TurnstileClient::verify( $request->get_param( 'turnstile' ), $ip );
 				if ( is_wp_error( $verified ) ) {
 					// 何が原因で弾かれたかは利用者に見せない。ボットに手がかりを渡さないため。
-					error_log( 'Newsletter Turnstile rejected: ' . $verified->get_error_message() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+					// IP を残す。次に汚染されたとき、ログから発信元をまとめられる。
+					error_log( sprintf( 'Newsletter Turnstile rejected from %s: %s', $ip ? $ip : 'unknown', $verified->get_error_message() ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 					$data   = $verified->get_error_data();
 					$status = ( is_array( $data ) && ! empty( $data['status'] ) ) ? (int) $data['status'] : 400;
 					return new WP_Error( 'kyom_newsletter_unverified', __( '確認が完了していません。少し待ってから、もう一度お試しください。', 'kyom' ), [ 'status' => $status ] );
 				}
 			}
 			$job    = $request->get_param( 'job' );
-			$result = \Fumikito\Kyom\Service\MailchimpClient::subscribe( $email, [
-				'FNAME'   => $name,
-				'MMERGE2' => $request->get_param( 'company' ),
-				'MMERGE3' => in_array( $job, kyom_newsletter_occupations(), true ) ? $job : '',
-			] );
+			$result = \Fumikito\Kyom\Service\MailchimpClient::subscribe(
+				$email,
+				[
+					'FNAME'   => $name,
+					'MMERGE2' => $request->get_param( 'company' ),
+					'MMERGE3' => in_array( $job, kyom_newsletter_occupations(), true ) ? $job : '',
+				],
+				$ip
+			);
 			if ( is_wp_error( $result ) ) {
 				// API 側の詳細は利用者に見せず、ログにだけ残す。
 				error_log( 'Newsletter subscription failed: ' . $result->get_error_message() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log

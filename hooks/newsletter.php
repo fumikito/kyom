@@ -113,6 +113,12 @@ function kyom_newsletter_form( $context = 'footer' ) {
 					<label for="<?php echo esc_attr( $uid ); ?>-website">Website</label>
 					<input type="text" name="website" id="<?php echo esc_attr( $uid ); ?>-website" tabindex="-1" autocomplete="off">
 				</div>
+				<?php if ( \Fumikito\Kyom\Service\TurnstileClient::is_ready() ) : ?>
+					<?php // トークンは hidden input `cf-turnstile-response` としてこのフォーム内に挿入される。 ?>
+					<div class="kyom-newsletter-turnstile cf-turnstile"
+						data-sitekey="<?php echo esc_attr( \Fumikito\Kyom\Service\TurnstileClient::site_key() ); ?>"
+						data-language="ja" data-theme="light"></div>
+				<?php endif; ?>
 				<p class="uk-text-center">
 					<button type="submit" class="btn btn-raised btn-lg btn-primary uk-button-large">
 						<?php esc_html_e( '購読する', 'kyom' ); ?>
@@ -180,16 +186,20 @@ add_action( 'wp_enqueue_scripts', function () {
 	if ( ! \Fumikito\Kyom\Service\MailchimpClient::is_ready() ) {
 		return;
 	}
+	if ( \Fumikito\Kyom\Service\TurnstileClient::is_ready() ) {
+		wp_enqueue_script( 'cf-turnstile' );
+	}
 	wp_enqueue_script( 'kyom-newsletter' );
 	wp_localize_script( 'kyom-newsletter', 'KyomNewsletter', [
 		'restUrl' => rest_url( 'kyom/v1/newsletter' ),
 		'i18n'    => [
-			'sending' => __( '送信中…', 'kyom' ),
-			'submit'  => __( '購読する', 'kyom' ),
-			'success' => __( '確認メールをお送りしました。メール内のボタンを押すと登録が完了します。', 'kyom' ),
-			'invalid' => __( 'メールアドレスとお名前をご入力ください。', 'kyom' ),
-			'error'   => __( '登録に失敗しました。時間をおいて再度お試しください。', 'kyom' ),
-			'tooMany' => __( '短時間に何度も送信されています。しばらく待ってからお試しください。', 'kyom' ),
+			'sending'    => __( '送信中…', 'kyom' ),
+			'submit'     => __( '購読する', 'kyom' ),
+			'success'    => __( '確認メールをお送りしました。メール内のボタンを押すと登録が完了します。', 'kyom' ),
+			'invalid'    => __( 'メールアドレスとお名前をご入力ください。', 'kyom' ),
+			'error'      => __( '登録に失敗しました。時間をおいて再度お試しください。', 'kyom' ),
+			'tooMany'    => __( '短時間に何度も送信されています。しばらく待ってからお試しください。', 'kyom' ),
+			'unverified' => __( '確認が完了していません。少し待ってから、もう一度お試しください。', 'kyom' ),
 		],
 	] );
 } );
@@ -202,29 +212,33 @@ add_action( 'rest_api_init', function () {
 		'methods'             => 'POST',
 		'permission_callback' => '__return_true',
 		'args'                => [
-			'email'   => [
+			'email'     => [
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_email',
 			],
-			'name'    => [
+			'name'      => [
 				'required'          => true,
 				'sanitize_callback' => 'sanitize_text_field',
 			],
-			'company' => [
+			'company'   => [
 				'default'           => '',
 				'sanitize_callback' => 'sanitize_text_field',
 			],
-			'job'     => [
+			'job'       => [
 				'default'           => '',
 				'sanitize_callback' => 'sanitize_text_field',
 			],
-			'website' => [
+			'website'   => [
 				'default'           => '',
 				'sanitize_callback' => 'sanitize_text_field',
 			],
-			'elapsed' => [
+			'elapsed'   => [
 				'default'           => 0,
 				'sanitize_callback' => 'absint',
+			],
+			'turnstile' => [
+				'default'           => '',
+				'sanitize_callback' => 'sanitize_text_field',
 			],
 		],
 		'callback'            => function ( WP_REST_Request $request ) {
@@ -248,6 +262,19 @@ add_action( 'rest_api_init', function () {
 			$name  = $request->get_param( 'name' );
 			if ( ! is_email( $email ) || '' === $name ) {
 				return new WP_Error( 'kyom_newsletter_invalid', __( 'メールアドレスとお名前をご入力ください。', 'kyom' ), [ 'status' => 400 ] );
+			}
+			// Turnstile。キーが両方保存されているときだけ必須になるので、
+			// 未設定の環境（ローカルや設定前の本番）でもフォームは壊れない。
+			// ハニーポットや elapsed と違い、これはクライアントが自己申告できない。
+			if ( \Fumikito\Kyom\Service\TurnstileClient::is_ready() ) {
+				$verified = \Fumikito\Kyom\Service\TurnstileClient::verify( $request->get_param( 'turnstile' ), $ip );
+				if ( is_wp_error( $verified ) ) {
+					// 何が原因で弾かれたかは利用者に見せない。ボットに手がかりを渡さないため。
+					error_log( 'Newsletter Turnstile rejected: ' . $verified->get_error_message() ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+					$data   = $verified->get_error_data();
+					$status = ( is_array( $data ) && ! empty( $data['status'] ) ) ? (int) $data['status'] : 400;
+					return new WP_Error( 'kyom_newsletter_unverified', __( '確認が完了していません。少し待ってから、もう一度お試しください。', 'kyom' ), [ 'status' => $status ] );
+				}
 			}
 			$job    = $request->get_param( 'job' );
 			$result = \Fumikito\Kyom\Service\MailchimpClient::subscribe( $email, [

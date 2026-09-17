@@ -79,6 +79,20 @@
 		const renderedAt = Date.now();
 		const message = form.querySelector( '.kyom-newsletter-message' );
 		const button = form.querySelector( 'button[type="submit"]' );
+		// Turnstile のキーが未設定なら、このウィジェットはそもそも描画されない。
+		const widget = form.querySelector( '.cf-turnstile' );
+
+		/**
+		 * トークンを引き直す。
+		 *
+		 * Turnstile のトークンは単回使用なので、送信のたびにリセットしないと
+		 * 2 回目以降の送信が必ず検証に失敗する。
+		 */
+		function resetTurnstile() {
+			if ( widget && window.turnstile ) {
+				window.turnstile.reset( widget );
+			}
+		}
 
 		/**
 		 * Display a message to the user.
@@ -103,6 +117,13 @@
 				setMessage( config.i18n.invalid, true );
 				return;
 			}
+			// ウィジェットがまだ解けていないうちに投げてもサーバーで弾かれるだけなので、
+			// ここで止めて理由を伝える。
+			const token = widget ? ( data.get( 'cf-turnstile-response' ) || '' ) : '';
+			if ( widget && ! token ) {
+				setMessage( config.i18n.unverified, true );
+				return;
+			}
 			button.disabled = true;
 			button.textContent = config.i18n.sending;
 			setMessage( '', false );
@@ -117,6 +138,7 @@
 						job: data.get( 'job' ) || '',
 						website: data.get( 'website' ) || '',
 						elapsed: Date.now() - renderedAt,
+						turnstile: token,
 					} ),
 				} );
 				const body = await response.json();
@@ -133,6 +155,7 @@
 			} catch {
 				setMessage( config.i18n.error, true );
 			} finally {
+				resetTurnstile();
 				button.disabled = false;
 				button.textContent = config.i18n.submit;
 			}

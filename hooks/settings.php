@@ -117,6 +117,23 @@ add_action( 'admin_init', function () {
 				],
 			],
 		],
+		'kyom_turnstile'    => [
+			'label'       => 'Cloudflare Turnstile',
+			'description' => __( 'Bot protection for the newsletter form. Once both keys are saved, a subscription without a valid token is rejected.', 'kyom' ),
+			'page'        => 'general',
+			'options'     => [
+				'turnstile_site_key'   => [
+					'label'       => __( 'Site Key', 'kyom' ),
+					'description' => __( 'Create a widget at Cloudflare dashboard &gt; Turnstile. <strong>Managed</strong> mode is recommended. This value is embedded in HTML and is not a secret.', 'kyom' ),
+					'type'        => 'text',
+				],
+				'turnstile_secret_key' => [
+					'label'       => __( 'Secret Key', 'kyom' ),
+					'description' => __( 'Issued together with the site key. Defining <code>KYOM_TURNSTILE_SECRET_KEY</code> in wp-config.php takes precedence over this field and is recommended for production.', 'kyom' ),
+					'type'        => 'password',
+				],
+			],
+		],
 	];
 	foreach ( $settings as $id => $setting ) {
 		// Register section.
@@ -195,6 +212,18 @@ add_action( 'admin_init', function () {
 								empty( $result['double_optin'] ) ? __( 'disabled', 'kyom' ) : __( 'enabled', 'kyom' )
 							) )
 						);
+					}
+				}
+				if ( 'turnstile_secret_key' === $key ) {
+					// キーの正しさはトークンが無いと検証できない。ここで出せるのは設定の充足状態だけ。
+					$site   = \Fumikito\Kyom\Service\TurnstileClient::site_key();
+					$secret = \Fumikito\Kyom\Service\TurnstileClient::secret_key();
+					if ( $site && $secret ) {
+						printf( '<p class="description"><strong>%s</strong></p>', esc_html__( 'Enabled. The newsletter form now requires Turnstile.', 'kyom' ) );
+					} elseif ( $site || $secret ) {
+						printf( '<p class="wp-ui-text-notification">%s</p>', esc_html__( 'Both the site key and the secret key are required. Turnstile is not working with only one of them.', 'kyom' ) );
+					} else {
+						printf( '<p class="wp-ui-text-notification">%s</p>', esc_html__( 'Not configured. The newsletter form is accepting subscriptions without Turnstile.', 'kyom' ) );
 					}
 				}
 				echo '</div>';

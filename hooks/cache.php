@@ -52,21 +52,11 @@ add_action( 'template_redirect', function () {
 	}
 } );
 
-
-/**
- * Purge CloudFlare cache when posts are saved.
- */
-add_action( 'save_post', function ( $post_id, $post ) {
-	if ( 'post' === $post->post_type && 'publish' === $post->post_status ) {
-		kyom_purge_cf_cache( $post );
-	}
-}, 10, 2 );
-
-/**
- * Purge CloudFlare cache when post is published.
- */
-add_action( 'transition_post_status', function ( $new_status, $old_status, $post ) {
-	if ( 'publish' === $new_status && 'future' === $old_status ) {
-		kyom_purge_cf_cache( $post );
-	}
-}, 10, 3 );
+// CloudFlare のパージは hamecache プラグインが担当する。
+// テーマにも kyom_purge_cf_cache() があったが、hamecache のほうが対象URLが
+// 広く（著者アーカイブ・ページ送り・AMP・投稿タイプアーカイブ・フィードも含む）、
+// 完全な上位互換だったため削除した。拡張したいときは hamecache 側の
+// `hamecache_urls_to_be_purged` フィルタを使う。
+//
+// なお wp-config.php の CF_MAIL / CF_TOKEN / CF_ZONE_ID は hamecache が
+// そのまま読んでいるので消してはいけない。

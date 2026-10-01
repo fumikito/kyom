@@ -51,7 +51,7 @@
 	"devDependencies": {
 		"@kunoichi/grab-deps": "*",
 		"@wordpress/browserslist-config": "^6.54.0",
-		"@wordpress/icons": "^13.3.0",
+		"@wordpress/icons": "^17.0.0",
 		"@wordpress/scripts": "^32.6.0",
 		"autoprefixer": "^10.4.16",
 		"baseline-browser-mapping": "^2.10.0",

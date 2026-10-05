@@ -19,6 +19,9 @@ add_action( 'init', function () {
 				continue;
 			}
 			$url = $base_url . '/' . $dep['path'];
+			// grab-deps on Linux may emit an empty handle (e.g. "@deps jquery, ").
+			// WordPress silently drops a script whose dependency is missing, so filter it out.
+			$dep['deps'] = array_values( array_filter( (array) $dep['deps'] ) );
 			switch ( $dep['ext'] ) {
 				case 'css':
 					wp_register_style( $dep['handle'], $url, $dep['deps'], $dep['hash'], $dep['media'] );

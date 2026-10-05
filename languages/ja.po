@@ -1317,7 +1317,7 @@ msgid "F Y"
 msgstr "Y年n月"
 
 msgid "Published in %1$s, revised in %2$s."
-msgstr "%1$sに公開し、%2$sに手を入れた記事です。"
+msgstr "%1$sに公開し、%2$sに加筆・修正しました。"
 
 msgid "Published in %1$s (%2$s ago). Facts are as of then."
 msgstr "%1$sに公開した記事です（%2$s前）。事実関係は当時のものです。"

@@ -348,8 +348,14 @@
 	border-bottom: 1px solid $semi-light-grey;
 	font-size: $kyom-font-size-sm;
 	color: $body-font-color;
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
 	.uk-icon {
-		margin-right: 0.3em;
-		vertical-align: -0.15em;
+		flex: none;
+	}
+	&-text {
+		flex: 1;
+		min-width: 0;
 	}
 }

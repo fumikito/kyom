@@ -98,7 +98,7 @@ function kyom_get_age_note( $post = null ) {
 		$note = sprintf( __( 'Published in %1$s, revised in %2$s.', 'kyom' ), mysql2date( $format, $post->post_date ), mysql2date( $format, $post->post_modified ) );
 	} else {
 		// translators: %1$s is elapsed years, %2$s is published month.
-		$note = sprintf( __( 'Published %1$s ago (%2$s).', 'kyom' ), kyom_get_outdated_string( $post ), mysql2date( $format, $post->post_date ) );
+		$note = sprintf( __( 'Published %1$s ago (%2$s). The content may be outdated.', 'kyom' ), kyom_get_outdated_string( $post ), mysql2date( $format, $post->post_date ) );
 	}
 	return apply_filters( 'kyom_age_note', $note, $post );
 }

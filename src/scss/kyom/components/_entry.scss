@@ -347,13 +347,9 @@
 	border-top: 1px solid $semi-light-grey;
 	border-bottom: 1px solid $semi-light-grey;
 	font-size: $kyom-font-size-sm;
-	color: $body-font-muted-color;
+	color: $body-font-color;
 	.uk-icon {
 		margin-right: 0.3em;
 		vertical-align: -0.15em;
 	}
-	@include night-shift((
-		color: $body-font-night-muted,
-		border-color: $body-font-night-muted,
-	));
 }

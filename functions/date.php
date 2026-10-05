@@ -82,6 +82,28 @@ function kyom_get_outdated_string( $post = null ) {
 }
 
 /**
+ * Get a note about the age of the post.
+ *
+ * Not a warning: tells when it was written, and when it was revised if any.
+ *
+ * @param null|int|WP_Post $post
+ *
+ * @return string
+ */
+function kyom_get_age_note( $post = null ) {
+	$post   = get_post( $post );
+	$format = _x( 'F Y', 'age note', 'kyom' );
+	if ( kyom_is_updated( $post ) ) {
+		// translators: %1$s is published month, %2$s is updated month.
+		$note = sprintf( __( 'Published in %1$s, revised in %2$s.', 'kyom' ), mysql2date( $format, $post->post_date ), mysql2date( $format, $post->post_modified ) );
+	} else {
+		// translators: %1$s is published month, %2$s is elapsed years.
+		$note = sprintf( __( 'Published in %1$s (%2$s ago). Facts are as of then.', 'kyom' ), mysql2date( $format, $post->post_date ), kyom_get_outdated_string( $post ) );
+	}
+	return apply_filters( 'kyom_age_note', $note, $post );
+}
+
+/**
  * Get date diff string.
  *
  * @param $date          Date string.

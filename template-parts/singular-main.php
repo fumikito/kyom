@@ -8,9 +8,9 @@
 ?>
 
 <?php if ( is_singular( 'post' ) && kyom_is_expired_post() ) : ?>
-	<div class="uk-alert-warning uk-alert-padding" uk-alert>
-		<a class="uk-alert-close" uk-close></a>
-		<?php echo esc_html( sprintf( __( 'This post is published %s ago. Please consider the content may contain invalid information.', 'kyom' ), kyom_get_outdated_string() ) ); ?>
+	<div class="kyom-age-note">
+		<span uk-icon="<?php echo kyom_is_revised() ? 'refresh' : 'history'; ?>"></span>
+		<span class="kyom-age-note-text"><?php echo esc_html( kyom_get_age_note() ); ?></span>
 	</div>
 <?php endif; ?>
 

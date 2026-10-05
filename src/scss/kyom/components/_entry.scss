@@ -339,3 +339,23 @@
 .sd-sharing-enabled li:first-child {
 	padding-left: 0;
 }
+
+// Age of an old post. A colophon-like line, not a warning.
+.kyom-age-note {
+	margin: 0 0 2em;
+	padding: 0.6em 0;
+	border-top: 1px solid $semi-light-grey;
+	border-bottom: 1px solid $semi-light-grey;
+	font-size: $kyom-font-size-sm;
+	color: $body-font-color;
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+	.uk-icon {
+		flex: none;
+	}
+	&-text {
+		flex: 1;
+		min-width: 0;
+	}
+}

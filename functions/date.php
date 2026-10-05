@@ -14,7 +14,7 @@
  * @return boolean
  */
 function kyom_is_expired_post( $post = null ) {
-	$outdated = apply_filters( 'kyom_outdated_days', 365, get_post( $post ) );
+	$outdated = apply_filters( 'kyom_outdated_days', 365 * 3, get_post( $post ) );
 	return kyom_get_outdated_days( $post ) > $outdated;
 }
 
@@ -79,6 +79,43 @@ function kyom_get_outdated_string( $post = null ) {
 		$string .= _x( ' and half', 'date', 'kyom' );
 	}
 	return apply_filters( 'kyom_outdated_days_string', $string, $date_diff, $post );
+}
+
+/**
+ * Get a note about the age of the post.
+ *
+ * Not a warning: tells when it was written, and when it was revised if any.
+ *
+ * @param null|int|WP_Post $post
+ *
+ * @return string
+ */
+function kyom_get_age_note( $post = null ) {
+	$post   = get_post( $post );
+	$format = _x( 'F Y', 'age note', 'kyom' );
+	if ( kyom_is_revised( $post ) ) {
+		// translators: %1$s is published month, %2$s is revised month.
+		$note = sprintf( __( 'Published in %1$s, revised in %2$s.', 'kyom' ), mysql2date( $format, $post->post_date ), mysql2date( $format, $post->post_modified ) );
+	} else {
+		// translators: %1$s is elapsed years, %2$s is published month.
+		$note = sprintf( __( 'Published %1$s ago (%2$s). The content may be outdated.', 'kyom' ), kyom_get_outdated_string( $post ), mysql2date( $format, $post->post_date ) );
+	}
+	return apply_filters( 'kyom_age_note', $note, $post );
+}
+
+/**
+ * Is the post revised long after publication?
+ *
+ * Unlike kyom_is_updated(), small fixes shortly after publishing don't count.
+ *
+ * @param null|int|WP_Post $post
+ *
+ * @return bool
+ */
+function kyom_is_revised( $post = null ) {
+	$post = get_post( $post );
+	$days = apply_filters( 'kyom_revised_days', 365, $post );
+	return strtotime( $post->post_modified ) > strtotime( $post->post_date ) + $days * DAY_IN_SECONDS;
 }
 
 /**

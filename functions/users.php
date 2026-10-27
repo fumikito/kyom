@@ -69,6 +69,19 @@ function kyom_get_social_links( $user = null, $with_label = false ) {
 }
 
 /**
+ * 外部プロフィールとして扱える URL か。
+ *
+ * filter_var() は日本語のパス（ja.wikipedia.org など）を弾き、
+ * wp_http_validate_url() は DNS を引くので、形だけを見る。
+ *
+ * @param string $url 判定対象。
+ * @return bool
+ */
+function kyom_is_profile_url( $url ) {
+	return (bool) preg_match( '#^https?://[^\s/?\#]+\.[^\s/?\#]+(/\S*)?$#u', $url );
+}
+
+/**
  * Get contact page URL.
  *
  * @return string Empty string if not set.

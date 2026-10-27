@@ -39,7 +39,7 @@ jobs:
       - name: Install NPM
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version-file: .node-version
 
       - name: Build package.
         run: bash bin/build.sh ${{ github.ref }}

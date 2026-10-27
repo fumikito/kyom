@@ -159,6 +159,8 @@
 	}
 
 	&-top-term {
+		position: relative;
+		z-index: 3;
 		display: inline-block;
 		margin-bottom: 1em;
 		border: 1px solid $kyom-header-title-color;

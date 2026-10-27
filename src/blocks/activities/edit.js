@@ -1,7 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, Placeholder } from '@wordpress/components';
-import { portfolio } from '@wordpress/icons';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -25,7 +24,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 			<div { ...blockProps }>
 				<Placeholder
-					icon={ portfolio }
+					icon="portfolio"
 					label={ __( 'Recent Projects', 'kyom' ) }
 					instructions={ __( 'Displays recent portfolio items in a slideshow. Configure the number of items to show in the sidebar.', 'kyom' ) }
 				>

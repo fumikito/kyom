@@ -469,6 +469,12 @@ $img-margin: $block-margin;
 		font-size: .95em;
 	}
 
+	// UIkit は nowrap にするが、長いコードがモバイルではみ出すので折り返す。
+	:not(pre) > code {
+		white-space: normal;
+		overflow-wrap: anywhere;
+	}
+
 	.syntaxhighlighter, pre {
 		margin-top: $block-margin;
 		margin-bottom: $block-margin;

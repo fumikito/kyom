@@ -2,5 +2,4 @@ assets/*
 !assets/img/
 vendor/
 node_modules/
-composer.lock
 wp-dependencies.json

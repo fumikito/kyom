@@ -1321,3 +1321,43 @@ msgstr "%1$sに公開し、%2$sに加筆・修正しました。"
 
 msgid "Published %1$s ago (%2$s). The content may be outdated."
 msgstr "この記事は%1$s前（%2$s）に公開されました。内容が古くなっている可能性があります。"
+
+#: hooks/members.php
+msgid "Profile Page"
+msgstr "プロフィールページ"
+
+#: hooks/members.php
+msgid "No profile page"
+msgstr "プロフィールページなし"
+
+#: hooks/members.php
+msgid "Output as ProfilePage structured data of the site owner."
+msgstr "サイトの主のプロフィールページ（ProfilePage）として構造化データを出力します。"
+
+#: hooks/user-profile.php
+msgid "Structured Data"
+msgstr "構造化データ"
+
+#: hooks/user-profile.php
+msgid "Output as Person structured data of the site owner. Role Title is used as the job title."
+msgstr "サイトの主の構造化データ（Person）として出力します。職業には肩書きを使います。"
+
+#: hooks/user-profile.php
+msgid "Alternate Name"
+msgstr "別名"
+
+#: hooks/user-profile.php
+msgid "Organization Name"
+msgstr "所属組織名"
+
+#: hooks/user-profile.php
+msgid "Organization URL"
+msgstr "所属組織URL"
+
+#: hooks/user-profile.php
+msgid "Other Profile URLs"
+msgstr "その他のプロフィールURL"
+
+#: hooks/user-profile.php
+msgid "One URL per line, e.g. Wikipedia or Wikidata. Social links in Contact Info are included automatically."
+msgstr "1行に1つのURL（WikipediaやWikidataなど）。連絡先情報のSNSは自動で含まれます。"

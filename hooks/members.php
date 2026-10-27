@@ -79,4 +79,17 @@ add_action( 'admin_init', function () {
 		] );
 	}, 'reading', 'newsletter' );
 	register_setting( 'reading', 'kyom_contact_page_id' );
+	add_settings_field( 'kyom_profile_page_id', __( 'Profile Page', 'kyom' ), function () {
+		$page_id = get_option( 'kyom_profile_page_id', 0 );
+		wp_dropdown_pages( [
+			'depth'            => 0,
+			'selected'         => $page_id,
+			'name'             => 'kyom_profile_page_id',
+			'id'               => 'kyom_profile_page_id',
+			'value_field'      => 'ID',
+			'show_option_none' => __( 'No profile page', 'kyom' ),
+		] );
+		printf( '<p class="description">%s</p>', esc_html__( 'Output as ProfilePage structured data of the site owner.', 'kyom' ) );
+	}, 'reading', 'newsletter' );
+	register_setting( 'reading', 'kyom_profile_page_id' );
 } );

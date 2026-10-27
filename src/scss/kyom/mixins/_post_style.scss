@@ -474,6 +474,11 @@ $img-margin: $block-margin;
 		white-space: normal;
 		overflow-wrap: anywhere;
 	}
+	// SyntaxHighlighter は行を pre ではなく div > code で組むので、元に戻す。
+	.syntaxhighlighter code {
+		white-space: nowrap;
+		overflow-wrap: normal;
+	}
 
 	.syntaxhighlighter, pre {
 		margin-top: $block-margin;

@@ -10,7 +10,7 @@ VERSION=${1#"$PREFIX"}
 composer install --no-dev --prefer-dist --no-suggest
 
 # Install NPM.
-npm install
+npm ci
 npm run package
 
 # Generate readme.txt

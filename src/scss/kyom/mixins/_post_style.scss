@@ -48,9 +48,17 @@ $img-margin: $block-margin;
 		text-align: justify;
 		text-justify: inter-ideograph;
 		text-indent: 1em;
+		line-break: strict;
+
+		// 1行の字数が少ないと、長い英単語が送られた行が両端揃えで間延びする。
+		// 狭い画面に限り、欧文を行末で割る（ハイフンは入らない）。
+		@include bp-max($breakpoint-smallphone) {
+			word-break: break-all;
+		}
 
 		.in-english-please & {
 			text-align: left;
+			word-break: normal;
 		}
 
 		&.no-indent {
@@ -467,6 +475,17 @@ $img-margin: $block-margin;
 	kbd,
 	samp {
 		font-size: .95em;
+	}
+
+	// UIkit は nowrap にするが、長いコードがモバイルではみ出すので折り返す。
+	:not(pre) > code {
+		white-space: normal;
+		overflow-wrap: anywhere;
+	}
+	// SyntaxHighlighter は行を pre ではなく div > code で組むので、元に戻す。
+	.syntaxhighlighter code {
+		white-space: nowrap;
+		overflow-wrap: normal;
 	}
 
 	.syntaxhighlighter, pre {

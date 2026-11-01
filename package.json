@@ -54,7 +54,7 @@
 		"@wordpress/icons": "^19.0.0",
 		"@wordpress/scripts": "^37.0.0",
 		"autoprefixer": "^10.4.16",
-		"baseline-browser-mapping": "^2.10.0",
+		"baseline-browser-mapping": "^2.11.34",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.6.0",
 		"npm-watch": "^0.13.0",
